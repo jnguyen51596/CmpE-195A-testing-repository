@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="css/app.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+        
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="login.js"></script>
+    </head>
+
+  <body>
+    <div data-role="page" >
+        <div data-role="header" data-theme="c">
+            <h1>Canvas</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <h3>Sign In</h3>
+            <form name="login" onsubmit="validate()" method="post">
+            <label for="sjsu-id">SJSU ID</label>
+            <input type="text" name="sjsu-id" id="sjsu-id" value="">
+            <label for="txt-password">Password</label>
+            <input type="password" name="txt-password" id="txt-password" value="">
+            <fieldset data-role="controlgroup">
+                <input type="checkbox" name="chck-rememberme" id="chck-rememberme">
+                <label for="chck-rememberme">Remember me</label>
+            </fieldset>
+            <input  id="submit" type="submit" value="Login">
+            <p class="mc-top-margin-1-5"><a href="test.html">Can't access your account?</a></p>
+            </form>
+        </div><!-- /content -->
+    </div><!-- /page -->
+</body>
+</html>
