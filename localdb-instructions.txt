@@ -57,5 +57,41 @@ installing from binaries: http://www.petrikainulainen.net/programming/tips-and-t
 creating tables: http://www.tutorialspoint.com/postgresql/postgresql_create_table.htm
 
 ********************************
-***********  UBUNTU  ************
+***********  UBUNTU  ***********
 ********************************
+
+1. Install
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+2. Log in as postgres
+sudo -i -u postgres
+
+3. Using and creating table
+To use postgres prompt, use: 
+psql
+
+To view connection info: 
+\conninfo
+
+To quit: 
+\q
+
+To create database: createdatabase 'name'
+where 'name' is 'testDB' in this particular example
+
+To connect to new database: 
+psql -d testDB
+
+Creating a table:
+
+create table (
+username varchar(20) primary key,
+password varchar(20) not null
+);
+
+To view newly created table: 
+\d
+
+Roles and users are not covered. For more detailed information, visit:
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
