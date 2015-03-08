@@ -1,0 +1,61 @@
+********************************
+**********  WINDOWS  ***********
+********************************
+
+I could not set up PostgreSQL using their one click installer, so I had to resort to installing from binaries
+
+1. Download the binaries at: http://www.enterprisedb.com/products-services-training/pgbindownload
+I am using version 9.4.1 64 bit
+
+After the download, unzip it wherever you want. I put it on my desktop (c:\users\name\desktop\pgsql\). 
+This target directory will be called POSTGRESQL_ROOT from here on out.
+
+2. Create a 'data' and 'log' folder in POSTGRESQL_ROOT
+
+3. Create the database cluster:
+navigate to your bin folder (for example: cd c:\users\name\desktop\pgsql\bin)
+initdb -U postgres -A password -E utf8 -W -D POSTGRESQL_ROOT\data
+
+If you don't have Visual C++ 2013 runtime installed on your pc, you may get an error:
+
+"The program can't start because MSVCR120.dll is missing from your computer. Try 
+reinstalling the program to fix this problem." 
+If you get that error, download the Visual C++ Redistributable Packages for Visual Studio 2013:
+ http://www.microsoft.com/en-us/download/details.aspx?id=40784. 
+ The vcredist_x86.exe you will need if you are running the 32-bit version of PostgreSQL 9.4 
+ and the vcredist_x64.exe is generally the one you want if you are running the 64-bit PostgreSQL 9.4beta1.
+
+4. To start or stop the database:
+"POSTGRESQL_ROOT/bin/pg_ctl" -D "POSTGRESQL_ROOT/data" -l "POSTGRESQL_ROOT/log/pgsql.log" start
+"POSTGRESQL_ROOT/bin/pg_ctl" -D "POSTGRESQL_ROOT/data" -l "POSTGRESQL_ROOT/log/pgsql.log" stop
+
+5. Add a server in pgAdmin3
+Once this is done, you can run pgAdmin3.exe in your bin folder.
+Go to file -> add server
+name: localhost
+host: localhost
+port: 5432 (default)
+password: optional
+store password: I didn't use this option since it warns me that it stores it as plain text
+
+6. Add a database
+Once the server is created, you should be able to expand it if everything is running correctly.
+Expand localhost, right click databases -> new database
+
+7. Execute queries (create table)
+Highlight your newly created database then click the magnifying class icon with the sql label on it.
+
+create table login (
+username varchar(20) primary key,
+password varchar(20) not null 
+);
+
+then hit the play icon at the top
+
+If you are having trouble, you could check out the references that I used:
+installing from binaries: http://www.petrikainulainen.net/programming/tips-and-tricks/installing-postgresql-9-1-to-windows-7-from-the-binary-zip-distribution/
+creating tables: http://www.tutorialspoint.com/postgresql/postgresql_create_table.htm
+
+********************************
+***********  UBUNTU  ************
+********************************
