@@ -1,6 +1,7 @@
 var attempt = 3;
 var xmlhttp;
-
+var finalid;
+var finalpassword;
 //load the database with a .asp file and use the .asp file to load the cookies
 function loadDatabase(url, cfunc)
 {
@@ -13,18 +14,19 @@ function loadDatabase(url, cfunc)
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = cfunc;
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("POST", url, true);
     xmlhttp.send();
 }
 
 //separate the function from loadDatabase
 function myFunction()
 {
-    loadDatabase("connection.asp", function ()
+    loadDatabase("dbconnect.php", function ()
     {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-
+            finalid = getCookie("username");
+            finalpassword = getCookie("password");
         }
     });
 }
@@ -48,22 +50,22 @@ function validate() {
     var username = document.getElementById("sjsu-id").value;
     var password = document.getElementById("txt-password").value;
 
-    var finalid;
-    var finalpassword;
-    
     //used to test the cookie
     document.cookie = "username=hi";
     document.cookie = "password=hi";
 
-    finalid = getCookie("username");
-    finalpassword = getCookie("password");
+    //testing comment out later
+//    finalid = getCookie("username");
+//    finalpassword = getCookie("password");
 
     if (username == finalid && password == finalpassword) {
         alert("Login successfully");
-        window.location = "homepage.html"; 
+        window.location = "homepage.html";
         return false;
     }
     else {
+        document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "password= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
         attempt--;
         alert("You have left " + attempt + " attempt;");
         if (attempt == 0) {
