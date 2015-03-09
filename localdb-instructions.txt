@@ -2,8 +2,24 @@
 **********  WINDOWS  ***********
 ********************************
 
-I could not set up PostgreSQL using their one click installer, so I had to resort to installing from binaries
 
+I could not set up PostgreSQL using their one click installer, so I had to resort to installing from binaries.
+If you want to try the one click installer: 
+
+
+ONE CLICK INSTALLER
+--------------------------------
+1. Download here: http://www.enterprisedb.com/products-services-training/pgdownload#windows
+
+2. Setting up should be straight forward, use default port, default locale, set up your password, etc.
+I got an error during installation regarding initialisation cluster.
+
+3. Go to step 5. in installing from binaries instructions. If you can't add the server, consider installing
+from binaries. I am not sure what is going on, but I have a suspicion that the database is not being started. 
+
+
+INSTALLING FROM BINARIES
+--------------------------------
 1. Download the binaries at: http://www.enterprisedb.com/products-services-training/pgbindownload
 I am using version 9.4.1 64 bit
 
@@ -55,6 +71,7 @@ then hit the play icon at the top
 If you are having trouble, you could check out the references that I used:
 installing from binaries: http://www.petrikainulainen.net/programming/tips-and-tricks/installing-postgresql-9-1-to-windows-7-from-the-binary-zip-distribution/
 creating tables: http://www.tutorialspoint.com/postgresql/postgresql_create_table.htm
+
 
 ********************************
 ***********  UBUNTU  ***********
