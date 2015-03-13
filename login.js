@@ -1,7 +1,6 @@
 var attempt = 3;
 var xmlhttp;
 var finalid;
-var finalpassword;
 //load the database with a .asp file and use the .asp file to load the cookies
 function loadDatabase(url, cfunc)
 {
@@ -19,14 +18,16 @@ function loadDatabase(url, cfunc)
 }
 
 //separate the function from loadDatabase
-function myFunction()
+function validate()
 {
+    
     loadDatabase("dbconnect.php", function ()
     {
+        
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-            finalid = getCookie("username");
-            finalpassword = getCookie("password");
+           finalid=getCookie("username"); 
+            validate2();
         }
     });
 }
@@ -44,28 +45,17 @@ function getCookie(cname) {
     }
     return "";
 }
-
-//validate the login
-function validate() {
+function validate2()
+{
     var username = document.getElementById("sjsu-id").value;
-    var password = document.getElementById("txt-password").value;
-
-    //used to test the cookie
-    document.cookie = "username=hi";
-    document.cookie = "password=hi";
-
-    //testing comment out later
-//    finalid = getCookie("username");
-//    finalpassword = getCookie("password");
-
-    if (username == finalid && password == finalpassword) {
-        alert("Login successfully");
-        window.location = "homepage.html";
+    if(username == finalid)
+    {
+        alert("Login Successful");
+        window.location="homepage.html";
         return false;
     }
+    
     else {
-        document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-        document.cookie = "password= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
         attempt--;
         alert("You have left " + attempt + " attempt;");
         if (attempt == 0) {
@@ -74,5 +64,13 @@ function validate() {
             document.getElementById("submit").disabled = true;
             return false;
         }
+        document.getElementById("login").reset();
     }
 }
+
+function logout()
+{
+    document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    window.location="sign-in.html";
+}
+

@@ -1,27 +1,27 @@
 <?php
 
 //TODO: Replace with correct server info
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "";
+$host = "localhost"; 
+$user = ""; 
+$pass = ""; 
+$db = "dbtest"; 
  
-$sjsuid=$_POST['sjsu-id'];
-$password=$_POST['password'];
+$sjsuid='batman';
+$password='1234';
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-mysqli_select_db($con,"test");
-$sql="SELECT * FROM user WHERE id=$sjsuid";
-$result = mysqli_query($con,$sql);
+$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
+    or die("Could not connect to server\n"); 
 
-while($row = mysqli_fetch_array($result)) {
-    setcookie("username", $row['sjsu-id']);
-    setcookie("password", $row['passworc']);
+
+$sql="SELECT * FROM login WHERE username='$sjsuid' AND password='$password'";
+$result = pg_query($con,$sql) or die("Cannot execute query:");
+
+while($row = pg_fetch_assoc($result)) {
+    if($row['username']==$sjsuid && $row['password']==$password)
+    {
+        setcookie("username", $sjsuid);
+    }
 }
-mysqli_close($con);
+pg_close($con);
 
 ?>
