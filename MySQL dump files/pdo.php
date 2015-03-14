@@ -15,6 +15,7 @@ function getStudentCourses($studentID) {
 		WHERE mID = :studentID and course.cID = coursemember.cID";
 }
 
+
 function createAnnoucement($instructorID, $courseID, $messageBody) {
 	global $con;
 	$sql = "
@@ -33,10 +34,13 @@ function createAnnoucement($instructorID, $courseID, $messageBody) {
 		return 1;
 }
 
+// map annoucement to students in a selected course
 function sendAnnoucement($annoucementID) {
 	global $con;
 	$sql = "
-		
+		INSERT INTO anncouncementnotify(studentID, annoucementID)
+		SELECT mID, :$annoucementID from coursemember, announcement
+		WHERE annoucement.courseID = coursemember.cID
 	";
 }
 
