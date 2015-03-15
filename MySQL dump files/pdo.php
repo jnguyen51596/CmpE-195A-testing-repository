@@ -1,11 +1,13 @@
 <?php
 
-
-
-
-
-
-
+	try {
+		$con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
+		$con -> setAttribute(PDO::ATTR_ERRMOD,
+							 PDO::ERRMODE_EXCEPTION);
+	
+	} catch(PDOException $ex) {
+		echo "<p>Connection failed</p>";
+	}
 
 function getStudentCourses($studentID) {
 	global $con;
@@ -19,7 +21,7 @@ function getStudentCourses($studentID) {
 function createAnnoucement($instructorID, $courseID, $messageBody) {
 	global $con;
 	$sql = "
-		INSERT INTO openlms.announcement(aBody, authorID, courseID)
+		INSERT INTO openlms.announcement(body, authorID, courseID)
 		VALUES (:$messageBody, :instructorID, :courseID)
 	";
 	
@@ -43,8 +45,5 @@ function sendAnnoucement($annoucementID) {
 		WHERE annoucement.courseID = coursemember.cID
 	";
 }
-
-
-
 
 ?>
