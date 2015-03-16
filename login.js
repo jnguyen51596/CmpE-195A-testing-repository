@@ -21,7 +21,7 @@ function loadDatabase(url, cfunc)
 function validate()
 {
     
-    loadDatabase("dbconnect.php", function ()
+    loadDatabase("excecuteLoginCheck.php", function ()
     {
         
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
