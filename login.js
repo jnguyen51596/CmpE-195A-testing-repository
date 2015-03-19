@@ -20,18 +20,45 @@ function loadDatabase(url, cfunc)
 //separate the function from loadDatabase
 function validate()
 {
-    
-    loadDatabase("excecuteLoginCheck.php", function ()
+
+    loadDatabase("dbconnect.php", function ()
     {
-        
+
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-           finalid=getCookie("username"); 
+
             validate2();
+        }
+        else
+        {
+
         }
     });
 }
 
+function validate2()
+{
+    var username = document.getElementById("sjsu-id").value;
+    finalid = getCookie("username");
+    if (username == finalid)
+    {
+        alert("Login Successful");
+        window.location = "homepage.html";
+        return false;
+    }
+
+    else {
+        attempt--;
+        alert("You have left " + attempt + " attempt;");
+        if (attempt == 0) {
+            document.getElementById("sjsu-id").disabled = true;
+            document.getElementById("password").disabled = true;
+            document.getElementById("submit").disabled = true;
+            return false;
+        }
+        document.getElementById("login").reset();
+    }
+}
 //get the cookies
 function getCookie(cname) {
     var name = cname + "=";
@@ -45,32 +72,13 @@ function getCookie(cname) {
     }
     return "";
 }
-function validate2()
-{
-    var username = document.getElementById("sjsu-id").value;
-    if(username == finalid)
-    {
-        alert("Login Successful");
-        window.location="homepage.html";
-        return false;
-    }
-    
-    else {
-        attempt--;
-        alert("You have left " + attempt + " attempt;");
-        if (attempt == 0) {
-            document.getElementById("sjsu-id").disabled = true;
-            document.getElementById("password").disabled = true;
-            document.getElementById("submit").disabled = true;
-            return false;
-        }
-        document.getElementById("login").reset();
-    }
-}
+
 
 function logout()
 {
     document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    window.location="sign-in.html";
+    window.location = "sign-in.html";
 }
+
+
 
