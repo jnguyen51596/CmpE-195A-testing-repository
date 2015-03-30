@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <title>Make a Annoucement</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+                        <link rel="shortcut icon" href="favicon.ico">
+                        <link rel <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--<link href="css/app.css" rel="stylesheet" /> -->
+
+        <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+        
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="login.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var username = getCookie("username");
+		alert("Username = " + username);
+	</script>
+	<div role="main" class="ui-content">
+	<form action="index.html" method="POST">
+		<div>
+			<label for="selectClass">Pick a Class:</label>
+			<select name="selectClass">
+				<option value="My First Class">My First Class</option>
+				<option value="My Second Class">My Second Class</option>
+			</select>
+            <label for="body">Message</label>
+            <textarea data-mini="true" cols="40" rows="8" name="body"></textarea>
+			<input id="submit" type="submit" value="Post Announcement">
+	</form>
+	</div>
+</body>
+</htlm>
+	
