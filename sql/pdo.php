@@ -2,8 +2,8 @@
 
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
-		$con -> setAttribute(PDO::ATTR_ERRMOD,
-							 PDO::ERRMODE_EXCEPTION);
+		$con->setAttribute(PDO::ATTR_ERRMODE,
+						   PDO::ERRMODE_EXCEPTION);
 	
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p>";
@@ -21,27 +21,23 @@ function getStudentCourses($studentID) {
 function createAnnoucement($instructorID, $courseID, $messageBody) {
 	global $con;
 	$sql = "
-		INSERT INTO openlms.announcement(body, authorID, courseID)
+		INSERT INTO announcement (body, authorID, courseID)
 		VALUES (:messageBody, :instructorID, :courseID)
 	";
 	
-	$q = $con -> prepare($sql);
-	$q -> execute(array(':messageBody' => $messageBody,
-						':courseID' => $courseID,
-						':instructorID' => $instructorID));
-	$rows = $q -> fetchAll(PDO::FETCH_ASSOC);
-	if (count($row) == 0) {
-		return 0;
-	} else {
-		return 1;
+	$q = $con->prepare($sql);
+	$q->execute(array(':messageBody'=>$messageBody,
+						':courseID'=>$courseID,
+						':instructorID'=>$instructorID));
 }
+
 
 // map annoucement to students in a selected course
 function sendAnnoucement($annoucementID) {
 	global $con;
 	$sql = "
 		INSERT INTO anncouncementnotify(studentID, annoucementID)
-		SELECT mID, $annoucementID from coursemember, announcement
+		SELECT mID, annoucementID from coursemember, announcement
 		WHERE annoucement.courseID = coursemember.cID
 	";
 }
@@ -49,19 +45,14 @@ function sendAnnoucement($annoucementID) {
 function createClass($courseName, $prefix, $suffix) {
 	global $con;
 	$sql = "
-		INSERT INTO openlms.course(name, prefix, suffix)
+		INSERT INTO course (name, prefix, suffix)
 		VALUES (:courseName, :prefix, :suffix)
 	";
 	
-	$q = $con -> prepare($sql);
-	$q -> execute(array(':courseName' => $courseName,
-						':prefix' => $prefix,
-						':suffix' => $suffix));
-	$rows = $q -> fetchAll(PDO::FETCH_ASSOC);
-	if (count($row) == 0) {
-		return 0;
-	} else {
-		return 1;
+	$q = $con->prepare($sql);
+	$q->execute(array(':courseName'=>$courseName,
+						':prefix'=>$prefix,
+						':suffix'=>$suffix));
 }
 
 function checkLogin($sjsuid, $password) {
@@ -69,7 +60,7 @@ function checkLogin($sjsuid, $password) {
     $sql = "SELECT * FROM login WHERE username='$sjsuid' AND password='$password';";
 
     $q = $con->prepare($sql);
-    $q->execute(array(':username' => $sjsuid));
+    $q->execute(array(':username'=>$sjsuid));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
         echo 'false';

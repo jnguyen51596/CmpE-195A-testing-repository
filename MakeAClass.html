@@ -18,8 +18,18 @@
 <body>
 	<h1>Create A Class</h1>
 	<form action="createClass.php" method="POST">
-		<label for="text-basic">Text input:</label>
+		<label for="courseName">Class Name:</label>
 		<input type="text" name="courseName" id="courseName" value="">
+		<label for="prefix">4 Letter Prefix:</label>
+		<input type="text" name="prefix" id="prefix" value="">
+		<label for="suffix">4 Letter Suffix:</label>
+		<input type="text" name="suffix" id="prefix" value="">
+		<label for="slider-flip-open-course">Open Enrollment:</label>
+		<select name="slider-flip-open-course" id="slider-flip-open-course" data-role="slider" data-mini="true">
+		   <option value="off">No</option>
+		   <option value="on" selected>Yes</option>
+		</select>
+		<input type="submit" value="Add it!" class="ui-shadow ui-btn ui-corner-all" data-theme="a">
 	</form>
 </body>
 </html>
