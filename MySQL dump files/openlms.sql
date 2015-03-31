@@ -18,6 +18,7 @@
 --
 -- Table structure for table `announcement`
 --
+USE openlms;
 
 DROP TABLE IF EXISTS `announcement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

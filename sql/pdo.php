@@ -55,6 +55,22 @@ function createClass($courseName, $prefix, $suffix) {
 						':suffix'=>$suffix));
 }
 
+function getClasses($instructorID) {
+    global $con;
+    $sql = "SELECT prefix,suffix,name 
+		    FROM course";
+
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
 function checkLogin($sjsuid, $password) {
     global $con;
     $sql = "SELECT * FROM login WHERE username='$sjsuid' AND password='$password';";
