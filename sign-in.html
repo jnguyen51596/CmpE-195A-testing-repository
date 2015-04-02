@@ -9,30 +9,71 @@
         <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
         <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-        
+
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
         <script src="login.js"></script>
-        
+        <script>
+            $(document).bind('mobileinit', function () {
+                $.mobile.selectmenu.prototype.options.nativeMenu = false;
+            });
+        </script>
+        <script>
+            $(document).ready(function ()
+            {
+
+                $('#login').click(function ()
+                {
+                    var username = $("#sjsu-id").val();
+                    var password = $("#txt-password").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "executeLoginCheck.php",
+                        data: "name=" + username + "&pwd=" + password,
+                        cache: false,
+                        success: function (data) {
+                            if (data == 'true') {
+                                window.location = 'homepage.html';
+                            }
+                            else {
+                                alert('Invalid Credentials');
+                            }
+                        }
+                    });
+
+                    return false;
+                });
+
+            });
+        </script>
     </head>
 
-  <body>
-    <div data-role="page" >
-        <div data-role="header" data-theme="c">
-            <h1>Canvas</h1>
-        </div><!-- /header -->
-        <div role="main" class="ui-content">
-            <h3>Sign In</h3>
-            <form name="login" id="login" method="post">
-            <label for="sjsu-id">SJSU ID</label>
-            <input type="text" name="sjsu-id" id="sjsu-id" value="">
-            <label for="txt-password">Password</label>
-            <input type="password" name="txt-password" id="txt-password" value="">
-            <input id="submit" type="button" value="Login" onclick="validate()">
-            <p class="mc-top-margin-1-5"><a href="test.html">Can't access your account?</a></p>
-            </form>
-        </div><!-- /content -->
-    </div><!-- /page -->
-</body>
+    <body>
+        <div data-role="page" >
+            <div data-role="header" data-theme="c">
+                <h1>Canvas</h1>
+            </div><!-- /header -->
+            <div data-role="fieldcontain">
+            <label for="select-choice-custom" class="select">Shipping method:</label>
+            <select name="select-choice-1" id="select-choice-custom" data-native-menu="false">
+                <option value="standard">Standard: 7 day</option>
+                <option value="rush">Rush: 3 days</option>
+                <option value="express">Express: next day</option>
+                <option value="overnight">Overnight</option>
+            </select>
+        </div>
+            <div role="main" class="ui-content">
+                <h3>Sign In</h3>
+                <form action="" method="post">
+                    <label for="sjsu-id">SJSU ID</label>
+                    <input type="text" name="sjsu-id" id="sjsu-id" value="">
+                    <label for="txt-password">Password</label>
+                    <input type="password" name="txt-password" id="txt-password" value="">
+                    <input  id="login" type="button" value="Login" >
+                    <p class="mc-top-margin-1-5"><a href="test.html">Can't access your account?</a></p>
+                </form>
+            </div><!-- /content -->
+        </div><!-- /page -->
+    </body>
 </html>
