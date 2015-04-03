@@ -1,7 +1,6 @@
 <?php
-include 'MySQL dump files/pdo.php';
-$sjsuid=$_POST['name'];
-$password=$_POST['pwd'];
+$sjsuid = $_POST['name'];
+$password =$_POST['pwd'];
+require 'pdoj.php';
 checkLogin($sjsuid, $password);
 ?>
-

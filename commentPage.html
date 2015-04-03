@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>LMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="css/app.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="login.js"></script>
+        <script src="quiz.js"></script>
+        <script src="javascriptFunction.js"></script>
+        <script>
+            var question=getParameterByName("question");
+            var questionid= getParameterByName("questionid");
+            window.onload = function () {
+                var classid = "1";
+                $.ajax({
+                    type: "POST",
+                    url: "getComment.php",
+                    data: "question=" + question + "&questionid=" + questionid + "&classid=" + classid,
+                    cache: false,
+                    success: function (data) {
+                        if (data == 'false')
+                        {
+                            
+                            document.getElementById("demo").innerHTML = "<h1>" + question + "</h1>";
+                            alert("No messages");
+                        }
+                        else
+                        {
+                            var html = "<h1>" + question + "</h1><br>";
+                            for (var i = 0; i < data.length; i++)
+                            {
+                                var comment = data[i].comment;
+       
+                                html += comment+"<br>";
+                            }
+                            document.getElementById("demo").innerHTML = html;
+                        }
+                    }
+                });
+
+            };
+
+        </script>
+        <script>
+            $(document).ready(function ()
+            {
+                $('#createComment').click(function ()
+                {
+                    var comment = $("#comment").val();
+                    var classid = "1";             
+                    var userid = "batman";
+                    $.ajax({
+                        type: "POST",
+                        url: "executeCommenting.php",
+                        data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid + "&userid=" + userid,
+                        cache: false,
+                        success: function (data) {                        
+                            if ( data == 'true') {
+                                window.location = 'homepage.html';
+                            }
+                            else {
+                                alert(data);
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <div data-role="page">
+            <div data-role="header" data-theme="c" >
+                <h1>Thread Creation</h1>
+            </div><!-- /header -->
+            <div role="main" id="demo">
+            </div><!-- /content -->
+            <br>
+            <br>
+            <form action="" method="post">
+                <label for="comment">Enter Comment (max 300 characters):</label>
+                <input type="text" name="comment" id="comment" >
+                <input  id="createComment" type="button" value="Submit Comment" >
+            </form>
+        </div><!-- /page -->
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>LMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="css/app.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="login.js"></script>
+        <script src="quiz.js"></script>
+        <script>
+            $(document).ready(function ()
+            {
+
+                $('#submitThread').click(function ()
+                {
+                    var title = $("#threadTitle").val();
+                    var date=$("#date").val();
+                    var question = $("#question").val();
+                    //var username=getCookie("username");
+                    var username='batman';
+                    $.ajax({
+                        type: "POST",
+                        url: "executeThread.php",
+                        data: "title=" + title + "&date="+ date +"&question=" + question+"&user=" + username,
+                        cache: false,
+                        success: function (data) {
+                            if (data == 'true') {
+                                window.location = 'homepage.html';
+                            }
+                            else {
+                                alert('Not enough information');
+                            }
+                        }
+                    });
+
+                    return false;
+                });
+
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <div data-role="page">
+            <div data-role="header" data-theme="c" >
+                <h1>Thread Creation</h1>
+            </div><!-- /header -->
+            <div role="main">
+                <form action="" method="post">
+                    <fieldset data-role="fieldcontain">
+                        <label for="threadTitle">Type in title:</label>
+                        <textarea cols="40" rows="8" name="threadTitle" id="threadTitle" ></textarea>
+                    </fieldset> 
+                    <fieldset data-role="fieldcontain">
+                        <label for="date">Type in Date (yyyy-mm-dd add zeroes):</label>
+                        <textarea cols="40" rows="8" name="date" id="date" ></textarea>
+                    </fieldset> 
+                    <fieldset data-role="fieldcontain">
+                        <label for="question">Type in Question:</label>
+                        <textarea cols="40" rows="8" name="question" id="question" ></textarea>
+                    </fieldset>  
+                    <input  id="submitThread" type="button" value="Submit Thread Question"> 
+                </form>
+            </div><!-- /content -->
+        </div><!-- /page -->
+    </body>
+</html>
