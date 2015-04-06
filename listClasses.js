@@ -4,13 +4,8 @@ var instructorID = 1;
 
 function initializeClassList() {
 	var tag = '<ul id="classList" data-role="listview">';
-	
-	
-	
 	response = getRemote(instructorID);
 	var classArray = JSON.parse(response);
-	alert(classArray);
-	//replace with AJAX call
 	var classNames = ['ENGR 100W', 'CS 146', 'CMPE 172', classArray[0]['name'], classArray[1]['name']];
 	for (var i = 0; i < 5; i++) {
 		tag += '<li><a href="#">' + classNames[i] + '</a></li>';
