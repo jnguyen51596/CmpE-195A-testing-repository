@@ -252,4 +252,182 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+CREATE TABLE IF NOT EXISTS `comment` (
+  `questionID` int(11) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `userID` varchar(11) NOT NULL,
+  `question` varchar(700) NOT NULL,
+  `comment` varchar(300) NOT NULL,
+`order` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`questionID`, `classID`, `userID`, `question`, `comment`, `order`) VALUES
+(2, 1, 'batman', 'test question', 'dfadfas', 20),
+(2, 1, 'batman', 'test question', 'dafsdfasfsa', 21),
+(2, 1, 'batman', 'test question', 'dfasdf', 22),
+(2, 1, 'batman', 'test question', 'dafsfasd', 23),
+(2, 1, 'batman', 'test question', 'dfasdf', 24),
+(2, 1, 'batman', 'test question', 'dfasdfas', 25),
+(2, 1, 'batman', 'test question', 'dfasdfa', 26),
+(2, 1, 'batman', 'test question', 'dfasdfa', 27),
+(2, 1, 'batman', 'test question', 'dafasdf', 28),
+(2, 1, 'batman', 'test question', 'dafdffdfd', 29),
+(2, 1, 'batman', 'test question', 'dasdfa', 30),
+(2, 1, 'batman', 'test question', 'dfasdfasf', 31),
+(2, 1, 'batman', 'test question', 'dfasdfas', 32),
+(2, 1, 'batman', 'test question', 'dasdasf', 33),
+(2, 1, 'batman', 'test question', 'dafsdfsd', 34),
+(2, 1, 'batman', 'test question', 'dafsdf', 35),
+(2, 1, 'batman', 'test question', 'dfasdfa', 36),
+(2, 1, 'batman', 'test question', 'dafsdfas', 37),
+(2, 1, 'batman', 'test question', 'dasfasdfa', 38),
+(2, 1, 'batman', 'test question', 'dasfsdfasdf', 39),
+(2, 1, 'batman', 'test question', 'dafsdfds', 40),
+(2, 1, 'batman', 'test question', 'dfasdfads', 41),
+(2, 1, 'batman', 'test question', 'sadfasd', 42),
+(2, 1, 'batman', 'test question', 'dfasdf', 43),
+(2, 1, 'batman', 'test question', 'dfasdfasd', 44),
+(2, 1, 'batman', 'test question', 'sdfsdfasdf', 45),
+(2, 1, 'batman', 'test question', 'sdfasdf', 46),
+(2, 1, 'batman', 'test question', 'dfadfda', 47),
+(2, 1, 'batman', 'test question', 'dfsadfas', 48),
+(3, 1, 'batman', 'hi', 'dsfasdf', 49),
+(10, 1, 'batman', 'hi', 'adfasdfas', 50),
+(10, 1, 'batman', 'hi', 'adsfasdfa', 51),
+(10, 1, 'batman', 'hi', 'adsfasd', 52),
+(2, 1, 'batman', 'test question', 'adsfasdf', 53);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE IF NOT EXISTS `login` (
+  `username` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`username`, `password`) VALUES
+('batman', '1234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messagethread`
+--
+
+CREATE TABLE IF NOT EXISTS `messagethread` (
+  `classID` int(10) NOT NULL,
+  `date` date NOT NULL,
+  `userID` varchar(20) NOT NULL,
+  `question` varchar(700) NOT NULL,
+  `title` varchar(100) NOT NULL,
+`questionID` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `messagethread`
+--
+
+INSERT INTO `messagethread` (`classID`, `date`, `userID`, `question`, `title`, `questionID`) VALUES
+(0, '0000-00-00', '', '', '', 1),
+(1, '0000-00-00', 'batman', 'test question', 'test title', 2),
+(1, '0000-00-00', 'batman', 'test question', 'test title', 3),
+(1, '2015-10-10', 'batman', 'test2', 'test2', 4),
+(1, '2015-10-19', 'batman', 'joijoijoi', 'hi', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `multiplechoice`
+--
+
+CREATE TABLE IF NOT EXISTS `multiplechoice` (
+  `classID` int(10) NOT NULL,
+  `quizID` int(10) NOT NULL,
+  `question` varchar(700) NOT NULL,
+  `answer` varchar(700) NOT NULL,
+  `incorrect1` varchar(700) NOT NULL,
+  `incorrect2` varchar(700) NOT NULL,
+  `incorrect3` varchar(700) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shortanswer`
+--
+
+CREATE TABLE IF NOT EXISTS `shortanswer` (
+  `classID` int(10) NOT NULL,
+  `quizID` int(10) NOT NULL,
+  `question` varchar(700) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `totalthread`
+--
+
+CREATE TABLE IF NOT EXISTS `totalthread` (
+  `classID` int(10) NOT NULL,
+  `total` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `truefalse`
+--
+
+CREATE TABLE IF NOT EXISTS `truefalse` (
+  `classID` int(10) NOT NULL,
+  `quizID` int(10) NOT NULL,
+  `question` varchar(700) NOT NULL,
+  `answer` char(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+ ADD PRIMARY KEY (`order`);
+
+--
+-- Indexes for table `messagethread`
+--
+ALTER TABLE `messagethread`
+ ADD PRIMARY KEY (`questionID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+MODIFY `order` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT for table `messagethread`
+--
+ALTER TABLE `messagethread`
+MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 -- Dump completed on 2015-04-12 21:11:01
