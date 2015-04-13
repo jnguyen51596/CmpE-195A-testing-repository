@@ -71,6 +71,34 @@ function getClasses($instructorID) {
     }
 }
 
+function getGrades($memberID) {
+    global $con;
+    $sql = "SELECT title, score, total, feedback
+		    FROM grade, assignment
+			WHERE assignment.assignmentID = grade.assignmentID";
+
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no grades';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function setGrades($assignmentid, $score, $feedback) {
+	global $con;
+	$sql = "UPDATE grade 
+				SET grade.score ='$score', grade.feedback = '$feedback'
+				WHERE assignmentID = '$assignmentid'";
+	$q = $con -> prepare($sql);
+	$q -> execute(); // ?
+	
+	
+}
+
 function checkLogin($sjsuid, $password) {
     global $con;
     $sql = "SELECT * FROM login WHERE username='$sjsuid' AND password='$password';";
