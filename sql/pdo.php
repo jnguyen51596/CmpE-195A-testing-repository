@@ -136,4 +136,25 @@ function addQuizQuestion($questionType, $quizID, $classID) {
     
 }
 
+function searchClasses($searchTerm) {
+    global $con;
+    $sql = "SELECT name, courseID FROM course WHERE name LIKE :searchTerm;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':searchTerm'=> '%'.$searchTerm.'%'));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes found';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function enrollInClass($studentID, $courseID) {
+    global $con;
+    $sql = "INSERT INTO coursemember (memberID, courseID)
+		    VALUES ('$studentID', '$courseID')";
+	$con->exec($sql);					 
+}
+
 ?>

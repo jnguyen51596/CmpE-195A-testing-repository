@@ -24,17 +24,3 @@ function getRemote(instructor) {
 		data: { instructor: instructor}
     }).responseText;
 }
-
-function getClassList() {
-	
-	response = "";
-	xmlhttp.open("POST","getClassesTaught.php",true);
-	xmlhttp.send("instructor="+instructorID);//
-	xmlhttp.onreadystatechange = function() {
-	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	                response = xmlhttp.responseText;
-					alert(response);
-	            }
-	}
-	return response;
-}

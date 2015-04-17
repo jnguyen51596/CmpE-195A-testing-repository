@@ -82,8 +82,8 @@ DROP TABLE IF EXISTS `course`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `course` (
   `courseID` int(11) NOT NULL AUTO_INCREMENT,
-  `prefix` varchar(4) NOT NULL,
-  `suffix` varchar(4) NOT NULL,
+  `prefix` char(4) NOT NULL,
+  `suffix` char(4) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`courseID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -153,6 +153,27 @@ LOCK TABLES `member` WRITE;
 INSERT INTO `member` VALUES (1,'Tom','Sparkling','\0'),(2,'Michael','Fireball',''),(3,'Steve','Dashing','\0');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `coursemember`
+--
+
+DROP TABLE IF EXISTS `courseinstructor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `courseinstructor` (
+  `memberID` int(11) NOT NULL,
+  `courseID` int(11) NOT NULL,
+  PRIMARY KEY (`memberID`,`courseID`),
+  UNIQUE KEY `mID_cID_UK` (`memberID`,`courseID`),
+  KEY `courseinstructor_instructor_idx` (`memberID`),
+  KEY `courseinstructor_course_idx` (`courseID`),
+  CONSTRAINT `courseinstructor_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `courseinstructor_instructor` FOREIGN KEY (`memberID`) REFERENCES `member` (`memberID`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
