@@ -29,17 +29,22 @@
 						error: function(xhr, ajaxOptions, thrownError) { alert(xhr.responseText); }
 					});
 				});
-
             });
-        </script>
+    </script>
+	
+	
+	
 </head>
 
 <body>
 
+<div data-role="header" class="uiheader ui-bar-a" role="banner">
+		<h1>Set Grade</h1>
+</div>
+
 <div>
 	<form action="" method="post">
 		<div class="ui-grid-a grids">
-		
 			<div class="ui-block-a">
 				<label for="assignment-id">Assignment</label>
 				<input type="text" id="assignment-id" placeholder="Assignment"></input>
@@ -49,7 +54,6 @@
 				<label for="score-id">Score</label>
 				<input type="text" id="score-id" placeholder="Score"></input>
 			</div>
-		
 		</div>
 		
 		<div>
@@ -60,7 +64,6 @@
 		<div class="ui-grid-solo">
 			<input  id="grade-submit" type="button" value="Submit"></input>
 		</div>
-		
 	</form>
 </div>
 
