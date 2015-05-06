@@ -157,4 +157,26 @@ function enrollInClass($studentID, $courseID) {
 	$con->exec($sql);					 
 }
 
+function getStudents($courseID) {
+    global $con;
+    $sql = "SELECT member.memberID, firstName, lastName FROM member, coursemember WHERE member.memberID = coursemember.memberID AND courseID = :courseID;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseID'=> $courseID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function dropStudent($courseID, $memberID) {
+    global $con;
+    $sql = "DELETE FROM coursemember 
+			WHERE memberID = :memberID AND courseID = :courseID;";
+	$q = $con->prepare($sql);
+	$q->execute(array(':memberID'=> $memberID, ':courseID' => $courseID));
+	return 1;
+}
+
 ?>
