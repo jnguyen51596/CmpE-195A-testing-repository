@@ -452,3 +452,26 @@ MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 -- Dump completed on 2015-04-12 21:11:01
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `totalquiz`
+--
+
+CREATE TABLE IF NOT EXISTS `totalquiz` (
+  `classID` int(11) NOT NULL,
+  `quizID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalquiz`
+--
+
+INSERT INTO `totalquiz` (`classID`, `quizID`) VALUES
+(1, 1),
+(2, 1);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
