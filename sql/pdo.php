@@ -9,14 +9,18 @@
 		echo "<p>Connection failed</p>";
 	}
 
-function getStudentCourses($studentID) {
-	global $con;
-	$sql = "
-		SELECT cPrefix, cSuffix, cName
-		FROM course, coursemember
-		WHERE mID = :studentID and course.cID = coursemember.cID";
+function getStudentCourses($memberID) {
+    global $con;
+    $sql = "SELECT course.courseID, prefix, suffix, name FROM course, coursemember WHERE memberID = :memberID AND course.courseID = coursemember.courseID";
+    $q = $con->prepare($sql);
+    $q->execute(array(':memberID'=> $memberID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
 }
-
 
 function createAnnoucement($instructorID, $courseID, $messageBody) {
 	global $con;
@@ -57,11 +61,10 @@ function createClass($courseName, $prefix, $suffix) {
 
 function getClasses($instructorID) {
     global $con;
-    $sql = "SELECT *
-		    FROM course";
+    $sql = "SELECT course.courseID, prefix, suffix, name FROM course, courseinstructor WHERE memberID = :memberID AND course.courseID = courseinstructor.courseID";
 
     $q = $con->prepare($sql);
-    $q->execute();
+    $q->execute(array(':memberID'=>$instructorID));
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         echo 'no classes';
@@ -184,5 +187,4 @@ function addAssignment($courseID, $authorID, $title, $total, $dueDate, $descrpti
 	$q = $con->prepare($sql);
 	$q -> execute();
 }
-
 ?>
