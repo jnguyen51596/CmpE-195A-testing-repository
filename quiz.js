@@ -1,4 +1,6 @@
-
+var response;
+var totalquestion;
+var html;
 function showA()
 {
     document.getElementById("box").style.display = "initial";
@@ -27,6 +29,143 @@ function submitQuiz()
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             window.location('quiz-endPage.html');
+        }
+    });
+}
+
+function printOutQuiz1(data)
+{
+    html = "";
+    html += "<form action=\"\" method=\"post\" id=\"testing\>";
+    totalquestion = 1;
+    for (var i = 0; i < data.length; i++)
+    {
+        var question = data[i].question;
+        var choice1 = data[i].answer;
+        var choice2 = data[i].incorrect1;
+        var choice3 = data[i].incorrect2;
+        var choice4 = data[i].incorrect3;
+        html += "<fieldset data-role=\"controlgroup\" >";
+        html += "<h1>Question " + totalquestion + "</h1>";
+        html += "<p>" + question + "</p>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-1\"  value=" + choice1 + " />";
+        html += "<label for=\"radio-choice-1\">" + choice1 + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-2\"   value=" + choice2 + " />";
+        html += "<label for=\"radio-choice-2\">" + choice2 + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-3\"  value=" + choice3 + " />";
+        html += "<label for=\"radio-choice-3\">" + choice3 + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-4\"  value=" + choice4 + " />";
+        html += "<label for=\"radio-choice-4\">" + choice4 + "</label>";
+        html += "</fieldset>";
+        totalquestion += 1;
+    }
+    return true;
+}
+
+function printOutQuiz2(data)
+{
+    for (var i = 0; i < data.length; i++)
+    {
+        var question = data[i].question;
+        var answer = data[i].answer;
+        html += "<fieldset data-role=\"controlgroup\" >";
+        html += "<h1>Question " + totalquestion + "</h1>";
+        html += "<p>" + question + "</p>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-1\"  value=\"true\" />";
+        html += "<label for=\"radio-choice-1\">True</label>";
+        html += "<input type=\"radio\" name=\"radio-choice\" id=\"radio-choice-2\"   value=\"false \" />";
+        html += "<label for=\"radio-choice-2\">False</label>";
+        html += "</fieldset>";
+        totalquestion += 1;
+    }
+    return true;
+
+}
+function printOutQuiz3(data)
+{
+    for (var i = 0; i < data.length; i++)
+    {
+        var question = data[i].question;
+        html += "<fieldset data-role=\"controlgroup\" >";
+        html += "<h1>Question " + totalquestion + "</h1>";
+        html += "<p>" + question + "</p>";
+        html += "<textarea cols=\"40\" rows=\"5\" id=\"text\"></textarea>";
+        html += "</fieldset>";
+        totalquestion += 1;
+    }
+    html += "</form>";
+    $(html).appendTo("#demo");
+}
+function getQuizQuestion1(classid, quizid)
+{
+    
+    return $.ajax({
+        type: "POST",
+        url: "getQuizQuestion1.php",
+        data: "classid=" + classid + "&quizid=" + quizid,
+        success: function (data) {
+            printOutQuiz1(data);
+            if( printOutQuiz1(data)==true)
+            {
+                getQuizQuestion2(classid, quizid);
+            }
+        }
+    });
+}
+function getQuizQuestion2(classid, quizid)
+{
+    
+    return $.ajax({
+        type: "POST",
+        url: "getQuizQuestion2.php",
+        data: "classid=" + classid + "&quizid=" + quizid,
+        success: function (data) {
+            printOutQuiz2(data);
+            if(printOutQuiz2(data)==true)
+            {
+                getQuizQuestion3(classid, quizid);
+            }
+        }
+    });
+}
+function getQuizQuestion3(classid, quizid)
+{
+    
+    return $.ajax({
+        type: "POST",
+        url: "getQuizQuestion3.php",
+        data: "classid=" + classid + "&quizid=" + quizid,
+        success: function (data) {
+            printOutQuiz3(data);
+        }
+    });
+}
+
+
+function displayQuiz(classid)
+{
+    return $.ajax({
+        type: "POST",
+        url: "getQuiz.php",
+        data: "classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == false)
+            {
+                alert("Invalid Message");
+            }
+            else
+            {
+                var html = "";
+                for (var i = 0; i < data.length; i++)
+                {
+                    var classid = data[i].classID;
+                    var quizid = data[i].quizID;
+                    html += "<a href=\"takeQuiz.html?classid=" + classid + "&quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + "</a><br>";
+                }
+                document.getElementById("demo").innerHTML = html;
+
+            }
         }
     });
 }

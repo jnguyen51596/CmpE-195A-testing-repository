@@ -16,9 +16,9 @@ function checkLogin($sjsuid, $password) {
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 1) {
         setcookie("username", $sjsuid);
-        echo 'true';
+        return true;
     } else {
-        echo 'false';
+        return false;
     }
 }
 
@@ -84,4 +84,57 @@ function addComment($question, $questionid, $classid, $comment, $userid) {
     $q->execute();
 }
 
+function getQuiz($classID) {
+    global $con;
+    $sql = "SELECT * FROM totalquiz WHERE classID='$classID' ORDER BY quizID;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+    } else {
+        return $rows;
+    }
+}
+
+function getQuizQuestion1($classID, $quizID)
+{
+    global $con;
+    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+    } else {
+        return $rows;
+    }
+}
+function getQuizQuestion2($classID, $quizID)
+{
+    global $con;
+    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+    } else {
+        return $rows;
+    }
+}
+
+function getQuizQuestion3($classID, $quizID)
+{
+    global $con;
+    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+    } else {
+        return $rows;
+    }
+}
 ?>
