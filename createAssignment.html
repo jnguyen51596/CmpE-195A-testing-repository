@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Create A Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/app.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
+    <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<!-- used by datepicker
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  -->
+	
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="createAssignment.js"></script>
+	
+</head>
+
+<body>
+	
+	<div data-role="header" class="uiheader ui-bar-a" role="banner">
+		<h1>Create Assignment</h1>
+	</div>
+	
+	<div id="class-dropdown-id" data-role="fieldcontain">
+		<label>Course:</label>
+		<script type="text/javascript">
+			initializeClassDDList();
+		</script>
+	</div>
+	
+	<div data-role="fieldcontain">
+		<label>Assignment Name:</label>
+		<input type="text" id="assignmentname-id" placeholder="Assignment name"></input>
+	</div>
+	
+	<div data-role="fieldcontain">
+		<label>Points:</label>
+		<input type="text" id="points-id" placeholder="Points"></input>
+	</div>
+	
+	<!--
+	<div data-role="fieldcontain">
+		<label for="time-id">Time:</label>
+		<input type="text" id="time-id" placeholder="12:00"></input>
+	</div>
+	
+	<fieldset data-role="controlgroup" data-type="horizontal" id="ampm-id">
+		<input type="radio" name="ampm" id="am-id"value="am" checked="checked" />
+		<label for="am-id">AM</label>
+		
+		<input type="radio" name="ampm" id="pm-id" value="pm" />
+		<label for="pm-id">PM</label>
+	</fieldset>
+	
+	<label>Due Date:</label>
+	<input type="text" id="datepicker-id" data-role="date" data-inline="true" placeholder="Select due date"></input>
+	<div id="datepicker"></div>
+
+	<script>
+		$( "#datepicker-id" ).datepicker();
+	</script>
+	
+	-->
+	
+	<div data-role="fieldcontain">
+		<label>Due Date:</label>
+		<input type="text" id="time-id" placeholder="2015-4-24 12:00"></input>
+	</div>
+	
+	<div data-role="fieldcontain">
+		<label>Description:</label>
+		<textarea name="textarea" id="desc-id" value placeholder="Description"></textarea>
+	</div>
+	
+	<input  id="createAssignment-submit" type="button" value="Submit"></input>
+	
+	<script>
+		document.getElementById("createAssignment-submit").onclick = createAssignment;
+	</script>
+	
+	<!-- for test purposes -->
+	<input  id="test-submit" type="button" value="test"></input>
+	
+	<script>
+		document.getElementById("test-submit").onclick =
+		function() {
+			var test = document.getElementById("course-select-id").value;
+			alert(test);
+		}
+	</script> 
+	
+
+</body>
+</html>

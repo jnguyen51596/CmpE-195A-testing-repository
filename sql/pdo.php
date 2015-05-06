@@ -57,7 +57,7 @@ function createClass($courseName, $prefix, $suffix) {
 
 function getClasses($instructorID) {
     global $con;
-    $sql = "SELECT prefix,suffix,name 
+    $sql = "SELECT *
 		    FROM course";
 
     $q = $con->prepare($sql);
@@ -95,8 +95,6 @@ function setGrades($assignmentid, $score, $feedback) {
 				WHERE assignmentID = '$assignmentid'";
 	$q = $con -> prepare($sql);
 	$q -> execute(); // ?
-	
-	
 }
 
 function checkLogin($sjsuid, $password) {
@@ -177,6 +175,14 @@ function dropStudent($courseID, $memberID) {
 	$q = $con->prepare($sql);
 	$q->execute(array(':memberID'=> $memberID, ':courseID' => $courseID));
 	return 1;
+}
+
+function addAssignment($courseID, $authorID, $title, $total, $dueDate, $descrption) {
+	global $con;
+	$sql = "INSERT INTO assignment(courseID, authorID, title, total, dueDate, description)
+			VALUES($courseID, $authorID, '$title', $total, '$dueDate', '$description')";
+	$q = $con->prepare($sql);
+	$q -> execute();
 }
 
 ?>
