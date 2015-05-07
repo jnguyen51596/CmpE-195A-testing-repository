@@ -187,4 +187,76 @@ function addAssignment($courseID, $authorID, $title, $total, $dueDate, $descrpti
 	$q = $con->prepare($sql);
 	$q -> execute();
 }
+
+function courseGrab($name){
+	global $con;
+	$sql = "SELECT name FROM course;";
+	$q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+	return $rows;	
+}
+
+function register($username, $first, $last, $pass1){
+    global $con;
+    $sql = "INSERT INTO Users (UserName, FirstName, LastName, Pass) VALUES ('$username', '$first', '$last', '$pass1');";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    return $bool;
+    
+}
+
+function getFirst($username) {
+    global $con;
+    $sql = "SELECT FirstName FROM users WHERE Username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getlast($username) {
+    global $con;
+    $sql = "SELECT LastName FROM users WHERE Username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getpass($username) {
+    global $con;
+    $sql = "SELECT Pass FROM users WHERE Username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function editInfo($first, $last, $pass, $username){
+    global $con;
+    $sql = "UPDATE Users SET FirstName='$first', LastName='$last', Pass='$pass' WHERE UserName='$username'";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    return $bool;
+    
+}
 ?>
