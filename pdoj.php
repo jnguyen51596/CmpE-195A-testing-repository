@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $con = new PDO("mysql:host=localhost;dbname=dbtest", "root", "");
+    $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "");
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $ex) {
     echo "<p>Connection failed</p>";
@@ -9,7 +9,7 @@ try {
 
 function checkLogin($sjsuid, $password) {
     global $con;
-    $sql = "SELECT * FROM login WHERE username='$sjsuid' AND password='$password';";
+    $sql = "SELECT * FROM users WHERE username='$sjsuid' AND pass='$password';";
 
     $q = $con->prepare($sql);
     $q->execute();
@@ -71,7 +71,7 @@ function getComment($question, $questionid, $classid) {
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
-        echo 'false';
+       echo false;
     } else {
         return $rows;
     }

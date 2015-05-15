@@ -16,8 +16,8 @@
         <script src="quiz.js"></script>
         <script src="javascriptFunction.js"></script>
         <script>
-            var question=getParameterByName("question");
-            var questionid= getParameterByName("questionid");
+            var question = getParameterByName("question");
+            var questionid = getParameterByName("questionid");
             window.onload = function () {
                 var classid = "1";
                 $.ajax({
@@ -26,9 +26,8 @@
                     data: "question=" + question + "&questionid=" + questionid + "&classid=" + classid,
                     cache: false,
                     success: function (data) {
-                        if (data == 'false')
+                        if (data == false)
                         {
-                            
                             document.getElementById("demo").innerHTML = "<h1>" + question + "</h1>";
                             alert("No messages");
                         }
@@ -38,8 +37,8 @@
                             for (var i = 0; i < data.length; i++)
                             {
                                 var comment = data[i].comment;
-       
-                                html += comment+"<br>";
+
+                                html += comment + "<br>";
                             }
                             document.getElementById("demo").innerHTML = html;
                         }
@@ -55,16 +54,16 @@
                 $('#createComment').click(function ()
                 {
                     var comment = $("#comment").val();
-                    var classid = "1";             
+                    var classid = "1";
                     var userid = "batman";
                     $.ajax({
                         type: "POST",
                         url: "executeCommenting.php",
                         data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid + "&userid=" + userid,
                         cache: false,
-                        success: function (data) {                        
-                            if ( data == 'true') {
-                                window.location = 'homepage.html';
+                        success: function (data) {
+                            if (data == 'true') {
+                                window.location.reload();
                             }
                             else {
                                 alert(data);
@@ -91,6 +90,7 @@
                 <label for="comment">Enter Comment (max 300 characters):</label>
                 <input type="text" name="comment" id="comment" >
                 <input  id="createComment" type="button" value="Submit Comment" >
+                <p class="mc-top-margin-1-5"><a href="homepage.html" data-ajax="false">Go back to homepage?</a></p>
             </form>
         </div><!-- /page -->
     </body>
