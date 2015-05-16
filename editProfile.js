@@ -2,7 +2,7 @@ var first;
 var last;
 var password;
 var xmlhttp = new XMLHttpRequest();
-var username = "cpc1992";
+var username = "batman";
 
 function editInfo() {
                 var first = document.getElementById("fname").value;

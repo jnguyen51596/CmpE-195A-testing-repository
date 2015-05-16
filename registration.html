@@ -21,9 +21,7 @@ and open the template in the editor.
         <script>
             function checkinfo() {
                 
-                
-
-                
+               
                 var username = document.getElementById("username").value;
                 var first = document.getElementById("firstname").value;
                 var last = document.getElementById("lastname").value;
@@ -49,6 +47,7 @@ and open the template in the editor.
                             success: function (data) {
                                 if (data == 1) {
                                     alert("Successful Registration!!!");
+                                    window.location = 'sign-in.html';
 
                                 }
                                 else {
@@ -78,7 +77,8 @@ and open the template in the editor.
                 <input type="password" id="password" placeholder="Password">
                 <input type="password" id="confirm" placeholder="Confirm Password">
                 <br>
-                <input  id="submit" type="button" value="Register!" onclick="checkinfo()">
+                <input  id="submit" type="button" value="Register" onclick="checkinfo()">
+                <p class="mc-top-margin-1-5"><a href="sign-in.html">Go back to login</a></p>
             </form>
     </body>
 </html>

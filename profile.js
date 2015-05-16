@@ -2,7 +2,7 @@ var first;
 var last;
 var password;
 var xmlhttp = new XMLHttpRequest();
-var username = "cpc1992";
+var username = "batman";
 // once i figure out how to grab logged in user's username, ill add paramerters to the functions below!!!
 
 function getFirstName() {

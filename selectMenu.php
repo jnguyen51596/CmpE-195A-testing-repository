@@ -5,8 +5,4 @@
 		$name = $row['name'];
 		echo($name);
 	}
-
-
-
-
 ?>
