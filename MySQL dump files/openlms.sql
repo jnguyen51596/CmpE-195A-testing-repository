@@ -475,3 +475,34 @@ INSERT INTO `totalquiz` (`classID`, `quizID`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Database: `openlms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` varchar(20) NOT NULL,
+  `firstname` text NOT NULL,
+  `lastname` text NOT NULL,
+  `pass` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `firstname`, `lastname`, `pass`) VALUES
+('batman', 'hi', 'hi', '1234'),
+('asas', 'asas', 'ASasa', 'asas'),
+('yoyo', 'hi', 'hi', '1234'),
+('haha', 'hi', 'hi', '1234'),
+('hehe', 'hi', 'hi', '1234');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
