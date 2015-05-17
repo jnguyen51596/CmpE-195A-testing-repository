@@ -5,5 +5,9 @@
 	$instructorID = 1;
 	$row = getClasses($instructorID);
 	header('Content-Type: application/json');
-	echo json_encode($row);
+	if ($row != 0) {
+		echo json_encode($row);
+	} else {
+		echo '{ "courseID" : "-1" }';
+	}
 ?>

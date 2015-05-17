@@ -27,9 +27,12 @@ function getCoursesByRole() {
 function formatData(data) {
 	$('#results').empty();
 	html = "<label for='classList' class='select'>Select a Class:</label><select name='classList' id='classList'>";
+
 	$.each(data, function(index, data) {
+		if (data != -1) {
+			html += "<option value='" + JSON.stringify(data) + "'>" + data.prefix + " " + data.suffix + " " + data.name + "</option>";		
+		}
 		//alert(data.prefix + " " + data.suffix + " " + data.name);
-		html += "<option value='" + JSON.stringify(data) + "'>" + data.prefix + " " + data.suffix + " " + data.name + "</option>";	
 	});
 	if (role == "instructor") {
 		html += "<option value='create'>Create a Course</option>";

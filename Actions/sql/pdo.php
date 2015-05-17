@@ -67,7 +67,7 @@ function getClasses($instructorID) {
     $q->execute(array(':memberID'=>$instructorID));
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
-        echo 'no classes';
+        //echo 'no classes';
         return 0;
     } else {
         return $rows;
