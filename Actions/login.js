@@ -21,7 +21,7 @@ function loadDatabase(url, cfunc)
 function validate()
 {
 
-    loadDatabase("dbconnect.php", function ()
+    loadDatabase("../Actions/dbconnect.php", function ()
     {
 
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -43,7 +43,7 @@ function validate2()
     if (username == finalid)
     {
         alert("Login Successful");
-        window.location = "homepage.html";
+        window.location = "../Responders/homepage.html";
         return false;
     }
 
@@ -77,7 +77,7 @@ function getCookie(cname) {
 function logout()
 {
     document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    window.location = "sign-in.html";
+    window.location = "../Responders/sign-in.html";
 }
 
 

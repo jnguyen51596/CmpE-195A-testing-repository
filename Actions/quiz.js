@@ -23,7 +23,7 @@ function showC()
 
 function submitQuiz()
 {
-    loadDatabase("excuteQuizSubmit.php", function ()
+    loadDatabase("../Actions/excuteQuizSubmit.php", function ()
     {
 
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -101,7 +101,7 @@ function getQuizQuestion1(classid, quizid)
     
     return $.ajax({
         type: "POST",
-        url: "getQuizQuestion1.php",
+        url: "../Actions/getQuizQuestion1.php",
         data: "classid=" + classid + "&quizid=" + quizid,
         success: function (data) {
             printOutQuiz1(data);
@@ -117,7 +117,7 @@ function getQuizQuestion2(classid, quizid)
     
     return $.ajax({
         type: "POST",
-        url: "getQuizQuestion2.php",
+        url: "../Actions/getQuizQuestion2.php",
         data: "classid=" + classid + "&quizid=" + quizid,
         success: function (data) {
             printOutQuiz2(data);
@@ -133,7 +133,7 @@ function getQuizQuestion3(classid, quizid)
     
     return $.ajax({
         type: "POST",
-        url: "getQuizQuestion3.php",
+        url: "../Actions/getQuizQuestion3.php",
         data: "classid=" + classid + "&quizid=" + quizid,
         success: function (data) {
             printOutQuiz3(data);
@@ -146,7 +146,7 @@ function displayQuiz(classid)
 {
     return $.ajax({
         type: "POST",
-        url: "getQuiz.php",
+        url: "../Actions/getQuiz.php",
         data: "classid=" + classid,
         cache: false,
         success: function (data) {

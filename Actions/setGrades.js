@@ -29,7 +29,7 @@ function initializeClassList() {
 function getRemote(member) {
     return $.ajax({
         type: "POST",
-        url: "getGrades.php",
+        url: "../Actions/getGrades.php",
         async: false,
 		data: { member: member} // ?
     }).responseText;
@@ -37,7 +37,7 @@ function getRemote(member) {
 
 function getClassList() {
 	response = "";
-	xmlhttp.open("POST","getGrades.php",true);
+	xmlhttp.open("POST","../Actions/getGrades.php",true);
 	xmlhttp.send("member="+firstName); // ?
 	xmlhttp.onreadystatechange = function() {
 	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

@@ -15,7 +15,7 @@ function createAssignment() {
 	//alert(courseID + " " + authorID + " " +  title + " " +  total + " " +  dueDate + " " +  description);
     $.ajax({
 		type: "POST",
-		url: "createAssignment.php",
+		url: "../Actions/createAssignment.php",
         data: {courseID: courseID, authorID: authorID, title: title, total: total, dueDate: dueDate, description: description} //, 
 		//success: function() { alert("success!"); },
 		//error: function(xhr, ajaxOptions, thrownError) { alert(xhr.responseText); }
@@ -45,7 +45,7 @@ function initializeClassDDList() {
 function getRemote(instructor) {
     return $.ajax({
         type: "POST",
-        url: "getClassesTaught.php",
+        url: "../Actions/getClassesTaught.php",
         async: false,
 		data: { instructor: instructor}
     }).responseText;

@@ -1,17 +1,13 @@
 function searchClasses() {
-	var response;
-	var xmlhttp = new XMLHttpRequest();
 	var searchTerm = $("#search-mini").val();	
 	getClasses(searchTerm);
-	
-	//alert("done?");
 }
 
 
 function getClasses(query) {
     $.ajax({
 	    type: "POST",
-        url: "searchClasses.php",
+        url: "../Actions/searchClasses.php",
 		dataType: "json",
 		data: "search="+query,
 		success: function(data){
@@ -33,7 +29,7 @@ function addClass(courseID) {
 	if (confirm('Are you sure you want to add this class?')) {
 	    $.ajax({
 		    type: "POST",
-	        url: "addClass.php",
+	        url: "../Actions/addClass.php",
 			data: "courseID="+courseID,
 			success: function(){
 	               alert("You are now enrolled!");

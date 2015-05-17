@@ -1,5 +1,5 @@
 <?php
-include 'MySQL dump files/pdo.php';
+include 'sql/pdo.php';
 $classID='1';
 if(isset($_POST['radio-choice-h-2']))
 {
