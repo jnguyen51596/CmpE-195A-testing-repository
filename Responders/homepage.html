@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+	
     <head>
         <title>Mopen</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +15,39 @@
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
         <script src="../Actions/login.js"></script>
+		
+		<script>
+			$(document).bind('mobileinit',function(){
+			$.mobile.selectmenu.prototype.options.nativeMenu = false;
+		});
+		</script>
+		<script>
+		window.onload = function()
+		{
+             
+                    var username = "batman";
+                     $.ajax({
+                        type: "POST",
+                        url: "selectMenu.php",
+                        data: "name=" + username,
+                        cache: false,
+                        success: function (data) {
+                            if (data == 'true') {
+                            }
+                            else {
+                                //alert('db crashed bro');
+                            }
+                        }
+                    });
+
+        }
+                
+
+            
+		</script>
+
+	
+		
     </head>
 
     <body>
@@ -21,13 +55,25 @@
             <div data-role="header" data-theme="c" >
                 <h1>Mopen Login</h1>
             </div><!-- /header -->
+			
+            <h2 >Welcome!</h2>
+            <p ><b>User</b></p>
+            <a onClick="logout()">Logout</a>
             <div role="main">
-                <h2 >Welcome!</h2>
-                <p ><b>Existing Users</b></p>
-                <a onClick="logout()">Logout</a>
-                <br>
-                <a href="messageBoard.html" data-ajax="false">board</a>
+                <div id="class-dropdown-id" data-role="fieldcontain"><!-- data-native-menu="false" -->
+                    <label>Course:</label>
+                    <script type="text/javascript">
+			initializeClassDDList();
+                    </script>
+                </div>
+                
                 <p></p>
+				<br>
+                                
+                  <a href="profile.html" data-ajax="false">View Profile</a>
+                  <br>
+                 <a href="editProfile.html" data-ajax="false">Edit Profile</a>
+                 
             </div><!-- /content -->
         </div><!-- /page -->
     </body>
