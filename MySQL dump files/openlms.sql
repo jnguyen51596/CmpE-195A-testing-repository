@@ -148,15 +148,6 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `member`
---
-
-LOCK TABLES `member` WRITE;
-/*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` (memberID, firstName, lastName ) VALUES (1,'Tom','Sparkling'),(2,'Michael','Fireball',),(3,'Steve','Dashing',);
-/*!40000 ALTER TABLE `member` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `coursemember`
