@@ -9,15 +9,15 @@ and open the template in the editor.
          <title>Registration Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="css/app.css" rel="stylesheet" />
+        <link href="../css/app.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="css/themes/default/testcanvas.min.css" />
-        <link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/themes/default/testcanvas.min.css" />
+        <link rel="stylesheet" href="../css/themes/default/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        
         <script>
             function checkinfo() {
                 
@@ -41,7 +41,7 @@ and open the template in the editor.
 
                         $.ajax({
                             type: "POST",
-                            url: "register.php",
+                            url: "../Actions/register.php",
                             data: "username=" + username + "&first=" + first + "&last=" + last + "&pass1=" + pass1 + "&pass2=" + pass2,
                             cache: false,
                             success: function (data) {

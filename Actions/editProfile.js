@@ -26,7 +26,7 @@ function editInfo() {
                     alert(first + " " + last);
                         $.ajax({
                             type: "POST",
-                            url: "editProfile.php",
+                            url: "../Actions/editProfile.php",
                             data: "&first=" + first + "&last=" + last + "&pass=" + npass + "&username=" + username,
                             cache: false,
                             success: function (data) {
@@ -56,7 +56,7 @@ function checkPassword(opass){
 function getPassw(username) {
     return $.ajax({
         type: "POST",
-        url: "getPassword.php",
+        url: "../Actions/getPassword.php",
         data: "username=" + username,
         async: false,
     }).responseText;
