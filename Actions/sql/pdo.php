@@ -214,7 +214,7 @@ function register($username, $first, $last, $pass1){
 
 function getFirst($username) {
     global $con;
-    $sql = "SELECT lirstName FROM member WHERE username = '$username'";
+    $sql = "SELECT firstName FROM member WHERE username = '$username'";
     $q = $con->prepare($sql);
     $q->execute();
     
