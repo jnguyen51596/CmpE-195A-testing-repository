@@ -3,20 +3,21 @@ Mopen Program(R) Version 1.0 5/17/2015
 General Usage Notes
 -------------------
 
-- The application would require the use of MySQL and a type of WebServer such as Apache. The best way to run the application would be to download XAMPP on the local machine and turn on Apache and MySQL.
+- Mopen requires the use of MySQL and a WebServer such as Apache. 
 
-- The MySQL database setup would require the creation of an openlms database then import of openlms.sql which is in the MySQL dump files folder.
+- The easiest way to set up Mopen would be to install MySQL and XAMPP on the local machine, and turn on Apache on THE XAMPP control panel.
 
--  
 
--------------------------------------------------------------------------------
+=============================================================================== 
 
 Installing the Mopen Application
 --------------------------------
 
+1. Import the provided SQL dump file (Mopen/MySQL dump files/openlms.sql) into the database.
 
+2. Run Index.html (Mopen/index.html).
 
-
+3. Sign in with the test information. Username: Batman, Password: password123.
 
 
 ===============================================================================
@@ -24,4 +25,13 @@ Installing the Mopen Application
 Describe Folder
 ---------------
 
+- Responders: The responders are the HTML files.
+
+- Actions: The actions are the functions that HTML files use.
+
+- _assets: The The jQuery Mobile theme of our application
+
+- css: Includes the jQuery Mobile css files for our application
  
+- js: More jQuery Mobile files for our application
+
