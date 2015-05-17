@@ -21,12 +21,13 @@
                     var title = $("#threadTitle").val();
                     var date=$("#date").val();
                     var question = $("#question").val();
+                    var classid= sessionStorage.getItem('courseID');
                     //var username=getCookie("username");
-                    var username='batman';
+                    var username=sessionStorage.getItem('username');
                     $.ajax({
                         type: "POST",
                         url: "executeThread.php",
-                        data: "title=" + title + "&date="+ date +"&question=" + question+"&user=" + username,
+                        data: "title=" + title + "&date="+ date +"&question=" + question+"&user=" + username+"&classid="+classid,
                         cache: false,
                         success: function (data) {
                             if (data == 'true') {

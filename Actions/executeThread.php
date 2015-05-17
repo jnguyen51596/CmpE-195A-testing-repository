@@ -9,7 +9,7 @@ $title=$_POST['title'];
 $date=$_POST['date'];
 $question=$_POST['question'];
 $username=$_POST['user'];
-$classID='1';
+$classID=$_POST['classid'];
 require 'pdoj.php';
 addThread($title, $date, $question, $classID,$username);
 ?>
