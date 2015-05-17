@@ -17,7 +17,7 @@ Installing the Mopen Application
 
 2. Run Index.html (Mopen/index.html).
 
-3. Sign in with the test information. Username: Batman, Password: password123.
+3. Register for an account.
 
 
 ===============================================================================
