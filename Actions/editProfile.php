@@ -1,4 +1,5 @@
 <?php
+	session_start();
     require 'sql/pdo.php';
     $first = $_POST["first"];
     $last = $_POST["last"];
