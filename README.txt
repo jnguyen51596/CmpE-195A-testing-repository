@@ -5,19 +5,24 @@ General Usage Notes
 
 - Mopen requires the use of MySQL and a WebServer such as Apache. 
 
-- The easiest way to set up Mopen would be to install MySQL and XAMPP on the local machine, and turn on Apache on THE XAMPP control panel.
-
+- The easiest way to set up Mopen would be to install MySQL and XAMPP on the local machine.
 
 =============================================================================== 
 
 Installing the Mopen Application
 --------------------------------
 
-1. Import the provided SQL dump file (Mopen/MySQL dump files/openlms.sql) into the database.
+1. Open the XAMPP control panel and turn on apache.
 
-2. Run Index.html (Mopen/index.html).
+2. Start a new MySQL connection and set username: root and password: root.
 
-3. Register for an account.
+3. Create a new database and call it: openlms.
+
+4. Import the provided SQL dump file (Mopen/MySQL dump files/openlms.sql) into openlms.
+
+5. Run index.html (Mopen/index.html).
+
+6. Register for an account.
 
 
 ===============================================================================
