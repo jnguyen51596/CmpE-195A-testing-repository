@@ -40,6 +40,10 @@ function formatData(data) {
 	$('#results').append(html).trigger('create');
 }
 
+function editProfile() {
+	window.location.href = "editProfile.html";
+}
+
 function getCourseHomepage() {
 	var classData = $('#classList').val();
 	if (classData == "create") {
