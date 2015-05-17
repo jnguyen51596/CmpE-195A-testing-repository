@@ -24,6 +24,7 @@ session_start();
         <h1>Mopen Home</h1>
     </div>
 	<div role="main" class="ui-content">
+			<button onclick='viewProfile()'>View Profile</button>
 			<button onclick='editProfile()'>Edit Profile</button>
 			<label for="role" class="select">Select a Role:</label>
 			<select name="role" id="role" onchange="getCoursesByRole()">

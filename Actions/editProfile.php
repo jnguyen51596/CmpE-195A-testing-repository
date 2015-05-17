@@ -3,7 +3,7 @@
     $first = $_POST["first"];
     $last = $_POST["last"];
     $pass = $_POST["pass"];
-    $username = $_POST["username"];
+    $username = $_SESSION["username"];
     
     $check = editInfo($first, $last, $pass, $username);
     echo $check;

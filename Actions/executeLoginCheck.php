@@ -1,17 +1,15 @@
 <?php
 session_start();
 
-$sjsuid = $_POST['name'];
+$userID = $_POST['name'];
 $password =$_POST['pwd'];
 require 'pdoj.php';
-checkLogin($sjsuid, $password);
-if(checkLogin($sjsuid, $password)==true)
+
+if(checkLogin($userID, $password)==true)
 {
-    
-    $_SESSION["username"]= $sjsuid;
+    $_SESSION['username']= $userID;
     echo "true";
-}
- else {
+} else {
      echo "false";
 }
 ?>

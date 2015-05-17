@@ -1,6 +1,6 @@
 <?php
     include "sql/pdo.php";
-    $username = $_POST["username"];
+    $username = $_SESSION["username"];
     $rows = getLast($username);
     header('Content-Type: application/json');
     $name = $rows[0]['LastName'];

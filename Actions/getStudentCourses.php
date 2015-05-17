@@ -3,8 +3,10 @@
 	include "sql/pdo.php";
 
 	// TODO change this to session variable once implemented
-	//$studentID = $_SESSION['username'];
-	$studentID = 1;
+	//$studentID = 1;
+	$result = getUserID($_SESSION['username']);
+	$_SESSION['userID'] = $result[0][0];
+	$studentID = $_SESSION['userID'];
 	$result = getStudentCourses($studentID);
 	header('Content-Type: application/json');	
 	echo json_encode($result);

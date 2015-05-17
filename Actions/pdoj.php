@@ -1,21 +1,21 @@
 <?php
 
 try {
-    $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "");
+    $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $ex) {
     echo "<p>Connection failed</p>";
 }
 
-function checkLogin($sjsuid, $password) {
+function checkLogin($username, $password) {
     global $con;
-    $sql = "SELECT * FROM users WHERE username='$sjsuid' AND pass='$password';";
+    $sql = "SELECT * FROM member WHERE username=:username AND pass=:password;";
 
     $q = $con->prepare($sql);
-    $q->execute();
+    $q->execute(array(':username' => $username, ':password' => $password));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 1) {
-        setcookie("username", $sjsuid);
+        //setcookie("username", $sjsuid);
         return true;
     } else {
         return false;

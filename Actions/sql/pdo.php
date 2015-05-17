@@ -1,13 +1,13 @@
 <?php
 
-	try {
-		$con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
-		$con->setAttribute(PDO::ATTR_ERRMODE,
-						   PDO::ERRMODE_EXCEPTION);
-	
-	} catch(PDOException $ex) {
-		echo "<p>Connection failed</p>";
-	}
+    try {
+        $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
+        $con->setAttribute(PDO::ATTR_ERRMODE,
+                           PDO::ERRMODE_EXCEPTION);
+    
+    } catch(PDOException $ex) {
+        echo "<p>Connection failed</p>";
+    }
 
 function getStudentCourses($memberID) {
     global $con;
@@ -23,40 +23,46 @@ function getStudentCourses($memberID) {
 }
 
 function createAnnoucement($instructorID, $courseID, $messageBody) {
-	global $con;
-	$sql = "
-		INSERT INTO announcement (body, authorID, courseID)
-		VALUES (:messageBody, :instructorID, :courseID)
-	";
-	
-	$q = $con->prepare($sql);
-	$q->execute(array(':messageBody'=>$messageBody,
-						':courseID'=>$courseID,
-						':instructorID'=>$instructorID));
+    global $con;
+    $sql = "
+        INSERT INTO announcement (body, authorID, courseID)
+        VALUES (:messageBody, :instructorID, :courseID)
+    ";
+    
+    $q = $con->prepare($sql);
+    $q->execute(array(':messageBody'=>$messageBody,
+                        ':courseID'=>$courseID,
+                        ':instructorID'=>$instructorID));
 }
 
 
 // map annoucement to students in a selected course
 function sendAnnoucement($annoucementID) {
-	global $con;
-	$sql = "
-		INSERT INTO anncouncementnotify(studentID, annoucementID)
-		SELECT mID, annoucementID from coursemember, announcement
-		WHERE annoucement.courseID = coursemember.cID
-	";
+    global $con;
+    $sql = "
+        INSERT INTO anncouncementnotify(studentID, annoucementID)
+        SELECT mID, annoucementID from coursemember, announcement
+        WHERE annoucement.courseID = coursemember.cID
+    ";
 }
 
-function createClass($courseName, $prefix, $suffix) {
-	global $con;
-	$sql = "
-		INSERT INTO course (name, prefix, suffix)
-		VALUES (:courseName, :prefix, :suffix)
-	";
-	
-	$q = $con->prepare($sql);
-	$q->execute(array(':courseName'=>$courseName,
-						':prefix'=>$prefix,
-						':suffix'=>$suffix));
+function createClass($courseName, $prefix, $suffix, $instructorID) {
+    global $con;
+    $sql = "
+        INSERT INTO course (name, prefix, suffix)
+        VALUES (:courseName, :prefix, :suffix)
+    ";
+    
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseName'=>$courseName,
+                        ':prefix'=>$prefix,
+                        ':suffix'=>$suffix));
+
+    $sql = "INSERT INTO courseinstructor (memberID, courseID) VALUES (:instructorID, (SELECT MAX(courseID) FROM course))";
+    
+    $q2 = $con->prepare($sql);
+    $q2->execute(array(':instructorID' => $instructorID));
+
 }
 
 function getClasses($instructorID) {
@@ -77,8 +83,8 @@ function getClasses($instructorID) {
 function getGrades($memberID) {
     global $con;
     $sql = "SELECT title, score, total, feedback
-		    FROM grade, assignment
-			WHERE assignment.assignmentID = grade.assignmentID";
+            FROM grade, assignment
+            WHERE assignment.assignmentID = grade.assignmentID";
 
     $q = $con->prepare($sql);
     $q->execute();
@@ -92,12 +98,12 @@ function getGrades($memberID) {
 }
 
 function setGrades($assignmentid, $score, $feedback) {
-	global $con;
-	$sql = "UPDATE grade 
-				SET grade.score ='$score', grade.feedback = '$feedback'
-				WHERE assignmentID = '$assignmentid'";
-	$q = $con -> prepare($sql);
-	$q -> execute(); // ?
+    global $con;
+    $sql = "UPDATE grade 
+                SET grade.score ='$score', grade.feedback = '$feedback'
+                WHERE assignmentID = '$assignmentid'";
+    $q = $con -> prepare($sql);
+    $q -> execute(); // ?
 }
 
 function checkLogin($sjsuid, $password) {
@@ -154,8 +160,8 @@ function searchClasses($searchTerm) {
 function enrollInClass($studentID, $courseID) {
     global $con;
     $sql = "INSERT INTO coursemember (memberID, courseID)
-		    VALUES ('$studentID', '$courseID')";
-	$con->exec($sql);					 
+            VALUES ('$studentID', '$courseID')";
+    $con->exec($sql);                    
 }
 
 function getStudents($courseID) {
@@ -174,17 +180,105 @@ function getStudents($courseID) {
 function dropStudent($courseID, $memberID) {
     global $con;
     $sql = "DELETE FROM coursemember 
-			WHERE memberID = :memberID AND courseID = :courseID;";
-	$q = $con->prepare($sql);
-	$q->execute(array(':memberID'=> $memberID, ':courseID' => $courseID));
-	return 1;
+            WHERE memberID = :memberID AND courseID = :courseID;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':memberID'=> $memberID, ':courseID' => $courseID));
+    return 1;
 }
 
 function addAssignment($courseID, $authorID, $title, $total, $dueDate, $descrption) {
-	global $con;
-	$sql = "INSERT INTO assignment(courseID, authorID, title, total, dueDate, description)
-			VALUES($courseID, $authorID, '$title', $total, '$dueDate', '$description')";
-	$q = $con->prepare($sql);
-	$q -> execute();
+    global $con;
+    $sql = "INSERT INTO assignment(courseID, authorID, title, total, dueDate, description)
+            VALUES($courseID, $authorID, '$title', $total, '$dueDate', '$description')";
+    $q = $con->prepare($sql);
+    $q -> execute();
+}
+
+function courseGrab($name){
+    global $con;
+    $sql = "SELECT name FROM course;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;   
+}
+
+function register($username, $first, $last, $pass1){
+    global $con;
+    $sql = "INSERT INTO member (username, firstName, lastName, pass) VALUES ('$username', '$first', '$last', '$pass1');";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    return $bool;
+    
+}
+
+function getFirst($username) {
+    global $con;
+    $sql = "SELECT lirstName FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getlast($username) {
+    global $con;
+    $sql = "SELECT lastName FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getpass($username) {
+    global $con;
+    $sql = "SELECT pass FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function editInfo($first, $last, $pass, $username){
+    global $con;
+    $sql = "UPDATE member SET firstName='$first', lastName='$last', pass='$pass' WHERE username='$username'";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    return $bool;
+    
+}
+
+//TODO: REMOVE THIS WHEN NO LONGER USING USERID
+function getUserID($username) {
+    global $con;
+    $sql = "SELECT memberID FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no';
+        return 0;
+    } else {
+        return $rows;
+    }
 }
 ?>

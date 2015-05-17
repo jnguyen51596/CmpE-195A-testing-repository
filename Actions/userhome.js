@@ -47,6 +47,10 @@ function editProfile() {
 	window.location.href = "editProfile.html";
 }
 
+function viewProfile() {
+	window.location.href = "profile.html";
+}
+
 function getCourseHomepage() {
 	var classData = $('#classList').val();
 	if (classData == "create") {

@@ -1,4 +1,5 @@
 <?php
+	session_start();
     require 'sql/pdo.php';
     $username = $_POST["username"];
     $first = $_POST["first"];
@@ -13,6 +14,9 @@
 //    $pass2 = "Asas";
     
     $check = register($username, $first, $last, $pass1);
+    if ($check == 1) {
+    	$_SESSION['username'] = $username;
+    }
     echo $check;
 
 ?>
