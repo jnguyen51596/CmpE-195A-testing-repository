@@ -227,7 +227,7 @@ function getFirst($username) {
     }
 }
 
-function getlast($username) {
+function getLast($username) {
     global $con;
     $sql = "SELECT lastName FROM member WHERE username = '$username'";
     $q = $con->prepare($sql);
