@@ -3,7 +3,7 @@
     $username = $_POST["username"];
     $rows = getpass($username);
     header('Content-Type: application/json');
-    $name = $rows[0]['Pass'];
+    $name = $rows[0]['pass'];
     echo $name;
 
 ?>
