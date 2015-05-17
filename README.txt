@@ -29,9 +29,4 @@ Describe Folder
 
 - Actions: The actions are the functions that HTML files use.
 
-- _assets: The The jQuery Mobile theme of our application
-
 - css: Includes the jQuery Mobile css files for our application
- 
-- js: More jQuery Mobile files for our application
-
