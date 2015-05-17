@@ -27,8 +27,8 @@ Installing the Mopen Application
 
 ===============================================================================
 
-Describe Folder
----------------
+Folder Descriptions
+-------------------
 
 - Responders: The responders are the HTML files.
 
