@@ -142,7 +142,8 @@ CREATE TABLE `member` (
   `memberID` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
-  `isInstructor` bit(1) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `pass` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`memberID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,7 +154,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'Tom','Sparkling','\0'),(2,'Michael','Fireball',''),(3,'Steve','Dashing','\0');
+INSERT INTO `member` (memberID, firstName, lastName ) VALUES (1,'Tom','Sparkling'),(2,'Michael','Fireball',),(3,'Steve','Dashing',);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
