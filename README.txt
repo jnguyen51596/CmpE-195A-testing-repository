@@ -29,4 +29,4 @@ Describe Folder
 
 - Actions: The actions are the functions that HTML files use.
 
-- css: Includes the jQuery Mobile css files for our application
+- css: Includes the jQuery Mobile css files for Mopen.
