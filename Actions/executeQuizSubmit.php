@@ -1,6 +1,6 @@
 <?php
+session_start();
 include 'sql/pdo.php';
-$classID='1';
 if(isset($_POST['radio-choice-h-2']))
 {
     $questionType=$_POST['radio-choice-h-2'];

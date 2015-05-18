@@ -377,6 +377,9 @@ CREATE TABLE IF NOT EXISTS `multiplechoice` (
   `incorrect3` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `multiplechoice` (`classID`, `quizID`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3`) VALUES
+(1, 1, 'What color is the sky', 'blue', 'orange', 'green', 'yello');
+
 -- --------------------------------------------------------
 
 --
@@ -389,6 +392,8 @@ CREATE TABLE IF NOT EXISTS `shortanswer` (
   `question` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `shortanswer` (`classID`, `quizID`, `question`) VALUES
+(1, 1, 'why is the sky blue');
 -- --------------------------------------------------------
 
 --
@@ -416,7 +421,8 @@ CREATE TABLE IF NOT EXISTS `truefalse` (
 --
 -- Indexes for dumped tables
 --
-
+INSERT INTO `truefalse` (`classID`, `quizID`, `question`, `answer`) VALUES
+(1, 1, 'Is the sky orange', 'false');
 --
 -- Indexes for table `comment`
 --

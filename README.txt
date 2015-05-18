@@ -18,11 +18,20 @@ Installing the Mopen Application
 
 3. Create a new database and call it: openlms.
 
-4. Import the provided SQL dump file (Mopen/MySQL dump files/openlms.sql) into openlms.
+4. Import the provided SQL dump file (../Action/openlms.sql) into openlms.
 
-5. Run index.html (Mopen/index.html).
+5. Run index.html (../index.html).
 
 6. Register for an account.
+
+
+===============================================================================
+
+Demo
+----
+
+Follow the youtube link to view the demo: https://www.youtube.com/watch?v=NJUgrfU30x4
+
 
 
 ===============================================================================

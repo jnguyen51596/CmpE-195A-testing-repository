@@ -6,9 +6,12 @@ $( document ).ready(function() {
 });
 
 function takeQuiz() {
-	window.location.href = "../Responders/takeQuiz.html";
+	window.location.href = "../Responders/displayQuiz.html";
 }
-
+function makeMessage() {
+	window.location.href = "../Responders/createMessageThread.html";
+}
 function messageBoard() {
 	window.location.href = "../Responders/messageBoard.html";
 }
+

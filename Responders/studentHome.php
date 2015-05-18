@@ -24,6 +24,7 @@
             </div>
             
             <button onclick='takeQuiz()'>Take Quiz</button>
+            <button onclick='makeMessage()'>Make Message Thread</button>
             <button onclick='messageBoard()'>Go To Message Board</button>
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>
