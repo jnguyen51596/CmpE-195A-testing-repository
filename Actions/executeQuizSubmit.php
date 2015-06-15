@@ -1,10 +1,34 @@
 <?php
 session_start();
 include 'sql/pdo.php';
-if(isset($_POST['radio-choice-h-2']))
+$questionType=$_POST['questionType'];
+$classID=$_POST['classID'];
+$quizID=$_POST['quizID'];
+
+if($questionType=="multipleChoice")
 {
-    $questionType=$_POST['radio-choice-h-2'];
-    $quizID=$_POST['quizID'];
+    $question=$_POST['question'];
+    $answer=$_POST['answer'];
+    $incorrectAnswer1=$_POST['incorrectAnswer1'];
+    $incorrectAnswer2=$_POST['incorrectAnswer2'];
+    $incorrectAnswer3=$_POST['incorrectAnswer3'];
+    addQuizQuestion1($classID, $quizID, $question, $answer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3);
+    
+    echo true;
 }
-addQuizQuestion($questionType, $quizID, $classID);
+else if($questionType=="trueFalse")
+{
+    $question=$_POST['question'];
+    $answer=$_POST['answer'];
+    addQuizQuestion2($classID, $quizID, $question, $answer);
+    echo true;
+}
+else
+{
+    $question=$_POST['question'];
+    addQuizQuestion3($classID, $quizID, $question);
+    echo true;
+}
+
+
 ?>

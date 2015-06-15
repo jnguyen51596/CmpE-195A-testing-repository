@@ -11,13 +11,16 @@
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        
+
         <script src="../Actions/login.js"></script>
         <script src="../Actions/quiz.js"></script>
-       <style>
-         #box2{display:none} 
-         #box3{display:none}  
+        <script src="../Actions/javascriptFunction.js"></script>
+
+        <style>
+            #box2{display:none} 
+            #box3{display:none}  
         </style>
+
     </head>
 
     <body>
@@ -38,9 +41,6 @@
                             <label for="radio-choice-h-2c">Short Answer</label>
                         </fieldset>
                         <br>
-                         <label for="quizID">Type in Quiz ID (number only):</label>
-                         <label for="quizID">(The quiz number that this questions goes to)</label>
-                          <input type="text" name="quizID" id="quizID" />
                     </div>
                     <div id="box">
                         <fieldset data-role="fieldcontain">
@@ -63,7 +63,7 @@
                             <label for="incorrectAnswer3">Type in Incorrect Answer 3:</label>
                             <textarea cols="40" rows="8" name="incorrectAnswer3" id="incorrectAnswer3"></textarea>
                         </fieldset>
-                        
+
                     </div>  
 
                     <div id="box2">
@@ -86,7 +86,7 @@
                         </fieldset>  
                         <p style="color:red">Warning: you will have to grade the short answer questions</p>
                     </div>
-                    <input  id="nextQuizCreation" type="button" value="Submit Quiz Question" onclick="submitQuiz()">
+                    <input  id="nextQuizCreation" type="button" value="Next" onclick="submitQuiz()">
                 </form>
             </div><!-- /content -->
         </div><!-- /page -->
