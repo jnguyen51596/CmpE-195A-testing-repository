@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "");
+    $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $ex) {
     echo "<p>Connection failed</p>";
