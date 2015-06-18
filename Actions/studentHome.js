@@ -12,3 +12,7 @@ function takeQuiz() {
 function messageBoard() {
 	window.location.href = "../Responders/messageBoard.html";
 }
+
+function viewAnnouncements() {
+	window.location.href = "../Responders/viewAnnouncements.php";
+}

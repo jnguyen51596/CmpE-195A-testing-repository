@@ -22,28 +22,27 @@ function getStudentCourses($memberID) {
     }
 }
 
-function createAnnoucement($instructorID, $courseID, $messageBody) {
+function createAnnouncement($instructorID, $courseID, $messageBody) {
     global $con;
-    $sql = "
-        INSERT INTO announcement (body, authorID, courseID)
-        VALUES (:messageBody, :instructorID, :courseID)
-    ";
-    
+    $sql = "INSERT INTO announcement (body, authorID, courseID) 
+            VALUES (:messageBody, :instructorID, :courseID)";
     $q = $con->prepare($sql);
     $q->execute(array(':messageBody'=>$messageBody,
                         ':courseID'=>$courseID,
                         ':instructorID'=>$instructorID));
+    return $con->lastInsertId();
 }
 
 
 // map annoucement to students in a selected course
-function sendAnnoucement($annoucementID) {
+function sendAnnouncement($announcementID, $courseID) {
     global $con;
-    $sql = "
-        INSERT INTO anncouncementnotify(studentID, annoucementID)
-        SELECT mID, annoucementID from coursemember, announcement
-        WHERE annoucement.courseID = coursemember.cID
-    ";
+    $sql = "INSERT INTO announcementnotify(studentID, announcementID)
+        	SELECT memberID, :announcementID from coursemember
+        	WHERE courseID = :courseID";
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseID'=>$courseID,
+                        ':announcementID'=>$announcementID));
 }
 
 function createClass($courseName, $prefix, $suffix, $instructorID) {
@@ -276,6 +275,22 @@ function getUserID($username) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         echo 'no';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getAllAnnouncementsByClass($courseID) {
+    global $con;
+    $sql = "SELECT body, firstName, lastName, announcementID
+            FROM announcement, member
+            WHERE courseID = :courseID AND authorID = memberID
+            ORDER BY announcementID DESC;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseID'=> $courseID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
         return 0;
     } else {
         return $rows;

@@ -51,6 +51,10 @@ function viewProfile() {
 	window.location.href = "profile.html";
 }
 
+function viewNewAnnouncements() {
+	window.location.href = "viewNewAnnouncements.php";
+}
+
 function getCourseHomepage() {
 	var classData = $('#classList').val();
 	if (classData == "create") {

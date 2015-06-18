@@ -3,7 +3,7 @@
 ?>
 <html>
     <head>
-        <title>Course Home</title>
+        <title>Announcements</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="../css/app.css" rel="stylesheet" />
@@ -15,20 +15,15 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-        <script src="../Actions/studentHome.js"></script>
+        <script src="../Actions/viewAnnouncements.js"></script>
     </head>
 
     <body>
-        <div data-role="page">
+        
             <div data-role="header" data-theme="c" id="header">
             </div>
-            
-            <button onclick='takeQuiz()'>Take Quiz</button>
-            <button onclick='messageBoard()'>Go To Message Board</button>
-            <button onclick='viewAnnouncements()'>View Announcements</button>
+          
             <div role="main" id="main" data-theme="c" class="ui-content">
-            </div>
-           
-        </div>
+            </div>       
     </body>
 </html>
