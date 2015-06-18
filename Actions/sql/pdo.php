@@ -102,23 +102,6 @@ function setGrades($assignmentid, $score, $feedback) {
     $q->execute(); // ?
 }
 
-function checkLogin($sjsuid, $password) {
-    global $con;
-    $sql = "SELECT * FROM login WHERE username='$sjsuid' AND password='$password';";
-
-    $q = $con->prepare($sql);
-    $q->execute(array(':username' => $sjsuid));
-    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
-    if (count($rows) == 0) {
-        echo 'false';
-        return 0;
-    } else {
-        setcookie("username", $sjsuid);
-        echo 'true';
-        return 1;
-    }
-}
-
 function addQuiz($classID, $quizID, $title) {
     global $con;
     $sql = "Select * FROM totalquiz where classID='$classID' and quizID='$quizID';";
@@ -377,7 +360,6 @@ function checkLogin($username, $password) {
     $q->execute(array(':username' => $username, ':password' => $password));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 1) {
-        //setcookie("username", $sjsuid);
         return true;
     } else {
         return false;
