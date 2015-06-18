@@ -1,4 +1,5 @@
 var role = "";
+var offset = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 function getCoursesByRole() {
 	role = $('#role').val();
 	if (role == "student") {
@@ -30,14 +31,14 @@ function formatData(data) {
 
 	$.each(data, function(index, data) {
 		if (data != -1) {
-			html += "<option value='" + JSON.stringify(data) + "'>" + data.prefix + " " + data.suffix + " " + data.name + "</option>";		
+			html += "<option value='" + JSON.stringify(data) + "'>" + offset + data.prefix + " " + data.suffix + " " + data.name + "</option>";		
 		}
 		//alert(data.prefix + " " + data.suffix + " " + data.name);
 	});
 	if (role == "instructor") {
-		html += "<option value='create'>Create a Course</option>";
+		html += "<option value='create'>" + offset + "Create a Course</option>";
 	} else if (role == "student") {
-		html += "<option value='enroll'>Find a Course to Take</option>";
+		html += "<option value='enroll'>" + offset + "Find a Course to Take</option>";
 	}
 	html += "</select><button onclick='getCourseHomepage()'>Go to Course Homepage</button>";
 	$('#results').append(html).trigger('create');

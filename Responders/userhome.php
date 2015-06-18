@@ -41,9 +41,10 @@ session_start();
 				<button onclick='editProfile()'>Edit Profile</button>
 				<label for="role" class="select">Select a Role:</label>
 				<select name="role" id="role" onchange="getCoursesByRole()">
-					<option value='noselection'>Select one...</option>
-					<option value='student'>Student</option>
-					<option value='instructor'>Instructor</option>
+					<!-- &nbsp; used to offset the right side button that aligns the text incorrectly-->
+					<option value='noselection'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select one...</option>
+					<option value='student'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Student</option>
+					<option value='instructor'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor</option>
 				</select>		
 				<hr>
 		</div>
