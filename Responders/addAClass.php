@@ -35,6 +35,7 @@
 			<div data-role="header" data-theme="b">
 				<h1>Search for classes</h1>
 			</div>
+				<br>
 				<label for="search-mini">Search For a Class to Add:</label>
 				<input type="search" name="search-mini" id="search-mini" value="" data-mini="true">
 				<hr>

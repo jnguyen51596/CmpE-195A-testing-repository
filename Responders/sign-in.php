@@ -67,7 +67,7 @@
                     <label for="txt-password">Password</label>
                     <input type="password" name="txt-password" id="txt-password" value="">
                     <input  id="login" type="button" value="Login" >
-                    <p class="mc-top-margin-1-5"><a href="registration.html" data-ajax="false">Don't have an account?</a></p>
+                    <p class="mc-top-margin-1-5"><a href="registration.php" data-ajax="false">Don't have an account?</a></p>
                 </form>
             </div><!-- /content -->
         </div><!-- /page -->

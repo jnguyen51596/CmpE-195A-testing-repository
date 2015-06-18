@@ -9,7 +9,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>LMS</title>
+        <title>Mopen</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!--
@@ -52,7 +52,7 @@ and open the template in the editor.
                             {
                                 var question = data[i].question;
                                 var questionid = data[i].questionID;
-                                html += "<a href=\"commentPage.html?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + question + "</a><br>";
+                                html += "<a href=\"commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + question + "</a><br>";
                             }
                             document.getElementById("demo").innerHTML = html;
 
