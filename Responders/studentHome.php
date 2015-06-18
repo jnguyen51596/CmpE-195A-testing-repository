@@ -39,6 +39,7 @@
             <button onclick='makeMessage()'>Make Message Thread</button>
             <button onclick='messageBoard()'>Go To Message Board</button>
             <button onclick='viewAnnouncements()'>View Announcements</button>
+            <button onclick='grades()'>View Grades</button>
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>
            

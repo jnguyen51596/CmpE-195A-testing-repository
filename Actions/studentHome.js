@@ -14,8 +14,10 @@ function makeMessage() {
 function messageBoard() {
 	window.location.href = "../Responders/messageBoard.php";
 }
-
 function viewAnnouncements() {
 	window.location.href = "../Responders/viewAnnouncements.php";
+}
+function grades() {
+	window.location.href = "../Responders/viewGrades.php";
 }
 
