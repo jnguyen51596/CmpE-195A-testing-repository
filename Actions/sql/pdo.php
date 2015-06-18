@@ -300,6 +300,7 @@ function getAllAnnouncementsByClass($courseID) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
+	}
 }
 
 function getHwComment($hwid, $username, $classid) {
@@ -335,6 +336,23 @@ function getStudentCommentList($classID,$hwid) {
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
         echo false;
+    } else {
+        return $rows;
+    }
+}
+
+function getSpecificGrades($memberID, $courseID) {
+    global $con;
+    $sql = "SELECT title, score, total, feedback 
+        FROM grade JOIN assignment ON grade.assignmentID=assignment.assignmentID 
+        WHERE memberID='$memberID' AND courseID='$courseID'";
+
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no grades';
+        return 0;
     } else {
         return $rows;
     }
