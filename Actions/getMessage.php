@@ -2,7 +2,7 @@
 <?php
 
 $class = $_POST['classid'];
-require 'pdoj.php';
+require 'sql/pdo.php';
 $rows = getMessage($class);
 if ($rows == 0) {
 } else {

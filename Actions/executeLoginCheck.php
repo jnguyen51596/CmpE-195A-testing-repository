@@ -3,7 +3,7 @@ session_start();
 
 $userID = $_POST['name'];
 $password =$_POST['pwd'];
-require 'pdoj.php';
+require 'sql/pdo.php';
 
 if(checkLogin($userID, $password)==true)
 {

@@ -10,6 +10,6 @@ $date=$_POST['date'];
 $question=$_POST['question'];
 $username=$_POST['user'];
 $classID=$_POST['classid'];
-require 'pdoj.php';
+require 'sql/pdo.php';
 addThread($title, $date, $question, $classID,$username);
 ?>

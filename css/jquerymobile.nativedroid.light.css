@@ -177,7 +177,7 @@ progress::-webkit-progress-bar {
 	box-shadow: none;
 }
 
-.ui-popup.ui-page-theme-b,.ui-dialog.ui-page-theme-b,, .ui-popup .ui-content {
+.ui-popup.ui-page-theme-b,.ui-dialog.ui-page-theme-b, .ui-popup .ui-content {
 	background: linear-gradient(to bottom, rgb(255,255,255) 0%,rgb(255,255,255) 100%);
 }
 
