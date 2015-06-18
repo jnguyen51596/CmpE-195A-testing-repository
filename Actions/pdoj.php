@@ -22,24 +22,6 @@ function checkLogin($username, $password) {
     }
 }
 
-function addQuizQuestion($questionType, $quizID, $classID) {
-    global $con;
-    if ($questionType == 'multipleChoice') {
-        $questionA = $_POST['question-a'];
-        $answerA = $_POST['answer-a'];
-        $incorrectAnswer1 = $_POST['incorrectAnswer1'];
-        $incorrectAnswer2 = $_POST['incorrectAnswer2'];
-        $incorrectAnswer3 = $_POST['incorrectAnswer3'];
-        $con->exec("INSERT INTO multipleChoice(classID,quizID, question, answer, incorrect1, incorrect2, incorrect3) VALUES ($classID,$quizID,$questionA, $answerA, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3 );");
-    } else if ($questionType == 'trueFalse') {
-        $questionB = $_POST['question-b'];
-        $answerB = $_POST['trueFalseChoice-b'];
-        $con->exec("INSERT INTO trueFalse(classID,quizID,question,answer) VALUES ($classID,$quizID,$questionB,$answerB);");
-    } else {
-        $questionC = $_POST['question-c'];
-        $con->exec("INSERT INTO shortAnswer(classID,quizID,question) VALUES ($classID, $quizID, $questionC);");
-    }
-}
 
 function addThread($title, $date, $question, $classID, $username) {
     global $con;
@@ -82,6 +64,7 @@ function addComment($question, $questionid, $classid, $comment, $userid) {
     $sql = "INSERT into comment(questionID, classID, userID, question, comment) VALUES('$questionid','$classid','$userid','$question','$comment');";
     $q = $con->prepare($sql);
     $q->execute();
+    echo 'true';
 }
 
 function getQuiz($classID) {

@@ -1,7 +1,7 @@
 var response;
-var totalquestion;
-var html;
-var counter;
+var totalquestion=1;
+var html="";
+var counter=0;
 function showA()
 {
     document.getElementById("box").style.display = "initial";
@@ -24,21 +24,133 @@ function showC()
 
 function submitQuiz()
 {
-    loadDatabase("../Actions/excuteQuizSubmit.php", function ()
-    {
 
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    var questionType = "";
+    var question = "";
+    var answer = "";
+    var quizID = getParameterByName("quizid");
+    var classID = getParameterByName("classid");
+    var incorrectAnswer1 = "";
+    var incorrectAnswer2 = "";
+    var incorrectAnswer3 = "";
+
+    if (document.getElementById("radio-choice-h-2a").checked)
+    {
+        questionType = $("#radio-choice-h-2a").val();
+        question = $('#question-a').val();
+        answer = $('#answer-a').val();
+        incorrectAnswer1 = $('#incorrectAnswer1').val();
+        incorrectAnswer2 = $('#incorrectAnswer2').val();
+        incorrectAnswer3 = $('#incorrectAnswer3').val();
+        if (quizID == "" || question == "" || answer == "" || incorrectAnswer1 == "" || incorrectAnswer2 == "" || incorrectAnswer3 == "")
         {
-            window.location('quiz-endPage.html');
+            alert("Incorrect Submission");
         }
-    });
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "../Actions/executeQuizSubmit.php",
+                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question + "&answer=" + answer + "&incorrectAnswer1=" + incorrectAnswer1 + "&incorrectAnswer2=" + incorrectAnswer2 + "&incorrectAnswer3=" + incorrectAnswer3,
+                cache: false,
+                success: function (data) {
+                    if (data == true)
+                    {
+                        alert("Correct Submission");
+                        window.location = '../Responders/createQuizEndPage.html';
+                    }
+                }
+            });
+        }
+    }
+    else if (document.getElementById("radio-choice-h-2b").checked)
+    {
+        questionType = $("#radio-choice-h-2b").val();
+        question = $('#question-b').val();
+        if (document.getElementById("trueFalseChoice-1b").checked)
+        {
+            answer = $('#trueFalseChoice-1b').val();
+        }
+        else
+        {
+            answer = $('#trueFalseChoice-2b').val();
+        }
+
+        if (quizID == "" || question == "" || answer == "")
+        {
+            alert("Incorrect Submission");
+        }
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "../Actions/executeQuizSubmit.php",
+                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question + "&answer=" + answer,
+                cache: false,
+                success: function (data) {
+                    if (data == true)
+                    {
+                        alert("Correct Submission");
+                        window.location = '../Responders/createQuizEndPage.html';
+                    }
+                }
+            });
+        }
+
+    }
+    else
+    {
+        questionType = $("#radio-choice-h-2c").val();
+        question = $('#question-c').val();
+        if (quizID == "" || question == "")
+        {
+            alert("Incorrect Submission");
+        }
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "../Actions/executeQuizSubmit.php",
+                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question,
+                cache: false,
+                success: function (data) {
+                    if (data == true)
+                    {
+                        alert("Correct Submission");
+                        window.location = '../Responders/createQuizEndPage.html';
+                    }
+                }
+            });
+        }
+    }
+
 }
+function submitStartQuiz()
+{
+    var classID=getParameterByName("classid");
+    var title=$('#title').val();
+    var quizNumber= $('#quizNumber').val();
+      $.ajax({
+                type: "POST",
+                url: "../Actions/executeQuizStart.php",
+                data: "&classID=" + classID + "&quizNumber=" + quizNumber + "&title=" + title,
+                cache: false,
+                success: function (data) {
+                    if (data == true)
+                    {
+                        alert("Quiz Created");
+                        window.location = '../Responders/createQuizDisplay.html';
+                    }
+                    else
+                    {
+                        alert("Quiz Already Created");
+                    }
+                }
+            });
+    }
 
 function printOutQuiz1(data)
 {
-    html = "";
-    //html += "<form action=\"\" method=\"post\" id=\"testing\">";
-    totalquestion = 1;
     for (var i = 0; i < data.length; i++)
     {
         var question = data[i].question;
@@ -96,6 +208,7 @@ function printOutQuiz3(data)
     }
     html += "</form>";
     $("#demo").append(html).enhanceWithin();
+    
 }
 function getQuizQuestion1(classid, quizid)
 {
@@ -108,14 +221,14 @@ function getQuizQuestion1(classid, quizid)
             if (data == false)
             {
                 counter = 0;
-                counter +=1;
+                counter += 1;
                 getQuizQuestion2(classid, quizid);
-                
+
             }
             else
             {
-                printOutQuiz1(data);
-                if (printOutQuiz1(data) == true)
+                var temp=printOutQuiz1(data);
+                if (temp == true)
                 {
                     getQuizQuestion2(classid, quizid);
                 }
@@ -133,13 +246,13 @@ function getQuizQuestion2(classid, quizid)
         success: function (data) {
             if (data == false)
             {
-                counter +=1;
+                counter += 1;
                 getQuizQuestion3(classid, quizid);
             }
             else
             {
-                printOutQuiz2(data);
-                if (printOutQuiz2(data) == true)
+                var temp= printOutQuiz2(data);
+                if (temp == true)
                 {
                     getQuizQuestion3(classid, quizid);
                 }
@@ -157,10 +270,15 @@ function getQuizQuestion3(classid, quizid)
         success: function (data) {
             if (data == false)
             {
-                counter +=1;
-                if(counter == 3)
+                counter += 1;
+                if (counter == 3)
                 {
-                alert("No Quiz");
+                    alert("No Quiz");
+                }
+                else
+                {
+                    html += "</form>";
+                     $("#demo").append(html).enhanceWithin();
                 }
             }
             else
@@ -172,7 +290,7 @@ function getQuizQuestion3(classid, quizid)
 }
 
 
-function displayQuiz(classid)
+function displayQuiz1(classid)
 {
     return $.ajax({
         type: "POST",
@@ -191,7 +309,8 @@ function displayQuiz(classid)
                 {
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
-                    html += "<a href=\"takeQuiz.html?classid=" + classid + "&quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + "</a><br>";
+                    var title =data[i].title;
+                    html += "<a href=\"takeQuiz.html?classid=" + classid + "&quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz "+quizid+": " + title+ "</a><br>";
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -200,5 +319,34 @@ function displayQuiz(classid)
     });
 }
 
+function displayQuiz2(classid)
+{
+    return $.ajax({
+        type: "POST",
+        url: "../Actions/getQuiz.php",
+        data: "classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == false)
+            {
+                alert("Invalid Message");
+            }
+            else
+            {
+                var html = "";
+                for (var i = 0; i < data.length; i++)
+                {
+                    var classid = data[i].classID;
+                    var quizid = data[i].quizID;
+                    var title =data[i].title;
+                    html += "<a href=\"createQuizQuestion.html?classid=" + classid + "&quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz "+quizid+": " + title+ "</a><br>";
+                }
+                html +="<a href=\"createQuiz.html?classid="+classid+"\">Create Quiz</a>";
+                document.getElementById("demo").innerHTML = html;
+
+            }
+        }
+    });
+}
 
 

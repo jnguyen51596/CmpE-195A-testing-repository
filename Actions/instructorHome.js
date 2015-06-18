@@ -24,3 +24,10 @@ function messageBoard() {
 function setGrades() {
 	window.location.href = "../Responders/setGrades.html";
 }
+
+function createQuiz() {
+	window.location.href = "../Responders/quiz-instructor.html";
+}
+function makeMessage() {
+	window.location.href = "../Responders/createMessageThread.html";
+}

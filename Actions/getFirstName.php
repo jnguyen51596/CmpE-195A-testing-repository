@@ -1,5 +1,5 @@
 <?php
-	session_start();
+    session_start();
     include "sql/pdo.php";
     $username = $_SESSION["username"];
     $rows = getFirst($username);

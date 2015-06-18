@@ -26,12 +26,12 @@
                     var username=sessionStorage.getItem('username');
                     $.ajax({
                         type: "POST",
-                        url: "executeThread.php",
+                        url: "../Actions/executeThread.php",
                         data: "title=" + title + "&date="+ date +"&question=" + question+"&user=" + username+"&classid="+classid,
                         cache: false,
                         success: function (data) {
                             if (data == 'true') {
-                                window.location = 'homepage.html';
+                                window.location = 'userhome.php';
                             }
                             else {
                                 alert('Not enough information');

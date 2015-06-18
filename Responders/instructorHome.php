@@ -24,9 +24,12 @@
             </div>
             <button onclick='createAssignment()'>Create a Assignment</button>
             <button onclick='dropAStudent()'>Drop a Student</button>
-            <button onclick='makeAnnouncement()'>Make an Announcement</button>
+<!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->
+            <button onclick='makeMessage()'>Make Message Thread</button>
             <button onclick='messageBoard()'>Go To Message Board</button>
+            
             <button onclick='setGrades()'>Set Grades</button>
+<!--            <button onclick='createQuiz()'>Create Quiz</button>-->
 
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>

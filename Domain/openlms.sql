@@ -377,6 +377,9 @@ CREATE TABLE IF NOT EXISTS `multiplechoice` (
   `incorrect3` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `multiplechoice` (`classID`, `quizID`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3`) VALUES
+(1, 1, 'What color is the sky', 'blue', 'orange', 'green', 'yello');
+
 -- --------------------------------------------------------
 
 --
@@ -389,6 +392,8 @@ CREATE TABLE IF NOT EXISTS `shortanswer` (
   `question` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `shortanswer` (`classID`, `quizID`, `question`) VALUES
+(1, 1, 'why is the sky blue');
 -- --------------------------------------------------------
 
 --
@@ -416,7 +421,8 @@ CREATE TABLE IF NOT EXISTS `truefalse` (
 --
 -- Indexes for dumped tables
 --
-
+INSERT INTO `truefalse` (`classID`, `quizID`, `question`, `answer`) VALUES
+(1, 1, 'Is the sky orange', 'false');
 --
 -- Indexes for table `comment`
 --
@@ -501,3 +507,55 @@ INSERT INTO `users` (`username`, `firstname`, `lastname`, `pass`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE IF NOT EXISTS `hwcomment` (
+`commentID` int(11) NOT NULL,
+  `hwid` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `comment` varchar(301) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+
+INSERT INTO `hwcomment` (`commentID`, `hwid`, `username`, `classID`, `comment`) VALUES
+(1, 1, 'batman', 1, 'hi'),
+(2, 1, 'batman', 1, 'yo'),
+(3, 1, 'batman', 1, 'asdfa'),
+(5, 1, 'batman', 1, 'sadfasdf'),
+(6, 1, 'batman', 1, 'sadfasdf'),
+(7, 1, 'batman', 1, 'asdfasdfa'),
+(8, 1, 'batman', 1, 'hehe'),
+(9, 1, 'batman', 1, 'lkjlk'),
+(10, 1, 'batman', 1, 'asdfa'),
+(11, 1, 'batman', 1, 'asdfasdffff'),
+(12, 1, 'batman', 1, 'asdfsffffffff'),
+(13, 1, 'batman', 1, 'sdkfjasldfkja;'),
+(14, 1, 'batman', 1, 'asdfasdf'),
+(15, 1, 'batman', 1, 'lkasjdlfkjslfkajsldfk'),
+(16, 1, 'batman', 1, 'asdfjasldkfjlaskdf'),
+(17, 1, 'batman', 1, 'asdfasd'),
+(18, 1, 'batman', 1, 'asdlfkjlllll'),
+(19, 1, 'batman', 1, 'hi');
+
+-- --------------------------------------------------------
+
+
+
+CREATE TABLE IF NOT EXISTS `assignmentstudentlist` (
+  `assignmentID` int(11) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `turnedin` tinyint(1) NOT NULL,
+  `points` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `assignmentstudentlist`
+--
+
+INSERT INTO `assignmentstudentlist` (`assignmentID`, `classID`, `username`, `turnedin`, `points`) VALUES
+(1, 1, 'batman', 0, 0),
+(1, 1, 'batman2', 0, 0),
+(1, 1, 'batman4', 1, 0),
+(1, 1, 'batman7', 1, 0);

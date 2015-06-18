@@ -15,10 +15,6 @@ function editInfo() {
                     alert("You left one or more fields empty. Please fill out everything.");
                     
                     //DO ANOTHER ELSEIF AND CHECK USERNAME AGAINST THE DB AFTER THIS ONE
-                }else if(checkPassword(opass) === 0){
-                    
-                    alert("Incorrent old password! old pass: " + opass);
-                    
                 }else if(npass !== cnpass){
                     alert("Your new passwords are not matching. Fix that!");
                 }else
@@ -32,6 +28,7 @@ function editInfo() {
                             success: function (data) {
                                 if (data == 1) {
                                     alert("Successful Update!");
+                                     window.location = 'userHome.php';
                                 }
                                 else {
                                     alert(data);
