@@ -300,6 +300,7 @@ function getAllAnnouncementsByClass($courseID) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
+    }
 }
 
 function getHwComment($hwid, $username, $classid) {
