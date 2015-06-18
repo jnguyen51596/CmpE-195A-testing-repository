@@ -44,11 +44,11 @@ function formatData(data) {
 }
 
 function editProfile() {
-	window.location.href = "editProfile.html";
+	window.location.href = "editProfile.php";
 }
 
 function viewProfile() {
-	window.location.href = "profile.html";
+	window.location.href = "profile.php";
 }
 
 function viewNewAnnouncements() {
@@ -58,9 +58,9 @@ function viewNewAnnouncements() {
 function getCourseHomepage() {
 	var classData = $('#classList').val();
 	if (classData == "create") {
-			window.location.href = "makeAClass.html";
+			window.location.href = "makeAClass.php";
 	} else if (classData == "enroll") {
-			window.location.href = "addAClass.html";
+			window.location.href = "addAClass.php";
 	} else {
 		var courseInfo = JSON.parse(classData);
 		sessionStorage.setItem('name', courseInfo.name);

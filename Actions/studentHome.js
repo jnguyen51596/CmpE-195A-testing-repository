@@ -6,13 +6,13 @@ $( document ).ready(function() {
 });
 
 function takeQuiz() {
-	window.location.href = "../Responders/displayQuiz.html";
+	window.location.href = "../Responders/displayQuiz.php";
 }
 function makeMessage() {
-	window.location.href = "../Responders/createMessageThread.html";
+	window.location.href = "../Responders/createMessageThread.php";
 }
 function messageBoard() {
-	window.location.href = "../Responders/messageBoard.html";
+	window.location.href = "../Responders/messageBoard.php";
 }
 
 function viewAnnouncements() {

@@ -43,7 +43,7 @@ function validate2()
     if (username == finalid)
     {
         alert("Login Successful");
-        window.location = "../Responders/homepage.html";
+        window.location = "../Responders/homepage.php";
         return false;
     }
 
@@ -77,7 +77,7 @@ function getCookie(cname) {
 function logout()
 {
     document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    window.location = "../Responders/sign-in.html";
+    window.location = "../Responders/sign-in.php";
 }
 
 

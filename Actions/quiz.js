@@ -57,7 +57,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '../Responders/createQuizEndPage.html';
+                        window.location = '../Responders/createQuizEndPage.php';
                     }
                 }
             });
@@ -91,7 +91,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '../Responders/createQuizEndPage.html';
+                        window.location = '../Responders/createQuizEndPage.php';
                     }
                 }
             });

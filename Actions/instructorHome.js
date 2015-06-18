@@ -6,28 +6,28 @@ $( document ).ready(function() {
 });
 
 function createAssignment() {
-	window.location.href = "../Responders/createAssignment.html";
+	window.location.href = "../Responders/createAssignment.php";
 }
 
 function dropAStudent() {
-	window.location.href = "../Responders/dropAStudent.html";
+	window.location.href = "../Responders/dropAStudent.php";
 }
 
 function makeAnnouncement() {
-	window.location.href = "../Responders/makeAnnouncement.html";
+	window.location.href = "../Responders/makeAnnouncement.php";
 }
 
 function messageBoard() {
-	window.location.href = "../Responders/messageBoard.html";
+	window.location.href = "../Responders/messageBoard.php";
 }
 
 function setGrades() {
-	window.location.href = "../Responders/setGrades.html";
+	window.location.href = "../Responders/setGrades.php";
 }
 
 function createQuiz() {
-	window.location.href = "../Responders/quiz-instructor.html";
+	window.location.href = "../Responders/quiz-instructor.php";
 }
 function makeMessage() {
-	window.location.href = "../Responders/createMessageThread.html";
+	window.location.href = "../Responders/createMessageThread.php";
 }
