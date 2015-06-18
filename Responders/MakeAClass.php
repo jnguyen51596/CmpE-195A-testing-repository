@@ -38,11 +38,11 @@
 		<label for="suffix">4 Letter Suffix:</label>
 		<input type="text" name="suffix" id="prefix" value="">
 		<label for="slider-flip-open-course">Open Enrollment:</label>
-		<select name="slider-flip-open-course" id="slider-flip-open-course" data-role="slider" data-mini="true">
+		<select name="slider-flip-open-course" id="slider-flip-open-course" data-role="flipswitch">
 		   <option value="off">No</option>
 		   <option value="on" selected>Yes</option>
 		</select>
-		<input type="submit" value="Add it!" class="ui-shadow ui-btn ui-corner-all" data-theme="a">
+		<input type="submit" value="Add it!">
 	</form>
 </div>
 </body>
