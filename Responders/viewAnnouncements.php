@@ -1,4 +1,7 @@
 <?php
+    require '../Actions/authenticate.php';
+?>
+<?php
     session_start();
 ?>
 <html>

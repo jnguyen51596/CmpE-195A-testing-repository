@@ -1,3 +1,6 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <!DOCTYPE html>
 <html>
         <head>

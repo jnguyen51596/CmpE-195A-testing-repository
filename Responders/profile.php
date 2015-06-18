@@ -1,3 +1,6 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.

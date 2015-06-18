@@ -1,3 +1,6 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <html>
     <head>
         <title>LMS</title>

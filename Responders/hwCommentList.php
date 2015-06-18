@@ -1,3 +1,6 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,40 +19,40 @@ and open the template in the editor.
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		-->
+        -->
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
-			
+				
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
+		<script src="../Actions/javascriptFunction.js"></script>
         <script>
-
+            var hwid=getParameterByName("hwid");
             window.onload=function ()
             {
                 var classid = sessionStorage.getItem('courseID');
                 $.ajax({
                     type: "POST",
-                    url: "../Actions/getMessage.php",
-                    data: "classid=" + classid,
+                    url: "../Actions/getStudentCommentList.php",
+                    data: "classid=" + classid +"&hwid=" +hwid,
                     cache: false,
                     async: false,
                     success: function (data) {
                         if (data == false)
                         {
-                            alert("Invalid Message");
+                            alert("Invalid Page");
                         }
                         else
                         {
                             var html = "";
                             for (var i = 0; i < data.length; i++)
-                            {
-                                var question = data[i].question;
-                                var questionid = data[i].questionID;
-                                html += "<a href=\"commentPage.html?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + question + "</a><br>";
+                            {                    
+                                var username = data[i].username;
+                                html += "<a href=\"hwCommentAdd.html?hwid=" + hwid + "&username=" + username + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + username+ "</a><br>";
                             }
                             document.getElementById("demo").innerHTML = html;
 
@@ -64,7 +67,7 @@ and open the template in the editor.
     <body>
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Message Board</h1>
+                <h1>Pick A Student to Add Comment</h1>
             </div><!-- /header -->
             <div role="main" id="demo" class="ui-content">
             </div><!-- /content -->

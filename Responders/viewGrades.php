@@ -1,17 +1,26 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
-<head>
-        <title>Make a Annoucement</title>
+    <head>
+    
+        <title>Grades Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
 		<!--
-		<link href="../css/app.css" rel="stylesheet" /> 
+        <link href="../css/app.css" rel="stylesheet" />
         <link rel="stylesheet" href="../css/themes/default/testcanvas.min.css" />
         <link rel="stylesheet" href="../css/themes/default/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		-->
+        -->
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
@@ -21,16 +30,32 @@
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
-        <script src="../Actions/makeAnnouncement.js"></script>    
-</head>
-<body>
-	<div data-role="page" data-theme="b"
-	<div role="main" class="ui-content">
-            <label for="body">Message</label>
-            <textarea data-mini="true" cols="40" rows="8" name="body" id="body"></textarea>
-			<button onclick="postAnnouncement()">Post Announcement</button>
+		
+        <script src="../Actions/grades.js"></script>
+
+    </head>
+    <body>
+	<div data-role="page" data-theme="b">
+        <div data-role="header" data-theme="b">
+            <h1>Mopen</h1>
+        </div><!-- /header -->
+        <br>
+        
+        <div>
+            <label>Grades</label>
+            <br>
+        </div>
+   
+        <script>
+            window.onload=getGrades();
+
+        </script>
+        
+        <div id="results" class="ui-content">
+            You do not have any grades for this class yet.
+
 	</div>
 	</div>
-</body>
-</htlm>
-	
+    </body>
+</html>
+

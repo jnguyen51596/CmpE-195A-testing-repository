@@ -1,3 +1,6 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>

@@ -1,9 +1,12 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
 <html>
     <head>
         <title>LMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!--
+		<!-- comment out to enable nativeDroid
         <link href="../css/app.css" rel="stylesheet" />
         <link rel="stylesheet" href="../css/themes/default/testcanvas.min.css" />
         <link rel="stylesheet" href="../css/themes/default/jquery.mobile.icons.min.css" />
@@ -16,34 +19,34 @@
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
-				
+			
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		
-		
-        <script src="login.js"></script>
-        
-        <script src="../Actions/javascriptFunction.js"></script>
-        <script src="../Actions/quiz.js"></script>
-        <script>
-            var classid=getParameterByName("classid");
-            var quizid= getParameterByName("quizid");
-            $(document).ready(function ()  {
-               getQuizQuestion1(classid, quizid);
-            });
 
-        </script>
+        <script src="../Actions/login.js"></script>
+        <script src="../Actions/quiz.js"></script>
+        <script src="../Actions/javascriptFunction.js"></script>
+
     </head>
 
     <body>
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz</h1>
-            </div>
-            
-           <div role="main" id="demo" class="ui-content">
-           </div>
-           
-        </div>
+                <h1>Quiz Creation</h1>
+            </div><!-- /header -->
+            <div role="main">
+                <form name="quizStart" id="quizStart" method="post">
+                    <fieldset data-role="fieldcontain">
+                        <label for="title">Type in Title:</label>
+                        <textarea cols="40" rows="8" name="title" id="title" ></textarea>
+                    </fieldset>
+                    <fieldset data-role="fieldcontain">
+                        <label for="quizNumber">Type in Quiz ID (number only):</label>
+                        <textarea cols="40" rows="8" name="quizNumber" id="quizNumber"></textarea>
+                    </fieldset>
+                    <input  id="start" type="button" value="Create Quiz" onclick="submitStartQuiz()">
+                </form>
+            </div><!-- /content -->
+        </div><!-- /page -->
     </body>
 </html>

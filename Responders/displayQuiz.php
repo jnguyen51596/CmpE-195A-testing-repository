@@ -1,3 +1,12 @@
+<?php
+    require '../Actions/authenticate.php';
+?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <title>LMS</title>
@@ -10,7 +19,7 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-       -->
+		-->
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
@@ -19,24 +28,29 @@
 				
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
+		
         <script src="../Actions/login.js"></script>
         <script src="../Actions/quiz.js"></script>
-        <style>
-            #box2{display:none} 
-            #box3{display:none}  
-        </style>
+
+        <script>
+
+            window.onload=function ()
+            {
+                var classid = "1";
+                displayQuiz1(classid);
+            }
+            ;
+        </script>
     </head>
 
     <body>
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz Creation</h1>
+                <h1>Quiz List</h1>
             </div><!-- /header -->
-            <div role="main">
-                <h2>Do you Want to make more Quiz Questions?</h2>
-                <a href="createQuizQuestion.html" data-role="button">Yes</a>
-                <a href="userhome.php" data-role="button">No</a>
+            <div role="main" id="demo" class="ui-content">
+            </div><!-- /content -->
+            <div role="main" id="demo2" class="ui-content">
             </div><!-- /content -->
         </div><!-- /page -->
     </body>
