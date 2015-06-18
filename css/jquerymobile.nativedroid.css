@@ -1,4 +1,8 @@
+
 @import url("fonts.css");
+body {
+	text-align: center;
+}
 
 a {
 	text-decoration: none;
@@ -114,8 +118,9 @@ width: 91px;
 
 .ui-header .ui-title, .ui-footer .ui-title {
 	text-align: left;
-	margin: 3px 25px 7px 55px;
+	margin: 3px 25px 7px 25px;
 	padding: 7px 0px 0px 0px;
+	text-align: center;
 	font-size: 25px;
 	font-weight: 100;
 }
