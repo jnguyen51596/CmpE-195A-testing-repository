@@ -18,8 +18,8 @@
 	<link rel="stylesheet" href="../css/font-awesome.min.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
-	<link rel="stylesheet" href="../css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
-	<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+	<link rel="stylesheet" href="../css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+	<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
 			
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -29,7 +29,11 @@
 
 <body>
 <div data-role="page" data-theme="b">
-	<h1>Create A Class</h1>
+	<div data-role="header" data-theme="b">
+		<h1>Create a Class</h1>
+    </div>
+	
+	<div>
 	<form action="../Actions/createClass.php" method="POST">
 		<label for="courseName">Class Name:</label>
 		<input type="text" name="courseName" id="courseName" value="">
@@ -44,6 +48,8 @@
 		</select>
 		<input type="submit" value="Add it!">
 	</form>
+	</div>
+	
 </div>
 </body>
 </html>
