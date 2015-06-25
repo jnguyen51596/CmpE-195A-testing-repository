@@ -1,3 +1,4 @@
+
 <?php
     require '../Actions/authenticate.php';
 ?>
@@ -92,7 +93,7 @@
 		<textarea name="textarea" id="desc-id" value placeholder="Description"></textarea>
 	</div>
 	
-	<input  id="createAssignment-submit" type="button" value="Submit"></input>
+	<input id="createAssignment-submit" type="button" value="Submit"></input>
 	
 	<script>
 		document.getElementById("createAssignment-submit").onclick = createAssignment;

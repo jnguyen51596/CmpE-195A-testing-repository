@@ -178,7 +178,7 @@ function dropStudent($courseID, $memberID) {
     return 1;
 }
 
-function addAssignment($courseID, $authorID, $title, $total, $dueDate, $descrption) {
+function addAssignment($courseID, $authorID, $title, $total, $dueDate, $description) {
     global $con;
     $sql = "INSERT INTO assignment(courseID, authorID, title, total, dueDate, description)
             VALUES($courseID, $authorID, '$title', $total, '$dueDate', '$description')";
