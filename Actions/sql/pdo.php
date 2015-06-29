@@ -457,4 +457,71 @@ function getQuizQuestion3($classID, $quizID)
     }
 }
 
+
+function checkQuizQuestion1($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkQuizQuestion2($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function checkQuizQuestion3($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function deleteQuiz1($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "DELETE FROM multiplechoice 
+            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+}
+function deleteQuiz2($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "DELETE FROM truefalse 
+            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+}
+function deleteQuiz3($classID, $quizID,$question)
+{
+    global $con;
+    $sql = "DELETE FROM shortanswer
+            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+}
+
 ?>
