@@ -25,25 +25,24 @@ and open the template in the editor.
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
-			
+				
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
+		
         <script src="../Actions/login.js"></script>
         <script src="../Actions/quiz.js"></script>
-
+            
     </head>
 
-    <body onload="displayQuiz2()">
+    <body onload="displayQuiz3()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz List: Pick a Quiz to Add Questions</h1>
+                <h1>Quiz List</h1>
             </div><!-- /header -->
             <div role="main" id="demo" class="ui-content">
             </div><!-- /content -->
             <div role="main" id="demo2" class="ui-content">
             </div><!-- /content -->
-            
         </div><!-- /page -->
     </body>
 </html>

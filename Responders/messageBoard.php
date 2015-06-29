@@ -28,43 +28,11 @@ and open the template in the editor.
 			
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		
-        <script>
-
-            window.onload=function ()
-            {
-                var classid = sessionStorage.getItem('courseID');
-                $.ajax({
-                    type: "POST",
-                    url: "../Actions/getMessage.php",
-                    data: "classid=" + classid,
-                    cache: false,
-                    async: false,
-                    success: function (data) {
-                        if (data == false)
-                        {
-                            alert("Invalid Message");
-                        }
-                        else
-                        {
-                            var html = "";
-                            for (var i = 0; i < data.length; i++)
-                            {
-                                var question = data[i].question;
-                                var questionid = data[i].questionID;
-                                html += "<a href=\"commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + question + "</a><br>";
-                            }
-                            document.getElementById("demo").innerHTML = html;
-
-                        }
-                    }
-                });
-            }
-            ;
-        </script>
+		<script src="../Actions/javascriptFunction.js"></script>
+     
     </head>
 
-    <body>
+    <body onload="messageBoardDisplay()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Message Board</h1>

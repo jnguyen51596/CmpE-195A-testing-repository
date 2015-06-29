@@ -1,65 +1,30 @@
-var attempt = 3;
-var xmlhttp;
-var finalid;
-//load the database with a .asp file and use the .asp file to load the cookies
-function loadDatabase(url, cfunc)
-{
-    if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else
-    {// code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = cfunc;
-    xmlhttp.open("POST", url, true);
-    xmlhttp.send();
-}
-
-//separate the function from loadDatabase
-function validate()
-{
-
-    loadDatabase("../Actions/dbconnect.php", function ()
-    {
-
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-        {
-
-            validate2();
-        }
-        else
-        {
-
-        }
-    });
-}
-
-function validate2()
-{
-    var username = document.getElementById("sjsu-id").value;
-    finalid = getCookie("username");
-    if (username == finalid)
-    {
-        alert("Login Successful");
-        window.location = "../Responders/homepage.php";
-        return false;
-    }
-
-    else {
-        attempt--;
-        alert("You have left " + attempt + " attempt;");
-        if (attempt == 0) {
-            document.getElementById("sjsu-id").disabled = true;
-            document.getElementById("password").disabled = true;
-            document.getElementById("submit").disabled = true;
-            return false;
-        }
-        document.getElementById("login").reset();
-    }
-}
 //get the cookies
+$(document).ready(function ()
+{
+    $('#login').click(function ()
+    {
+        var username = $("#sjsu-id").val();
+        var password = $("#txt-password").val();
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeLoginCheck.php",
+            data: "name=" + username + "&pwd=" + password,
+            cache: false,
+            success: function (data) {
+                if (data == 'true') {
+                    window.location = 'userHome.php';
+                }
+                else {
+                    alert("Invalid");
+                }
+            }
+        });
+
+        return false;
+    });
+
+});
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -79,6 +44,4 @@ function logout()
     document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     window.location = "../Responders/sign-in.php";
 }
-
-
 

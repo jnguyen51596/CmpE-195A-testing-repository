@@ -26,7 +26,7 @@ function setGrades() {
 }
 
 function createQuiz() {
-	window.location.href = "../Responders/quiz-instructor.php";
+	window.location.href = "../Responders/createQuizDisplay.php";
 }
 function makeMessage() {
 	window.location.href = "../Responders/createMessageThread.php";

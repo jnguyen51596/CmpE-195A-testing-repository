@@ -32,18 +32,9 @@ and open the template in the editor.
         <script src="../Actions/login.js"></script>
         <script src="../Actions/quiz.js"></script>
 
-        <script>
-
-            window.onload=function ()
-            {
-                var classid = "1";
-                displayQuiz1(classid);
-            }
-            ;
-        </script>
     </head>
 
-    <body>
+    <body onload="displayQuiz1()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Quiz List</h1>

@@ -28,17 +28,9 @@
         
         <script src="../Actions/javascriptFunction.js"></script>
         <script src="../Actions/quiz.js"></script>
-        <script>
-            var classid=getParameterByName("classid");
-            var quizid= getParameterByName("quizid");
-            $(document).ready(function ()  {
-               getQuizQuestion1(classid, quizid);
-            });
-
-        </script>
     </head>
 
-    <body>
+    <body onload="getQuizQuestion1()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Quiz</h1>

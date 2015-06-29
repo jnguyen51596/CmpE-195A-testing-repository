@@ -25,10 +25,6 @@
 	
         <script src="../Actions/login.js"></script>
         <script src="../Actions/quiz.js"></script>
-        <style>
-            #box2{display:none} 
-            #box3{display:none}  
-        </style>
     </head>
 
     <body>

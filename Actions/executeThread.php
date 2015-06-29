@@ -5,11 +5,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+session_start();
 $title=$_POST['title'];
-$date=$_POST['date'];
+$date = new DateTime(null, new DateTimeZone('America/New_York'));
+$date->getTimestamp()+$date->getOffset();
+$result=$date->format('Y-m-d');
 $question=$_POST['question'];
-$username=$_POST['user'];
+$username=$_SESSION['username'];
 $classID=$_POST['classid'];
 require 'sql/pdo.php';
-addThread($title, $date, $question, $classID,$username);
+addThread($title, $result, $question, $classID,$username);
+
+
+
+
 ?>

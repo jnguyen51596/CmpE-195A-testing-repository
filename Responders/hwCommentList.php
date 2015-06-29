@@ -30,41 +30,10 @@ and open the template in the editor.
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
 		<script src="../Actions/javascriptFunction.js"></script>
-        <script>
-            var hwid=getParameterByName("hwid");
-            window.onload=function ()
-            {
-                var classid = sessionStorage.getItem('courseID');
-                $.ajax({
-                    type: "POST",
-                    url: "../Actions/getStudentCommentList.php",
-                    data: "classid=" + classid +"&hwid=" +hwid,
-                    cache: false,
-                    async: false,
-                    success: function (data) {
-                        if (data == false)
-                        {
-                            alert("Invalid Page");
-                        }
-                        else
-                        {
-                            var html = "";
-                            for (var i = 0; i < data.length; i++)
-                            {                    
-                                var username = data[i].username;
-                                html += "<a href=\"hwCommentAdd.html?hwid=" + hwid + "&username=" + username + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + username+ "</a><br>";
-                            }
-                            document.getElementById("demo").innerHTML = html;
 
-                        }
-                    }
-                });
-            }
-            ;
-        </script>
     </head>
 
-    <body>
+    <body onload="hwCommentList()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Pick A Student to Add Comment</h1>
