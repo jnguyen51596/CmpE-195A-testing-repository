@@ -24,39 +24,6 @@ require '../Actions/authenticate.php';
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
-		
-        <script>
-            $(document).ready(function ()
-            {
-
-                $('#submitThread').click(function ()
-                {
-                    var title = $("#threadTitle").val();
-                    var date=$("#date").val();
-                    var question = $("#question").val();
-                    var classid= sessionStorage.getItem('courseID');
-                    //var username=getCookie("username");
-                    var username=sessionStorage.getItem('username');
-                    $.ajax({
-                        type: "POST",
-                        url: "../Actions/executeThread.php",
-                        data: "title=" + title + "&date="+ date +"&question=" + question+"&user=" + username+"&classid="+classid,
-                        cache: false,
-                        success: function (data) {
-                            if (data == 'true') {
-                                window.location = 'userhome.php';
-                            }
-                            else {
-                                alert('Not enough information');
-                            }
-                        }
-                    });
-
-                    return false;
-                });
-        </script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="../Actions/javascriptFunction.js"></script>
 
     </head>
