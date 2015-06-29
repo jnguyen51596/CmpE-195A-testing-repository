@@ -39,7 +39,7 @@
 <!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->
             <button onclick='makeMessage()'>Make a Message Thread</button>
             <button onclick='messageBoard()'>Go To a Message Board</button>
-            <button onclick='createQuiz()'>Create and Add a Quiz Questions</button>
+            <button onclick='createQuiz()'>Create and Add Quiz Questions</button>
             <button onclick='setGrades()'>Set Grades</button>
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
 
