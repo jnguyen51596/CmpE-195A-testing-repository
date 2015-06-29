@@ -54,7 +54,7 @@ function createClass($courseName, $prefix, $suffix, $instructorID) {
     $q->execute(array(':courseName' => $courseName,
         ':prefix' => $prefix,
         ':suffix' => $suffix));
-
+    
     $sql = "INSERT INTO courseinstructor (memberID, courseID) VALUES (:instructorID, (SELECT MAX(courseID) FROM course))";
 
     $q2 = $con->prepare($sql);

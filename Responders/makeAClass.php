@@ -23,7 +23,7 @@
 			
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
+	<script src="../Actions/createClass.js"></script>
 	
 </head>
 
@@ -34,20 +34,18 @@
     </div>
 	
 	<div>
-	<form action="../Actions/createClass.php" method="POST">
 		<label for="courseName">Class Name:</label>
 		<input type="text" name="courseName" id="courseName" value="">
 		<label for="prefix">4 Letter Prefix:</label>
 		<input type="text" name="prefix" id="prefix" value="">
 		<label for="suffix">4 Letter Suffix:</label>
-		<input type="text" name="suffix" id="prefix" value="">
+		<input type="text" name="suffix" id="suffix" value="">
 		<label for="slider-flip-open-course">Open Enrollment:</label>
 		<select name="slider-flip-open-course" id="slider-flip-open-course" data-role="flipswitch">
 		   <option value="off">No</option>
 		   <option value="on" selected>Yes</option>
 		</select>
-		<input type="submit" value="Add it!">
-	</form>
+		<button onclick="createClass()">Make the class!</button>
 	</div>
 	
 </div>

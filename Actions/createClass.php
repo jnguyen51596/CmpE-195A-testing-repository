@@ -6,6 +6,5 @@
    	$suffix = $_POST['suffix'];
    	$instructorID = $_SESSION['userID'];
    	createClass($courseName, $prefix, $suffix, $instructorID);
-   	header("Location:../Responders/userHome.php");
-   	exit();
+   	echo json_encode("success");
 ?>
