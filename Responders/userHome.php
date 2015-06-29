@@ -60,42 +60,4 @@ require '../Actions/authenticate.php';
 	</div>
 
 </body>
-=======
-
-        <link rel="stylesheet" href="../css/userHome.css">
-        <script src="../Actions/userhome.js"></script>
->>>>>>> Stashed changes
-    </head>
-    <body>
-        <div data-role="page" data-theme="b">
-            <div data-role="header" data-theme="b">
-                <h1>Mopen Home</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <button onclick='viewProfile()'>View Profile</button>
-                <button onclick='editProfile()'>Edit Profile</button>
-                <label for="role" class="select">Select a Role:</label>
-                <select name="role" id="role" onchange="getCoursesByRole()">
-                    <!-- &nbsp; used to offset the right side button that aligns the text incorrectly-->
-                    <option value='noselection'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select one...</option>
-                    <option value='student'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Student</option>
-                    <option value='instructor'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor</option>
-                </select>		
-                <hr>
-            </div>
-            <div id="results" class="ui-content">
-            </div>
-            <!--
-            <form style="display: hidden" action="courseHome.php" method="POST" id="courseInfo">
-                    <input type="hidden" id="prefix" name="prefix" value=""/>
-                    <input type="hidden" id="suffix" name="suffix" value=""/>
-                    <input type="hidden" id="name" name="name" value=""/>
-                    <input type="hidden" id="courseID" name="courseID" value=""/>
-            </form>-->
-        </div>
-    </body>
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
 </html>
