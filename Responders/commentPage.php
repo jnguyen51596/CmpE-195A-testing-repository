@@ -43,7 +43,7 @@
                 <label for="comment">Enter Comment (max 300 characters):</label>
                 <input type="text" name="comment" id="comment" maxlength="300" >
                 <input  id="createComment" type="button" value="Submit Comment" onclick="commentPageButton()" >
-                <p class="mc-top-margin-1-5"><a href="userhome.php" data-ajax="false">Go back to homepage?</a></p>
+                <p class="mc-top-margin-1-5"><a href="userHome.php" data-ajax="false">Go back to homepage?</a></p>
             </form>
         </div><!-- /page -->
     </body>

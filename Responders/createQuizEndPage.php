@@ -27,15 +27,14 @@
         <script src="../Actions/quiz.js"></script>
     </head>
 
-    <body>
+    <body onload="QuizEndPage()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Quiz Creation</h1>
             </div><!-- /header -->
-            <div role="main">
-                <h2>Do you Want to make more Quiz Questions?</h2>
-                <a href="createQuizQuestion.html" data-role="button">Yes</a>
-                <a href="userhome.php" data-role="button">No</a>
+            <h2>Do you Want to make more Quiz Questions?</h2>
+             <div role="main" id="demo">
+                 
             </div><!-- /content -->
         </div><!-- /page -->
     </body>

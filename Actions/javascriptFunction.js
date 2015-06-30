@@ -21,7 +21,35 @@ function createThread()
             cache: false,
             success: function (data) {
                 if (data == 'true') {
-                    window.location = 'studentHome.php';
+                    window.location = "studentHome.php";
+                }
+                else {
+                    alert('Not enough information');
+                }
+            }
+        });
+
+        return false;
+   
+}
+
+function createThreadIn()
+{
+   
+        var title = $("#threadTitle").val();
+        var date = $("#date").val();
+        var question = $("#question").val();
+        var classid = sessionStorage.getItem('courseID');
+        //var username=getCookie("username");
+        
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeThread.php",
+            data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
+            cache: false,
+            success: function (data) {
+                if (data == 'true') {
+                    window.location = "instructorHome.php";
                 }
                 else {
                     alert('Not enough information');
