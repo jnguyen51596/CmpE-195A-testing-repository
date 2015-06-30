@@ -11,9 +11,9 @@
 	$authorID = $instructorID;
 	$title = $_POST['title'];
 	$total = $_POST['total'];
-	$dueDate = $_POST['dueDate'];
+	$duedate = $_POST['duedate'];
 	$description = $_POST['description'];
 	
-	addAssignment($courseID, $authorID, $title, $total, $dueDate, $description);
-	header('Content-Type: application/json');
+	addAssignment($courseID, $authorID, $title, $total, $duedate, $description);
+	//header('Content-Type: application/json');
 ?>

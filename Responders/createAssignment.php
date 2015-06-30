@@ -1,7 +1,7 @@
-
 <?php
     require '../Actions/authenticate.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -93,22 +93,31 @@
 		<textarea name="textarea" id="desc-id" value placeholder="Description"></textarea>
 	</div>
 	
-	<input id="createAssignment-submit" type="button" value="Submit"></input>
+	<form data-ajax="false" method="POST" enctype="multipart/form-data">
+			<input type="file" name="file" id="file" />
+			<input type="submit" id="createAssignment-submit" value="Submit" />
+	</form>
 	
 	<script>
 		document.getElementById("createAssignment-submit").onclick = createAssignment;
 	</script>
 	
-	<!-- for test purposes 
-	<input  id="test-submit" type="button" value="test"></input>
-	
-	<script>
-		document.getElementById("test-submit").onclick =
-		function() {
-			var test = document.getElementById("course-select-id").value;
-			alert(test);
+	<?php
+		if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
+			$m = new MongoClient();
+			$gridfs = $m->selectDB('openlms')->getGridFS();
+			$courseID = $_POST['course-select-id'];
+				
+			try {
+				$gridfs->storeUpload('file');
+				//$gridfs->storeUpload('file', array('courseID' => $courseID));
+			}
+				catch (Exception $e) {
+			}
+
+			$m->close();
 		}
-	</script> -->
+	?>
 </div>
 
 </body>

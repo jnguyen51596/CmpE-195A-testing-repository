@@ -35,6 +35,7 @@
             <div data-role="header" data-theme="b" id="header">
             </div>
             
+			<button onclick='assignments()'>View Assignments</button>
             <button onclick='takeQuiz()'>Take Quiz</button>
             <button onclick='makeMessage()'>Make Message Thread</button>
             <button onclick='messageBoard()'>Go To Message Board</button>

@@ -20,4 +20,7 @@ function viewAnnouncements() {
 function grades() {
 	window.location.href = "../Responders/viewGrades.php";
 }
+function assignments() {
+	window.location.href = "../Responders/assignments.php";
+}
 

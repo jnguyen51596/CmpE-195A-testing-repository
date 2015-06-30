@@ -178,10 +178,10 @@ function dropStudent($courseID, $memberID) {
     return 1;
 }
 
-function addAssignment($courseID, $authorID, $title, $total, $dueDate, $description) {
+function addAssignment($courseID, $authorID, $title, $total, $duedate, $description) {
     global $con;
-    $sql = "INSERT INTO assignment(courseID, authorID, title, total, dueDate, description)
-            VALUES($courseID, $authorID, '$title', $total, '$dueDate', '$description')";
+    $sql = "INSERT INTO assignment(courseID, authorID, title, total, duedate, description)
+            VALUES($courseID, $authorID, '$title', $total, '$duedate', '$description')";
     $q = $con->prepare($sql);
     $q->execute();
 }
@@ -522,6 +522,21 @@ function deleteQuiz3($classID, $quizID,$question)
             WHERE classID = :classID AND quizID = :quizID AND question = :question;";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+}
+
+function getAssignments() {
+	global $con;
+	$sql = "SELECT *
+			FROM assignment";
+	$q = $con -> prepare($sql);
+	$q -> execute();
+	
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
 }
 
 ?>
