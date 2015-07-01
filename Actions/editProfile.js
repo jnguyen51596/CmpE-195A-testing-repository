@@ -58,3 +58,7 @@ function getPassw(username) {
         async: false,
     }).responseText;
 }
+
+function home() {
+    window.location = "userHome.php";
+}

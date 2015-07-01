@@ -60,3 +60,7 @@ function getPass(username) {
         async: false,
     }).responseText;
 }
+
+function home() {
+    window.location = "userHome.php";
+}

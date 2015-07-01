@@ -40,10 +40,6 @@ and open the template in the editor.
         </div><!-- /header -->
         <br>
         
-        <div>
-            <label>Hello Username!</label>
-            <br>
-        </div>
         
         <label><b>First Name:</b></label>
             <div id="firstName">
@@ -56,7 +52,9 @@ and open the template in the editor.
                 <script type="text/javascript">
                     getLastName();
                 </script>
-            </div>   
+            </div>
+        <br>
+        <input  id="cancel" type="button" value="Home" onclick="home()">
 	</div>
     </body>
 </html>

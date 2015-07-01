@@ -37,11 +37,7 @@ and open the template in the editor.
 			<div data-role="header" data-theme="b">
 				<h1>Mopen</h1>
 			</div><!-- /header -->
-        
-			<div>
-				<label>Hello Username!</label>
-			</div>
-		
+
 			<form id="editProfile">
 				<label><b>First Name:</b></label>
 				<input type="text" id="fname" placeholder="First Name">
@@ -59,6 +55,8 @@ and open the template in the editor.
 				<input type="password" id="cnpass" placeholder="New Password">
 				
 				<input  id="save" type="button" value="Save!" onclick="editInfo()">
+                                <input  id="cancel" type="button" value="Cancel" onclick="home()">
+                             
 			</form>
 		</div>
     </body>
