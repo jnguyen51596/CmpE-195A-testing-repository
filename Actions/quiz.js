@@ -598,6 +598,10 @@ function createAnotherQuestion() {
     window.location="createQuizQuestion.php?quizid="+quizid;
 }
 
+function goBackToInstructorHome() {
+    window.location="instructorHome.php";
+}
+
 function submitFinishQuiz()
 {
  alert("You are now submitting");
