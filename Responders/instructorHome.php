@@ -40,6 +40,7 @@
             <button onclick='makeMessage()'>Make Message Thread</button>
             <button onclick='messageBoard()'>Go To Message Board</button>
             <button onclick='createQuiz()'>Create and Add Quiz Questions</button>
+            <button onclick='deleteQuiz()'>View and Delete Quiz Questions</button>
             <button onclick='setGrades()'>Set Grades</button>
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
 

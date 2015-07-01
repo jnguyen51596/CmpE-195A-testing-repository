@@ -31,3 +31,6 @@ function createQuiz() {
 function makeMessage() {
 	window.location.href = "../Responders/createMessageThreadIn.php";
 }
+function deleteQuiz() {
+	window.location.href = "../Responders/deleteQuizDisplay.php";
+}
