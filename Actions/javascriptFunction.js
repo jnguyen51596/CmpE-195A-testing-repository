@@ -266,6 +266,12 @@ function commentPageButton()
     var questionid = getParameterByName("questionid");
     var comment = $("#comment").val();
     var classid = sessionStorage.getItem('courseID');
+    if(comment=="")
+    {
+     alert("Not Enough Information");   
+    }
+    else
+    {
     $.ajax({
         type: "POST",
         url: "../Actions/executeCommenting.php",
@@ -282,6 +288,6 @@ function commentPageButton()
         }
     });
     return false;
+    }
 
 }
-
