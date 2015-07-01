@@ -35,7 +35,7 @@
 				<h1>Drop a Student</h1>
 			</div>
 		<div role="main" class="ui-content">
-			
+				<br>
 				<label for="studentList" class="select">Select a Student to Drop:</label>
 				<select name="studentList" id="studentList">
 					<option value='default'>Select a Student...</option>
