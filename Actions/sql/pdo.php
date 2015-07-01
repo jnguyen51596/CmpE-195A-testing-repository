@@ -524,10 +524,11 @@ function deleteQuiz3($classID, $quizID,$question)
     $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
 }
 
-function getAssignments() {
+function getAssignments($courseID) {
 	global $con;
 	$sql = "SELECT *
-			FROM assignment";
+			FROM assignment
+			WHERE courseID = '$courseID'";
 	$q = $con -> prepare($sql);
 	$q -> execute();
 	

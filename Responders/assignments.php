@@ -25,14 +25,14 @@
 			<h1>Assignments</h1>
 		</div>
 		
-		<!-- populate assignment list -->
+		<!-- assignment list gets populated here -->
 		<div id="assignments-id">
 			<script type="text/javascript">
 				initializeAssignments();
 			</script>
 		</div>
 		
-		<!-- assignment information -->
+		<!-- assignment information gets populated here -->
 		<div id="assignment-info-id">
 			
 		</div>

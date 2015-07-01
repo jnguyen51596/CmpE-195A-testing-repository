@@ -45,8 +45,7 @@ require '../Actions/authenticate.php';
 					<option value='noselection'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select one...</option>
 					<option value='student'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Student</option>
 					<option value='instructor'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor</option>
-				</select>		
-				<hr>
+				</select>
 		</div>
 		<div id="results" class="ui-content">
 		</div>
