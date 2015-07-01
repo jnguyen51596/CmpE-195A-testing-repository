@@ -34,7 +34,8 @@
             </div><!-- /header -->
             <h2>Do you Want to make more Quiz Questions?</h2>
              <div role="main" id="demo">
-                 
+                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="createAnotherQuestion()">Yes</button>
+                 <a href="instructorHome.php" class="ui-btn ui-btn-a ui-corner-all">No</a>
             </div><!-- /content -->
         </div><!-- /page -->
     </body>
