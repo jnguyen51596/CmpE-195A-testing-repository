@@ -583,6 +583,7 @@ function submitDelete()
 
 }
 
+/*
 function QuizEndPage()
 {
     var quizid = getParameterByName("quizid");
@@ -590,6 +591,11 @@ function QuizEndPage()
    html1 += "<a href=\"createQuizQuestion.php?quizid="+quizid+"\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">Yes</a>";
    html1 += "<a href=\"instructorHome.php\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">No</a>";
    $("#demo").append(html1).enhanceWithin();
+}*/
+
+function createAnotherQuestion() {
+    var quizid = getParameterByName("quizid");
+    window.location="createQuizQuestion.php?quizid="+quizid;
 }
 
 function submitFinishQuiz()

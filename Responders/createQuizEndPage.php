@@ -27,7 +27,7 @@
         <script src="../Actions/quiz.js"></script>
     </head>
 
-    <body onload="QuizEndPage()">
+    <body>
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Quiz Creation</h1>
