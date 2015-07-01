@@ -587,8 +587,8 @@ function QuizEndPage()
 {
     var quizid = getParameterByName("quizid");
     var html1="";
-   html1 += "<a href=\"createQuizQuestion.php?quizid="+quizid+"\" data-role=\"button\">Yes</a>";
-   html1 += "<a href=\"userHome.php\" data-role=\"button\">No</a>";
+   html1 += "<a href=\"createQuizQuestion.php?quizid="+quizid+"\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">Yes</a>";
+   html1 += "<a href=\"instructorHome.php\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">No</a>";
    $("#demo").append(html1).enhanceWithin();
 }
 
