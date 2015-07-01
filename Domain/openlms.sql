@@ -437,7 +437,8 @@ DROP TABLE IF EXISTS `totalquiz`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `totalquiz` (
   `classID` int(11) NOT NULL,
-  `quizID` int(11) NOT NULL
+  `quizID` int(11) NOT NULL,
+  `title` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

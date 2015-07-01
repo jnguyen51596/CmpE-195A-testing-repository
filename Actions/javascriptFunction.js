@@ -207,7 +207,7 @@ function messageBoardDisplay()
         success: function (data) {
             if (data == false)
             {
-                alert("Invalid Message");
+                alert("Please Create Message");
             }
             else
             {
@@ -273,11 +273,11 @@ function commentPageButton()
         cache: false,
         success: function (data) {
             if (data == 'true') {
-                alert("message added");
+                alert("Message added");
                 window.location.reload();
             }
             else {
-                alert("Invalid");
+                alert("Invalid message");
             }
         }
     });
