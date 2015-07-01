@@ -449,7 +449,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1),(2,1);
+INSERT INTO `totalquiz` VALUES (1,1, "First Quiz"),(2,1, "Second Quiz");
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
