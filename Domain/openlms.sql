@@ -18,7 +18,8 @@
 --
 -- Table structure for table `announcement`
 --
-CREATE DATABASE IF NOT EXISTS `openlms`;
+DROP DATABASE IF EXISTS `openlms`;
+CREATE DATABASE `openlms`;
 
 USE openlms;
 
