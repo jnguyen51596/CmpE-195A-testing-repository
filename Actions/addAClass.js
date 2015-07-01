@@ -33,6 +33,7 @@ function addClass(courseID) {
 			data: "courseID="+courseID,
 			success: function(){
 	               alert("You are now enrolled!");
+                       window.location = 'userHome.php';
 	            }
 	    });
 	}
