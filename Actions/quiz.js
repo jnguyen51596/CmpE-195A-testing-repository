@@ -328,7 +328,7 @@ function displayQuiz1()
                     //var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a href=\"takeQuiz.php?quizid=" + quizid + "\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    html += "<a href=\"takeQuiz.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -348,7 +348,11 @@ function displayQuiz2()
         success: function (data) {
             if (data == false)
             {
-                alert("Invalid Message");
+                alert("Create Quiz First");
+                var html = "";
+                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
+                document.getElementById("demo").innerHTML = html;
+                
             }
             else
             {
@@ -358,7 +362,7 @@ function displayQuiz2()
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a href=\"createQuizQuestion.php?quizid=" + quizid + "\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    html += "<a href=\"createQuizQuestion.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
                 }
                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
                 document.getElementById("demo").innerHTML = html;
@@ -378,7 +382,10 @@ function displayQuiz3()
         success: function (data) {
             if (data == false)
             {
-                alert("Invalid Message");
+                alert("Create Quiz First");
+                var html = "";
+                html += "<a href=\"createQuiz.php\">Create Quiz</a>";
+                document.getElementById("demo").innerHTML = html;
             }
             else
             {
@@ -388,7 +395,7 @@ function displayQuiz3()
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a href=\"deleteQuiz.php?quizid=" + quizid + "\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    html += "<a href=\"deleteQuiz.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
                 }
                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
                 document.getElementById("demo").innerHTML = html;
