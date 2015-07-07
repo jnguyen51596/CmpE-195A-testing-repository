@@ -103,10 +103,11 @@
 	</script>
 	
 	<?php
-		if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
+		//if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
+		if (!empty($_FILES['file'])) {
 			$m = new MongoClient();
-			$gridfs = $m->selectDB('openlms')->getGridFS();
-			$courseID = $_POST['course-select-id'];
+			$gridfs = $m->selectDB('mopenlms')->getGridFS();
+			//$courseID = $_POST['course-select-id'];
 				
 			try {
 				$gridfs->storeUpload('file');
