@@ -28,15 +28,15 @@ DROP TABLE IF EXISTS `announcement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `announcement` (
-  `annoucementID` int(11) NOT NULL AUTO_INCREMENT,
-  `body` varchar(255) NOT NULL,
+  `announcementID` int(11) NOT NULL AUTO_INCREMENT,
   `authorID` int(11) NOT NULL,
   `courseID` int(11) NOT NULL,
-  PRIMARY KEY (`annoucementID`),
-  KEY `annoucement_member_idx` (`authorID`),
-  KEY `annoucement_course_idx` (`courseID`),
-  CONSTRAINT `annoucement_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `annoucement_member` FOREIGN KEY (`authorID`) REFERENCES `member` (`memberID`) ON DELETE CASCADE ON UPDATE CASCADE
+  `body` varchar(255) NOT NULL,
+  PRIMARY KEY (`announcementID`),
+  KEY `announcement_member_idx` (`authorID`),
+  KEY `announcement_course_idx` (`courseID`),
+  CONSTRAINT `announcement_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `announcement_member` FOREIGN KEY (`authorID`) REFERENCES `member` (`memberID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,10 +61,10 @@ CREATE TABLE `announcementnotify` (
   `studentID` int(11) NOT NULL,
   `announcementID` int(11) NOT NULL,
   PRIMARY KEY (`studentID`,`announcementID`),
-  KEY `annoucementnotify_member_idx` (`studentID`),
-  KEY `annoucementnotify_annoucement_idx` (`announcementID`),
-  CONSTRAINT `annoucementnotify_annoucement` FOREIGN KEY (`announcementID`) REFERENCES `announcement` (`annoucementID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `annoucementnotify_member` FOREIGN KEY (`studentID`) REFERENCES `member` (`memberID`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `announcementnotify_member_idx` (`studentID`),
+  KEY `announcementnotify_annoucement_idx` (`announcementID`),
+  CONSTRAINT `announcementnotify_announcement` FOREIGN KEY (`announcementID`) REFERENCES `announcement` (`announcementID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `announcementnotify_member` FOREIGN KEY (`studentID`) REFERENCES `member` (`memberID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
