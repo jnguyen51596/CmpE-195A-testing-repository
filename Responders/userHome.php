@@ -33,12 +33,35 @@ require '../Actions/authenticate.php';
 </head>
 <body>
 	<div data-role="page" data-theme="b">
+	
+	
 		<div data-role="header" data-theme="b">
+			<a href="#panel-id" data-ajax="true"><i class='fa fa-bars'></i></a>
 			<h1>Mopen Home</h1>
 		</div>
+		
+		<!-- panel contents -->
+		<div data-role="panel" data-display="push" id="panel-id" data-theme="b">
+			<ul data-role="listview">
+				<li data-icon='false'><a onclick='viewProfile()'><i class='lIcon fa fa-user'></i>View Profile</a></li>
+				<li data-icon='false'><a onclick='editProfile()'>Edit Profile</a></li>
+			</ul>
+		</div>
+		
+		<!--
+		<div data-role="content">
+			<div class="inset">
+				<a href="#panel-id" data-role="button" data-inline='true'><i class='lIcon fa fa-bars'></i></a>
+			</div>
+		</div>
+		-->
+
+		
 		<div role="main" class="ui-content">
+				<!-- moved to panel
 				<button onclick='viewProfile()'>View Profile</button>
 				<button onclick='editProfile()'>Edit Profile</button>
+				-->
 				<label for="role" class="select">Select a Role:</label>
 				<select name="role" id="role" onchange="getCoursesByRole()">
 					<!-- &nbsp; used to offset the right side button that aligns the text incorrectly-->
