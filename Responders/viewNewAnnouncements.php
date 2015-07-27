@@ -37,6 +37,10 @@ session_start();
 	<div data-role="header" data-theme="b" >
         <h1>Mopen Home</h1>
     </div>
+    <?php
+		require 'navbar.php';
+	?>
+	<br>
 	<div role="main" class="ui-content">
 			<button onclick='viewProfile()'>View Profile</button>
 			<button onclick='editProfile()'>Edit Profile</button>

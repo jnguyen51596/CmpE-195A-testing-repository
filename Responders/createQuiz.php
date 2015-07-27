@@ -34,6 +34,10 @@
             <div data-role="header" data-theme="b" >
                 <h1>Quiz Creation</h1>
             </div><!-- /header -->
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <div role="main">
                 <form name="quizStart" id="quizStart" method="post">
                     <fieldset data-role="fieldcontain">

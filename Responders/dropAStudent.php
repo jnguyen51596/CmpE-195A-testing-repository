@@ -32,8 +32,12 @@
 <body>
 	<div data-role="page" data-theme="b"> 
 		<div data-role="header" data-theme="b">
-				<h1>Drop a Student</h1>
-			</div>
+			<h1>Drop a Student</h1>
+		</div>
+		<?php
+			require 'navbar.php';
+		?>
+		<br>
 		<div role="main" class="ui-content">
 				<br>
 				<label for="studentList" class="select">Select a Student to Drop:</label>

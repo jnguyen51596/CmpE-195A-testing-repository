@@ -56,7 +56,10 @@
         <div data-role="header" data-theme="b">
             <h1>Set Grade</h1>
         </div>
-
+        <?php
+            require 'navbar.php';
+        ?>
+        <br>
         <div>
             <br>
             <form action="" method="post">

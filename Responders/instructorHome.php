@@ -34,6 +34,10 @@
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" id="header">
             </div>
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <button onclick='createAssignment()'>Create a Assignment</button>
             <button onclick='dropAStudent()'>Drop a Student</button>
 <!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->

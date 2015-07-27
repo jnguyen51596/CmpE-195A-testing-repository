@@ -36,6 +36,10 @@
                 <h1>Thread Creation</h1>
             </div><!-- /header -->
             <div role="main" id="demo">
+                <?php
+                    require 'navbar.php';
+                ?>
+                <br>
             </div><!-- /content -->
             <br>
             <br>

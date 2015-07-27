@@ -24,7 +24,10 @@
 		<div data-role="header" data-theme="b">
 			<h1>Assignments</h1>
 		</div>
-		
+		<?php
+			require 'navbar.php';
+		?>
+		<br>
 		<!-- assignment list gets populated here -->
 		<div id="assignments-id">
 			<script type="text/javascript">

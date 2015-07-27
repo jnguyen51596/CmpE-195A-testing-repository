@@ -32,7 +32,10 @@
 	<div data-role="header" data-theme="b">
 		<h1>Create a Class</h1>
     </div>
-	
+	<?php
+		require 'navbar.php';
+	?>
+	<br>
 	<div>
 		<label for="courseName">Class Name:</label>
 		<input type="text" name="courseName" id="courseName" value="">

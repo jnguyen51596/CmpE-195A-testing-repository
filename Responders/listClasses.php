@@ -31,13 +31,17 @@
 <body>
 
 <div data-role="page" data-theme="b">
-<div id="classList">
-	<script type="text/javascript">
+	<?php
+		require 'navbar.php';
+	?>
+	<br>
+	<div id="classList">
+		<script type="text/javascript">
 	
 		//located in listClasses.js
 		initializeClassList();
-	</script>	
-</div>
+		</script>	
+	</div>
 </div>
 </body>
 </html>

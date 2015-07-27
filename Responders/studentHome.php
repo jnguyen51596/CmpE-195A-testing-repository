@@ -32,7 +32,11 @@
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" id="header">
             </div>
-            
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
+
 			<button onclick='assignments()'>View Assignments</button>
             <button onclick='takeQuiz()'>Take Quiz</button>
             <button onclick='makeMessage()'>Make Message Thread</button>

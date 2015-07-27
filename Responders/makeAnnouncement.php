@@ -27,12 +27,16 @@
         <script src="../Actions/makeAnnouncement.js"></script>    
 </head>
 <body>
-	<div data-role="page" data-theme="b"
-	<div role="main" class="ui-content">
+	<div data-role="page" data-theme="b">
+		<?php
+			require 'navbar.php';
+		?>
+		<br>
+		<div role="main" class="ui-content">
             <label for="body">Message</label>
             <textarea data-mini="true" cols="40" rows="8" name="body" id="body"></textarea>
 			<button onclick="postAnnouncement()">Post Announcement</button>
-	</div>
+		</div>
 	</div>
 </body>
 </htlm>

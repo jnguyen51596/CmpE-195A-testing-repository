@@ -40,7 +40,10 @@
 	<div data-role="header" data-theme="b">
 		<h1>Create Assignment</h1>
 	</div>
-	
+	<?php
+		require 'navbar.php';
+	?>
+	<br>
 	<!-- classes should populate using courseinstructor table -->
 	<div id="class-dropdown-id" data-role="fieldcontain">
 		<label>Course:</label>

@@ -38,11 +38,11 @@
 			<?php
 				require 'navbar.php';
 			?>
-				<br>
-				<label for="search-mini">Search For a Class to Add:</label>
-				<input type="search" name="search-mini" id="search-mini" value="" data-mini="true">
-				<hr>
-				<button onclick="searchClasses()">Go!</button>
+			<br>
+			<label for="search-mini">Search For a Class to Add:</label>
+			<input type="search" name="search-mini" id="search-mini" value="" data-mini="true">
+			<hr>
+			<button onclick="searchClasses()">Go!</button>
 		</div>
 		<div id="searchResults" class="ui-content">
 		</div>
