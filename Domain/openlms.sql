@@ -551,7 +551,7 @@ LOCK TABLES `moduledescription` WRITE;
 UNLOCK TABLES;
 
 
-DROP TABLE IF EXISTS `modulelist`
+DROP TABLE IF EXISTS `modulelist`;
 
 CREATE TABLE IF NOT EXISTS `modulelist` (
   `classID` int(11) NOT NULL,
