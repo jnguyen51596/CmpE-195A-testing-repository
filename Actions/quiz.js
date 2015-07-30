@@ -682,14 +682,7 @@ function goBackToInstructorHome() {
 
 function submitFinishQuiz()
 {
-<<<<<<< HEAD
- alert("You are now submitting");
-
-    getInfo(1, 'quiz');
-
- window.location="studentHome.php";
-=======
     alert("You are now submitting");
+    getInfo(1, 'quiz');
     window.location = "studentHome.php";
->>>>>>> origin/master
 }

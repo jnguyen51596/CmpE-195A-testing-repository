@@ -526,7 +526,6 @@ function getAssignments($courseID) {
     }
 }
 
-<<<<<<< HEAD
 function insertNotification($type, $first, $last, $item) {
     global $con;
     $sql = "INSERT INTO notifications (type, first, last, item) VALUES ('$type', '$first', '$last', '$item');";
@@ -580,7 +579,11 @@ function getTeacher($courseID) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
-=======
+       } else {
+        return $rows;
+    }
+}
+        
 function getQuizTotal($classID) {
     global $con;
     $sql = "SELECT quizID FROM totalquiz WHERE classID='$classID' ORDER BY quizID;";
@@ -641,26 +644,11 @@ function getModuleDescription($moduleid, $classid) {
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
         echo false;
->>>>>>> origin/master
     } else {
         return $rows;
     }
 }
 
-<<<<<<< HEAD
-//function getStudents($courseID) {
-//    global $con;
-//    $sql = "SELECT member.memberID, firstName, lastName FROM member, coursemember WHERE member.memberID = coursemember.memberID AND courseID = :courseID;";
-//    $q = $con->prepare($sql);
-//    $q->execute(array(':courseID' => $courseID));
-//    $rows = $q->fetchAll();
-//    if (count($rows) == 0) {
-//        return 0;
-//    } else {
-//        return $rows;
-//    }
-//}
-=======
 function addModuleDescription($description,$moduleid1,$classid1) {
     global $con;
     $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
@@ -669,5 +657,4 @@ function addModuleDescription($description,$moduleid1,$classid1) {
     echo 'true';
 }
 
->>>>>>> origin/master
 ?>
