@@ -11,7 +11,6 @@ require '../Actions/authenticate.php';
 <link rel="stylesheet" href="../css/themes/default/testcanvas.min.css" />
 <link rel="stylesheet" href="../css/themes/default/jquery.mobile.icons.min.css" />
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         -->
@@ -23,32 +22,31 @@ require '../Actions/authenticate.php';
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script src="../Actions/javascriptFunction.js"></script>
 
+        <script src="../Actions/javascriptFunction.js"></script>
     </head>
 
-    <body >
+    <body onload="moduleDescription()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Thread Creation</h1>
-            </div><!-- /header -->
+                <h1>Module</h1>
+            </div>
+
+            <div role="main" id="demo" class="ui-content">
+            </div><!-- /content -->
             <?php
                 require 'navbar.php';
             ?>
             <br>
-            <div role="main">
-                <form action="" method="post">
-                    <fieldset data-role="fieldcontain">
-                        <label for="threadTitle">Type in title:</label>
-                        <textarea cols="40" rows="8" name="threadTitle" id="threadTitle" ></textarea>
-                    </fieldset> 
-                    <fieldset data-role="fieldcontain">
-                        <label for="question">Type in Question:</label>
-                        <textarea cols="40" rows="8" name="question" id="question" ></textarea>
-                    </fieldset>  
-                    <input  id="submitThread" type="button" value="Submit Thread Question" onclick="createThread()"> 
-                </form>
-            </div><!-- /content -->
-        </div><!-- /page -->
+            <br>
+            <br>
+            <form action="" method="post">
+                <label for="description">Enter Description (max 999 characters):</label>
+                <input type="text" name="description" id="description" maxlength="999" >
+                <input  id="createDescription" type="button" value="Submit Description" onclick="modulePageButton()" >
+                
+            </form>
+
+        </div>
     </body>
 </html>

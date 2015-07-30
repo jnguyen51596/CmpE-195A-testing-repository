@@ -26,9 +26,9 @@ function createAnnouncement($instructorID, $courseID, $messageBody) {
     $sql = "INSERT INTO announcement (body, authorID, courseID) 
             VALUES (:messageBody, :instructorID, :courseID)";
     $q = $con->prepare($sql);
-    $q->execute(array(':messageBody'=>$messageBody,
-                        ':courseID'=>$courseID,
-                        ':instructorID'=>$instructorID));
+    $q->execute(array(':messageBody' => $messageBody,
+        ':courseID' => $courseID,
+        ':instructorID' => $instructorID));
     return $con->lastInsertId();
 }
 
@@ -39,8 +39,8 @@ function sendAnnouncement($announcementID, $courseID) {
         	SELECT memberID, :announcementID from coursemember
         	WHERE courseID = :courseID";
     $q = $con->prepare($sql);
-    $q->execute(array(':courseID'=>$courseID,
-                        ':announcementID'=>$announcementID));
+    $q->execute(array(':courseID' => $courseID,
+        ':announcementID' => $announcementID));
 }
 
 function createClass($courseName, $prefix, $suffix, $instructorID) {
@@ -54,7 +54,7 @@ function createClass($courseName, $prefix, $suffix, $instructorID) {
     $q->execute(array(':courseName' => $courseName,
         ':prefix' => $prefix,
         ':suffix' => $suffix));
-    
+
     $sql = "INSERT INTO courseinstructor (memberID, courseID) VALUES (:instructorID, (SELECT MAX(courseID) FROM course))";
 
     $q2 = $con->prepare($sql);
@@ -109,7 +109,7 @@ function addQuiz($classID, $quizID, $title) {
     $q->execute(array(':classID' => $classID));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
-        $sql = "INSERT INTO totalquiz (classID,quizID,title) VALUES ('$classID','$quizID','$title');";
+        $sql = "INSERT INTO `totalquiz`(`classID`, `quizID`, `title`, `lock`) VALUES ('$classID','$quizID','$title','0');";
         $con->exec($sql);
         echo true;
     } else {
@@ -279,15 +279,12 @@ function getAllAnnouncementsByClass($courseID) {
             WHERE courseID = :courseID AND authorID = memberID
             ORDER BY announcementID DESC;";
     $q = $con->prepare($sql);
-    $q->execute(array(':courseID'=> $courseID));
+    $q->execute(array(':courseID' => $courseID));
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
-
-	}
-
     }
-
+}
 
 function getHwComment($hwid, $username, $classid) {
     global $con;
@@ -314,7 +311,7 @@ function addHwComment($hwid, $username, $classid, $comment) {
     }
 }
 
-function getStudentCommentList($classID,$hwid) {
+function getStudentCommentList($classID, $hwid) {
     global $con;
     $sql = "SELECT * FROM assignmentstudentlist WHERE classID='$classID' AND assignmentID='$hwid' AND turnedin='1';";
     $q = $con->prepare($sql);
@@ -383,7 +380,7 @@ function getComment($question, $questionid, $classid) {
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
-       echo false;
+        echo false;
     } else {
         return $rows;
     }
@@ -408,15 +405,10 @@ function getQuiz($classID) {
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
-    if (count($rows) == 0) {
-        echo false;
-    } else {
-        return $rows;
-    }
+    return $rows;
 }
 
-function getQuizQuestion1($classID, $quizID)
-{
+function getQuizQuestion1($classID, $quizID) {
     global $con;
     $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID';";
     $q = $con->prepare($sql);
@@ -429,8 +421,7 @@ function getQuizQuestion1($classID, $quizID)
     }
 }
 
-function getQuizQuestion2($classID, $quizID)
-{
+function getQuizQuestion2($classID, $quizID) {
     global $con;
     $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID';";
     $q = $con->prepare($sql);
@@ -443,8 +434,7 @@ function getQuizQuestion2($classID, $quizID)
     }
 }
 
-function getQuizQuestion3($classID, $quizID)
-{
+function getQuizQuestion3($classID, $quizID) {
     global $con;
     $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID';";
     $q = $con->prepare($sql);
@@ -457,9 +447,7 @@ function getQuizQuestion3($classID, $quizID)
     }
 }
 
-
-function checkQuizQuestion1($classID, $quizID,$question)
-{
+function checkQuizQuestion1($classID, $quizID, $question) {
     global $con;
     $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
     $q = $con->prepare($sql);
@@ -472,8 +460,7 @@ function checkQuizQuestion1($classID, $quizID,$question)
     }
 }
 
-function checkQuizQuestion2($classID, $quizID,$question)
-{
+function checkQuizQuestion2($classID, $quizID, $question) {
     global $con;
     $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
     $q = $con->prepare($sql);
@@ -485,8 +472,8 @@ function checkQuizQuestion2($classID, $quizID,$question)
         return false;
     }
 }
-function checkQuizQuestion3($classID, $quizID,$question)
-{
+
+function checkQuizQuestion3($classID, $quizID, $question) {
     global $con;
     $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
     $q = $con->prepare($sql);
@@ -499,24 +486,23 @@ function checkQuizQuestion3($classID, $quizID,$question)
     }
 }
 
-function deleteQuiz1($classID, $quizID,$question)
-{
+function deleteQuiz1($classID, $quizID, $question) {
     global $con;
     $sql = "DELETE FROM multiplechoice 
             WHERE classID = :classID AND quizID = :quizID AND question = :question;";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
 }
-function deleteQuiz2($classID, $quizID,$question)
-{
+
+function deleteQuiz2($classID, $quizID, $question) {
     global $con;
     $sql = "DELETE FROM truefalse 
             WHERE classID = :classID AND quizID = :quizID AND question = :question;";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
 }
-function deleteQuiz3($classID, $quizID,$question)
-{
+
+function deleteQuiz3($classID, $quizID, $question) {
     global $con;
     $sql = "DELETE FROM shortanswer
             WHERE classID = :classID AND quizID = :quizID AND question = :question;";
@@ -525,13 +511,13 @@ function deleteQuiz3($classID, $quizID,$question)
 }
 
 function getAssignments($courseID) {
-	global $con;
-	$sql = "SELECT *
+    global $con;
+    $sql = "SELECT *
 			FROM assignment
 			WHERE courseID = '$courseID'";
-	$q = $con -> prepare($sql);
-	$q -> execute();
-	
+    $q = $con->prepare($sql);
+    $q->execute();
+
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
@@ -540,6 +526,7 @@ function getAssignments($courseID) {
     }
 }
 
+<<<<<<< HEAD
 function insertNotification($type, $first, $last, $item) {
     global $con;
     $sql = "INSERT INTO notifications (type, first, last, item) VALUES ('$type', '$first', '$last', '$item');";
@@ -593,11 +580,74 @@ function getTeacher($courseID) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
+=======
+function getQuizTotal($classID) {
+    global $con;
+    $sql = "SELECT quizID FROM totalquiz WHERE classID='$classID' ORDER BY quizID;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
     } else {
         return $rows;
     }
 }
 
+function updateQuizTotal($data,$classID) {
+    global $con;
+    foreach ($data as $result) {
+        $quizID=$result["quizid"];
+        $toggle=$result["toggle"];
+        $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quizID='$quizID' and classID='$classID'";
+        $q = $con->prepare($sql);
+        $q->execute();
+    }
+}
+
+function addModule($classID, $moduleID, $title) {
+    global $con;
+    $sql = "Select * FROM modulelist WHERE classID='$classID' and moduleID='$moduleID';";
+    $q = $con->prepare($sql);
+    $q->execute(array(':classID' => $classID));
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        $sql = "INSERT INTO `modulelist`(`classID`, `moduleID`, `title`, `lock`) VALUES ('$classID','$moduleID','$title','0');";
+        $con->exec($sql);
+        echo true;
+    } else {
+        echo false;
+    }
+}
+
+function getModule($classID) {
+    global $con;
+    $sql = "SELECT * FROM modulelist WHERE classID='$classID' ORDER BY moduleID;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+function getModuleDescription($moduleid, $classid) {
+    global $con;
+    $sql = "SELECT moduledescription.description, modulelist.title From moduledescription "
+            . "inner join modulelist on moduledescription.classID=modulelist.classID and "
+            . "moduledescription.moduleID=modulelist.moduleID "
+            . "WHERE moduledescription.moduleID='$moduleid' and moduledescription.classID='$classid' "
+            . "order by moduledescription.order";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+>>>>>>> origin/master
+    } else {
+        return $rows;
+    }
+}
+
+<<<<<<< HEAD
 //function getStudents($courseID) {
 //    global $con;
 //    $sql = "SELECT member.memberID, firstName, lastName FROM member, coursemember WHERE member.memberID = coursemember.memberID AND courseID = :courseID;";
@@ -610,4 +660,14 @@ function getTeacher($courseID) {
 //        return $rows;
 //    }
 //}
+=======
+function addModuleDescription($description,$moduleid1,$classid1) {
+    global $con;
+    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
+    $q = $con->prepare($sql);
+    $q->execute();
+    echo 'true';
+}
+
+>>>>>>> origin/master
 ?>

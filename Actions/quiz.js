@@ -30,7 +30,7 @@ function submitQuiz()
     var question = "";
     var answer = "";
     var quizID = getParameterByName("quizid");
-    var classID =sessionStorage.getItem('courseID') ;
+    var classID = sessionStorage.getItem('courseID');
     var incorrectAnswer1 = "";
     var incorrectAnswer2 = "";
     var incorrectAnswer3 = "";
@@ -58,7 +58,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '../Responders/createQuizEndPage.php?quizid='+quizID;
+                        window.location = '../Responders/createQuizEndPage.php?quizid=' + quizID;
                     }
                     else
                     {
@@ -96,7 +96,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '../Responders/createQuizEndPage.php?quizid='+quizID;
+                        window.location = '../Responders/createQuizEndPage.php?quizid=' + quizID;
                     }
                     else
                     {
@@ -126,7 +126,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '../Responders/createQuizEndPage.php?quizid='+quizID;
+                        window.location = '../Responders/createQuizEndPage.php?quizid=' + quizID;
                     }
                     else
                     {
@@ -140,31 +140,38 @@ function submitQuiz()
 }
 function submitStartQuiz()
 {
-    var classID = sessionStorage.getItem('courseID') ;
+    var classID = sessionStorage.getItem('courseID');
     var title = $('#title').val();
     var quizNumber = $('#quizNumber').val();
-    $.ajax({
-        type: "POST",
-        url: "../Actions/executeQuizStart.php",
-        data: "&classID=" + classID + "&quizNumber=" + quizNumber + "&title=" + title,
-        cache: false,
-        success: function (data) {
-            if (data == true)
-            {
-                alert("Quiz Created");
-                window.location = '../Responders/createQuizDisplay.php';
+    if (isNaN(quizNumber))
+    {
+        alert("ID Must be a Number");
+    }
+    else
+    {
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeQuizStart.php",
+            data: "classID=" + classID + "&quizNumber=" + quizNumber + "&title=" + title,
+            cache: false,
+            success: function (data) {
+                if (data == true)
+                {
+                    alert("Quiz Created");
+                    window.location = '../Responders/createQuizDisplay.php';
+                }
+                else
+                {
+                    alert("Quiz Already Created");
+                }
             }
-            else
-            {
-                alert("Quiz Already Created");
-            }
-        }
-    });
+        });
+    }
 }
 
 function printOutQuiz1(data)
 {
-  
+
     for (var i = 0; i < data.length; i++)
     {
         var question = data[i].question;
@@ -220,14 +227,14 @@ function printOutQuiz3(data)
         // html += "</fieldset>";
         totalquestion += 1;
     }
-    
+
     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
     $("#demo").append(html).enhanceWithin();
 
 }
 function getQuizQuestion1()
 {
-    var classid = sessionStorage.getItem('courseID') ;
+    var classid = sessionStorage.getItem('courseID');
     var quizid = getParameterByName("quizid");
     return $.ajax({
         type: "POST",
@@ -293,7 +300,7 @@ function getQuizQuestion3(classid, quizid)
                 }
                 else
                 {
-                    
+
                     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
                     $("#demo").append(html).enhanceWithin();
                 }
@@ -306,7 +313,7 @@ function getQuizQuestion3(classid, quizid)
     });
 }
 
-
+// take quiz
 function displayQuiz1()
 {
     var classid = sessionStorage.getItem('courseID');
@@ -322,13 +329,22 @@ function displayQuiz1()
             }
             else
             {
+                alert("Some Quizes might be lock");
                 var html = "";
                 for (var i = 0; i < data.length; i++)
                 {
                     //var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a href=\"takeQuiz.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    var lock = data[i].lock;
+                    if (lock == '1')
+                    {
+                        
+                    }
+                    else
+                    {
+                        html += "<a href=\"takeQuiz.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    }
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -336,7 +352,7 @@ function displayQuiz1()
         }
     });
 }
-
+//create quiz
 function displayQuiz2()
 {
     var classid = sessionStorage.getItem('courseID');
@@ -350,9 +366,9 @@ function displayQuiz2()
             {
                 alert("Create Quiz First");
                 var html = "";
-                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
+                html += "<a href=\"createQuiz.php\">Create Quiz</a>";
                 document.getElementById("demo").innerHTML = html;
-                
+
             }
             else
             {
@@ -362,6 +378,7 @@ function displayQuiz2()
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
+                    var lock = data[i].lock;
                     html += "<a href=\"createQuizQuestion.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
                 }
                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
@@ -371,6 +388,7 @@ function displayQuiz2()
         }
     });
 }
+//delete quiz
 function displayQuiz3()
 {
     var classid = sessionStorage.getItem('courseID');
@@ -395,10 +413,70 @@ function displayQuiz3()
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
+                    var lock = data[i].lock;
                     html += "<a href=\"deleteQuiz.php?quizid=" + quizid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
                 }
                 html += "<a href=\"createQuiz.php\">Create Quiz</a>";
                 document.getElementById("demo").innerHTML = html;
+
+            }
+        }
+    });
+}
+// lock quiz
+function displayQuiz4()
+{
+    var classid = sessionStorage.getItem('courseID');
+    return $.ajax({
+        type: "POST",
+        url: "../Actions/getQuiz.php",
+        data: "classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == false)
+            {
+                alert("Create Quiz First");
+                var html = "";
+                html += "<br><a href=\"createQuiz.php\">Create Quiz</a>";
+                document.getElementById("demo").innerHTML = html;
+            }
+            else
+            {
+                var html = "";
+                var classid = data[0].classID;
+                html += "<br><form action=\"../Actions/submitLock.php\" method=\"post\">" +
+                        "<input type=\"hidden\" name=\"classid\" value=" + classid + ">";
+                for (var i = 0; i < data.length; i++)
+                {
+                    classid = data[i].classID;
+                    var quizid = data[i].quizID;
+                    var title = data[i].title;
+                    var lock = data[i].lock;
+
+                    html += "<div class=\"containing-element\">" +
+                            "<input type=\"hidden\" name=\"quizid-" + quizid + "\" value=" + quizid + ">" +
+                            "<label for=\"toggle-" + quizid + "\">Quiz " + quizid + ": " + title + "</label>" +
+                            "<select name=\"toggle-" + quizid + "\" id=\"toggle-" + quizid + "\" data-role=\"slider\">";
+                    if (lock == '1')
+                    {
+                        html += "<option value=\"off\">Off</option>" +
+                                "<option selected value=\"on\">On</option>" +
+                                "</select>" +
+                                "</div><br>";
+                    }
+                    else
+                    {
+                        html += "<option selected value=\"off\">Off</option>" +
+                                "<option value=\"on\">On</option>" +
+                                "</select>" +
+                                "<div><br>";
+                    }
+
+                }
+                html += "<br><input type=\"submit\" value=\"Submit\">";
+                html += "</form>";
+                html += "<br><a href=\"createQuiz.php\">Create Quiz</a>";
+                $("#demo").append(html).enhanceWithin();
 
             }
         }
@@ -555,10 +633,10 @@ function submitDelete()
 {
     var arr = new Array();
     var classid = sessionStorage.getItem('courseID');
-    arr.push("none&"+classid);
+    arr.push("none&" + classid);
     var quizid = getParameterByName("quizid");
-    arr.push("none&"+quizid);
-    
+    arr.push("none&" + quizid);
+
     $("input:checkbox[name=checkboxmessage]:checked").each(function () {
         arr.push($(this).val());
     });
@@ -570,11 +648,11 @@ function submitDelete()
         success: function (data) {
             if (data == 'true') {
                 alert("Question(s) Deleted")
-                window.location="deleteQuizDisplay.php";
+                window.location = "deleteQuizDisplay.php";
             }
-            else {             
+            else {
                 alert("Error");
-                window.location="deleteQuizDisplay.php";
+                window.location = "deleteQuizDisplay.php";
             }
         }
     });
@@ -584,29 +662,34 @@ function submitDelete()
 }
 
 /*
-function QuizEndPage()
-{
-    var quizid = getParameterByName("quizid");
-    var html1="";
-   html1 += "<a href=\"createQuizQuestion.php?quizid="+quizid+"\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">Yes</a>";
-   html1 += "<a href=\"instructorHome.php\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">No</a>";
-   $("#demo").append(html1).enhanceWithin();
-}*/
+ function QuizEndPage()
+ {
+ var quizid = getParameterByName("quizid");
+ var html1="";
+ html1 += "<a href=\"createQuizQuestion.php?quizid="+quizid+"\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">Yes</a>";
+ html1 += "<a href=\"instructorHome.php\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">No</a>";
+ $("#demo").append(html1).enhanceWithin();
+ }*/
 
 function createAnotherQuestion() {
     var quizid = getParameterByName("quizid");
-    window.location="createQuizQuestion.php?quizid="+quizid;
+    window.location = "createQuizQuestion.php?quizid=" + quizid;
 }
 
 function goBackToInstructorHome() {
-    window.location="instructorHome.php";
+    window.location = "instructorHome.php";
 }
 
 function submitFinishQuiz()
 {
+<<<<<<< HEAD
  alert("You are now submitting");
 
     getInfo(1, 'quiz');
 
  window.location="studentHome.php";
+=======
+    alert("You are now submitting");
+    window.location = "studentHome.php";
+>>>>>>> origin/master
 }

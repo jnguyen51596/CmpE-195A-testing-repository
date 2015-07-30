@@ -39,6 +39,10 @@ and open the template in the editor.
             <div data-role="header" data-theme="b" >
                 <h1>Quiz List: Pick a Quiz to Add Questions</h1>
             </div><!-- /header -->
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <div role="main" id="demo" class="ui-content">
             </div><!-- /content -->
             <div role="main" id="demo2" class="ui-content">

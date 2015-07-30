@@ -34,7 +34,11 @@
 		<div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" id="header">
             </div>
-          
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
+
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>       
 		</div>

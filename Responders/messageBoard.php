@@ -37,6 +37,10 @@ and open the template in the editor.
             <div data-role="header" data-theme="b" >
                 <h1>Message Board</h1>
             </div><!-- /header -->
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <div role="main" id="demo" class="ui-content">
             </div><!-- /content -->
         </div><!-- /page -->

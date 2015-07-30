@@ -34,6 +34,10 @@
             <div data-role="header" data-theme="b" >
                 <h1>Quiz Creation</h1>
             </div><!-- /header -->
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <h2>Do you Want to make more Quiz Questions?</h2>
              <div role="main" id="demo">
                  <button class="ui-btn ui-btn-a ui-corner-all" onclick="createAnotherQuestion()">Yes</button>

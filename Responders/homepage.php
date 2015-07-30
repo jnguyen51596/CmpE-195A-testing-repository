@@ -60,7 +60,10 @@
             <div data-role="header" data-theme="b" >
                 <h1>Mopen Login</h1>
             </div><!-- /header -->
-			
+			<?php
+				require 'navbar.php';
+			?>
+			<br>
             <h2>Welcome!</h2>
             <p ><b>User</b></p>
             <a onClick="logout()">Logout</a>

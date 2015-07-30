@@ -32,6 +32,10 @@ require '../Actions/authenticate.php';
             <div data-role="header" data-theme="b" >
                 <h1>Homework Comments</h1>
             </div><!-- /header -->
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <div role="main" id="demo">
             </div><!-- /content -->
 

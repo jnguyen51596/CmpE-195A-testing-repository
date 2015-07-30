@@ -39,6 +39,9 @@ and open the template in the editor.
         <div data-role="header" data-theme="b">
             <h1>Mopen</h1>
         </div><!-- /header -->
+        <?php
+            require 'navbar.php';
+        ?>
         <br>
         
         <div>

@@ -35,7 +35,10 @@
             <div data-role="header" data-theme="b" >
                 <h1>Quiz View and Delete: Check to Delete</h1>
             </div>
-
+            <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <form role="main" id="demo" class="ui-content" method="post">
 
             </form>

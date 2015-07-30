@@ -63,6 +63,10 @@ require '../Actions/authenticate.php';
 				<button onclick='viewProfile()'>View Profile</button>
 				<button onclick='editProfile()'>Edit Profile</button>
 				-->
+				<?php
+					require 'navbar.php';
+				?>
+				<br>
 				<label for="role" class="select">Select a Role:</label>
 				<select name="role" id="role" onchange="getCoursesByRole()">
 					<!-- &nbsp; used to offset the right side button that aligns the text incorrectly-->

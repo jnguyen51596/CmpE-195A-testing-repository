@@ -36,7 +36,9 @@
             </div><!-- /header -->
             <div role="main" id="demo">
             </div><!-- /content -->
-            <br>
+            <?php
+                require 'navbar.php';
+            ?>
             <br>
             <form action="" method="post">
                 <label for="comment">Enter Comment (max 300 characters):</label>

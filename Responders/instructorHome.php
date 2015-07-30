@@ -34,6 +34,10 @@
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" id="header">
             </div>
+             <?php
+                require 'navbar.php';
+            ?>
+            <br>
             <button onclick='createAssignment()'>Create a Assignment</button>
             <button onclick='dropAStudent()'>Drop a Student</button>
 <!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->
@@ -42,8 +46,10 @@
             <button onclick='createQuiz()'>Create and Add Quiz Questions</button>
             <button onclick='deleteQuiz()'>View and Delete Quiz Questions</button>
             <button onclick='setGrades()'>Set Grades</button>
+            <button onclick='viewSubmissions()'>View Student Submissions</button>
+            <button onclick='lockAndUnlockQuiz()'>Lock and Unlock Quizes</button>
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
-
+            <button onclick='module()'>Create and View Module</button>
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>
            
