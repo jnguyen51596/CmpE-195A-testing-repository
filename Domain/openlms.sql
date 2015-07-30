@@ -439,7 +439,8 @@ DROP TABLE IF EXISTS `totalquiz`;
 CREATE TABLE `totalquiz` (
   `classID` int(11) NOT NULL,
   `quizID` int(11) NOT NULL,
-  `title` varchar(20) NOT NULL
+  `title` varchar(20) NOT NULL,
+  `lock` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -449,7 +450,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1, "First Quiz"),(2,1, "Second Quiz");
+INSERT INTO `totalquiz` VALUES (1,1, "First Quiz",0),(2,1, "Second Quiz",0);
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,3 +536,31 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2015-06-25 14:22:02
+DROP TABLE IF EXISTS `moduledescription` ;
+
+CREATE TABLE IF NOT EXISTS `moduledescription` (
+`order` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `description` varchar(999) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+LOCK TABLES `moduledescription` WRITE;
+/*!40000 ALTER TABLE `moduledescription` DISABLE KEYS */;
+/*!40000 ALTER TABLE `moduledescription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `modulelist`
+
+CREATE TABLE IF NOT EXISTS `modulelist` (
+  `classID` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `lock` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `modulelist` WRITE;
+/*!40000 ALTER TABLE `modulelist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `modulelist` ENABLE KEYS */;
+UNLOCK TABLES;
