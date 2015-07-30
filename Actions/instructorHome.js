@@ -35,7 +35,8 @@ function deleteQuiz() {
 	window.location.href = "../Responders/deleteQuizDisplay.php";
 }
 function viewSubmissions() {
-	window.location.href = "../Responders/submissions.php?course=" + sessionStorage.getItem('courseID');
+	//window.location.href = "../Responders/submissions.php?course=" + sessionStorage.getItem('courseID');
+	window.location.href = "../Responders/submissions.php";
 }
 function lockAndUnlockQuiz() {
 	window.location.href = "../Responders/lockAndUnlockQuiz.php";

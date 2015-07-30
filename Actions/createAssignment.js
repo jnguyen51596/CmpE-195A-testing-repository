@@ -50,12 +50,3 @@ function initializeClassDDList() {
 	tag += "</select>";
 	$('#class-dropdown-id').append(tag);
 }
-
-function getRemote(instructor) {
-    return $.ajax({
-        type: "POST",
-        url: "../Actions/getClassesTaught.php",
-        async: false,
-		data: { instructor: instructor}
-    }).responseText;
-}
