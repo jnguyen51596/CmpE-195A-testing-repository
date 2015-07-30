@@ -34,3 +34,7 @@ function makeMessage() {
 function deleteQuiz() {
 	window.location.href = "../Responders/deleteQuizDisplay.php";
 }
+function viewSubmissions() {
+	window.location.href = "../Responders/submissions.php?course=" + sessionStorage.getItem('courseID');
+
+}

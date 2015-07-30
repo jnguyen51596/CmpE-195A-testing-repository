@@ -46,6 +46,7 @@
             <button onclick='createQuiz()'>Create and Add Quiz Questions</button>
             <button onclick='deleteQuiz()'>View and Delete Quiz Questions</button>
             <button onclick='setGrades()'>Set Grades</button>
+			<button onclick='viewSubmissions()'>View Student Submissions</button>
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
 
             <div role="main" id="main" data-theme="c" class="ui-content">
