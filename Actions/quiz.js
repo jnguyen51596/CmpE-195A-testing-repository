@@ -605,5 +605,8 @@ function goBackToInstructorHome() {
 function submitFinishQuiz()
 {
  alert("You are now submitting");
+
+    getInfo(1, 'quiz');
+
  window.location="studentHome.php";
 }
