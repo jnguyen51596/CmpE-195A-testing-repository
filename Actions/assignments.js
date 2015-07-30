@@ -32,7 +32,18 @@ function expandAssignment(assignmentIndex) {
 		'<div class="ui-block-b"><label>Due: '+ assignmentArray[assignmentIndex]['duedate'] + '</label></div>' +
 		'</div>' +
 		'<div class="inset">' +
-		'<p> Description: '+ assignmentArray[assignmentIndex]['description'] + '</p>' +
+			'<p> Description: '+ assignmentArray[assignmentIndex]['description'] + '</p>' +
+			'<form data-ajax="false" method="POST" enctype="multipart/form-data">' +
+			'<input type="file" name="file" id="file" />' +
+			'<input type="hidden" name="file-course-id" id="file-course-id" value="" />' +
+			'<input type="hidden" name="file-title-id" id="file-title-id" value="' + assignmentArray[assignmentIndex]['title'] + '" />' +
+			'<input type="submit" id="submit-assignment-id" value="Submit" onclick="submitAssignment()" />' +
+			'</form>' +
 		'</div>';
 	$('#assignment-info-id').append(info);
+}
+
+function submitAssignment() {
+	// bind course id from js session variable
+	document.getElementById("file-course-id").value = sessionStorage.getItem('courseID');
 }

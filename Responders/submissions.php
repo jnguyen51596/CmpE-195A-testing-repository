@@ -39,11 +39,16 @@
 			// else display the files
 			else { 
 				$cursor = $gridfs -> find(array('courseID' => $_GET['course']));
+				
 				echo '<ul data-role="listview">';
 				foreach ($cursor as $obj) {
 					$name = $obj->getFilename();
+					$author = $obj -> file['username'];
+					$date = $obj->file["ts"];
+					// echo '<li><a data-ajax=\'false\' href="submissions.php?download='.$name.'">
+						// '.$obj->file["title"] .' submitted by: '.$author.' Filename: '.$name.' Size: '.$obj -> getSize().' </a></li>';
 					echo '<li><a data-ajax=\'false\' href="submissions.php?download='.$name.'">
-						Filename: '.$name.' Size: '.$obj -> getSize().' </a></li>';
+						'.$obj->file["title"] .' submitted by: '.$author.' on '.date("Y-M-d h:i:s", $date->sec).'</a></li>';
 				}
 				echo '</ul>';
 			}
