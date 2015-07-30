@@ -540,4 +540,74 @@ function getAssignments($courseID) {
     }
 }
 
+function insertNotification($type, $first, $last, $item) {
+    global $con;
+    $sql = "INSERT INTO notifications (type, first, last, item) VALUES ('$type', '$first', '$last', '$item');";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    
+    $sql = "SELECT MAX(ID) FROM notifications;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
+    
+}
+
+function insertRecipients($notificationID, $memberID) {
+    global $con;
+    $sql = "INSERT INTO notificationRecipients (notificationID, memberID) VALUES ('$notificationID', '$memberID');";
+    $q = $con->prepare($sql);
+    $bool = $q->execute();
+    return $bool;
+}
+
+function getNotifications($memberID) {
+    global $con;
+    $sql = "SELECT type, first, last, item, created 
+        FROM notifications JOIN notificationrecipients ON notifications.ID=notificationRecipients.notificationID
+        WHERE memberID='$memberID'";
+
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no notifications';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+
+
+function getTeacher($courseID) {
+    global $con;
+    $sql = "SELECT member.memberID, firstName, lastName FROM member JOIN courseinstructor ON member.memberID = courseinstructor.memberID WHERE courseID = :courseID;";
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseID' => $courseID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+//function getStudents($courseID) {
+//    global $con;
+//    $sql = "SELECT member.memberID, firstName, lastName FROM member, coursemember WHERE member.memberID = coursemember.memberID AND courseID = :courseID;";
+//    $q = $con->prepare($sql);
+//    $q->execute(array(':courseID' => $courseID));
+//    $rows = $q->fetchAll();
+//    if (count($rows) == 0) {
+//        return 0;
+//    } else {
+//        return $rows;
+//    }
+//}
 ?>
