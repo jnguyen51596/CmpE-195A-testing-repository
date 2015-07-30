@@ -3,7 +3,7 @@
 
 $class = $_POST['classid'];
 require 'sql/pdo.php';
-$rows = getQuiz($class);
+$rows = getModule($class);
 if (count($rows) == 0) {
     echo false;
 } else {

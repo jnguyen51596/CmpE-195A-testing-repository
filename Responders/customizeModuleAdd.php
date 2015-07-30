@@ -1,15 +1,11 @@
-<?php
-    require '../Actions/authenticate.php';
-?>
-<?php
-    session_start();
+<?php require '../Actions/authenticate.php';
 ?>
 <html>
     <head>
-        <title>Course Home</title>
+        <title>LMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!--
+		<!-- comment out to enable nativeDroid
         <link href="../css/app.css" rel="stylesheet" />
         <link rel="stylesheet" href="../css/themes/default/testcanvas.min.css" />
         <link rel="stylesheet" href="../css/themes/default/jquery.mobile.icons.min.css" />
@@ -17,42 +13,42 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		-->
+
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
 		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
-				
+			
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		
-		
-        <script src="../Actions/instructorHome.js"></script>
+
+        <script src="../Actions/javascriptFunction.js"></script>
+
     </head>
 
     <body>
         <div data-role="page" data-theme="b">
-            <div data-role="header" data-theme="b" id="header">
-            </div>
-             <?php
+            <div data-role="header" data-theme="b" >
+                <h1>Module Creation</h1>
+            </div><!-- /header -->
+            <?php
                 require 'navbar.php';
             ?>
             <br>
-            <button onclick='createAssignment()'>Create a Assignment</button>
-            <button onclick='dropAStudent()'>Drop a Student</button>
-<!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->
-            <button onclick='makeMessage()'>Make Message Thread</button>
-            <button onclick='messageBoard()'>Go To Message Board</button>
-            <button onclick='createQuiz()'>Create and Add Quiz Questions</button>
-            <button onclick='deleteQuiz()'>View and Delete Quiz Questions</button>
-            <button onclick='setGrades()'>Set Grades</button>
-            <button onclick='viewSubmissions()'>View Student Submissions</button>
-            <button onclick='lockAndUnlockQuiz()'>Lock and Unlock Quizes</button>
-<!--            <button onclick='createQuiz()'>Create Quiz</button>-->
-            <button onclick='module()'>Create and View Module</button>
-            <div role="main" id="main" data-theme="c" class="ui-content">
-            </div>
-           
-        </div>
+            <div role="main">
+                <form name="moduleAdd" id="moduleAdd" method="post">
+                    <fieldset data-role="fieldcontain">
+                        <label for="title">Type in Title:</label>
+                        <textarea cols="40" rows="8" name="title" id="title" ></textarea>
+                    </fieldset>
+                    <fieldset data-role="fieldcontain">
+                        <label for="moduleNumber">Type in Module ID (number only):</label>
+                        <textarea cols="40" rows="8" name="moduleNumber" id="moduleNumber"></textarea>
+                    </fieldset>
+                    <input  id="add" type="button" value="Create Module" onclick="submitModuleAdd()">
+                </form>
+            </div><!-- /content -->
+        </div><!-- /page -->
     </body>
 </html>

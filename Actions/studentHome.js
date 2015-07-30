@@ -23,4 +23,7 @@ function grades() {
 function assignments() {
 	window.location.href = "../Responders/assignments.php";
 }
+function module() {
+	window.location.href = "../Responders/customizeModuleDisplayStudent.php";
+}
 
