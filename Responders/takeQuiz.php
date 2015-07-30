@@ -25,10 +25,9 @@
 		
 		
         <script src="login.js"></script>
-        <script src="../Actions/notifications.js"></script>
+        
         <script src="../Actions/javascriptFunction.js"></script>
         <script src="../Actions/quiz.js"></script>
-        
     </head>
 
     <body onload="getQuizQuestion1()">

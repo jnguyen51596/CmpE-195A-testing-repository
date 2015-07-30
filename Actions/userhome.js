@@ -78,8 +78,3 @@ function getCourseHomepage() {
 		window.location.href = link;
 	}
 }
-
-function viewNotifications(){
-    	window.location.href = "notifications.php";
-
-}
