@@ -17,6 +17,7 @@ require '../Actions/authenticate.php';
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
+	<script src="../Actions/listClasses.js"></script>
 	<script src="../Actions/assignments.js"></script>
 	
 
@@ -24,22 +25,27 @@ require '../Actions/authenticate.php';
 
 <body>
 	<?php
-		//if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
-		if (!empty($_FILES['file'])) {
-			$m = new MongoClient();
-			$gridfs = $m->selectDB('mopenlms')->getGridFS();
-				
-			try {
-				//$gridfs->storeUpload('file');
-				$gridfs->storeUpload('file', array('courseID' => $_POST['file-course-id'], 
-													'username' => $_SESSION['username'],
-													'title' => $_POST['file-title-id'],
-													'ts' => new MongoDate()));
-			}
-				catch (Exception $e) {
-			}
+		try {
+			//if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
+			if (!empty($_FILES['file'])) {
+				$m = new MongoClient();
+				$gridfs = $m->selectDB('mopenlms')->getGridFS();
+					
+				try {
+					//$gridfs->storeUpload('file');
+					$gridfs->storeUpload('file', array('courseID' => $_POST['file-course-id'], 
+														'username' => $_SESSION['username'],
+														'title' => $_POST['file-title-id'],
+														'ts' => new MongoDate()));
+				}
+					catch (Exception $e) {
+				}
 
-			$m->close();
+				$m->close();
+			}
+		}
+		catch (MongoConnectionException $e) {
+			echo "error: can not connect to mongodb";
 		}
 	?>
 

@@ -76,30 +76,40 @@ function getClasses($instructorID) {
     }
 }
 
-function getGrades($memberID) {
+// add a new grade entry
+function addGrade($memberID, $assignmentID) {
+	global $con;
+	$sql = "INSERT INTO grade(memberID, assignmentID) values($memberID, $assignmentID)";
+	$q = $con -> prepare($sql);
+	$q -> execute();
+}
+
+function getGrades($courseID) {
     global $con;
-    $sql = "SELECT title, score, total, feedback
-            FROM grade, assignment
-            WHERE assignment.assignmentID = grade.assignmentID";
+    $sql = "SELECT username, title, score, total, feedback, grade.assignmentID, grade.memberID
+            FROM member, grade, assignment
+            WHERE assignment.assignmentID = grade.assignmentID 
+			and member.memberID = grade.memberID 
+			and assignment.courseID = :ID";
 
     $q = $con->prepare($sql);
-    $q->execute();
-    $rows = $q->fetchAll();
+    $q->execute(array(':ID' => $courseID));
+	$rows = $q->fetchAll();
     if (count($rows) == 0) {
-        echo 'no grades';
         return 0;
     } else {
         return $rows;
     }
 }
 
-function setGrades($assignmentid, $score, $feedback) {
+function setGrades($memberID, $assignmentid, $score, $feedback) {
     global $con;
     $sql = "UPDATE grade 
                 SET grade.score ='$score', grade.feedback = '$feedback'
-                WHERE assignmentID = '$assignmentid'";
+                WHERE assignmentID = '$assignmentid'
+				AND memberID = $memberID";
     $q = $con->prepare($sql);
-    $q->execute(); // ?
+    $q->execute();
 }
 
 function addQuiz($classID, $quizID, $title) {
