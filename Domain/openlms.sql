@@ -564,3 +564,53 @@ LOCK TABLES `modulelist` WRITE;
 /*!40000 ALTER TABLE `modulelist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `modulelist` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `notificationrecipients`
+--
+
+DROP TABLE IF EXISTS `notificationrecipients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificationrecipients` (
+  `notificationID` int(11) DEFAULT NULL,
+  `memberID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificationrecipients`
+--
+
+LOCK TABLES `notificationrecipients` WRITE;
+/*!40000 ALTER TABLE `notificationrecipients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notificationrecipients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL,
+  `first` varchar(255) DEFAULT NULL,
+  `last` varchar(255) DEFAULT NULL,
+  `item` varchar(255) DEFAULT NULL,
+  `classID` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;
