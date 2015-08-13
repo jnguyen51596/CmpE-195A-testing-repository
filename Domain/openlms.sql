@@ -439,7 +439,8 @@ DROP TABLE IF EXISTS `totalquiz`;
 CREATE TABLE `totalquiz` (
   `classID` int(11) NOT NULL,
   `quizID` int(11) NOT NULL,
-  `title` varchar(20) NOT NULL
+  `title` varchar(20) NOT NULL,
+  `lock` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -449,7 +450,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1, "First Quiz"),(2,1, "Second Quiz");
+INSERT INTO `totalquiz` VALUES (1,1, "First Quiz",0),(2,1, "Second Quiz",0);
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,3 +536,81 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2015-06-25 14:22:02
+DROP TABLE IF EXISTS `moduledescription` ;
+
+CREATE TABLE IF NOT EXISTS `moduledescription` (
+`order` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `description` varchar(999) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+LOCK TABLES `moduledescription` WRITE;
+/*!40000 ALTER TABLE `moduledescription` DISABLE KEYS */;
+/*!40000 ALTER TABLE `moduledescription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `modulelist`;
+
+CREATE TABLE IF NOT EXISTS `modulelist` (
+  `classID` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `lock` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `modulelist` WRITE;
+/*!40000 ALTER TABLE `modulelist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `modulelist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notificationrecipients`
+--
+
+DROP TABLE IF EXISTS `notificationrecipients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificationrecipients` (
+  `notificationID` int(11) DEFAULT NULL,
+  `memberID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificationrecipients`
+--
+
+LOCK TABLES `notificationrecipients` WRITE;
+/*!40000 ALTER TABLE `notificationrecipients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notificationrecipients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL,
+  `first` varchar(255) DEFAULT NULL,
+  `last` varchar(255) DEFAULT NULL,
+  `item` varchar(255) DEFAULT NULL,
+  `classID` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;

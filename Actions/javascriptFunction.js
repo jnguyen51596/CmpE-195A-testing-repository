@@ -6,59 +6,56 @@ function getParameterByName(name) {
 }
 
 function createThread()
-{
-   
-        var title = $("#threadTitle").val();
-        var date = $("#date").val();
-        var question = $("#question").val();
-        var classid = sessionStorage.getItem('courseID');
-        //var username=getCookie("username");
+{   
+    var title = $("#threadTitle").val();
+    var date = $("#date").val();
+    var question = $("#question").val();
+    var classid = sessionStorage.getItem('courseID');
+    //var username=getCookie("username");
         
-        $.ajax({
-            type: "POST",
-            url: "/Actions/executeThread.php",
-            data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
-            cache: false,
-            success: function (data) {
-                if (data == 'true') {
-                    window.location = "/home/student-home";
-                }
-                else {
-                    alert('Not enough information');
-                }
+    $.ajax({
+        type: "POST",
+        url: "/Actions/executeThread.php",
+        data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == 'true') {
+                window.location = "/home/student-home";
             }
-        });
+            else {
+                alert('Not enough information');
+            }
+        }
+    });
 
-        return false;
-   
+    return false;
+
 }
 
 function createThreadIn()
 {
-   
-        var title = $("#threadTitle").val();
-        var date = $("#date").val();
-        var question = $("#question").val();
-        var classid = sessionStorage.getItem('courseID');
-        //var username=getCookie("username");
+    var title = $("#threadTitle").val();
+    var date = $("#date").val();
+    var question = $("#question").val();
+    var classid = sessionStorage.getItem('courseID');
+    //var username=getCookie("username");
         
-        $.ajax({
-            type: "POST",
-            url: "/Actions/executeThread.php",
-            data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
-            cache: false,
-            success: function (data) {
-                if (data == 'true') {
-                    window.location = "/home/instructor-home";
-                }
-                else {
-                    alert('Not enough information');
-                }
+    $.ajax({
+        type: "POST",
+        url: "/Actions/executeThread.php",
+        data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == 'true') {
+                window.location = "/home/instructor-home";
+            } else {
+                alert('Not enough information');
             }
-        });
+        }
+    });
 
-        return false;
-   
+    return false;
+
 }
 
 // for students to get the comments
@@ -220,6 +217,7 @@ function messageBoardDisplay()
                     var date=data[i].date;
                     
                     html += "<a href=\"/Responders/commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Question:" + question +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By:"+username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:"+date +"</a><br>";
+
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -252,7 +250,7 @@ function commentPage()
                     var comment = data[i].comment;
                     var userID = data[i].userID;
 
-                    html += comment + "&nbsp;&nbsp;&nbsp;&nbsp; Commented By: "+userID+"<br>";
+                    html += comment + "&nbsp;&nbsp;&nbsp;&nbsp; Commented By: " + userID + "<br>";
                 }
                 document.getElementById("demo").innerHTML = html;
             }
@@ -266,28 +264,201 @@ function commentPageButton()
     var questionid = getParameterByName("questionid");
     var comment = $("#comment").val();
     var classid = sessionStorage.getItem('courseID');
-    if(comment=="")
+    if (comment == "")
     {
-     alert("Not Enough Information");   
+        alert("Not Enough Information");
     }
     else
     {
-    $.ajax({
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeCommenting.php",
+            data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid,
+            cache: false,
+            success: function (data) {
+                if (data == 'true') {
+                    alert("Message added");
+                    window.location.reload();
+                }
+                else {
+                    alert("Invalid message");
+                }
+            }
+        });
+        return false;
+    }
+
+}
+function submitModuleAdd()
+{
+    var classID = sessionStorage.getItem('courseID');
+    var title = $('#title').val();
+    var moduleNumber = $('#moduleNumber').val();
+    if (isNaN(moduleNumber))
+    {
+        alert("ID Must be a Number");
+    }
+    else
+    {
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeModuleAdd.php",
+            data: "classID=" + classID + "&moduleNumber=" + moduleNumber + "&title=" + title,
+            cache: false,
+            success: function (data) {
+                if (data == true)
+                {
+                    alert("Module Created");
+                    window.location = '../Responders/customizeModuleDisplayInstructor.php';
+                }
+                else
+                {
+                    alert("Module Already Created");
+                }
+            }
+        });
+    }
+}
+
+function displayModule1()
+{
+    var classid = sessionStorage.getItem('courseID');
+    return $.ajax({
         type: "POST",
-        url: "/Actions/executeCommenting.php",
-        data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid ,
+        url: "../Actions/getModule.php",
+        data: "classid=" + classid,
         cache: false,
         success: function (data) {
-            if (data == 'true') {
-                alert("Message added");
-                window.location.reload();
+            if (data == false)
+            {
+                alert("No Module");
             }
-            else {
-                alert("Invalid message");
+            else
+            {
+                var html = "";
+                for (var i = 0; i < data.length; i++)
+                {
+                    //var classid = data[i].classID;
+                    var moduleid = data[i].moduleID;
+                    var title = data[i].title;
+                    var lock = data[i].lock;
+                    if (lock == '1')
+                    {
+
+                    }
+                    else
+                    {
+                        html += "<a href=\"customizeModuleStudent.php?moduleid=" + moduleid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
+                    }
+                }
+                document.getElementById("demo").innerHTML = html;
+
             }
         }
     });
-    return false;
+}
+
+function displayModule2()
+{
+    var classid = sessionStorage.getItem('courseID');
+    return $.ajax({
+        type: "POST",
+        url: "../Actions/getModule.php",
+        data: "classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == false)
+            {
+                alert("Create Module First");
+                var html = "";
+                html += "<a href=\"../Responders/customizeModuleAdd.php\">Create Module</a>";
+                document.getElementById("demo").innerHTML = html;
+            }
+            else
+            {
+                var html = "";
+                for (var i = 0; i < data.length; i++)
+                {
+                    //var classid = data[i].classID;
+                    var moduleid = data[i].moduleID;
+                    var title = data[i].title;
+                    var lock = data[i].lock;
+                    if (lock == '1')
+                    {
+
+                    }
+                    else
+                    {
+                        html += "<a href=\"customizeModuleInstructor.php?moduleid=" + moduleid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
+                    }
+                }
+                html += "<br><a href=\"customizeModuleAdd.php\">Create Module</a>";
+                document.getElementById("demo").innerHTML = html;
+
+            }
+        }
+    });
+}
+
+function moduleDescription()
+{
+    var moduleid = getParameterByName("moduleid");
+    var classid = sessionStorage.getItem('courseID');
+    $.ajax({
+        type: "POST",
+        url: "../Actions/getModuleDescription.php",
+        data: "moduleid=" + moduleid + "&classid=" + classid,
+        cache: false,
+        success: function (data) {
+            if (data == false)
+            {
+                document.getElementById("demo").innerHTML = "<h1> Module: " + moduleid + "</h1>";
+                alert("No Description");
+            }
+            else
+            {
+                var title=data[0].title;
+                var html = "<h1> Module " + moduleid +": "+title+ "</h1><br>";
+                for (var i = 0; i < data.length; i++)
+                {
+                    var description = data[i].description;
+                    
+
+                    html += description + "<br>";
+                }
+                document.getElementById("demo").innerHTML = html;
+            }
+        }
+    });
+}
+
+function modulePageButton()
+{
+    var moduleid = getParameterByName("moduleid");
+    var description = $("#description").val();
+    var classid = sessionStorage.getItem('courseID');
+    if (description == "")
+    {
+        alert("Not Enough Information");
+    }
+    else
+    {
+        $.ajax({
+            type: "POST",
+            url: "../Actions/executeModuleDescription.php",
+            data: "description=" + description + "&moduleid=" + moduleid + "&classid=" + classid,
+            cache: false,
+            success: function (data) {
+                if (data == 'true') {
+                    alert("Description added");
+                    window.location.reload();
+                }
+                else {
+                    alert("Invalid description");
+                }
+            }
+        });
+        return false;
     }
 
 }

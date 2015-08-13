@@ -1,6 +1,12 @@
 <?php
-    require ($_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php');
+require '../Actions/authenticate.php';
 ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <title>LMS</title>
@@ -13,34 +19,31 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-       -->
-		<link rel="stylesheet" href="/css/font-awesome.min.css" />
+		-->
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
-		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
-		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
-				
+		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
+		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
+			
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
-        <script src="/Actions/createQuizEndPage.js"></script>
-        <script src="../Actions/notifications.js"></script>
+       
+        <script src="../Actions/javascriptFunction.js"></script>
 
     </head>
 
-    <body>
+    <body onload="displayModule1()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz Creation</h1>
+                <h1>Module List</h1>
             </div><!-- /header -->
             <?php
-                require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
+                require 'navbar.php';
             ?>
             <br>
-            <h2>Do you Want to make more Quiz Questions?</h2>
-             <div role="main" id="demo">
-                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="createAnotherQuestion()">Yes</button>
-                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="getInfo(0,'quiz');">No</button>
+            <div role="main" id="demo" class="ui-content">
             </div><!-- /content -->
         </div><!-- /page -->
     </body>

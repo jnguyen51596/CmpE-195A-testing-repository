@@ -149,6 +149,7 @@ function printOutQuiz3(data)
 
 function submitFinishQuiz()
 {
- alert("You are now submitting");
- window.location="/home/student-home";
+    alert("You are now submitting");
+    getInfo(1, 'quiz');
+    window.location="/home/student-home";
 }

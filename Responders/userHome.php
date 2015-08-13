@@ -45,6 +45,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 			<ul data-role="listview">
 				<li data-icon='false'><a onclick='viewProfile()'><i class='lIcon fa fa-user'></i>View Profile</a></li>
 				<li data-icon='false'><a onclick='editProfile()'>Edit Profile</a></li>
+                                <li data-icon='false'><a onclick='viewNotifications()'>Notifications</a></li>
 			</ul>
 		</div>
 		

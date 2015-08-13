@@ -28,9 +28,22 @@ function setGrades() {
 function createQuiz() {
 	window.location.href = "/home/instructor-home/create-quiz";
 }
+
 function makeMessage() {
 	window.location.href = "/home/instructor-home/make-message";
 }
+
 function deleteQuiz() {
 	window.location.href = "/home/instructor-home/delete-quiz";
+}
+
+function viewSubmissions() {
+	window.location.href = "../Responders/submissions.php";
+}
+
+function lockAndUnlockQuiz() {
+	window.location.href = "../Responders/lockAndUnlockQuiz.php";
+}
+function module() {
+	window.location.href = "../Responders/customizeModuleDisplayInstructor.php";
 }
