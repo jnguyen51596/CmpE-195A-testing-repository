@@ -14,11 +14,14 @@ session_start();
 
 
     $item = $_POST["item"];
+    
+    $classID = $_POST["classID"];
+
 
 
     
     
-    $check = insertNotification($type, $first, $last, $item);
+    $check = insertNotification($type, $first, $last, $item, $classID);
     header('Content-Type: application/json');
     $notificationID = $check[0][0];
  

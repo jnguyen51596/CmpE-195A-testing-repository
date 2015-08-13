@@ -536,9 +536,9 @@ function getAssignments($courseID) {
     }
 }
 
-function insertNotification($type, $first, $last, $item) {
+function insertNotification($type, $first, $last, $item, $classID) {
     global $con;
-    $sql = "INSERT INTO notifications (type, first, last, item) VALUES ('$type', '$first', '$last', '$item');";
+    $sql = "INSERT INTO notifications (type, first, last, item, classID) VALUES ('$type', '$first', '$last', '$item', '$classID');";
     $q = $con->prepare($sql);
     $bool = $q->execute();
     
@@ -564,7 +564,7 @@ function insertRecipients($notificationID, $memberID) {
 
 function getNotifications($memberID) {
     global $con;
-    $sql = "SELECT type, first, last, item, created 
+    $sql = "SELECT type, first, last, item, classID, created 
         FROM notifications JOIN notificationrecipients ON notifications.ID=notificationRecipients.notificationID
         WHERE memberID='$memberID'";
 
@@ -665,6 +665,24 @@ function addModuleDescription($description,$moduleid1,$classid1) {
     $q = $con->prepare($sql);
     $q->execute();
     echo 'true';
+}
+
+function getQuizName($class, $quizID){
+    global $con;
+    $sql = "SELECT title FROM totalquiz WHERE classID = '$class' and quizID = '$quizID'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+function getClassName($classID){
+    global $con;
+    $sql = "SELECT name FROM course WHERE courseID = '$classID'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
 }
 
 ?>
