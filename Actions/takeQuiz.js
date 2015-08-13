@@ -105,7 +105,6 @@ function printOutQuiz1(data)
         html += "<label for=\"radio-choice-4-" + totalquestion + "\">" + choice4 + "</label>";
         // html += "</fieldset>";
         totalquestion += 1;
-        alert(html);
     }
     return true;
 }
