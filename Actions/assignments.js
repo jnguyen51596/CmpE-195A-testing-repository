@@ -18,7 +18,7 @@ function getRemote() {
     return $.ajax({
         type: "POST",
 		data: {courseID: sessionStorage.getItem('courseID')},
-        url: "../Actions/getAssignments.php",
+        url: "/Actions/getAssignments.php",
         async: false
     }).responseText;
 }

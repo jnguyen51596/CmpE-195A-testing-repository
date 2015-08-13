@@ -1,12 +1,18 @@
 
+
 var role = "";
 var offset = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+window.onbeforeunload = function(e) {
+	$("#role").val("noselection");	
+};
+
+
 function getCoursesByRole() {
 	role = $('#role').val();
 	if (role == "student") {
 		$.ajax({
         type: "POST",
-        url: "../Actions/getStudentCourses.php",
+        url: "/Actions/getStudentCourses.php",
         dataType: "json",
 		success: function(data){
                formatData(data);
@@ -15,14 +21,12 @@ function getCoursesByRole() {
 	} else if (role == "instructor") {
 		$.ajax({
         type: "POST",
-        url: "../Actions/getClassesTaught.php",
+        url: "/Actions/getClassesTaught.php",
         dataType: "json",
 		success: function(data){
                formatData(data);
             }
     	});
-	} else {
-		alert("No role selected, please select a role");
 	}
 }
 
@@ -44,25 +48,25 @@ function formatData(data) {
 	html += "</select><button onclick='getCourseHomepage()'>Go to Course Homepage</button>";
 	$('#results').append(html).trigger('create');
 }
-
+/*
 function editProfile() {
-	window.location.href = "editProfile.php";
+	window.location.href = "/Responders/editProfile.php";
 }
 
 function viewProfile() {
-	window.location.href = "profile.php";
+	window.location.href = "/Responders/profile.php";
 }
-
+*/
 function viewNewAnnouncements() {
-	window.location.href = "viewNewAnnouncements.php";
+	window.location.href = "/Responders/viewNewAnnouncements.php";
 }
 
 function getCourseHomepage() {
 	var classData = $('#classList').val();
 	if (classData == "create") {
-			window.location.href = "makeAClass.php";
+			window.location.href = "/home/make-a-class";
 	} else if (classData == "enroll") {
-			window.location.href = "addAClass.php";
+			window.location.href = "/home/add-a-class";
 	} else {
 		var courseInfo = JSON.parse(classData);
 		sessionStorage.setItem('name', courseInfo.name);
@@ -71,9 +75,9 @@ function getCourseHomepage() {
 		sessionStorage.setItem('courseID', courseInfo.courseID);
 		var link = "";
 		if (role == "student") {
-			link = "studentHome.php";
+			link = "/home/student-home";
 		} else if (role == "instructor") {
-			link = "instructorHome.php";
+			link = "/home/instructor-home";
 		}
 		window.location.href = link;
 	}

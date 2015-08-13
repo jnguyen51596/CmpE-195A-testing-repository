@@ -10,7 +10,7 @@ function loadAnnouncements() {
 	var courseID = sessionStorage.getItem('courseID');
 	$.ajax({
         type: "POST",
-        url: "../Actions/getCourseAnnouncements.php",
+        url: "/Actions/getCourseAnnouncements.php",
         data: {courseID: courseID},
         dataType: "json",
 		success: function(data){

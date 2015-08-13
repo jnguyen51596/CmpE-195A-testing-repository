@@ -7,12 +7,12 @@ $(document).ready(function ()
         var password = $("#txt-password").val();
         $.ajax({
             type: "POST",
-            url: "../Actions/executeLoginCheck.php",
+            url: "/Actions/executeLoginCheck.php",
             data: "name=" + username + "&pwd=" + password,
             cache: false,
             success: function (data) {
                 if (data == 'true') {
-                    window.location = 'userHome.php';
+                    window.location = '/home';
                 }
                 else {
                     alert("Invalid");
@@ -42,6 +42,6 @@ function getCookie(cname) {
 function logout()
 {
     document.cookie = "username= ; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    window.location = "../Responders/sign-in.php";
+    window.location = "/";
 }
 

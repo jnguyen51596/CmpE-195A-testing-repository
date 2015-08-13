@@ -16,7 +16,7 @@ function getStudents() {
 	$('#studentList').append("<option value='default'>Select a Student...</option>").selectmenu('refresh');;
     $.ajax({
 	    type: "POST",
-        url: "../Actions/getStudents.php",
+        url: "/Actions/getStudents.php",
 		dataType: "json",
 		data: "class="+classID,
 		success: function(data){
@@ -32,7 +32,7 @@ function dropStudent() {
 	} else {
 	    $.ajax({
 		    type: "POST",
-	        url: "../Actions/dropAStudent.php",
+	        url: "/Actions/dropAStudent.php",
 			dataType: "json",
 			data: "class="+classID+"&student="+studentID,
 			success: function(data){

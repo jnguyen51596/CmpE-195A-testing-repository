@@ -3,7 +3,7 @@ function postAnnouncement() {
 	var body = $("#body").val();
 	$.ajax({
         type: "POST",
-        url: "../Actions/makeAnnouncement.php",
+        url: "/Actions/makeAnnouncement.php",
         data: {courseID: courseID, body: body},
         dataType: "json",
 		success: function(data){

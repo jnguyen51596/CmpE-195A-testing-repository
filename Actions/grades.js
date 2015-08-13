@@ -3,7 +3,7 @@
 function getGrades() {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getGrades.php",
+        url: "/Actions/getGrades.php",
         data: "courseID=" + sessionStorage.getItem('courseID'),
         dataType: "json",
 		success: function(data){

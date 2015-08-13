@@ -19,7 +19,7 @@ function initializeClassList() {
 function getRemote(instructor) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getClassesTaught.php",
+        url: "/Actions/getClassesTaught.php",
         async: false,
 		data: { instructor: instructor}
     }).responseText;

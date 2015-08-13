@@ -1,5 +1,5 @@
 <?php
-    require '../Actions/authenticate.php';
+    require ($_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php');
 ?>
 <!DOCTYPE html>
 <!--
@@ -20,17 +20,16 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		-->
-		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.css" />
-		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
-		<link rel="stylesheet" href="../css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
+		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
+		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
 				
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
-        <script src="../Actions/login.js"></script>
-        <script src="../Actions/quiz.js"></script>
+        <script src="/Actions/displayQuiz.js"></script>
 
     </head>
 
@@ -40,7 +39,7 @@ and open the template in the editor.
                 <h1>Quiz List</h1>
             </div><!-- /header -->
             <?php
-                require 'navbar.php';
+                require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
             <br>
             <div role="main" id="demo" class="ui-content">

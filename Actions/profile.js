@@ -37,7 +37,7 @@ function getPassword() {
 function getFirst(username) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getFirstName.php",
+        url: "/Actions/getFirstName.php",
         data: "username=" + username,
         async: false,
     }).responseText;
@@ -46,7 +46,7 @@ function getFirst(username) {
 function getLast(username) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getLastName.php",
+        url: "/Actions/getLastName.php",
         data: "username=" + username,
         async: false,
     }).responseText;
@@ -55,12 +55,12 @@ function getLast(username) {
 function getPass(username) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getPassword.php",
+        url: "/Actions/getPassword.php",
         data: "username=" + username,
         async: false,
     }).responseText;
 }
 
 function home() {
-    window.location = "userHome.php";
+    window.location = "/home";
 }

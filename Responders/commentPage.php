@@ -1,5 +1,5 @@
 <?php
-    require '../Actions/authenticate.php';
+    require ($_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php');
 ?>
 <html>
     <head>
@@ -37,7 +37,7 @@
             </div><!-- /header -->
             <div role="main" id="demo">
                 <?php
-                    require 'navbar.php';
+                    require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
                 ?>
                 <br>
             </div><!-- /content -->

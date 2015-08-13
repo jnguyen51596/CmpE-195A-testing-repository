@@ -4,12 +4,12 @@ function createClass() {
 	var suffix = $("#suffix").val();
     $.ajax({
 	    type: "POST",
-        url: "../Actions/createClass.php",
+        url: "/Actions/createClass.php",
 		dataType: "json",
 		data: {courseName: courseName, prefix: prefix, suffix: suffix},
 		success: function(){
 				alert("Your class has been created!");
-               	window.location.href = "userHome.php";
+               	window.location.href = "/home";
             }
     });
 }

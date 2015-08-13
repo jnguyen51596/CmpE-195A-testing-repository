@@ -6,31 +6,31 @@ $( document ).ready(function() {
 });
 
 function createAssignment() {
-	window.location.href = "../Responders/createAssignment.php";
+	window.location.href = "/home/instructor-home/create-assignment";
 }
 
 function dropAStudent() {
-	window.location.href = "../Responders/dropAStudent.php";
+	window.location.href = "/home/instructor-home/drop-student";
 }
 
 function makeAnnouncement() {
-	window.location.href = "../Responders/makeAnnouncement.php";
+	window.location.href = "/home/instructor-home/make-announcement";
 }
 
 function messageBoard() {
-	window.location.href = "../Responders/messageBoard.php";
+	window.location.href = "/home/instructor-home/message-board";
 }
 
 function setGrades() {
-	window.location.href = "../Responders/setGrades.php";
+	window.location.href = "/home/instructor-home/set-grades";
 }
 
 function createQuiz() {
-	window.location.href = "../Responders/createQuizDisplay.php";
+	window.location.href = "/home/instructor-home/create-quiz";
 }
 function makeMessage() {
-	window.location.href = "../Responders/createMessageThreadIn.php";
+	window.location.href = "/home/instructor-home/make-message";
 }
 function deleteQuiz() {
-	window.location.href = "../Responders/deleteQuizDisplay.php";
+	window.location.href = "/home/instructor-home/delete-quiz";
 }

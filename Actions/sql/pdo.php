@@ -111,9 +111,9 @@ function addQuiz($classID, $quizID, $title) {
     if (count($rows) == 0) {
         $sql = "INSERT INTO totalquiz (classID,quizID,title) VALUES ('$classID','$quizID','$title');";
         $con->exec($sql);
-        echo true;
+        echo "true";
     } else {
-        echo false;
+        echo "false";
     }
 }
 

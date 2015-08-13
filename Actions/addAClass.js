@@ -7,7 +7,7 @@ function searchClasses() {
 function getClasses(query) {
     $.ajax({
 	    type: "POST",
-        url: "../Actions/searchClasses.php",
+        url: "/Actions/searchClasses.php",
 		dataType: "json",
 		data: "search="+query,
 		success: function(data){
@@ -29,11 +29,11 @@ function addClass(courseID) {
 	if (confirm('Are you sure you want to add this class?')) {
 	    $.ajax({
 		    type: "POST",
-	        url: "../Actions/addClass.php",
+	        url: "/Actions/addClass.php",
 			data: "courseID="+courseID,
 			success: function(){
 	               alert("You are now enrolled!");
-                       window.location = 'userHome.php';
+                       window.location = '/home';
 	            }
 	    });
 	}

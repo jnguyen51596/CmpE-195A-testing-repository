@@ -12,7 +12,7 @@ function createAssignment() {
 	
     $.ajax({
 		type: "POST",
-		url: "../Actions/createAssignment.php",
+		url: "/Actions/createAssignment.php",
         data: {courseID: courseID, title: title, total: total, duedate: duedate, description: description}, 
 		success: function(data) {
 			alert("Assignment created!");
@@ -54,7 +54,7 @@ function initializeClassDDList() {
 function getRemote(instructor) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getClassesTaught.php",
+        url: "/Actions/getClassesTaught.php",
         async: false,
 		data: { instructor: instructor}
     }).responseText;

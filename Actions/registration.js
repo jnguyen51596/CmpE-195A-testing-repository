@@ -20,13 +20,13 @@ function checkinfo() {
 
                         $.ajax({
                             type: "POST",
-                            url: "../Actions/register.php",
+                            url: "/Actions/register.php",
                             data: "username=" + username + "&first=" + first + "&last=" + last + "&pass1=" + pass1 + "&pass2=" + pass2,
                             cache: false,
                             success: function (data) {
                                 if (data == 1) {
                                     alert("Successful Registration!!!");
-                                    window.location = 'userHome.php';
+                                    window.location = '/home';
 
                                 }
                                 else {

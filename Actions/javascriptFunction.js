@@ -16,12 +16,12 @@ function createThread()
         
         $.ajax({
             type: "POST",
-            url: "../Actions/executeThread.php",
+            url: "/Actions/executeThread.php",
             data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
             cache: false,
             success: function (data) {
                 if (data == 'true') {
-                    window.location = "studentHome.php";
+                    window.location = "/home/student-home";
                 }
                 else {
                     alert('Not enough information');
@@ -44,12 +44,12 @@ function createThreadIn()
         
         $.ajax({
             type: "POST",
-            url: "../Actions/executeThread.php",
+            url: "/Actions/executeThread.php",
             data: "title=" + title + "&date=" + date + "&question=" + question + "&classid=" + classid,
             cache: false,
             success: function (data) {
                 if (data == 'true') {
-                    window.location = "instructorHome.php";
+                    window.location = "/home/instructor-home";
                 }
                 else {
                     alert('Not enough information');
@@ -68,7 +68,7 @@ function getHwComment()
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
-        url: "../Actions/getHwCommentStudent.php",
+        url: "/Actions/getHwCommentStudent.php",
         data: "hwid=" + hwid + "&classid=" + classid,
         cache: false,
         success: function (data) {
@@ -101,14 +101,14 @@ function hwCommentAdd()
     var username = getParameterByName("username");
     $.ajax({
         type: "POST",
-        url: "../Actions/getHwCommentInstructor.php",
+        url: "/Actions/getHwCommentInstructor.php",
         data: "hwid=" + hwid + "&classid=" + classid + "&username=" + username,
         cache: false,
         success: function (data) {
             if (data == false)
             {
                 var html = "<h1>No Comments</h1><br>";
-                html += "<a href=\"hwCommentList.php?hwid=" + hwid + "\" data-ajax=\"false\">Go back to Student List?</a>"
+                html += "<a href=\"/Responders/hwCommentList.php?hwid=" + hwid + "\" data-ajax=\"false\">Go back to Student List?</a>"
                 document.getElementById("demo").innerHTML = html;
                 alert("No Comment");
             }
@@ -122,7 +122,7 @@ function hwCommentAdd()
 
                     html += "&nbsp;&nbsp;&nbsp;&nbsp;" + num + ".&nbsp;" + comment + "<br>";
                 }
-                html += "<a href=\"hwCommentList.php?hwid=" + hwid + "\" data-ajax=\"false\">Go back to Student List?</a>"
+                html += "<a href=\"/Responders/hwCommentList.php?hwid=" + hwid + "\" data-ajax=\"false\">Go back to Student List?</a>"
                 document.getElementById("demo").innerHTML = html;
             }
         }
@@ -145,7 +145,7 @@ function createHwComment()
     {
         $.ajax({
             type: "POST",
-            url: "../Actions/addHwComment.php",
+            url: "/Actions/addHwComment.php",
             data: "comment=" + comment + "&hwid=" + hwid + "&classid=" + classid + "&username=" + username,
             cache: false,
             success: function (data) {
@@ -171,7 +171,7 @@ function hwCommentList()
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
-        url: "../Actions/getStudentCommentList.php",
+        url: "/Actions/getStudentCommentList.php",
         data: "classid=" + classid + "&hwid=" + hwid,
         cache: false,
         async: false,
@@ -186,7 +186,7 @@ function hwCommentList()
                 for (var i = 0; i < data.length; i++)
                 {
                     var username = data[i].username;
-                    html += "<a href=\"hwCommentAdd.php?hwid=" + hwid + "&username=" + username + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + username + "</a><br>";
+                    html += "<a href=\"/Responders/hwCommentAdd.php?hwid=" + hwid + "&username=" + username + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\">" + username + "</a><br>";
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -200,7 +200,7 @@ function messageBoardDisplay()
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
-        url: "../Actions/getMessage.php",
+        url: "/Actions/getMessage.php",
         data: "classid=" + classid,
         cache: false,
         async: false,
@@ -219,7 +219,7 @@ function messageBoardDisplay()
                     var username=data[i].userID;
                     var date=data[i].date;
                     
-                    html += "<a href=\"commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Question:" + question +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By:"+username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:"+date +"</a><br>";
+                    html += "<a href=\"/Responders/commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Question:" + question +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By:"+username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:"+date +"</a><br>";
                 }
                 document.getElementById("demo").innerHTML = html;
 
@@ -235,7 +235,7 @@ function commentPage()
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
-        url: "../Actions/getComment.php",
+        url: "/Actions/getComment.php",
         data: "question=" + question + "&questionid=" + questionid + "&classid=" + classid,
         cache: false,
         success: function (data) {
@@ -274,7 +274,7 @@ function commentPageButton()
     {
     $.ajax({
         type: "POST",
-        url: "../Actions/executeCommenting.php",
+        url: "/Actions/executeCommenting.php",
         data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid ,
         cache: false,
         success: function (data) {

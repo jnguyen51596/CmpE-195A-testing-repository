@@ -6,21 +6,21 @@ $( document ).ready(function() {
 });
 
 function takeQuiz() {
-	window.location.href = "../Responders/displayQuiz.php";
+	window.location.href = "/home/student-home/quiz";
 }
 function makeMessage() {
-	window.location.href = "../Responders/createMessageThread.php";
+	window.location.href = "/home/student-home/make-a-thread";
 }
 function messageBoard() {
-	window.location.href = "../Responders/messageBoard.php";
+	window.location.href = "/home/student-home/message-board";
 }
 function viewAnnouncements() {
-	window.location.href = "../Responders/viewAnnouncements.php";
+	window.location.href = "/home/student-home/announcements";
 }
 function grades() {
-	window.location.href = "../Responders/viewGrades.php";
+	window.location.href = "/home/student-home/grades";
 }
 function assignments() {
-	window.location.href = "../Responders/assignments.php";
+	window.location.href = "/home/student-home/assignments";
 }
 
