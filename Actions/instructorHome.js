@@ -38,12 +38,12 @@ function deleteQuiz() {
 }
 
 function viewSubmissions() {
-	window.location.href = "../Responders/submissions.php";
+	window.location.href = "/Responders/submissions.php";
 }
 
 function lockAndUnlockQuiz() {
-	window.location.href = "../Responders/lockAndUnlockQuiz.php";
+	window.location.href = "/Responders/lockAndUnlockQuiz.php";
 }
 function module() {
-	window.location.href = "../Responders/customizeModuleDisplayInstructor.php";
+	window.location.href = "/Responders/customizeModuleDisplayInstructor.php";
 }
