@@ -272,7 +272,7 @@ function commentPageButton()
     {
         $.ajax({
             type: "POST",
-            url: "../Actions/executeCommenting.php",
+            url: "/Actions/executeCommenting.php",
             data: "comment=" + comment + "&question=" + question + "&questionid=" + questionid + "&classid=" + classid,
             cache: false,
             success: function (data) {
@@ -302,14 +302,14 @@ function submitModuleAdd()
     {
         $.ajax({
             type: "POST",
-            url: "../Actions/executeModuleAdd.php",
+            url: "/Actions/executeModuleAdd.php",
             data: "classID=" + classID + "&moduleNumber=" + moduleNumber + "&title=" + title,
             cache: false,
             success: function (data) {
                 if (data == true)
                 {
                     alert("Module Created");
-                    window.location = '../Responders/customizeModuleDisplayInstructor.php';
+                    window.location = '/home/instructor-home/create-and-view-modules';
                 }
                 else
                 {
@@ -325,7 +325,7 @@ function displayModule1()
     var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
-        url: "../Actions/getModule.php",
+        url: "/Actions/getModule.php",
         data: "classid=" + classid,
         cache: false,
         success: function (data) {
@@ -348,7 +348,7 @@ function displayModule1()
                     }
                     else
                     {
-                        html += "<a href=\"customizeModuleStudent.php?moduleid=" + moduleid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
+                        html += "<a onclick='goToStudentModule(" + moduleid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
                     }
                 }
                 document.getElementById("demo").innerHTML = html;
@@ -358,12 +358,17 @@ function displayModule1()
     });
 }
 
+function goToStudentModule(moduleid) {
+    sessionStorage.setItem('moduleid', moduleid);
+    window.location = '/home/student-home/modules/view';
+}
+
 function displayModule2()
 {
     var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
-        url: "../Actions/getModule.php",
+        url: "/Actions/getModule.php",
         data: "classid=" + classid,
         cache: false,
         success: function (data) {
@@ -371,7 +376,7 @@ function displayModule2()
             {
                 alert("Create Module First");
                 var html = "";
-                html += "<a href=\"../Responders/customizeModuleAdd.php\">Create Module</a>";
+                html += "<a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
                 document.getElementById("demo").innerHTML = html;
             }
             else
@@ -389,10 +394,10 @@ function displayModule2()
                     }
                     else
                     {
-                        html += "<a href=\"customizeModuleInstructor.php?moduleid=" + moduleid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
+                        html += "<a onclick='goToInstructorModule(" + moduleid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
                     }
                 }
-                html += "<br><a href=\"customizeModuleAdd.php\">Create Module</a>";
+                html += "<br><a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
                 document.getElementById("demo").innerHTML = html;
 
             }
@@ -400,13 +405,18 @@ function displayModule2()
     });
 }
 
+function goToInstructorModule(moduleid) {
+    sessionStorage.setItem('moduleid', moduleid);
+    window.location = '/home/instructor-home/create-and-view-modules/modify-module';
+}
+
 function moduleDescription()
 {
-    var moduleid = getParameterByName("moduleid");
+    var moduleid = sessionStorage.getItem("moduleid");
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
-        url: "../Actions/getModuleDescription.php",
+        url: "/Actions/getModuleDescription.php",
         data: "moduleid=" + moduleid + "&classid=" + classid,
         cache: false,
         success: function (data) {
@@ -434,7 +444,7 @@ function moduleDescription()
 
 function modulePageButton()
 {
-    var moduleid = getParameterByName("moduleid");
+    var moduleid = sessionStorage.getItem('moduleid');
     var description = $("#description").val();
     var classid = sessionStorage.getItem('courseID');
     if (description == "")
@@ -445,7 +455,7 @@ function modulePageButton()
     {
         $.ajax({
             type: "POST",
-            url: "../Actions/executeModuleDescription.php",
+            url: "/Actions/executeModuleDescription.php",
             data: "description=" + description + "&moduleid=" + moduleid + "&classid=" + classid,
             cache: false,
             success: function (data) {

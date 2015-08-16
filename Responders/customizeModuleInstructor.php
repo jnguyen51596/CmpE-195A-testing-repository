@@ -31,12 +31,13 @@
             <div data-role="header" data-theme="b" >
                 <h1>Module</h1>
             </div>
-
-            <div role="main" id="demo" class="ui-content">
-            </div><!-- /content -->
             <?php
                 require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
+            
+            <div role="main" id="demo" class="ui-content">
+            </div><!-- /content -->
+            
             <br>
             <br>
             <br>

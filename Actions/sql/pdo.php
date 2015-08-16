@@ -661,10 +661,10 @@ function getModuleDescription($moduleid, $classid) {
 
 function addModuleDescription($description,$moduleid1,$classid1) {
     global $con;
-    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
+    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('1','$moduleid1','$classid1','$description');";
     $q = $con->prepare($sql);
     $q->execute();
-    echo 'true';
+    return 'true';
 }
 
 function getQuizName($class, $quizID){

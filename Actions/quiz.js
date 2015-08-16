@@ -18,7 +18,7 @@ function displayQuiz4()
             {
                 var html = "";
                 var classid = data[0].classID;
-                html += "<br><form action=\"/Actions/submitLock.php\" method=\"post\">" +
+                html += "<br><form action='/Actions/submitLock.php' method='post'>" +
                         "<input type=\"hidden\" name=\"classid\" value=" + classid + ">";
                 for (var i = 0; i < data.length; i++)
                 {
@@ -49,7 +49,7 @@ function displayQuiz4()
                 }
                 html += "<br><input type=\"submit\" value=\"Submit\">";
                 html += "</form>";
-                html += "<br><a href=\"createQuiz.php\">Create Quiz</a>";
+                html += "<br><a href='/home/instructor-home/create-quiz/create-a-new-quiz'>Create Quiz</a>";
                 $("#demo").append(html).enhanceWithin();
 
             }

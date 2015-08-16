@@ -2,7 +2,7 @@ $(document).ready(function()
 {
 	$.ajax({
 		type: "POST",
-		url: "../Actions/viewSubmissions.php",
+		url: "/Actions/viewSubmissions.php",
         data: {courseID: sessionStorage.getItem("courseID")},
 		success: function(data) {
 					$('#list').append(data);

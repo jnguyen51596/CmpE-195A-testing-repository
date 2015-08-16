@@ -24,6 +24,6 @@ function assignments() {
 	window.location.href = "/home/student-home/assignments";
 }
 function module() {
-	window.location.href = "/Responders/customizeModuleDisplayStudent.php";
+	window.location.href = "/home/student-home/modules";
 }
 
