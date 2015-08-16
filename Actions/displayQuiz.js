@@ -13,13 +13,17 @@ function displayQuiz1()
             }
             else
             {
+                alert("Some Quizes might be locked");
                 var html = "";
                 for (var i = 0; i < data.length; i++)
                 {
                     //var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a onclick='takeQuiz(" + quizid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    var lock = data[i].lock;
+                    if (lock != '1') {
+                        html += "<a onclick='takeQuiz(" + quizid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                    }
                 }
                 document.getElementById("demo").innerHTML = html;
 
