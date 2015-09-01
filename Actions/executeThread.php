@@ -7,7 +7,7 @@
  */
 session_start();
 $title=$_POST['title'];
-$date = new DateTime(null, new DateTimeZone('America/New_York'));
+$date = new DateTime(null, new DateTimeZone('America/Los_Angeles'));
 $date->getTimestamp()+$date->getOffset();
 $result=$date->format('Y-m-d');
 $question=$_POST['question'];

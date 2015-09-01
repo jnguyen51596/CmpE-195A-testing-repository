@@ -112,19 +112,51 @@ function setGrades($memberID, $assignmentid, $score, $feedback) {
     $q->execute();
 }
 
-function addQuiz($classID, $quizID, $title) {
+function checkQuiz($classID, $quizID) {
     global $con;
     $sql = "Select * FROM totalquiz where classID='$classID' and quizID='$quizID';";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) {
-        $sql = "INSERT INTO `totalquiz`(`classID`, `quizID`, `title`, `lock`) VALUES ('$classID','$quizID','$title','0');";
-        $con->exec($sql);
-        echo "true";
+        return 1;
     } else {
-        echo "false";
+        return 0;
     }
+}
+
+function addQuiz($classID, $quizID, $title, $date) {
+    global $con;
+    $sql = "INSERT INTO `totalquiz`(`classID`, `quizID`, `title`, `lock`,`date`) VALUES ('$classID','$quizID','$title','0','$date');";
+    $con->exec($sql);
+}
+
+function getDBDate($classID, $quizID) {
+    global $con;
+    $sql = "Select * FROM totalquiz where classID='$classID' and quizID='$quizID';";
+    $q = $con->prepare($sql);
+    $q->execute(array(':classID' => $classID));
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 1) {
+        foreach ($rows as $value) {
+            $avalue1 = $value['lock'];
+            $avalue2 = $value['date'];
+            if ($avalue1 == 0) {    
+                return $avalue2;
+            } else {
+                return 0;
+            }
+        }
+    } else {
+        return 0;
+    }
+}
+
+function updateLock($classID, $quizID) {
+    global $con;
+    $sql = "UPDATE `totalquiz` SET `lock`=1 WHERE quizID='$quizID' and classID='$classID'";
+    $q = $con->prepare($sql);
+    $q->execute();
 }
 
 function addQuizQuestion1($classID, $quizID, $question, $answer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3) {
@@ -607,11 +639,11 @@ function getQuizTotal($classID) {
     }
 }
 
-function updateQuizTotal($data,$classID) {
+function updateQuizTotal($data, $classID) {
     global $con;
     foreach ($data as $result) {
-        $quizID=$result["quizid"];
-        $toggle=$result["toggle"];
+        $quizID = $result["quizid"];
+        $toggle = $result["toggle"];
         $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quizID='$quizID' and classID='$classID'";
         $q = $con->prepare($sql);
         $q->execute();
@@ -659,30 +691,13 @@ function getModuleDescription($moduleid, $classid) {
     }
 }
 
-function addModuleDescription($description,$moduleid1,$classid1) {
+function addModuleDescription($description, $moduleid1, $classid1) {
     global $con;
-    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('1','$moduleid1','$classid1','$description');";
+    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
     $q = $con->prepare($sql);
     $q->execute();
-    return 'true';
+    echo 'true';
 }
 
-function getQuizName($class, $quizID){
-    global $con;
-    $sql = "SELECT title FROM totalquiz WHERE classID = '$class' and quizID = '$quizID'";
-    $q = $con->prepare($sql);
-    $q->execute();
-    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
-}
-
-function getClassName($classID){
-    global $con;
-    $sql = "SELECT name FROM course WHERE courseID = '$classID'";
-    $q = $con->prepare($sql);
-    $q->execute();
-    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
-}
 
 ?>

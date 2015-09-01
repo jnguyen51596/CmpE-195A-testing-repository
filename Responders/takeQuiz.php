@@ -19,8 +19,8 @@
         
         <script src="/Actions/takeQuiz.js"></script>
         <script src="../Actions/notifications.js"></script>
-
-
+	<script src="../Actions/javascriptFunction.js"></script>
+	<script src="../Actions/quizLock.js"></script>
     </head>
 
     <body onload="getQuizQuestion1()">
