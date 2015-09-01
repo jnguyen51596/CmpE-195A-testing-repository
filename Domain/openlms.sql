@@ -440,7 +440,8 @@ CREATE TABLE `totalquiz` (
   `classID` int(11) NOT NULL,
   `quizID` int(11) NOT NULL,
   `title` varchar(20) NOT NULL,
-  `lock` tinyint(1) NOT NULL
+  `lock` tinyint(1) NOT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -450,7 +451,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1, "First Quiz",0),(2,1, "Second Quiz",0);
+INSERT INTO `totalquiz` VALUES (1,1, "First Quiz",0,'2015-01-01 01:11:00'),(2,1, "Second Quiz",0,'2015-01-01 01:11:00');
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
