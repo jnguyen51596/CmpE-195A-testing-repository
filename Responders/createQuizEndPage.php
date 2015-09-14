@@ -24,7 +24,7 @@
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
         <script src="/Actions/createQuizEndPage.js"></script>
-        <script src="../Actions/notifications.js"></script>
+        <script src="/Actions/notifications.js"></script>
 
     </head>
 
