@@ -39,7 +39,7 @@ function getInfo(t, i) {
     
     $.ajax({
         type: "POST",
-        url: "../Actions/notificationInsert.php",
+        url: "/Actions/notificationInsert.php",
         data: "type=" + type + "&item=" + item + "&classID=" + className,
         cache: false,
         success: function (data) {
@@ -58,7 +58,7 @@ function getInfo(t, i) {
 function getQuizName(classid, quizID) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getQuizName.php",
+        url: "/Actions/getQuizName.php",
         data: "class=" + classid + "&quizID=" + quizID,
         async: false,
     }).responseText;
@@ -68,7 +68,7 @@ function getQuizName(classid, quizID) {
 function getClassName(classid) {
     return $.ajax({
         type: "POST",
-        url: "../Actions/getClassName.php",
+        url: "/Actions/getClassName.php",
         data: "class=" + classid,
         async: false,
     }).responseText;
@@ -78,7 +78,7 @@ function getClassName(classid) {
 function getTeacher() {
     $.ajax({
         type: "POST",
-        url: "../Actions/getTeacher.php",
+        url: "/Actions/getTeacher.php",
         data: "class=" + classID,
         dataType: "json",
         success: function (data) {
@@ -91,7 +91,7 @@ function getTeacher() {
 function getStudentList() {
     $.ajax({
         type: "POST",
-        url: "../Actions/getStudents.php",
+        url: "/Actions/getStudents.php",
         data: "class=" + classID,
         dataType: "json",
         success: function (data) {
@@ -105,7 +105,7 @@ function insertRecipients(data) {
         memberID = data.memberID;
         $.ajax({
             type: "POST",
-            url: "../Actions/insertRecipients.php",
+            url: "/Actions/insertRecipients.php",
             data: "notificationID=" + notificationID + "&memberID=" + memberID,
             cache: false,
             success: function (data) {
@@ -125,7 +125,7 @@ function getNotifications() {
 
     return $.ajax({
         type: "POST",
-        url: "../Actions/getNotifications.php",
+        url: "/Actions/getNotifications.php",
         dataType: "json",
         success: function (data) {
             formatData(data);

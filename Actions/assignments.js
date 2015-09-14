@@ -51,7 +51,7 @@ function submitAssignment(assignmentID) {
 	
 	$.ajax({
         type: "POST",
-		url: "../Actions/submitAssignment.php",
+		url: "/Actions/submitAssignment.php",
 		data: {assignmentID: assignmentID},
         async: false
     });

@@ -6,7 +6,7 @@ window.onload = function ()
     var quizID = sessionStorage.getItem('quizID');
     $.ajax({
         type: "POST",
-        url: "../Actions/lockQuizTime.php",
+        url: "/Actions/lockQuizTime.php",
         data: "classID=" + classID + "&quizID=" + quizID,
         cache: false,
         success: function (data) {

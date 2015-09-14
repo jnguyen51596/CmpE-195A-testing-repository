@@ -48,15 +48,8 @@ function formatData(data) {
 	html += "</select><button onclick='getCourseHomepage()'>Go to Course Homepage</button>";
 	$('#results').append(html).trigger('create');
 }
-/*
-function editProfile() {
-	window.location.href = "/Responders/editProfile.php";
-}
 
-function viewProfile() {
-	window.location.href = "/Responders/profile.php";
-}
-*/
+// TODO: replace URL
 function viewNewAnnouncements() {
 	window.location.href = "/Responders/viewNewAnnouncements.php";
 }
@@ -84,6 +77,13 @@ function getCourseHomepage() {
 }
 
 function viewNotifications(){
-    	window.location.href = "notifications.php";
+    	window.location.href = "/home/notifications";
+}
 
+function viewProfile(){
+    	window.location.href = "/home/view-profile";
+}
+
+function editProfile(){
+    	window.location.href = "/home/edit-profile";
 }
