@@ -20,7 +20,10 @@ function displayQuiz3()
                     var classid = data[i].classID;
                     var quizid = data[i].quizID;
                     var title = data[i].title;
-                    html += "<a onclick='deleteQuiz(" + quizid + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quizid + ": " + title + "</a><br>";
+                    var date=data[i].date;
+                    html += "<a onclick='deleteQuiz(" + quizid + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quizid + ": " + title +  "Due Date: "+date+"</a>";
+                    html += "<a align=\"right\" onclick=\"startTimer('"+date+"', document.querySelector('#test"+quizid+"'))\">Show Countdown</a>";
+                    html +="<div  id=\"test"+quizid+"\"></div><br>";
                 }
             }
             document.getElementById("demo").innerHTML = html;

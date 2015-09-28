@@ -699,5 +699,24 @@ function addModuleDescription($description, $moduleid1, $classid1) {
     echo 'true';
 }
 
+function addQuizGrade($studentid, $assignmentid, $points) {
+    global $con;
+    $sql = "INSERT INTO `grade`(`memberID`, `assignmentID`, `score`, `feedback`) VALUES ('$studentid','$assignmentid','$points','') ";
+    $q = $con->prepare($sql);
+    $q->execute();
+}
+
+function getQuizAssignmentNumber($classid, $quizid) {
+    global $con;
+    $sql = " SELECT assignmentID FROM assignment WHERE courseID = '$classid' and title='$quizid'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        echo false;
+    } else {
+        return $rows;
+    }
+}
 
 ?>
