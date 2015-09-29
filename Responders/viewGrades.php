@@ -32,6 +32,7 @@ and open the template in the editor.
 		
 		
         <script src="/Actions/grades.js"></script>
+        <script src="/Actions/gradeTrend.js"></script>
 
     </head>
     <body>
@@ -45,19 +46,37 @@ and open the template in the editor.
         <br>
         
         <div>
-            <label>Grades</label>
+            <label id="gradeStatus">Grades</label>
             <br>
         </div>
    
         <script>
             window.onload=getGrades();
-
         </script>
         
         <div id="results" class="ui-content">
             You do not have any grades for this class yet.
 
 	</div>
+
+
+    <!-- start trend -->
+        
+    <div id="total-points" >
+    </div>
+    
+    <div id="two-week-points" >  
+    </div>
+    
+    <div id="result" >  
+    </div>
+    
+    <script type="text/javascript">
+        displayTrend();
+    </script>
+
+    <!-- end trend -->
+
 	</div>
     </body>
 </html>

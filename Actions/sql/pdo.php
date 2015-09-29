@@ -105,9 +105,9 @@ function getGrades($courseID) {
 function setGrades($memberID, $assignmentid, $score, $feedback) {
     global $con;
     $sql = "UPDATE grade 
-                SET grade.score ='$score', grade.feedback = '$feedback'
+                SET grade.score ='$score', grade.feedback = '$feedback', grade.timestamp = CURRENT_TIMESTAMP
                 WHERE assignmentID = '$assignmentid'
-				AND memberID = $memberID";
+                AND memberID = $memberID";
     $q = $con->prepare($sql);
     $q->execute();
 }
@@ -368,7 +368,7 @@ function getStudentCommentList($classID, $hwid) {
 
 function getSpecificGrades($memberID, $courseID) {
     global $con;
-    $sql = "SELECT title, score, total, feedback 
+    $sql = "SELECT title, score, total, feedback, timestamp
         FROM grade JOIN assignment ON grade.assignmentID=assignment.assignmentID 
         WHERE memberID='$memberID' AND courseID='$courseID'";
 
@@ -376,7 +376,7 @@ function getSpecificGrades($memberID, $courseID) {
     $q->execute();
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
-        echo 'no grades';
+        echo 'no grades to display ';
         return 0;
     } else {
         return $rows;
