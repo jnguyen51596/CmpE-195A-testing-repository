@@ -202,5 +202,24 @@ function submitFinishQuiz()
         }
     }
     alert(points);
-    window.location="/home/student-home";
+    var classID = sessionStorage.getItem('courseID');
+    var quizid = sessionStorage.getItem('quizid');
+    $.ajax({
+            type: "POST",
+            url: "/Actions/addQuizGrade.php",
+            data: "classid=" + classID + "&quizid="+ quizid+ "&points="+points,
+            cache: false,
+            success: function (data) {
+                if (data.indexOf("true") > -1)
+                {
+                    alert("Quiz Grade added");
+                    window.location="/home/student-home";
+                }
+                else
+                {
+                    alert("Quiz Grade not added");
+                }
+            }
+        });
+    
 }

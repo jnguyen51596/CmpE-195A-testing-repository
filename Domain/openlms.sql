@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+CREATE DATABASE  IF NOT EXISTS `openlms` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `openlms`;
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: localhost    Database: openlms
+-- Host: 127.0.0.1    Database: openlms
 -- ------------------------------------------------------
--- Server version	5.6.23-log
+-- Server version	5.6.26-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,11 +20,6 @@
 --
 -- Table structure for table `announcement`
 --
-DROP DATABASE IF EXISTS `openlms`;
-CREATE DATABASE `openlms`;
-
-USE openlms;
-
 
 DROP TABLE IF EXISTS `announcement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -46,7 +43,7 @@ CREATE TABLE `announcement` (
 
 LOCK TABLES `announcement` WRITE;
 /*!40000 ALTER TABLE `announcement` DISABLE KEYS */;
-INSERT INTO `announcement` VALUES (1,'Turn this in by Saturday',2,1);
+INSERT INTO `announcement` VALUES (1,0,2,'1');
 /*!40000 ALTER TABLE `announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +94,7 @@ CREATE TABLE `assignment` (
   KEY `assignment_member_idx` (`authorID`),
   CONSTRAINT `assignment_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `assignment_member` FOREIGN KEY (`authorID`) REFERENCES `member` (`memberID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +103,7 @@ CREATE TABLE `assignment` (
 
 LOCK TABLES `assignment` WRITE;
 /*!40000 ALTER TABLE `assignment` DISABLE KEYS */;
-INSERT INTO `assignment` VALUES (1,3,2,'Homework 1',100,NULL,'Due 4/8/15');
+INSERT INTO `assignment` VALUES (1,3,2,'Homework 1',100,NULL,'Due 4/8/15'),(2,5,4,'HW 1',100,'2015-04-04 12:00:00','wipe dat ass clean, son!!!');
 /*!40000 ALTER TABLE `assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +174,7 @@ CREATE TABLE `course` (
   `suffix` char(4) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +183,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'CMPE','195A','Senior Design Project I'),(2,'SE','172','Enterprise Software Platforms'),(3,'CS','166','Information Security'),(4,'KIN','24A','Beginning Bowling');
+INSERT INTO `course` VALUES (1,'CMPE','195A','Senior Design Project I'),(2,'SE','172','Enterprise Software Platforms'),(3,'CS','166','Information Security'),(4,'KIN','24A','Beginning Bowling'),(5,'POOP','101','Poop');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,6 +212,7 @@ CREATE TABLE `courseinstructor` (
 
 LOCK TABLES `courseinstructor` WRITE;
 /*!40000 ALTER TABLE `courseinstructor` DISABLE KEYS */;
+INSERT INTO `courseinstructor` VALUES (4,5);
 /*!40000 ALTER TABLE `courseinstructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,8 +334,9 @@ CREATE TABLE `member` (
   `lastName` varchar(45) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
   `pass` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`memberID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`memberID`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +345,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (4,'quiqui','quiqui','quiqui','quiqui');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -378,6 +378,54 @@ INSERT INTO `messagethread` VALUES (0,'0000-00-00','','','',1),(1,'0000-00-00','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `moduledescription`
+--
+
+DROP TABLE IF EXISTS `moduledescription`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `moduledescription` (
+  `order` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `classID` int(11) NOT NULL,
+  `description` varchar(999) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `moduledescription`
+--
+
+LOCK TABLES `moduledescription` WRITE;
+/*!40000 ALTER TABLE `moduledescription` DISABLE KEYS */;
+/*!40000 ALTER TABLE `moduledescription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `modulelist`
+--
+
+DROP TABLE IF EXISTS `modulelist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `modulelist` (
+  `classID` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `lock` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `modulelist`
+--
+
+LOCK TABLES `modulelist` WRITE;
+/*!40000 ALTER TABLE `modulelist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `modulelist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `multiplechoice`
 --
 
@@ -403,6 +451,56 @@ LOCK TABLES `multiplechoice` WRITE;
 /*!40000 ALTER TABLE `multiplechoice` DISABLE KEYS */;
 INSERT INTO `multiplechoice` VALUES (1,1,'What color is the sky','blue','orange','green','yello');
 /*!40000 ALTER TABLE `multiplechoice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notificationrecipients`
+--
+
+DROP TABLE IF EXISTS `notificationrecipients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificationrecipients` (
+  `notificationID` int(11) DEFAULT NULL,
+  `memberID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificationrecipients`
+--
+
+LOCK TABLES `notificationrecipients` WRITE;
+/*!40000 ALTER TABLE `notificationrecipients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notificationrecipients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL,
+  `first` varchar(255) DEFAULT NULL,
+  `last` varchar(255) DEFAULT NULL,
+  `item` varchar(255) DEFAULT NULL,
+  `classID` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -451,7 +549,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1, "First Quiz",0,'2015-01-01 01:11:00'),(2,1, "Second Quiz",0,'2015-01-01 01:11:00');
+INSERT INTO `totalquiz` VALUES (1,1,'First Quiz',0,'2015-01-01 01:11:00'),(2,1,'Second Quiz',0,'2015-01-01 01:11:00');
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,6 +624,14 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES ('batman','hi','hi','1234'),('asas','asas','ASasa','asas'),('yoyo','hi','hi','1234'),('haha','hi','hi','1234'),('hehe','hi','hi','1234');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'openlms'
+--
+
+--
+-- Dumping routines for database 'openlms'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -536,82 +642,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-25 14:22:02
-DROP TABLE IF EXISTS `moduledescription` ;
-
-CREATE TABLE IF NOT EXISTS `moduledescription` (
-`order` int(11) NOT NULL,
-  `moduleID` int(11) NOT NULL,
-  `classID` int(11) NOT NULL,
-  `description` varchar(999) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
-LOCK TABLES `moduledescription` WRITE;
-/*!40000 ALTER TABLE `moduledescription` DISABLE KEYS */;
-/*!40000 ALTER TABLE `moduledescription` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-DROP TABLE IF EXISTS `modulelist`;
-
-CREATE TABLE IF NOT EXISTS `modulelist` (
-  `classID` int(11) NOT NULL,
-  `moduleID` int(11) NOT NULL,
-  `title` varchar(256) NOT NULL,
-  `lock` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `modulelist` WRITE;
-/*!40000 ALTER TABLE `modulelist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `modulelist` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `notificationrecipients`
---
-
-DROP TABLE IF EXISTS `notificationrecipients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `notificationrecipients` (
-  `notificationID` int(11) DEFAULT NULL,
-  `memberID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `notificationrecipients`
---
-
-LOCK TABLES `notificationrecipients` WRITE;
-/*!40000 ALTER TABLE `notificationrecipients` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notificationrecipients` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `notifications`
---
-
-DROP TABLE IF EXISTS `notifications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `notifications` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) DEFAULT NULL,
-  `first` varchar(255) DEFAULT NULL,
-  `last` varchar(255) DEFAULT NULL,
-  `item` varchar(255) DEFAULT NULL,
-  `classID` varchar(255) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `notifications`
---
-
-LOCK TABLES `notifications` WRITE;
-/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
-UNLOCK TABLES;
+-- Dump completed on 2015-09-16 19:11:14

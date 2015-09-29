@@ -33,9 +33,12 @@ $date = new DateTime();
 $date->setDate($year, $month, $day);
 $date->setTime($hour, $minutes2, $seconds);
 $newDate = $date->format('Y-m-d H:i:s');
+
 $test = checkQuiz($classID, $quiznumber);
+$authorID=$_SESSION['userID'];
 if ($test == 1 && $classID !=0) {
     addQuiz($classID, $quiznumber, $title, $newDate);
+    addAssignment($classID, $authorID, $quiznumber, '100', $newDate, 'quiz'); 
     echo true;
 } else {
     echo false;

@@ -31,6 +31,7 @@ and open the template in the editor.
 	
        
         <script src="/Actions/javascriptFunction.js"></script>
+        <script src="/Actions/moduleFunction.js"></script>
 
     </head>
 

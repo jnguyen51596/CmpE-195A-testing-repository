@@ -53,11 +53,17 @@ function setGrade(memberID, assignmentID, inputIndex) {
 			type: "POST",
 			data: {memberID: memberID, assignmentID: assignmentID, score: score, feedback: feedback},
 			url: "/Actions/setGrades.php",
-			async: false
+			async: false,
+			success: function(data) {
+				document.getElementById('score-' + inputIndex).textContent = score;
+				document.getElementById('feedback-' + inputIndex).textContent = feedback;
+				//updateClass("/Responders/setGrades.php");
+				//refreshClass();
+				//$('#table-2 > tbody:first').find('tr:first').before(data);
+			}
 		});
 		
-		document.getElementById('score-' + inputIndex).textContent = score;
-		document.getElementById('feedback-' + inputIndex).textContent = feedback;
+		
 	}
 }
 
@@ -81,4 +87,22 @@ function getClassList() {
 	            }
 	}
 	return response;
+}
+
+function updateClass(url){
+    $.ajax({
+        url: url,
+        dataType: "HTML",
+        error: function(msg){
+            alert(msg.statusText);
+            return msg;
+        },
+        success: function(html){
+            $("#table-2").html(html);
+        }
+    });
+}
+
+function refreshClass(){
+    updateClass("/Responders/setGrades.php"); //update the class
 }

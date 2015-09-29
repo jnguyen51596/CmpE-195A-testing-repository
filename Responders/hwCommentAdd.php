@@ -26,6 +26,7 @@
 
 
         <script src="/Actions/javascriptFunction.js"></script>
+        <script src="/Actions/hwcommentFunction.js"></script>
 
     </head>
 
