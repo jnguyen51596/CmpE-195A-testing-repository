@@ -6,17 +6,17 @@ var arrayOfAnswers = new Array();
 function getQuizQuestion1()
 {
     var classid = sessionStorage.getItem('courseID') ;
-    var quizid = sessionStorage.getItem('quizid');
+    var quiznumber = sessionStorage.getItem('quiznumber');
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion1.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {
                 counter = 0;
                 counter += 1;
-                getQuizQuestion2(classid, quizid);
+                getQuizQuestion2(classid, quiznumber);
 
             }
             else
@@ -24,43 +24,43 @@ function getQuizQuestion1()
                 var temp = printOutQuiz1(data);
                 if (temp == true)
                 {
-                    getQuizQuestion2(classid, quizid);
+                    getQuizQuestion2(classid, quiznumber);
                 }
             }
         }
     });
 }
-function getQuizQuestion2(classid, quizid)
+function getQuizQuestion2(classid, quiznumber)
 {
 
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion2.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {
                 counter += 1;
-                getQuizQuestion3(classid, quizid);
+                getQuizQuestion3(classid, quiznumber);
             }
             else
             {
                 var temp = printOutQuiz2(data);
                 if (temp == true)
                 {
-                    getQuizQuestion3(classid, quizid);
+                    getQuizQuestion3(classid, quiznumber);
                 }
             }
         }
     });
 }
-function getQuizQuestion3(classid, quizid)
+function getQuizQuestion3(classid, quiznumber)
 {
 
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion3.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {

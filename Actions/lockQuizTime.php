@@ -8,11 +8,11 @@
 session_start();
 include 'sql/pdo.php';
 $classID = $_POST['classID'];
-$quizID = $_POST['quizID'];
+$quiznumber = $_POST['quiznumber'];
 
 date_default_timezone_set('America/Los_Angeles');
 
-$temp = getDBDate($classID, $quizID);
+$temp = getDBDate($classID, $quiznumber);
 if ($temp == 0) {
     echo true;
 } else {
@@ -21,7 +21,7 @@ if ($temp == 0) {
     date_format($currentDate, 'Y-m-d H:i:s');
     //echo date_format($databaseDate, 'Y-m-d H:i:s');
     if ($databaseDate < $currentDate) {
-        updateLock($classID, $quizID);
+        updateLock($classID, $quiznumber);
         echo true;
     } else if ($databaseDate > $currentDate) {
         echo false;

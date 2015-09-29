@@ -3,11 +3,11 @@ window.onload = function ()
 {
     
     var classID = sessionStorage.getItem('courseID');
-    var quizID = sessionStorage.getItem('quizID');
+    var quiznumber = sessionStorage.getItem('quiznumber');
     $.ajax({
         type: "POST",
         url: "/Actions/lockQuizTime.php",
-        data: "classID=" + classID + "&quizID=" + quizID,
+        data: "classID=" + classID + "&quiznumber=" + quiznumber,
         cache: false,
         success: function (data) {
             if (data == true) {

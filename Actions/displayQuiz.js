@@ -18,11 +18,11 @@ function displayQuiz1()
                 for (var i = 0; i < data.length; i++)
                 {
                     //var classid = data[i].classID;
-                    var quizid = data[i].quizID;
+                    var quiznumber = data[i].quiznumber;
                     var title = data[i].title;
                     var lock = data[i].lock;
                     if (lock != '1') {
-                        html += "<a onclick='takeQuiz(" + quizid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quizid + ": " + title + "</a><br>";
+                        html += "<a onclick='takeQuiz(" + quiznumber + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quiznumber + ": " + title + "</a><br>";
                     }
                 }
                 document.getElementById("demo").innerHTML = html;
@@ -32,7 +32,7 @@ function displayQuiz1()
     });
 }
 
-function takeQuiz(quizid) {
-    sessionStorage.setItem('quizid', quizid);
+function takeQuiz(quiznumber) {
+    sessionStorage.setItem('quiznumber', quiznumber);
     window.location = '/home/student-home/quiz/take-quiz';
 }

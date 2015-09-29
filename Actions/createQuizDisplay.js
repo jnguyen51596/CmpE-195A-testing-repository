@@ -17,9 +17,9 @@ function displayQuizSelection()
                 for (var i = 0; i < data.length; i++)
                 {
                     var classid = data[i].classID;
-                    var quizid = data[i].quizID;
+                    var quiznumber = data[i].quiznumber;
                     var title = data[i].title;
-                    html += "<a onclick='editQuiz(" + quizid + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quizid + ": " + title + "</a><br>";
+                    html += "<a onclick='editQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title + "</a><br>";
                 }
             }
             html += "<a href='/home/instructor-home/create-quiz/create-a-new-quiz'>Create Quiz</a>";
@@ -28,7 +28,7 @@ function displayQuizSelection()
     });
 }
 
-function editQuiz(quizid) {
-    sessionStorage.setItem('quizid', quizid);
+function editQuiz(quiznumber) {
+    sessionStorage.setItem('quiznumber', quiznumber);
     window.location = '/home/instructor-home/create-quiz/edit-quiz';
 }

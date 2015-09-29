@@ -24,7 +24,7 @@ function submitQuiz()
     var questionType = "";
     var question = "";
     var answer = "";
-    var quizID = sessionStorage.getItem('quizid');
+    var quiznumber = sessionStorage.getItem('quiznumber');
     var classID =sessionStorage.getItem('courseID') ;
     var incorrectAnswer1 = "";
     var incorrectAnswer2 = "";
@@ -38,7 +38,7 @@ function submitQuiz()
         incorrectAnswer1 = $('#incorrectAnswer1').val();
         incorrectAnswer2 = $('#incorrectAnswer2').val();
         incorrectAnswer3 = $('#incorrectAnswer3').val();
-        if (quizID == "" || question == "" || answer == "" || incorrectAnswer1 == "" || incorrectAnswer2 == "" || incorrectAnswer3 == "")
+        if (quiznumber == "" || question == "" || answer == "" || incorrectAnswer1 == "" || incorrectAnswer2 == "" || incorrectAnswer3 == "")
         {
             alert("Incorrect Submission");
         }
@@ -47,7 +47,7 @@ function submitQuiz()
             $.ajax({
                 type: "POST",
                 url: "/Actions/executeQuizSubmit.php",
-                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question + "&answer=" + answer + "&incorrectAnswer1=" + incorrectAnswer1 + "&incorrectAnswer2=" + incorrectAnswer2 + "&incorrectAnswer3=" + incorrectAnswer3,
+                data: "questionType=" + questionType + "&classID=" + classID + "&quiznumber=" + quiznumber + "&question=" + question + "&answer=" + answer + "&incorrectAnswer1=" + incorrectAnswer1 + "&incorrectAnswer2=" + incorrectAnswer2 + "&incorrectAnswer3=" + incorrectAnswer3,
                 cache: false,
                 success: function (data) {
                     if (data == true)
@@ -76,7 +76,7 @@ function submitQuiz()
             answer = $('#trueFalseChoice-2b').val();
         }
 
-        if (quizID == "" || question == "" || answer == "")
+        if (quiznumber == "" || question == "" || answer == "")
         {
             alert("Incorrect Submission");
         }
@@ -85,7 +85,7 @@ function submitQuiz()
             $.ajax({
                 type: "POST",
                 url: "/Actions/executeQuizSubmit.php",
-                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question + "&answer=" + answer,
+                data: "questionType=" + questionType + "&classID=" + classID + "&quiznumber=" + quiznumber + "&question=" + question + "&answer=" + answer,
                 cache: false,
                 success: function (data) {
                     if (data == true)
@@ -106,7 +106,7 @@ function submitQuiz()
     {
         questionType = $("#radio-choice-h-2c").val();
         question = $('#question-c').val();
-        if (quizID == "" || question == "")
+        if (quiznumber == "" || question == "")
         {
             alert("Incorrect Submission");
         }
@@ -115,7 +115,7 @@ function submitQuiz()
             $.ajax({
                 type: "POST",
                 url: "/Actions/executeQuizSubmit.php",
-                data: "questionType=" + questionType + "&classID=" + classID + "&quizID=" + quizID + "&question=" + question,
+                data: "questionType=" + questionType + "&classID=" + classID + "&quiznumber=" + quiznumber + "&question=" + question,
                 cache: false,
                 success: function (data) {
                     if (data == true)

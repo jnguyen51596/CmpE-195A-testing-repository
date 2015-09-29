@@ -386,7 +386,7 @@ DROP TABLE IF EXISTS `multiplechoice`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `multiplechoice` (
   `classID` int(10) NOT NULL,
-  `quizID` int(10) NOT NULL,
+  `quiznumber` int(10) NOT NULL,
   `question` varchar(700) NOT NULL,
   `answer` varchar(700) NOT NULL,
   `incorrect1` varchar(700) NOT NULL,
@@ -414,7 +414,7 @@ DROP TABLE IF EXISTS `shortanswer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shortanswer` (
   `classID` int(10) NOT NULL,
-  `quizID` int(10) NOT NULL,
+  `quiznumber` int(10) NOT NULL,
   `question` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -438,7 +438,7 @@ DROP TABLE IF EXISTS `totalquiz`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `totalquiz` (
   `classID` int(11) NOT NULL,
-  `quizID` int(11) NOT NULL,
+  `quiznumber` int(11) NOT NULL,
   `title` varchar(20) NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `date` datetime NOT NULL
@@ -486,7 +486,7 @@ DROP TABLE IF EXISTS `truefalse`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `truefalse` (
   `classID` int(10) NOT NULL,
-  `quizID` int(10) NOT NULL,
+  `quiznumber` int(10) NOT NULL,
   `question` varchar(700) NOT NULL,
   `answer` char(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

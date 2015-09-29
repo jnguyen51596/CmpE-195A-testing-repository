@@ -18,9 +18,9 @@ function displayQuiz3()
                 for (var i = 0; i < data.length; i++)
                 {
                     var classid = data[i].classID;
-                    var quizid = data[i].quizID;
+                    var quiznumber = data[i].quiznumber;
                     var title = data[i].title;
-                    html += "<a onclick='deleteQuiz(" + quizid + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quizid + ": " + title + "</a><br>";
+                    html += "<a onclick='deleteQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title + "</a><br>";
                 }
             }
             document.getElementById("demo").innerHTML = html;
@@ -28,7 +28,7 @@ function displayQuiz3()
     });
 }
 
-function deleteQuiz(quizid) {
-    sessionStorage.setItem('quizid', quizid);
+function deleteQuiz(quiznumber) {
+    sessionStorage.setItem('quiznumber', quiznumber);
     window.location="/home/instructor-home/delete-quiz/delete";
 }

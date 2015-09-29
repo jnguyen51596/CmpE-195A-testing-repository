@@ -112,9 +112,9 @@ function setGrades($memberID, $assignmentid, $score, $feedback) {
     $q->execute();
 }
 
-function checkQuiz($classID, $quizID) {
+function checkQuiz($classID, $quiznumber) {
     global $con;
-    $sql = "Select * FROM totalquiz where classID='$classID' and quizID='$quizID';";
+    $sql = "Select * FROM totalquiz where classID='$classID' and quiznumber='$quiznumber';";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -125,15 +125,15 @@ function checkQuiz($classID, $quizID) {
     }
 }
 
-function addQuiz($classID, $quizID, $title, $date) {
+function addQuiz($classID, $quiznumber, $title, $date) {
     global $con;
-    $sql = "INSERT INTO `totalquiz`(`classID`, `quizID`, `title`, `lock`,`date`) VALUES ('$classID','$quizID','$title','0','$date');";
+    $sql = "INSERT INTO `totalquiz`(`classID`, `quiznumber`, `title`, `lock`,`date`) VALUES ('$classID','$quiznumber','$title','0','$date');";
     $con->exec($sql);
 }
 
-function getDBDate($classID, $quizID) {
+function getDBDate($classID, $quiznumber) {
     global $con;
-    $sql = "Select * FROM totalquiz where classID='$classID' and quizID='$quizID';";
+    $sql = "Select * FROM totalquiz where classID='$classID' and quiznumber='$quiznumber';";
     $q = $con->prepare($sql);
     $q->execute(array(':classID' => $classID));
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -152,28 +152,28 @@ function getDBDate($classID, $quizID) {
     }
 }
 
-function updateLock($classID, $quizID) {
+function updateLock($classID, $quiznumber) {
     global $con;
-    $sql = "UPDATE `totalquiz` SET `lock`=1 WHERE quizID='$quizID' and classID='$classID'";
+    $sql = "UPDATE `totalquiz` SET `lock`=1 WHERE quiznumber='$quiznumber' and classID='$classID'";
     $q = $con->prepare($sql);
     $q->execute();
 }
 
-function addQuizQuestion1($classID, $quizID, $question, $answer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3) {
+function addQuizQuestion1($classID, $quiznumber, $question, $answer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3) {
     global $con;
-    $sql = "INSERT INTO multiplechoice(classID,quizID, question, answer, incorrect1, incorrect2, incorrect3) VALUES ('$classID','$quizID','$question', '$answer', '$incorrectAnswer1', '$incorrectAnswer2', '$incorrectAnswer3' );";
+    $sql = "INSERT INTO multiplechoice(classID,quiznumber, question, answer, incorrect1, incorrect2, incorrect3) VALUES ('$classID','$quiznumber','$question', '$answer', '$incorrectAnswer1', '$incorrectAnswer2', '$incorrectAnswer3' );";
     $con->exec($sql);
 }
 
-function addQuizQuestion2($classID, $quizID, $question, $answer) {
+function addQuizQuestion2($classID, $quiznumber, $question, $answer) {
     global $con;
-    $sql = "INSERT INTO truefalse(classID,quizID,question,answer) VALUES ('$classID','$quizID','$question','$answer');";
+    $sql = "INSERT INTO truefalse(classID,quiznumber,question,answer) VALUES ('$classID','$quiznumber','$question','$answer');";
     $con->exec($sql);
 }
 
-function addQuizQuestion3($classID, $quizID, $question) {
+function addQuizQuestion3($classID, $quiznumber, $question) {
     global $con;
-    $sql = "INSERT INTO shortanswer(classID,quizID,question) VALUES ('$classID', '$quizID', '$question');";
+    $sql = "INSERT INTO shortanswer(classID,quiznumber,question) VALUES ('$classID', '$quiznumber', '$question');";
     $con->exec($sql);
 }
 
@@ -443,16 +443,16 @@ function getMessage($classID) {
 
 function getQuiz($classID) {
     global $con;
-    $sql = "SELECT * FROM totalquiz WHERE classID='$classID' ORDER BY quizID;";
+    $sql = "SELECT * FROM totalquiz WHERE classID='$classID' ORDER BY quiznumber;";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
 }
 
-function getQuizQuestion1($classID, $quizID) {
+function getQuizQuestion1($classID, $quiznumber) {
     global $con;
-    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID';";
+    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quiznumber='$quiznumber';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -463,9 +463,9 @@ function getQuizQuestion1($classID, $quizID) {
     }
 }
 
-function getQuizQuestion2($classID, $quizID) {
+function getQuizQuestion2($classID, $quiznumber) {
     global $con;
-    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID';";
+    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quiznumber='$quiznumber';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -476,9 +476,9 @@ function getQuizQuestion2($classID, $quizID) {
     }
 }
 
-function getQuizQuestion3($classID, $quizID) {
+function getQuizQuestion3($classID, $quiznumber) {
     global $con;
-    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID';";
+    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quiznumber='$quiznumber';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -489,9 +489,9 @@ function getQuizQuestion3($classID, $quizID) {
     }
 }
 
-function checkQuizQuestion1($classID, $quizID, $question) {
+function checkQuizQuestion1($classID, $quiznumber, $question) {
     global $con;
-    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $sql = "SELECT * FROM multiplechoice WHERE classID='$classID' AND quiznumber='$quiznumber' AND question='$question';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -502,9 +502,9 @@ function checkQuizQuestion1($classID, $quizID, $question) {
     }
 }
 
-function checkQuizQuestion2($classID, $quizID, $question) {
+function checkQuizQuestion2($classID, $quiznumber, $question) {
     global $con;
-    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $sql = "SELECT * FROM truefalse WHERE classID='$classID' AND quiznumber='$quiznumber' AND question='$question';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -515,9 +515,9 @@ function checkQuizQuestion2($classID, $quizID, $question) {
     }
 }
 
-function checkQuizQuestion3($classID, $quizID, $question) {
+function checkQuizQuestion3($classID, $quiznumber, $question) {
     global $con;
-    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quizID='$quizID' AND question='$question';";
+    $sql = "SELECT * FROM shortanswer WHERE classID='$classID' AND quiznumber='$quiznumber' AND question='$question';";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -528,28 +528,28 @@ function checkQuizQuestion3($classID, $quizID, $question) {
     }
 }
 
-function deleteQuiz1($classID, $quizID, $question) {
+function deleteQuiz1($classID, $quiznumber, $question) {
     global $con;
     $sql = "DELETE FROM multiplechoice 
-            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+            WHERE classID = :classID AND quiznumber = :quiznumber AND question = :question;";
     $q = $con->prepare($sql);
-    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+    $q->execute(array(':classID' => $classID, ':quiznumber' => $quiznumber, ':question' => $question));
 }
 
-function deleteQuiz2($classID, $quizID, $question) {
+function deleteQuiz2($classID, $quiznumber, $question) {
     global $con;
     $sql = "DELETE FROM truefalse 
-            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+            WHERE classID = :classID AND quiznumber = :quiznumber AND question = :question;";
     $q = $con->prepare($sql);
-    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+    $q->execute(array(':classID' => $classID, ':quiznumber' => $quiznumber, ':question' => $question));
 }
 
-function deleteQuiz3($classID, $quizID, $question) {
+function deleteQuiz3($classID, $quiznumber, $question) {
     global $con;
     $sql = "DELETE FROM shortanswer
-            WHERE classID = :classID AND quizID = :quizID AND question = :question;";
+            WHERE classID = :classID AND quiznumber = :quiznumber AND question = :question;";
     $q = $con->prepare($sql);
-    $q->execute(array(':classID' => $classID, ':quizID' => $quizID, ':question' => $question));
+    $q->execute(array(':classID' => $classID, ':quiznumber' => $quiznumber, ':question' => $question));
 }
 
 function getAssignments($courseID) {
@@ -628,7 +628,7 @@ function getTeacher($courseID) {
         
 function getQuizTotal($classID) {
     global $con;
-    $sql = "SELECT quizID FROM totalquiz WHERE classID='$classID' ORDER BY quizID;";
+    $sql = "SELECT quiznumber FROM totalquiz WHERE classID='$classID' ORDER BY quiznumber;";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -642,9 +642,9 @@ function getQuizTotal($classID) {
 function updateQuizTotal($data, $classID) {
     global $con;
     foreach ($data as $result) {
-        $quizID = $result["quizid"];
+        $quiznumber = $result["quiznumber"];
         $toggle = $result["toggle"];
-        $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quizID='$quizID' and classID='$classID'";
+        $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quiznumber='$quiznumber' and classID='$classID'";
         $q = $con->prepare($sql);
         $q->execute();
     }
@@ -699,5 +699,132 @@ function addModuleDescription($description, $moduleid1, $classid1) {
     echo 'true';
 }
 
+function isUserInstructor($userID, $courseID) {
+    global $con;
+    $sql = "select * from courseinstructor  WHERE memberID = :userID AND courseID = :courseID";
+    $q = $con->prepare($sql);
+    $q->execute(array(':userID' => $userID, ':courseID' => $courseID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
+function copyCourse($instructorID, $courseID) {
+    try {
+        global $con;
+        
+        $sql = "INSERT INTO course (`prefix`, `suffix`, `name`) 
+                SELECT `prefix`, `suffix`, `name` FROM course WHERE courseID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+        $newClassID = $con->lastInsertId();
+        //$id now == new class id
+
+        //setting course instructor
+        $sql = "INSERT INTO courseinstructor (memberID, courseID) 
+                VALUES (:instructorID, ".$newClassID.")";
+        $q = $con->prepare($sql);
+        $q->bindParam(':instructorID', $instructorID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over assignments to new class
+        $sql = "INSERT INTO assignment (assignmentID, courseID, authorID, title, total, duedate, description)
+                SELECT assignmentID, ".$newClassID.", authorID, title, total, duedate, description 
+                FROM assignment
+                WHERE courseID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over modules
+        $sql = "INSERT INTO modulelist (`classID`, `moduleID`, `title`, `lock`)
+                SELECT ".$newClassID.", `moduleID`, `title`, `lock` 
+                FROM modulelist
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy moduledescriptions
+        $sql = "INSERT INTO moduledescription (`order`, `moduleID`, `classID`, `description`)
+                SELECT `order`, `moduleID`, ".$newClassID.", `description` 
+                FROM moduledescription
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over multiple choice questions
+        $sql = "INSERT INTO multiplechoice (`classID`, `quiznumber`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3`)
+                SELECT ".$newClassID.", `quiznumber`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3` 
+                FROM multiplechoice
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over short answer questions
+        $sql = "INSERT INTO shortanswer (`classID`, `quiznumber`, `question`)
+                SELECT ".$newClassID.", `quiznumber`, `question` 
+                FROM shortanswer
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over true/false questions
+        $sql = "INSERT INTO truefalse (`classID`, `quiznumber`, `question`, `answer`)
+                SELECT ".$newClassID.", `quiznumber`, `question`, `answer`
+                FROM truefalse
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+
+        //copy over quiz
+        $sql = "INSERT INTO totalquiz (`classID`, `quiznumber`, `title`, `lock`, `date`)
+                SELECT ".$newClassID.", `quiznumber`, `title`, `lock`, `date`
+                FROM totalquiz
+                WHERE classID = :courseID";
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+        
+        //buildAndRunCopyQuery(1, 15, "totalquiz", array("quiznumber", "title", "lock", "date"), "classID");         
+        return "success!";
+    } catch (PDOException $ex) {
+        return "<p>Connection failed</p>";
+    }
+    /*
+    if (count($row) == 1) {
+        $sql = "INSERT INTO course (prefix, suffix, name)
+                VALUES ('$row[prefix]', '$row[suffix]', '$row[name]')";
+    } else {
+        return "error";
+    }*/
+}
+
+//columnNames needs to omit courseID for this funciton to work
+function buildAndRunCopyQuery($oldCourseID, $newCourseID, $tableName, $columnNames, $courseIDFieldName) {
+    global $con;
+
+    $sql = "INSERT INTO ".$tableName." (`".$courseIDFieldName."`";
+    
+    $columnListFormattedWithoutCourseID = "";
+    foreach ($columnNames as $name) {
+        $columnListFormattedWithoutCourseID = $columnListFormattedWithoutCourseID.", `".$name."`";
+    }
+    $sql = $sql.$columnListFormattedWithoutCourseID.") ";
+    $sql = $sql."SELECT ".$newCourseID.$columnListFormattedWithoutCourseID;
+    $sql = $sql." FROM ".$tableName;
+    $sql = $sql." WHERE ".$courseIDFieldName." = :courseID";
+
+    $q = $con->prepare($sql);
+    $q->bindParam(':courseID', $oldCourseID, PDO::PARAM_INT);
+    $q->execute();
+}
 ?>

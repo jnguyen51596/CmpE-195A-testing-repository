@@ -5,17 +5,17 @@ var counter = 0;
 function deleteQuizQuestion1()
 {
     var classid = sessionStorage.getItem('courseID');
-    var quizid = sessionStorage.getItem('quizid');
+    var quiznumber = sessionStorage.getItem('quiznumber');
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion1.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {
                 counter = 0;
                 counter += 1;
-                deleteQuizQuestion2(classid, quizid);
+                deleteQuizQuestion2(classid, quiznumber);
 
             }
             else
@@ -23,45 +23,45 @@ function deleteQuizQuestion1()
                 var temp = deletePrintOutQuiz1(data);
                 if (temp == true)
                 {
-                    deleteQuizQuestion2(classid, quizid);
+                    deleteQuizQuestion2(classid, quiznumber);
                 }
             }
         }
     });
 }
 
-function deleteQuizQuestion2(classid, quizid)
+function deleteQuizQuestion2(classid, quiznumber)
 {
 
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion2.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {
                 counter += 1;
-                deleteQuizQuestion3(classid, quizid);
+                deleteQuizQuestion3(classid, quiznumber);
             }
             else
             {
                 var temp = deletePrintOutQuiz2(data);
                 if (temp == true)
                 {
-                    deleteQuizQuestion3(classid, quizid);
+                    deleteQuizQuestion3(classid, quiznumber);
                 }
             }
         }
     });
 }
 
-function deleteQuizQuestion3(classid, quizid)
+function deleteQuizQuestion3(classid, quiznumber)
 {
 
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion3.php",
-        data: "classid=" + classid + "&quizid=" + quizid,
+        data: "classid=" + classid + "&quiznumber=" + quiznumber,
         success: function (data) {
             if (data == false)
             {
@@ -89,8 +89,8 @@ function submitDelete()
     var arr = new Array();
     var classid = sessionStorage.getItem('courseID');
     arr.push("none&"+classid);
-    var quizid = sessionStorage.getItem('quizid');
-    arr.push("none&"+quizid);
+    var quiznumber = sessionStorage.getItem('quiznumber');
+    arr.push("none&"+quiznumber);
     
     $("input:checkbox[name=checkboxmessage]:checked").each(function () {
         arr.push($(this).val());

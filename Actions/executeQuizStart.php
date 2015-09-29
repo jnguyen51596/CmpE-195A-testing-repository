@@ -3,11 +3,11 @@ session_start();
 include 'sql/pdo.php';
 $title = $_POST['title'];
 $classID = $_POST['classID'];
-$quizID = $_POST['quizNumber'];
+$quiznumber = $_POST['quizNumber'];
 
 //$title='sdfa';
 //$classID='1';
-//$quizID='24';
+//$quiznumber='24';
 
 $month = $_POST['month'];
 $day = $_POST['day'];
@@ -33,9 +33,9 @@ $date = new DateTime();
 $date->setDate($year, $month, $day);
 $date->setTime($hour, $minutes2, $seconds);
 $newDate = $date->format('Y-m-d H:i:s');
-$test = checkQuiz($classID, $quizID);
+$test = checkQuiz($classID, $quiznumber);
 if ($test == 1 && $classID !=0) {
-    addQuiz($classID, $quizID, $title, $newDate);
+    addQuiz($classID, $quiznumber, $title, $newDate);
     echo true;
 } else {
     echo false;

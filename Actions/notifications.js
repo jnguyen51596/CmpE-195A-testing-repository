@@ -27,7 +27,7 @@ function getInfo(t, i) {
     if(type == 0 || type == 1)
     {
         //If its a quiz (assigned or taken)
-        item = getParameterByName("quizid");
+        item = getParameterByName("quiznumber");
         alert(item);
         alert(classID);
         item = getQuizName(classID, item);
@@ -55,11 +55,11 @@ function getInfo(t, i) {
     });
 }
 
-function getQuizName(classid, quizID) {
+function getQuizName(classid, quiznumber) {
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizName.php",
-        data: "class=" + classid + "&quizID=" + quizID,
+        data: "class=" + classid + "&quiznumber=" + quiznumber,
         async: false,
     }).responseText;
 }

@@ -23,14 +23,14 @@ function displayQuiz4()
                 for (var i = 0; i < data.length; i++)
                 {
                     classid = data[i].classID;
-                    var quizid = data[i].quizID;
+                    var quiznumber = data[i].quiznumber;
                     var title = data[i].title;
                     var lock = data[i].lock;
 
                     html += "<div class=\"containing-element\">" +
-                            "<input type=\"hidden\" name=\"quizid-" + quizid + "\" value=" + quizid + ">" +
-                            "<label for=\"toggle-" + quizid + "\">Quiz " + quizid + ": " + title + "</label>" +
-                            "<select name=\"toggle-" + quizid + "\" id=\"toggle-" + quizid + "\" data-role=\"slider\">";
+                            "<input type=\"hidden\" name=\"quiznumber-" + quiznumber + "\" value=" + quiznumber + ">" +
+                            "<label for=\"toggle-" + quiznumber + "\">Quiz " + quiznumber + ": " + title + "</label>" +
+                            "<select name=\"toggle-" + quiznumber + "\" id=\"toggle-" + quiznumber + "\" data-role=\"slider\">";
                     if (lock == '1')
                     {
                         html += "<option value=\"off\">Off</option>" +

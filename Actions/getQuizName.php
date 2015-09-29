@@ -1,8 +1,8 @@
 <?php
     require 'sql/pdo.php';
     $classID = $_POST['class'];
-    $quizID = $_POST['quizID'];
-    $rows = getQuizName($classID, $quizID);
+    $quiznumber = $_POST['quiznumber'];
+    $rows = getQuizName($classID, $quiznumber);
     header('Content-Type: application/json');
     $title = $rows[0]['title'];
     echo $title;

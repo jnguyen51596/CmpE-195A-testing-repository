@@ -44,6 +44,11 @@ function viewSubmissions() {
 function lockAndUnlockQuiz() {
 	window.location.href = "/home/instructor-home/lock-and-unlock-quizes";
 }
+
 function module() {
 	window.location.href = "/home/instructor-home/create-and-view-modules";
+}
+
+function newSection() {
+	window.location.href = "/home/instructor-home/create-a-new-section";
 }
