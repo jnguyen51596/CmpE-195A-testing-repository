@@ -28,8 +28,8 @@ $timeOfDay = $_POST['timeOfDay'];
 $seconds = '00';
 $minutes2 = sprintf('%02d', $minutes);
 
-
-$date = new DateTime();
+$timezone = new DateTimezone('America/Los_Angeles');
+$date = new DateTime("2015-01-01", $timezone);
 $date->setDate($year, $month, $day);
 $date->setTime($hour, $minutes2, $seconds);
 $newDate = $date->format('Y-m-d H:i:s');
