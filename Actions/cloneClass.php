@@ -3,11 +3,13 @@
 	include "sql/pdo.php";
 	$instructorID = $_SESSION['userID'];
 	$courseID = $_POST['courseID'];
+	$instructorID = 4;
+	$courseID = 1;
 	if (isUserInstructor($instructorID, $courseID)) {
 		$id = "No response";
 		$id = copyCourse($instructorID, $courseID);
-		echo $id;
+		echo json_encode("success");
 	} else {
-		echo "Something went wrong :(";	
+		echo json_encode("Something went wrong :(");	
 	}
 ?>
