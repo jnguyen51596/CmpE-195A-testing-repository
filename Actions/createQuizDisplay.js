@@ -25,12 +25,15 @@ function displayQuizSelection()
                     html +="<div  id=\"test"+quiznumber+"\"></div><br>";
                 }
             }
-            html += "<a href='/home/instructor-home/create-quiz/create-a-new-quiz'>Create Quiz</a>";
+            html += "<a onclick='createANewQuiz()'>Create Quiz</a>";
             document.getElementById("demo").innerHTML = html;
         }
     });
 }
 
+function createANewQuiz() {
+    window.location = '/home/instructor-home/create-quiz/create-a-new-quiz';
+}
 function editQuiz(quiznumber) {
     sessionStorage.setItem('quiznumber', quiznumber);
     window.location = '/home/instructor-home/create-quiz/edit-quiz';
