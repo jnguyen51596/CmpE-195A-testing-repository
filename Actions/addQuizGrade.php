@@ -13,6 +13,6 @@ foreach ($rows as $values)
 }
 
 addQuizGrade($studentid,$assignmentid, $points);
-echo true;
+echo "true";
 
 ?>
