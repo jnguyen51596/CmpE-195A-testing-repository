@@ -20,7 +20,7 @@ function formatData(data) {
    
 	$.each(data, function(index, data) {
 		if (data != -1) {
-			html += "<label><b>" + data.title + ":</b>" + data.score + "/" + data.total + "</label><div>" + data.feedback + "</div><br>";	
+			html += "<label><b>" + data.title + ":</b>" + data.score + "/" + data.total + "</label><div><i>" + data.feedback + "</i></div><br>";	
                    
 		}
 	});

@@ -73,7 +73,7 @@ function displayTrend() {
         document.getElementById("gradeStatus").setAttribute("title", "Your grade has been trending up!");
     }
     
-    $('#total-points').append("your total points: " + pointsTag);
-    $('#two-week-points').append("your points over two weeks: " + twoWeekPointsTag);
-    $('#result').append("your result: " + resultTag);
+    // $('#total-points').append("your total points: " + pointsTag);
+    // $('#two-week-points').append("your points over two weeks: " + twoWeekPointsTag);
+    // $('#result').append("your result: " + resultTag);
 }

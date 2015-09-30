@@ -1,7 +1,7 @@
 <?php
-	session_start();
-	include "sql/pdo.php";
+    session_start();
+    include "sql/pdo.php";
 
-	$memberID = $_SESSION['userID'];
-	addGrade($memberID, $_POST['assignmentID'])
+    $memberID = $_SESSION['userID'];
+    addGrade($memberID, $_POST['assignmentID'])
 ?>
