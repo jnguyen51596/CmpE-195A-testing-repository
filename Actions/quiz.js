@@ -49,10 +49,14 @@ function displayQuiz4()
                 }
                 html += "<br><input type=\"submit\" value=\"Submit\">";
                 html += "</form>";
-                html += "<br><a href='/home/instructor-home/create-quiz/create-a-new-quiz'>Create Quiz</a>";
+                html += "<br><a onclick='createANewQuiz2()'>Create Quiz</a>";
                 $("#demo").append(html).enhanceWithin();
 
             }
         }
     });
+}
+
+function createANewQuiz2() {
+    window.location = '/home/instructor-home/create-quiz/create-a-new-quiz';
 }

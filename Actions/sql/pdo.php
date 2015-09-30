@@ -696,7 +696,7 @@ function addModuleDescription($description, $moduleid1, $classid1) {
     $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
     $q = $con->prepare($sql);
     $q->execute();
-    echo 'true';
+    return 1;
 }
 
 function isUserInstructor($userID, $courseID) {

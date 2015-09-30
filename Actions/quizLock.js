@@ -11,7 +11,8 @@ window.onload = function ()
         cache: false,
         success: function (data) {
             if (data == true) {
-                window.location = '/home/student-home/quiz/take-quiz';
+                alert("quiz cannot be taken");
+                window.location = '/home/student-home/quiz';
             }
             
         }

@@ -4,11 +4,11 @@ $moduleid=$_POST['moduleid'];
 $classid=$_POST['classid'];
 
 require 'sql/pdo.php';
-if(addModuleDescription($description,$moduleid,$classid)==true)
+if(addModuleDescription($description,$moduleid,$classid)==1)
 {
-    echo "true";
+    echo true;
 } else {
-	echo "false";
+    echo false;
 }
 
 ?>

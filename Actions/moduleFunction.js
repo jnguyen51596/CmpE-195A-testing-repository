@@ -169,7 +169,7 @@ function modulePageButton()
             data: "description=" + description + "&moduleid=" + moduleid + "&classid=" + classid,
             cache: false,
             success: function (data) {
-                if (data == 'true') {
+                if (data == true) {
                     alert("Description added");
                     window.location.reload();
                 }
