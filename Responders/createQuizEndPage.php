@@ -40,7 +40,7 @@
             <h2>Do you Want to make more Quiz Questions?</h2>
              <div role="main" id="demo">
                  <button class="ui-btn ui-btn-a ui-corner-all" onclick="createAnotherQuestion()">Yes</button>
-                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="getInfo(0,'quiz');">No</button>
+                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="goBackToInstructorHome()">No</button>
             </div><!-- /content -->
         </div><!-- /page -->
     </body>

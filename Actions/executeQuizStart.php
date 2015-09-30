@@ -39,9 +39,9 @@ $authorID=$_SESSION['userID'];
 if ($test == 1 && $classID !=0) {
     addQuiz($classID, $quiznumber, $title, $newDate);
     addAssignment($classID, $authorID, $quiznumber, '100', $newDate, 'quiz'); 
-    echo true;
+    echo "true";
 } else {
-    echo false;
+    echo "false";
 }
 ?>
 
