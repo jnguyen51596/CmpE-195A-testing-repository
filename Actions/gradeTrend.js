@@ -32,13 +32,17 @@ function displayTrend() {
     var cutOffDate = mostRecentDate - (1000 * 60 * 60 * 24 * 7 * 2);
     
     for (var i = 0; i < gradesArray.length; i++) {
-        score += parseInt(gradesArray[i]['score']);
-        total += parseInt(gradesArray[i]['total']);
-        
-        if (new Date(gradesArray[i]['timestamp']).getTime() >= cutOffDate)
+
+        if (gradesArray[i]['score'] != null)
         {
-            twoWeekScore += parseInt(gradesArray[i]['score']);
-            twoWeekTotal += parseInt(gradesArray[i]['total']);
+            score += parseInt(gradesArray[i]['score']);
+            total += parseInt(gradesArray[i]['total']);
+            
+            if (new Date(gradesArray[i]['timestamp']).getTime() >= cutOffDate)
+            {
+                twoWeekScore += parseInt(gradesArray[i]['score']);
+                twoWeekTotal += parseInt(gradesArray[i]['total']);
+            }
         }
     }
     
@@ -50,28 +54,36 @@ function displayTrend() {
     var percentage = parseInt(score) / parseInt(total) * 100
     var twoWeekPercentage = parseInt(twoWeekScore) / parseInt(twoWeekTotal) * 100
     
-    pointsTag += " " + (percentage).toFixed(2);
-    twoWeekPointsTag += " " + (twoWeekPercentage).toFixed(2);
+    // pointsTag += " " + (percentage).toFixed(2);
+    // twoWeekPointsTag += " " + (twoWeekPercentage).toFixed(2);
     
-    if (percentage >= 90) { pointsTag += " A"; }
-    else if (percentage >= 80) { pointsTag += " B"; }
-    else if (percentage >= 70) { pointsTag += " C"; }
-    else if (percentage >= 60) { pointsTag += " D"; }
-    else { pointsTag += " F"; }
+    // if (percentage >= 90) { pointsTag += " A"; }
+    // else if (percentage >= 80) { pointsTag += " B"; }
+    // else if (percentage >= 70) { pointsTag += " C"; }
+    // else if (percentage >= 60) { pointsTag += " D"; }
+    // else { pointsTag += " F"; }
     
     var difference = percentage - twoWeekPercentage;
+    var statsTag = "Your grade over the past 2 weeks is " + twoWeekPercentage + "% while your overall grade is " + percentage + "%. This means your grade ";
     if (difference == 0) {
         document.getElementById("gradeStatus").setAttribute("title", "No change in grade trend!");
+        statsTag += "has not changed.";
     }
     else if (difference >= 5) {
         document.getElementById("gradeStatus").setAttribute("style", "font-weight:bold; color:red");
         document.getElementById("gradeStatus").setAttribute("title", "Your grade has been trending down!");
+        statsTag += "has been trending downwards by ";
     }
     else if (difference <= 5) {
-        resultTag = 'you doing pretty good dude';
         document.getElementById("gradeStatus").setAttribute("style", "font-weight:bold; color:green");
         document.getElementById("gradeStatus").setAttribute("title", "Your grade has been trending up!");
+        statsTag += "has been trending upwards by ";
     }
+
+    
+    statsTag += Math.abs(difference) + "%.";
+
+    $('#trendStats').append(statsTag);
     
     // $('#total-points').append("your total points: " + pointsTag);
     // $('#two-week-points').append("your points over two weeks: " + twoWeekPointsTag);

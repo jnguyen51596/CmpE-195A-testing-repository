@@ -31,12 +31,11 @@ function getRemote() {
 function expandAssignment(assignmentIndex) {
     $('#assignment-info-id').html("");
 
-    var info = '<div class="ui-grid-a">' +
-        '<div class="ui-block-a"> Points: '+ assignmentArray[assignmentIndex]['total'] + '</div>' +
-        '<div class="ui-block-b"><label>Due: '+ assignmentArray[assignmentIndex]['duedate'] + '</label></div>' +
-        '</div>' +
+    var info =
         '<div class="inset">' +
-            '<p> Description: '+ assignmentArray[assignmentIndex]['description'] + '</p>' +
+            '<p>Points: '+ assignmentArray[assignmentIndex]['total'] + '</p>' +
+            '<p>Due: '+ assignmentArray[assignmentIndex]['duedate'] + '<p>' +
+            '<p>Description: '+ assignmentArray[assignmentIndex]['description'] + '</p>' +
             '<form id="data" data-ajax="false" method="POST" enctype="multipart/form-data">' +
             '<input type="file" name="file" id="file" />' +
             '<input type="hidden" name="file-course-id" id="file-course-id" value="" />' +

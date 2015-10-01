@@ -47,8 +47,9 @@ and open the template in the editor.
         
         <div>
             <label id="gradeStatus">Grades</label>
-            <br>
+            <p id="trendStats"></p>
         </div>
+        
    
         <script>
             window.onload=getGrades();
