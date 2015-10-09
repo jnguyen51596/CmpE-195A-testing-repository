@@ -6,15 +6,21 @@ var assignmentArray;
 // grabs assignments and formats it in a list
 function initializeAssignments() {  
     response = getRemote();
-    assignmentArray = JSON.parse(response);
-    
-    var tag = '<ul id="assignment-list-id" data-role="listview" data-inset="true">';
-    for (var i = 0; i < assignmentArray.length; i++) {
-        tag += '<li value=' + assignmentArray[i]['assignmentID'] + '><a href="javascript:void(0);" onclick="expandAssignment(' + i + ');">' + assignmentArray[i]['title'] + '</a></li>';
+    console.log(response);
+
+    if (response != "false") {
+        assignmentArray = JSON.parse(response);
+        var tag = '<ul id="assignment-list-id" data-role="listview" data-inset="true">';
+        for (var i = 0; i < assignmentArray.length; i++) {
+            tag += '<li value=' + assignmentArray[i]['assignmentID'] + '><a href="javascript:void(0);" onclick="expandAssignment(' + i + ');">' + assignmentArray[i]['title'] + '</a></li>';
+        }
+        tag += "</ul>";
+        $('#assignments-id').append(tag);
     }
-    tag += "</ul>";
-    $('#assignments-id').append(tag);
-    
+    else 
+    {
+        $('#assignments-id').append('There are no assignments');
+    }
     
 }
 

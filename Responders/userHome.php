@@ -49,21 +49,9 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
                 <li data-icon='false'><a onclick='viewNotifications()'>Notifications</a></li>
 			</ul>
 		</div>
-		
-		<!--
-		<div data-role="content">
-			<div class="inset">
-				<a href="#panel-id" data-role="button" data-inline='true'><i class='lIcon fa fa-bars'></i></a>
-			</div>
-		</div>
-		-->
 
 		
 		<div role="main" class="ui-content">
-				<!-- moved to panel
-				<button onclick='viewProfile()'>View Profile</button>
-				<button onclick='editProfile()'>Edit Profile</button>
-				-->
 				<?php
 					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
 				?>

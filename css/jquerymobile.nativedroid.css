@@ -130,6 +130,8 @@ width: 91px;
 .ui-flipswitch .ui-btn.ui-flipswitch-on, .ui-flipswitch .ui-flipswitch-off {
 	font-family: Montserrat, "Roboto";
 	font-weight: 300;
+	color: #33B5E5;
+	font-size: 1em;
 }
 
 .ui-flipswitch .ui-btn.ui-flipswitch-on,

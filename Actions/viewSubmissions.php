@@ -18,6 +18,6 @@
         $m->close();
     }
     catch (MongoConnectionException $e) {
-        echo "error: can not connect to mongodb";
+        echo "Error: can not connect to database";
     }
 ?>

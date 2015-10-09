@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
 	<link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
@@ -22,22 +23,26 @@
 <body>
 	
 	<?php
-		$m = new MongoClient();
-		$gridfs = $m -> selectDB('mopenlms') -> getGridFS();
+		
 		// if download is set in url, download the file
 		if (isset($_GET['download'])) {
 			try {
+				$m = new MongoClient();
+				$gridfs = $m -> selectDB('mopenlms') -> getGridFS();
+
 				$filename = $_GET['download'];
 				$file = $gridfs -> findOne(array('filename' => $filename));
 				ob_clean();
 				header('Content-Disposition: attachment; filename="'.$filename.'"');
 				echo $file->getBytes();
+
+				$m->close();
 			}
 			catch (Exception $e) {
 				echo "error";
 			}
 		}
-		$m->close();
+		
 	?>
 	
 	<div data-role="page" data-theme="b">
@@ -91,7 +96,7 @@
 			// // exit(0);
 		// }
 		// catch (MongoConnectionException $e) {
-			// echo "error: can not connect to mongodb";
+			// echo "error: can not connect to mongodb!";
 		// }
 		
 	?>

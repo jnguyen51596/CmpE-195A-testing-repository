@@ -1,7 +1,7 @@
 $( document ).ready(function() {
-	var html = "<h1>";
+	var html = '<div data-role="header" data-theme="b"><h1>';
 	html += sessionStorage.getItem('prefix') + " " + sessionStorage.getItem('suffix') + " " + sessionStorage.getItem('name');
-	html += "</h1>";
+	html += "</h1></div>";
     $('#header').html(html).trigger('create');
 });
 
