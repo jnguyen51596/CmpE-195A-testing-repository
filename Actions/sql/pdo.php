@@ -641,10 +641,11 @@ function getQuizTotal($classID) {
 
 function updateQuizTotal($data, $classID) {
     global $con;
-    foreach ($data as $result) {
-        $quiznumber = $result["quiznumber"];
-        $toggle = $result["toggle"];
-        $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quiznumber='$quiznumber' and classID='$classID'";
+    $length = count($data);
+    for($i=1 ;$i<$length;$i+=2) {
+        $quizID = $data[$i];
+        $toggle = $data[$i+1];
+        $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quizID='$quizID' and classID='$classID'";
         $q = $con->prepare($sql);
         $q->execute();
     }
