@@ -9,13 +9,15 @@ $(document).ready(function ()
             type: "POST",
             url: "/Actions/executeLoginCheck.php",
             data: "name=" + username + "&pwd=" + password,
+            async: true,
             cache: false,
             success: function (data) {
-                if (data == 'true') {
+                if (data === "true") {
+                    alert("Valid");
                     window.location = '/home';
                 }
                 else {
-                    alert("Invalid");
+                    alert("Invalidkk");
                 }
             }
         });

@@ -7,13 +7,15 @@
     $pass1 = $_POST["pass1"];
     $pass2 = $_POST["pass2"];
     
-//    $username = "asas";
-//    $first = "asas";
-//    $last = "ASasa";
-//    $pass1 = "asas";
-//    $pass2 = "Asas";
+    $length = 15;
+    $salt = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $length);
     
-    $check = register($username, $first, $last, $pass1);
+    $combined = $pass1 . $salt;
+
+    $hash = hash('sha256', $combined);
+    
+    $check = register($username, $first, $last, $hash, $salt);
+    
     if ($check == 1) {
     	$_SESSION['username'] = $username;
     }

@@ -237,9 +237,9 @@ function courseGrab($name) {
     return $rows;
 }
 
-function register($username, $first, $last, $pass1) {
+function register($username, $first, $last, $hash, $salt) {
     global $con;
-    $sql = "INSERT INTO member (username, firstName, lastName, pass) VALUES ('$username', '$first', '$last', '$pass1');";
+    $sql = "INSERT INTO member (username, firstName, lastName, hash, salt) VALUES ('$username', '$first', '$last', '$hash', '$salt')";
     $q = $con->prepare($sql);
     $bool = $q->execute();
     return $bool;
@@ -848,4 +848,47 @@ function getQuizAssignmentNumber($classid, $quizid) {
         return $rows;
     }
 }
+function checkUser($username) {
+    global $con;
+    $sql = "SELECT * FROM member WHERE username = '$username'";
+
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkLogin2($username, $password) {
+    global $con;
+
+    $sql = "SELECT salt, hash FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    
+     if (count($rows) == 1) {
+         
+        $salt = $rows[0]['salt'];
+        $storedHash = $rows[0]['hash'];
+        $combined = $password . $salt;
+        $hash = hash('sha256', $combined);
+        
+        if($hash == $storedHash)
+        {
+            return true;
+        }else{
+            return false;
+        }
+        
+    }else{
+        return false;
+    }
+    
+
+}
+
 ?>
