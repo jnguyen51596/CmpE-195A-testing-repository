@@ -4,41 +4,18 @@ include 'sql/pdo.php';
 $title = $_POST['title'];
 $classID = $_POST['classID'];
 $quiznumber = $_POST['quizNumber'];
-
+$duedate = $_POST['duedate'];
 //$title='sdfa';
 //$classID='1';
 //$quiznumber='24';
 
-$month = $_POST['month'];
-$day = $_POST['day'];
-$year = $_POST['year'];
 
-//$month='02';
-//$day='03';
-//$year='2015';
-
-$hour = $_POST['hour'];
-$minutes = $_POST['minutes'];
-$timeOfDay = $_POST['timeOfDay'];
-
-//$hour='12';
-//$minutes='55';
-//$timeOfDay='noon';
-
-$seconds = '00';
-$minutes2 = sprintf('%02d', $minutes);
-
-$timezone = new DateTimezone('America/Los_Angeles');
-$date = new DateTime("2015-01-01", $timezone);
-$date->setDate($year, $month, $day);
-$date->setTime($hour, $minutes2, $seconds);
-$newDate = $date->format('Y-m-d H:i:s');
 
 $test = checkQuiz($classID, $quiznumber);
 $authorID=$_SESSION['userID'];
 if ($test == 1 && $classID !=0) {
-    addQuiz($classID, $quiznumber, $title, $newDate);
-    addAssignment($classID, $authorID, $quiznumber, '100', $newDate, 'quiz'); 
+    addQuiz($classID, $quiznumber, $title, $duedate);
+    addAssignment($classID, $authorID, $quiznumber, '100', $duedate, 'quiz'); 
     echo "true";
 } else {
     echo "false";

@@ -4,6 +4,7 @@ function displayQuizSelection()
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuiz.php",
+        dataType: "json", 
         data: "classid=" + classid,
         cache: false,
         success: function (data) {
@@ -14,16 +15,17 @@ function displayQuizSelection()
             }
             else
             {
-                for (var i = 0; i < data.length; i++)
-                {
-                    var classid = data[i].classID;
-                    var quiznumber = data[i].quiznumber;
-                    var title = data[i].title;
-                    var date=data[i].date;
-                    html += "<a onclick='editQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title +  "Due Date: "+date+"</a>";
+                alert(data);
+                $.each(data, function(index, data) {
+                    var classid = data.classID;
+                    var quiznumber = data.quiznumber;
+                    var title = data.title;
+                    var date = data.date;
+                    html += "<div class='ui-field-contain'><a style='white-space:normal' onclick='editQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title +  " Due Date: "+date+"</a>";
                     html += "<a align=\"right\" onclick=\"startTimer('"+date+"', document.querySelector('#test"+quiznumber+"'))\">Show Countdown</a>";
-                    html +="<div  id=\"test"+quiznumber+"\"></div><br>";
-                }
+                    html +="<div  id=\"test"+quiznumber+"\"></div></div><br>";
+
+                });
             }
             html += "<a onclick='createANewQuiz()'>Create Quiz</a>";
             document.getElementById("demo").innerHTML = html;

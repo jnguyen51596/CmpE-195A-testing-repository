@@ -1,13 +1,14 @@
 
 <?php
+require 'sql/pdo.php';
 
 $class = $_POST['classid'];
-require 'sql/pdo.php';
+$class = 6;
+
 $rows = getQuiz($class);
 if (count($rows) == 0) {
-    echo false;
+    echo json_encode(false);
 } else {
-    header('Content-Type: application/json');
     echo json_encode($rows);
 }
 ?>
