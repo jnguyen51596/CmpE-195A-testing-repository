@@ -22,6 +22,7 @@ and open the template in the editor.
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         -->
 		<link rel="stylesheet" href="/css/font-awesome.min.css" />
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
 		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
@@ -31,33 +32,46 @@ and open the template in the editor.
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
         <script src="/Actions/profile.js"></script>
+        <script src="/Actions/userhome.js"></script>
 
     </head>
     <body>
 	<div data-role="page" data-theme="b">
         <div data-role="header" data-theme="b">
+            <a href="#panel-id" data-ajax="true"><i class='fa fa-bars'></i></a>
             <h1>Mopen</h1>
         </div><!-- /header -->
-        <?php
-            require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
-        ?>
-        <br>
-        
-        
-        <label><b>First Name:</b></label>
+
+        <!-- panel contents -->
+        <div data-role="panel" data-display="push" id="panel-id" data-theme="b">
+            <ul data-role="listview">
+                <li data-icon='false'><a onclick='viewProfile()'><i class='lIcon fa fa-user'></i>View Profile</a></li>
+                <li data-icon='false'><a onclick='editProfile()'>Edit Profile</a></li>
+                <li data-icon='false'><a onclick='viewNotifications()'>Notifications</a></li>
+            </ul>
+        </div>
+
+        <div role="main" class="ui-content">
+            <?php
+                require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
+            ?>
+            <br>
+
+            <label><b>First Name:</b></label>
             <div id="firstName">
                 <script type="text/javascript">
                     getFirstName();
                 </script>
             </div>
-        <label><b>Last Name:</b></label>
+            <label><b>Last Name:</b></label>
             <div id="lastName">
                 <script type="text/javascript">
                     getLastName();
                 </script>
             </div>
-        <br>
-        <input  id="cancel" type="button" value="Home" onclick="home()">
+            <br>
+            <input  id="cancel" type="button" value="Home" onclick="home()">
+        </div>
 	</div>
     </body>
 </html>

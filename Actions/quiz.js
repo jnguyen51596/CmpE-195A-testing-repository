@@ -1,5 +1,7 @@
+var arrayOfQuizId=new Array();
 function displayQuiz4()
 {
+    arrayOfQuizId=new Array();
     var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
@@ -26,7 +28,8 @@ function displayQuiz4()
                     var quiznumber = data[i].quiznumber;
                     var title = data[i].title;
                     var lock = data[i].lock;
-
+                    arrayOfQuizId.push(quizid);
+                    
                     html += "<div class=\"containing-element\">" +
                             "<input type=\"hidden\" name=\"quiznumber-" + quiznumber + "\" value=" + quiznumber + ">" +
                             "<label for=\"toggle-" + quiznumber + "\">Quiz " + quiznumber + ": " + title + "</label>" +
@@ -47,7 +50,7 @@ function displayQuiz4()
                     }
 
                 }
-                html += "<br><input type=\"submit\" value=\"Submit\">";
+                html += "<br><input type=\"submit\" value=\"Submit\" onclick=\"submitLockQuiz()\">";
                 html += "</form>";
                 html += "<br><a onclick='createANewQuiz2()'>Create Quiz</a>";
                 $("#demo").append(html).enhanceWithin();
@@ -59,4 +62,44 @@ function displayQuiz4()
 
 function createANewQuiz2() {
     window.location = '/home/instructor-home/create-quiz/create-a-new-quiz';
+}
+
+function submitLockQuiz()
+{
+    var arr = new Array();
+    var classid = sessionStorage.getItem('courseID');;
+    arr.push(classid);
+    for (var values=0; values<arrayOfQuizId.length;values++)
+    {
+        var aValues=arrayOfQuizId[values];
+        var aQuizid= document.getElementsByName("quizid-".concat(aValues))[0].value;  
+        var aToggle=document.getElementsByName("toggle-".concat(aValues))[0].value;
+        var tempValue=0;
+        if(aToggle=="on")
+        {      
+            tempValue=1;
+        }
+        
+        arr.push(aQuizid);
+        arr.push(tempValue);
+    }
+    
+    $.ajax({
+        type: "POST",
+        url: "../Actions/submitLock.php",
+        data: {jsondata: arr}, 
+        cache: false,
+        success: function (data) {
+            if (data == true) {
+                alert("Lock submitted");
+                window.location = "/home/instructor-home/lock-and-unlock-quizes";
+            }
+            else {
+                alert("Error with Lock");
+                window.location = "/home/instructor-home/lock-and-unlock-quizes";
+            }
+        }
+    });
+
+    return false;
 }

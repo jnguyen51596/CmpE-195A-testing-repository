@@ -8,6 +8,6 @@
 	if ($row != 0) {
 		echo json_encode($row);
 	} else {
-		echo 'no assignments';
+		echo 'false';
 	}
 ?>

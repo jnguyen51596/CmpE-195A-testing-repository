@@ -19,7 +19,7 @@ function editInfo() {
                     alert("Your new passwords are not matching. Fix that!");
                 }else
                 {
-                    alert(first + " " + last);
+                    // alert(first + " " + last);
                         $.ajax({
                             type: "POST",
                             url: "/Actions/editProfile.php",
@@ -28,7 +28,7 @@ function editInfo() {
                             success: function (data) {
                                 if (data == 1) {
                                     alert("Successful Update!");
-                                     window.location = 'userHome.php';
+                                    window.location = '/home';
                                 }
                                 else {
                                     alert(data);

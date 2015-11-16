@@ -19,6 +19,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         -->
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
         <link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
@@ -48,21 +49,9 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
                 <li data-icon='false'><a onclick='viewNotifications()'>Notifications</a></li>
 			</ul>
 		</div>
-		
-		<!--
-		<div data-role="content">
-			<div class="inset">
-				<a href="#panel-id" data-role="button" data-inline='true'><i class='lIcon fa fa-bars'></i></a>
-			</div>
-		</div>
-		-->
 
 		
 		<div role="main" class="ui-content">
-				<!-- moved to panel
-				<button onclick='viewProfile()'>View Profile</button>
-				<button onclick='editProfile()'>Edit Profile</button>
-				-->
 				<?php
 					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
 				?>

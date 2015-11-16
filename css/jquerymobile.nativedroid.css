@@ -71,7 +71,7 @@ width: 91px;
 .ui-listview>li h1, .ui-listview>li h2, .ui-listview>li h3, .ui-listview>li h4, .ui-listview>li h5, .ui-listview>li h6,
 .ui-btn, label.ui-btn,
 .ui-page-theme-b a, html .ui-bar-b a, html .ui-page-theme-b a, html body .ui-group-theme-b a {
-	font-family: "Roboto", sans-serif;
+	font-family: Montserrat, "Roboto", sans-serif;
 	font-weight: 300;
 }
 
@@ -123,12 +123,15 @@ width: 91px;
 	text-align: center;
 	font-size: 25px;
 	font-weight: 100;
+	color: #33B5E5;
 }
 
 .ui-mobile label, div.ui-controlgroup-label,
 .ui-flipswitch .ui-btn.ui-flipswitch-on, .ui-flipswitch .ui-flipswitch-off {
-	font-family: "Roboto";
+	font-family: Montserrat, "Roboto";
 	font-weight: 300;
+	color: #33B5E5;
+	font-size: 1em;
 }
 
 .ui-flipswitch .ui-btn.ui-flipswitch-on,
@@ -317,7 +320,7 @@ img.ui-li-icon {
 	background-color: #020202;	
 }
 .ui-loader h1 {
-	font-family: "Roboto", sans-serif;
+	font-family: Montserrat, "Roboto", sans-serif;
 	font-weight: 300;
 	text-transform: uppercase;
 }

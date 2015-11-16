@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="/css/jquerymobile.nativedroid.css" />
     <link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
@@ -37,15 +38,6 @@
         require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
     ?>
     <br>
-    <!-- classes should populate using courseinstructor table -->
-    <!--
-    <div id="class-dropdown-id" data-role="fieldcontain">
-        <label>Course:</label>
-        <script type="text/javascript">
-            initializeClassDDList();
-        </script>
-    </div>
-    -->
     <div role="main">
         <div class="ui-field-contain">
             <label>Assignment Name:</label>
@@ -81,20 +73,38 @@
     </script>
     
     <?php
-        //if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
-        if (!empty($_FILES['file'])) {
-            $m = new MongoClient();
-            $gridfs = $m->selectDB('mopenlms')->getGridFS();
-            //$courseID = $_POST['course-select-id'];
+
+
+    // if (!empty($_FILES['file'])) {
+    //     $variable = "wtf";
+    // } else {
+    //     $variable = "files name is " . $_FILES['file']['name'];
+    // }
+
+    // if (isset($_FILES['file'])) {
+    // $variable = "files name is " . $_FILES['file']['name'];
+    // } else {
+    //     $variable = "du ma";
+    // }
+    // error_log(print_r($variable, TRUE)); 
+
+        if (isset($_FILES['file'])) {
+        // if ($_FILES['file']['name'] != "") {
+            
                 
             try {
+                $m = new MongoClient();
+            $gridfs = $m->selectDB('mopenlms')->getGridFS();
+            //$courseID = $_POST['course-select-id'];
                 $gridfs->storeUpload('file');
                 //$gridfs->storeUpload('file', array('courseID' => $courseID));
+                $m->close();
             }
                 catch (Exception $e) {
+                    echo "<p>Warning: an error has occured. Your file was not uploaded!</p>";
             }
 
-            $m->close();
+            
         }
     ?>
     </div>

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `openlms` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `openlms`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: openlms
+-- Host: localhost    Database: openlms
 -- ------------------------------------------------------
 -- Server version	5.6.26-log
 
@@ -333,10 +331,11 @@ CREATE TABLE `member` (
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
-  `pass` varchar(45) DEFAULT NULL,
+  `hash` varchar(1000) DEFAULT NULL,
+  `salt` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`memberID`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -345,7 +344,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (4,'quiqui','quiqui','quiqui','quiqui');
+INSERT INTO `member` VALUES (4,'quiqui','quiqui','quiqui',NULL,NULL),(7,'clifford','chan','cpc1992',NULL,NULL),(8,'d','d','d','e958cd6cfd7cab76d57fd5492a24dd151aae02bf72480222bb4e5014135eb872','gboruezh30a81qi'),(12,'j','j','cpc1993','352bae138835ae8101710393e1f459f57fa079113e42b2631e39c5ee012001e5','h8tiv2e7rb35c4u'),(13,'k','k','k','9896aca6078e068645ee274c25cb860dc1108853a0c36d8ea1fca8b406b346e8','6e7ta3zbm19gidn'),(14,'d','d','dicks','765fb028b2745ff40b69a414ac217f09725b3599a072776bf25366fc586643ae','zx4lnie8t316yug'),(15,'p','p','p','1a12334e57c0a8ba2be754e0ac56ca007ffbad410b079baa705de64f44e2fa31','6a04ps9rlgntyjb');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -624,14 +623,6 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES ('batman','hi','hi','1234'),('asas','asas','ASasa','asas'),('yoyo','hi','hi','1234'),('haha','hi','hi','1234'),('hehe','hi','hi','1234');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'openlms'
---
-
---
--- Dumping routines for database 'openlms'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -642,4 +633,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-16 19:11:14
+-- Dump completed on 2015-11-01 20:31:31
