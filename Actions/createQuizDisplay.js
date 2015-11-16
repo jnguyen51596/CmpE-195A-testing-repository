@@ -21,7 +21,7 @@ function displayQuizSelection()
                     var quiznumber = data.quiznumber;
                     var title = data.title;
                     var date = data.date;
-                    html += "<div class='ui-field-contain'><a style='white-space:normal' onclick='editQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title +  " Due Date: "+date+"</a>";
+                    html += "<div class='ui-field-contain'><a onclick='editQuiz(" + quiznumber + ")' class='ui-btn ui-btn-a ui-corner-all' data-ajax='false'> Quiz " + quiznumber + ": " + title +  " Due Date: "+date+"</a>";
                     html += "<a align=\"right\" onclick=\"startTimer('"+date+"', document.querySelector('#test"+quiznumber+"'))\">Show Countdown</a>";
                     html +="<div  id=\"test"+quiznumber+"\"></div></div><br>";
 
