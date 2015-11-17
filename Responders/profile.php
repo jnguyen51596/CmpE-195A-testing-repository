@@ -58,16 +58,16 @@ and open the template in the editor.
             ?>
             <br>
 
-            <label><b>First Name:</b></label>
+        
             <div id="firstName">
                 <script type="text/javascript">
                     getFirstName();
-                </script>
+                </script>            
             </div>
-            <label><b>Last Name:</b></label>
+        
             <div id="lastName">
                 <script type="text/javascript">
-                    getLastName();
+               
                 </script>
             </div>
             <br>

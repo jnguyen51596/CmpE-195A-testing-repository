@@ -40,12 +40,12 @@ and open the template in the editor.
         <label>Register here!</label>
             <form id="registration">
 
-                <input type="text" id="username" placeholder="Username">
-                <input type="text" id="firstname" placeholder="First Name">
-                <input type="text" id="lastname" placeholder="Last Name">
+                <input type="text" id="username" placeholder="Username" maxlength="44">
+                <input type="text" id="firstname" placeholder="First Name" maxlength="44">
+                <input type="text" id="lastname" placeholder="Last Name" maxlength="44">
                 <br>
-                <input type="password" id="password" placeholder="Password">
-                <input type="password" id="confirm" placeholder="Confirm Password">
+                <input type="password" id="password" placeholder="Password" maxlength="50">
+                <input type="password" id="confirm" placeholder="Confirm Password" maxlength="50">
                 <br>
                 <input  id="submit" type="button" value="Register" onclick="checkinfo()">
                 <p class="mc-top-margin-1-5"><a href="/Responders/sign-in.php">Go back to login</a></p>

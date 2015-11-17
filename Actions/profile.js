@@ -9,8 +9,15 @@ function getFirstName() {
 	var tag = '<label>';
 	first = getFirst(username);
         tag += first;
-        tag += "</label>";
-	$('#firstName').append(tag);
+   
+        var tag2 = " ";
+        last = getLast(username);
+        tag2 += last;
+        tag2 += "</label>";
+        
+        var tag3 = tag + tag2;
+
+	$('#firstName').append(tag3);
 }
 
 function getLastName() {
@@ -18,7 +25,7 @@ function getLastName() {
 	last = getLast(username);
         tag += last;
         tag += "</label>";
-	$('#lastName').append(tag);
+	$('#firstName').append(tag);
 }
 
 function getPassword() {

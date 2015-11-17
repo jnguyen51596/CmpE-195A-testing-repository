@@ -275,6 +275,7 @@ function getLast($username) {
     }
 }
 
+//UNUSED
 function getpass($username) {
     global $con;
     $sql = "SELECT pass FROM member WHERE username = '$username'";
@@ -290,6 +291,7 @@ function getpass($username) {
     }
 }
 
+//WILL CHANGE
 function editInfo($first, $last, $pass, $username) {
     global $con;
     $sql = "UPDATE member SET firstName='$first', lastName='$last', pass='$pass' WHERE username='$username'";
@@ -391,6 +393,7 @@ function addComment($question, $questionid, $classid, $comment, $userid) {
     echo 'true';
 }
 
+//UNUSED
 function checkLogin($username, $password) {
     global $con;
     $sql = "SELECT * FROM member WHERE username=:username AND pass=:password;";
