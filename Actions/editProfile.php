@@ -1,12 +1,11 @@
 <?php
 	session_start();
     require 'sql/pdo.php';
-    $first = $_POST["first"];
-    $last = $_POST["last"];
-    $pass = $_POST["pass"];
+    $email = $_POST["email"];
+    $bio = $_POST["bio"];
     $username = $_SESSION["username"];
     
-    $check = editInfo($first, $last, $pass, $username);
+    $check = editInfo($email, $bio, $username);
     echo $check;
 
 ?>

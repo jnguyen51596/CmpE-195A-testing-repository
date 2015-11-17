@@ -292,9 +292,9 @@ function getpass($username) {
 }
 
 //WILL CHANGE
-function editInfo($first, $last, $pass, $username) {
+function editInfo($email, $bio, $username) {
     global $con;
-    $sql = "UPDATE member SET firstName='$first', lastName='$last', pass='$pass' WHERE username='$username'";
+    $sql = "UPDATE member SET email='$email', bio='$bio' WHERE username='$username'";
     $q = $con->prepare($sql);
     $bool = $q->execute();
     return $bool;
@@ -892,6 +892,36 @@ function checkLogin2($username, $password) {
     }
     
 
+}
+
+function getBio($username) {
+    global $con;
+    $sql = "SELECT bio FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
+function getEmail($username) {
+    global $con;
+    $sql = "SELECT email FROM member WHERE username = '$username'";
+    $q = $con->prepare($sql);
+    $q->execute();
+
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        echo 'no classes';
+        return 0;
+    } else {
+        return $rows;
+    }
 }
 
 ?>

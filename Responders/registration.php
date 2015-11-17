@@ -48,7 +48,7 @@ and open the template in the editor.
                 <input type="password" id="confirm" placeholder="Confirm Password" maxlength="50">
                 <br>
                 <input  id="submit" type="button" value="Register" onclick="checkinfo()">
-                <p class="mc-top-margin-1-5"><a href="/Responders/sign-in.php">Go back to login</a></p>
+                <p class="mc-top-margin-1-5"><a href="/">Go back to login</a></p>
             </form>
 	</div>
     </body>

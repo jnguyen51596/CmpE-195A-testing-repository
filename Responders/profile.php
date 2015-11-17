@@ -64,14 +64,28 @@ and open the template in the editor.
                     getFirstName();
                 </script>            
             </div>
-        
-            <div id="lastName">
+            
+            <hr>
+            <label>Email:</label>
+            <div id="email">
                 <script type="text/javascript">
-               
-                </script>
+                    getEmaill();
+                </script>  
             </div>
+            
+            <hr>
+            <label>Bio:</label>
+            <div id="bio">
+                <script type="text/javascript">
+                    getBioo();
+                </script>  
+            </div>
+            
             <br>
+            <form>
+            <input  id="cancel" type="button" value="Edit Information" onclick="edit()">
             <input  id="cancel" type="button" value="Home" onclick="home()">
+            </form>
         </div>
 	</div>
     </body>

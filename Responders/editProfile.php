@@ -33,6 +33,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         
         <script src="/Actions/editProfile.js"></script>
+        <script src="/Actions/profile.js"></script>
     </head>
     <body>
         <div data-role="page" data-theme="b">
@@ -55,24 +56,32 @@ and open the template in the editor.
                     require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
                 ?>
                 <br>
+                
+                <div id="firstName">
+                <script type="text/javascript">
+                    getFirstName();
+                </script>            
+                </div>
+                
                 <form id="editProfile">
-                    <label><b>First Name:</b></label>
-                    <input type="text" id="fname" placeholder="First Name">
+                    <label><b>Email:</b></label>
+                    <input type="text" id="email">
+                    <script type="text/javascript">
+                    getEmail2();
+                    </script> 
                     
-                    <label><b>Last Name:</b></label>
-                    <input type="text" id="lname" placeholder="Last Name">
+       
                     
-                    <label><b>Old Password:</b></label>
-                    <input type="password" id="opass" placeholder="Old Password">
                     
-                    <label><b>New Password:</b></label>
-                    <input type="password" id="npass" placeholder="New Password">
+                    <label><b>Bio:</b></label>
+                    <input type="text" id="bio">
+                    <script type="text/javascript">
+                    getBio2();
+                    </script> 
                     
-                    <label><b>Confirm New Password:</b></label>
-                    <input type="password" id="cnpass" placeholder="New Password">
                     
                     <input  id="save" type="button" value="Save!" onclick="editInfo()">
-                                    <input  id="cancel" type="button" value="Cancel" onclick="home()">
+                    <input  id="cancel" type="button" value="Cancel" onclick="profile()">
                                  
                 </form>
             </div>
