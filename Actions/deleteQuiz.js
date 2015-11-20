@@ -6,10 +6,6 @@ function addQuestion() {
     window.location = "/home/instructor-home/manage-quizzes/edit-quiz";
 }
 
-function changeDueDate() {
-
-}
-
 function deleteQuizQuestion1()
 {
     var classid = sessionStorage.getItem('courseID');

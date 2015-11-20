@@ -154,7 +154,7 @@ function getDBDate($classID, $quiznumber) {
 
 function updateLock($classID, $quiznumber) {
     global $con;
-    $sql = "UPDATE `totalquiz` SET `lock`=1 WHERE quiznumber='$quiznumber' and classID='$classID'";
+    $sql = "UPDATE `totalquiz` SET `lock`=1 AND `lockmanualoverride`=0 WHERE quiznumber='$quiznumber' and classID='$classID' and `lockmanualoverride`!=1";
     $q = $con->prepare($sql);
     $q->execute();
 }
@@ -648,7 +648,13 @@ function updateQuizTotal($data, $classID) {
     for($i=1 ;$i<$length;$i+=2) {
         $quizID = $data[$i];
         $toggle = $data[$i+1];
+        date_default_timezone_set('America/Los_Angeles');
+        $now = date("Y-m-d H:i:s");
         $sql = "UPDATE `totalquiz` SET `lock`=$toggle WHERE quiznumber='$quizID' and classID='$classID'";
+        $q = $con->prepare($sql);
+        $q->execute();
+
+        $sql = "UPDATE `totalquiz` SET `lockmanualoverride`=1 WHERE quiznumber='$quizID' and classID='$classID' and `lock`=0 and `date` < '$now'";
         $q = $con->prepare($sql);
         $q->execute();
     }
