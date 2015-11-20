@@ -31,12 +31,12 @@ and open the template in the editor.
 		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		
-                <script src="/Actions/javascriptFunction.js"></script>
-                <script src="/Actions/messageboardFunction.js"></script>
+        <script src="/Actions/javascriptFunction.js"></script>
+        <script src="/Actions/getDiscussionThreads.js"></script>
      
     </head>
 
-    <body onload="messageBoardDisplay()">
+    <body>
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
                 <h1>Message Board</h1>
@@ -46,6 +46,9 @@ and open the template in the editor.
             ?>
             <br>
             <div role="main" id="demo" class="ui-content">
+                 <button onclick='goToCreateThread()'>Make a new Thread</button>
+                 <div id="threads">
+                 </div>
             </div><!-- /content -->
         </div><!-- /page -->
     </body>

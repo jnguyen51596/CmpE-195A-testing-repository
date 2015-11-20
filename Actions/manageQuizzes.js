@@ -9,13 +9,8 @@ function displayQuizSelection()
         cache: false,
         success: function (data) {
             var html = ""; 
-            if (data == false)
-            {
-                alert("Create Quiz First");                   
-            }
-            else
-            {
-                alert(data);
+            if (data != false)
+            {                  
                 $.each(data, function(index, data) {
                     var classid = data.classID;
                     var quiznumber = data.quiznumber;
@@ -27,16 +22,18 @@ function displayQuizSelection()
 
                 });
             }
-            html += "<a onclick='createANewQuiz()'>Create Quiz</a>";
-            document.getElementById("demo").innerHTML = html;
+            document.getElementById("inner").innerHTML = html;
         }
     });
 }
 
 function createANewQuiz() {
-    window.location = '/home/instructor-home/create-quiz/create-a-new-quiz';
+    window.location = '/home/instructor-home/manage-quizzes/create-a-new-quiz';
+}
+function lockQuizzes() {
+    window.location = '/home/instructor-home/manage-quizzes/lock-and-unlock-quizzes';
 }
 function editQuiz(quiznumber) {
     sessionStorage.setItem('quiznumber', quiznumber);
-    window.location = '/home/instructor-home/create-quiz/edit-quiz';
+    window.location = '/home/instructor-home/manage-quizzes/delete-quiz';
 }

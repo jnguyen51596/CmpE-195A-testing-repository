@@ -27,28 +27,32 @@ and open the template in the editor.
 		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
 		<link rel="stylesheet" href="/css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
 		<link rel="stylesheet" href="/css/main.css" />
-				
+			
 		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
-        <script src="/Actions/quizCountdownTimer.js"></script>
-        <script src="/Actions/deleteQuizDisplay.js"></script>
-            
+       <script src="/Actions/quizCountdownTimer.js"></script>
+       <script src="/Actions/manageQuizzes.js"></script>
+
     </head>
 
-    <body onload="displayQuiz3()">
+    <body onload="displayQuizSelection()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz List</h1>
+                <h1>Pick a Quiz to Modify</h1>
             </div><!-- /header -->
             <?php
                 require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
             <br>
             <div role="main" id="demo" class="ui-content">
+                <a class='ui-btn ui-btn-a ui-corner-all' onclick='createANewQuiz()'>Create Quiz</a>
+                <a class='ui-btn ui-btn-a ui-corner-all' id="addQuestion" onclick="lockQuizzes()">Lock Quizzes</a>
+                <div id="inner">
+                </div>
             </div><!-- /content -->
-            <div role="main" id="demo2" class="ui-content">
-            </div><!-- /content -->
+            <!-- /content -->
+            
         </div><!-- /page -->
     </body>
 </html>

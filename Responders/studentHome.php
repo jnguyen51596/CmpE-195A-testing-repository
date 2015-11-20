@@ -43,8 +43,7 @@
             <br>
 			<button onclick='assignments()'>View Assignments</button>
             <button onclick='takeQuiz()'>Take Quiz</button>
-            <button onclick='makeMessage()'>Make Message Thread</button>
-            <button onclick='messageBoard()'>Go To Message Board</button>
+            <button onclick='messageBoard()'>Discussions</button>
             <button onclick='viewAnnouncements()'>View Announcements</button>
             <button onclick='grades()'>View Grades</button>
             <button onclick='module()'>Modules</button>

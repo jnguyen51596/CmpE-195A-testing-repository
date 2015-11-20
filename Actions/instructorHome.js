@@ -18,31 +18,19 @@ function makeAnnouncement() {
 }
 
 function messageBoard() {
-	window.location.href = "/home/instructor-home/message-board";
+	window.location.href = "/home/instructor-home/discussions";
 }
 
 function setGrades() {
 	window.location.href = "/home/instructor-home/set-grades";
 }
 
-function createQuiz() {
-	window.location.href = "/home/instructor-home/create-quiz";
-}
-
-function makeMessage() {
-	window.location.href = "/home/instructor-home/make-message";
-}
-
-function deleteQuiz() {
-	window.location.href = "/home/instructor-home/delete-quiz";
+function manageQuizzes() {
+	window.location.href = "/home/instructor-home/manage-quizzes";
 }
 
 function viewSubmissions() {
 	window.location.href = "/home/instructor-home/view-student-submissions";
-}
-
-function lockAndUnlockQuiz() {
-	window.location.href = "/home/instructor-home/lock-and-unlock-quizes";
 }
 
 function module() {

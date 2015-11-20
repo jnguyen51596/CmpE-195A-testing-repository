@@ -22,7 +22,7 @@ require 'sql/pdo.php';
 $data = $_POST['jsondata'];
 $classID=$data[0];
 updateQuizTotal($data, $classID);
-echo true;
+echo json_encode(true);
 ?>
 
 

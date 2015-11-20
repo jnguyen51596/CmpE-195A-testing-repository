@@ -1,4 +1,3 @@
-
 function createThread()
 {   
     var title = $("#threadTitle").val();
@@ -14,7 +13,11 @@ function createThread()
         cache: false,
         success: function (data) {
             if (data == 'true') {
-                window.location = "/home/student-home";
+                if (location.href.indexOf("instructor-home") > 0) {
+                    window.location = "/home/instructor-home/discussions";
+                } else {
+                    window.location = "/home/student-home/discussions";
+                }
             }
             else {
                 alert('Not enough information');
@@ -41,7 +44,11 @@ function createThreadIn()
         cache: false,
         success: function (data) {
             if (data == 'true') {
-                window.location = "/home/instructor-home";
+                if (location.href.indexOf("instructor-home") > 0) {
+                    window.location = "/home/instructor-home/discussions";
+                } else {
+                    window.location = "/home/student-home/discussions";
+                }
             } else {
                 alert('Not enough information');
             }
@@ -52,49 +59,16 @@ function createThreadIn()
 
 }
 
-function messageBoardDisplay()
-{
-    var classid = sessionStorage.getItem('courseID');
-    $.ajax({
-        type: "POST",
-        url: "/Actions/getMessage.php",
-        data: "classid=" + classid,
-        cache: false,
-        async: false,
-        success: function (data) {
-            if (data == false)
-            {
-                alert("Please Create Message");
-            }
-            else
-            {
-                var html = "";
-                for (var i = 0; i < data.length; i++)
-                {
-                    var question = data[i].question;
-                    var questionid = data[i].questionID;
-                    var username=data[i].userID;
-                    var date=data[i].date;
-                    
-                    html += "<a href=\"/Responders/commentPage.php?question=" + question + "&questionid=" + questionid + "\" class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Question:" + question +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By:"+username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:"+date +"</a><br>";
-
-                }
-                document.getElementById("demo").innerHTML = html;
-
-            }
-        }
-    });
-}
-
 function commentPage()
 {
-    var question = getParameterByName("question");
-    var questionid = getParameterByName("questionid");
+    var question = sessionStorage.getItem("question");
+    var questionid = sessionStorage.getItem("questionid");
     var classid = sessionStorage.getItem('courseID');
     $.ajax({
         type: "POST",
         url: "/Actions/getComment.php",
         data: "question=" + question + "&questionid=" + questionid + "&classid=" + classid,
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == false)
@@ -104,13 +78,13 @@ function commentPage()
             }
             else
             {
-                var html = "<h1>" + question + "</h1><br>";
+                var html = "<div class='ui-field-contain'><h1>" + question + "</h1></div><br>";
                 for (var i = 0; i < data.length; i++)
                 {
                     var comment = data[i].comment;
                     var userID = data[i].userID;
 
-                    html += comment + "&nbsp;&nbsp;&nbsp;&nbsp; Commented By: " + userID + "<br>";
+                    html += "<div class='ui-field-contain'>" + comment + "<br>Commented By: " + userID + "</div><br>";
                 }
                 document.getElementById("demo").innerHTML = html;
             }
@@ -120,8 +94,8 @@ function commentPage()
 
 function commentPageButton()
 {
-    var question = getParameterByName("question");
-    var questionid = getParameterByName("questionid");
+    var question = sessionStorage.getItem("question");
+    var questionid = sessionStorage.getItem("questionid");
     var comment = $("#comment").val();
     var classid = sessionStorage.getItem('courseID');
     if (comment == "")
@@ -137,7 +111,6 @@ function commentPageButton()
             cache: false,
             success: function (data) {
                 if (data == 'true') {
-                    alert("Message added");
                     window.location.reload();
                 }
                 else {

@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 include 'sql/pdo.php';
 $data = $_POST['jsondata'];
 $parts1= explode("&", $data[0]);

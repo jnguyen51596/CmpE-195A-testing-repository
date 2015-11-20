@@ -53,7 +53,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '/home/instructor-home/create-quiz/quiz-end/';
+                        window.location = '/home/instructor-home/manage-quizzes/quiz-end/';
                     }
                     else
                     {
@@ -91,7 +91,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '/home/instructor-home/create-quiz/quiz-end/';
+                        window.location = '/home/instructor-home/manage-quizzes/quiz-end/';
                     }
                     else
                     {
@@ -121,7 +121,7 @@ function submitQuiz()
                     if (data == true)
                     {
                         alert("Correct Submission");
-                        window.location = '/home/instructor-home/create-quiz/quiz-end/';
+                        window.location = '/home/instructor-home/manage-quizzes/quiz-end/';
                     }
                     else
                     {

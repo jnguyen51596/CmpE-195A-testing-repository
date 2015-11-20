@@ -9,11 +9,8 @@ $( document ).ready(function() {
 function takeQuiz() {
 	window.location.href = "/home/student-home/quiz";
 }
-function makeMessage() {
-	window.location.href = "/home/student-home/make-a-thread";
-}
 function messageBoard() {
-	window.location.href = "/home/student-home/message-board";
+	window.location.href = "/home/student-home/discussions";
 }
 function viewAnnouncements() {
 	window.location.href = "/home/student-home/announcements";

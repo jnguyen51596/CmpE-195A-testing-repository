@@ -31,14 +31,18 @@
     <body onload="deleteQuizQuestion1()">
         <div data-role="page" data-theme="b">
             <div data-role="header" data-theme="b" >
-                <h1>Quiz View and Delete: Check to Delete</h1>
+                <h1>Manage Quiz</h1>
             </div>
             <?php
                 require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
             <br>
-            <form role="main" id="demo" class="ui-content" method="post">
-
+            
+            <form role="main" id="main" class="ui-content" method="post">
+                <a class='ui-btn ui-btn-a ui-corner-all' id="addQuestion" onclick="addQuestion()">Add a Question</a>
+                <a class='ui-btn ui-btn-a ui-corner-all' id="delete" onclick="submitDelete()">Delete Selected Questions</a>
+                <div id="demo">
+                </div>
             </form>
             
         </div>

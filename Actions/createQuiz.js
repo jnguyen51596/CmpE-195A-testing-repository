@@ -21,7 +21,7 @@ function submitStartQuiz()
                 if (data.indexOf("true") > -1)
                 {
                     alert("Quiz Created");
-                    window.location = '/home/instructor-home/create-quiz';
+                    window.location = '/home/instructor-home/manage-quizzes';
                 }
                 else
                 {

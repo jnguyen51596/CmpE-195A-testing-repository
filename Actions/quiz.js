@@ -1,12 +1,13 @@
-var arrayOfQuizId=new Array();
+var arrayOfQuizNumbers=new Array();
 function displayQuiz4()
 {
-    arrayOfQuizId=new Array();
+    arrayOfQuizNumbers=new Array();
     var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuiz.php",
         data: "classid=" + classid,
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == false)
@@ -19,16 +20,15 @@ function displayQuiz4()
             else
             {
                 var html = "";
-                var classid = data[0].classID;
-                html += "<br><form action='/Actions/submitLock.php' method='post'>" +
+                html += "<br><form>" +
                         "<input type=\"hidden\" name=\"classid\" value=" + classid + ">";
-                for (var i = 0; i < data.length; i++)
-                {
-                    classid = data[i].classID;
-                    var quiznumber = data[i].quiznumber;
-                    var title = data[i].title;
-                    var lock = data[i].lock;
-                    arrayOfQuizId.push(quizid);
+
+                $.each(data, function(index, data) { 
+                    classid = data.classID;
+                    var quiznumber = data.quiznumber;
+                    var title = data.title;
+                    var lock = data.lock;
+                    arrayOfQuizNumbers.push(quiznumber);
                     
                     html += "<div class=\"containing-element\">" +
                             "<input type=\"hidden\" name=\"quiznumber-" + quiznumber + "\" value=" + quiznumber + ">" +
@@ -36,23 +36,26 @@ function displayQuiz4()
                             "<select name=\"toggle-" + quiznumber + "\" id=\"toggle-" + quiznumber + "\" data-role=\"slider\">";
                     if (lock == '1')
                     {
-                        html += "<option value=\"off\">Off</option>" +
-                                "<option selected value=\"on\">On</option>" +
+                        html += "<option value=\"off\">Unlocked</option>" +
+                                "<option selected value=\"on\">Locked</option>" +
                                 "</select>" +
                                 "</div><br>";
                     }
                     else
                     {
-                        html += "<option selected value=\"off\">Off</option>" +
-                                "<option value=\"on\">On</option>" +
+                        html += "<option selected value=\"off\">Unlocked</option>" +
+                                "<option value=\"on\">Locked</option>" +
                                 "</select>" +
                                 "<div><br>";
                     }
+                });       
+                for (var i = 0; i < data.length; i++)
+                {
+                    
 
                 }
-                html += "<br><input type=\"submit\" value=\"Submit\" onclick=\"submitLockQuiz()\">";
+                html += "<br><input type=\"button\" value=\"Submit\" onclick='submitLockQuiz()'>";
                 html += "</form>";
-                html += "<br><a onclick='createANewQuiz2()'>Create Quiz</a>";
                 $("#demo").append(html).enhanceWithin();
 
             }
@@ -69,10 +72,10 @@ function submitLockQuiz()
     var arr = new Array();
     var classid = sessionStorage.getItem('courseID');;
     arr.push(classid);
-    for (var values=0; values<arrayOfQuizId.length;values++)
+    for (var values=0; values<arrayOfQuizNumbers.length;values++)
     {
-        var aValues=arrayOfQuizId[values];
-        var aQuizid= document.getElementsByName("quizid-".concat(aValues))[0].value;  
+        var aValues=arrayOfQuizNumbers[values];
+        var aQuizNumber= document.getElementsByName("quiznumber-".concat(aValues))[0].value;  
         var aToggle=document.getElementsByName("toggle-".concat(aValues))[0].value;
         var tempValue=0;
         if(aToggle=="on")
@@ -80,24 +83,23 @@ function submitLockQuiz()
             tempValue=1;
         }
         
-        arr.push(aQuizid);
+        arr.push(aQuizNumber);
         arr.push(tempValue);
     }
-    
     $.ajax({
         type: "POST",
-        url: "../Actions/submitLock.php",
+        url: "/Actions/submitLock.php",
         data: {jsondata: arr}, 
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == true) {
-                alert("Lock submitted");
-                window.location = "/home/instructor-home/lock-and-unlock-quizes";
+                alert("Quiz(zes) locked");                
             }
             else {
-                alert("Error with Lock");
-                window.location = "/home/instructor-home/lock-and-unlock-quizes";
+                alert("Something went wrong...");
             }
+            window.location = "/home/instructor-home/manage-quizzes/lock-and-unlock-quizzes";
         }
     });
 

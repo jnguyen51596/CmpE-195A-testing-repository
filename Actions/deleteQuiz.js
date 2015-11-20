@@ -2,6 +2,14 @@ var html = "";
 var totalquestion = 1;
 var counter = 0;
 
+function addQuestion() {
+    window.location = "/home/instructor-home/manage-quizzes/edit-quiz";
+}
+
+function changeDueDate() {
+
+}
+
 function deleteQuizQuestion1()
 {
     var classid = sessionStorage.getItem('courseID');
@@ -68,12 +76,8 @@ function deleteQuizQuestion3(classid, quiznumber)
                 counter += 1;
                 if (counter == 3)
                 {
-                    alert("No Quiz");
-                }
-                else
-                {
-                    html += " <button  id='delete' onclick='submitDelete()'>Delete</button>";
-                    $("#demo").append(html).enhanceWithin();
+                    alert("No Questions");
+                    $('#delete').remove();
                 }
             }
             else
@@ -103,11 +107,10 @@ function submitDelete()
         success: function (data) {
             if (data == 'true') {
                 alert("Question(s) Deleted")
-                window.location="/home/instructor-home/delete-quiz";
+                window.location="/home/instructor-home/manage-quizzes";
             }
             else {             
                 alert("Error, please try again.");
-                window.location="/home/instructor-home/delete-quiz/delete";
             }
         }
     });
@@ -127,15 +130,15 @@ function deletePrintOutQuiz1(data)
         var choice4 = data[i].incorrect3;
         // html += "<fieldset data-role=\"controlgroup\" >";
         html += "<input class='message' type='checkbox' name='checkboxmessage' id='" + totalquestion + "' value='multiplechoice&" + question + "'>";
-        html += "<label for='" + totalquestion + "'><h1>Question " + totalquestion + "</h1></label>";
+        html += "<label for='" + totalquestion + "'><h1>Question " + totalquestion + ": " + question + "</h1></label>";
         //html += "<p>" + choice1 + "</p>";
-        html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-1-" + totalquestion + "'  value='" + choice1 + "' />";
+        //html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-1-" + totalquestion + "'  value='" + choice1 + "' />";
         html += "<label for='radio-choice-1-" + totalquestion + "'>Correct Answer: " + choice1 + "</label>";
-        html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-2-" + totalquestion + "'   value='" + choice2 + "' />";
+        //html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-2-" + totalquestion + "'   value='" + choice2 + "' />";
         html += "<label for='radio-choice-2-" + totalquestion + "'>" + choice2 + "</label>";
-        html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-3-" + totalquestion + "'  value='" + choice3 + "' />";
+        //html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-3-" + totalquestion + "'  value='" + choice3 + "' />";
         html += "<label for='radio-choice-3-" + totalquestion + "'>" + choice3 + "</label>";
-        html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-4-" + totalquestion + "'  value='" + choice4 + "' />";
+        //html += "<input type='radio' name='radio-choice-" + totalquestion + "' id='radio-choice-4-" + totalquestion + "'  value='" + choice4 + "' />";
         html += "<label for='radio-choice-4-" + totalquestion + "'>" + choice4 + "</label>";
         //html += "</fieldset>";
         totalquestion += 1;
@@ -149,14 +152,22 @@ function deletePrintOutQuiz2(data)
     {
         var question = data[i].question;
         var answer = data[i].answer;
+        
         //html += "<fieldset data-role=\"controlgroup\" >";
         html += "<input class=\"message\"  type=\"checkbox\" name=\"checkboxmessage\" id=\"" + totalquestion + "\" value=\"truefalse&" + question + "\">";
-        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + "</h1></label>";
-        html += "<p>" + question + "</p>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-1-" + totalquestion + "\"  value=\"true\" />";
-        html += "<label for=\"radio-choice-1-" + totalquestion + "\">True</label>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-2-" + totalquestion + "\"   value=\"false \" />";
-        html += "<label for=\"radio-choice-2-" + totalquestion + "\">False</label>";
+        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + ": " + question + "</h1></label>";
+        //html += "<p>" + question + "</p>";
+        //html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-1-" + totalquestion + "\"  value=\"true\" />";
+        if (answer == "true") {
+            html += "<label for=\"radio-choice-1-" + totalquestion + "\">Correct Answer: True</label>";
+            html += "<label for=\"radio-choice-2-" + totalquestion + "\">False</label>";
+        } else {
+            html += "<label for=\"radio-choice-1-" + totalquestion + "\">True</label>";
+            html += "<label for=\"radio-choice-2-" + totalquestion + "\">Correct Answer: False</label>";
+        }
+        
+        //html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-2-" + totalquestion + "\"   value=\"false \" />";
+        
         // html += "</fieldset>";
         totalquestion += 1;
     }
@@ -170,13 +181,12 @@ function deletePrintOutQuiz3(data)
         var question = data[i].question;
         //html += "<fieldset data-role=\"controlgroup\" >";
         html += "<input class=\"message\" type=\"checkbox\" name=\"checkboxmessage\" id=\"" + totalquestion + "\" value=\"shortanswer&" + question + "\">";
-        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + "</h1></label>";
+        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + ": Short Answer</h1></label>";
         html += "<p>" + question + "</p>";
         html += "<textarea cols=\"40\" rows=\"5\" id=\"text\"></textarea>";
         // html += "</fieldset>";
         totalquestion += 1;
     }
-    html += " <button  id=\"delete\" onclick=\"submitDelete()\">Delete</button>";
     $("#demo").append(html).enhanceWithin();
 
 }
