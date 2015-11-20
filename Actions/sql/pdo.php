@@ -222,8 +222,8 @@ function dropStudent($courseID, $memberID) {
 
 function addAssignment($courseID, $authorID, $title, $total, $duedate, $description) {
     global $con;
-    $sql = "INSERT INTO assignment(courseID, authorID, title, total, duedate, description)
-            VALUES($courseID, $authorID, '$title', $total, '$duedate', '$description')";
+    $sql = "INSERT INTO assignment(courseID, authorID, title, total, duedate, description, lock)
+            VALUES($courseID, $authorID, '$title', $total, '$duedate', '$description', '0')";
     $q = $con->prepare($sql);
     $q->execute();
 }
@@ -847,7 +847,8 @@ function addQuizGrade($studentid, $assignmentid, $points) {
 
 function getQuizAssignmentNumber($classid, $quizid) {
     global $con;
-    $sql = " SELECT assignmentID FROM assignment WHERE courseID = '$classid' and title='$quizid'";
+    $newdescription='quiz'.$quizid;
+    $sql = " SELECT assignmentID FROM assignment WHERE courseID = '$classid' and title='$newdescription'";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);

@@ -67,24 +67,36 @@ function getRemote() {
 // displays assignment information
 function expandAssignment(assignmentIndex) {
     $('#assignment-info-id').html("");
-
-    var info =
-            '<div class="inset">' +
-            '<p>Points: ' + assignmentArray[assignmentIndex]['total'] + '</p>' +
-            '<p>Due: ' + assignmentArray[assignmentIndex]['duedate'] + '<p>' +
-            '<p>Description: ' + assignmentArray[assignmentIndex]['description'] + '</p>' +
-            '<form id="data" data-ajax="false" method="POST" enctype="multipart/form-data">' +
-            '<input type="file" name="file" id="file" />' +
-            '<input type="hidden" name="file-course-id" id="file-course-id" value="" />' +
-            '<input type="hidden" name="file-title-id" id="file-title-id" value="' + assignmentArray[assignmentIndex]['title'] + '" />' +
-            '<input type="submit" id="submit-assignment-id" value="Submit" onclick="submitAssignment(' + assignmentArray[assignmentIndex]['assignmentID'] + ', ' + assignmentArray[assignmentIndex]['duedate'] + ')" />' +
-            //'<input type="submit" id="submit-assignment-id" value="Submit" />' +
-            '</form>' +
-            '</div>';
+    var info = "";
+    if (assignmentArray[assignmentIndex]['description']== 'quiz')
+    {
+        info =
+                '<div class="inset">' +
+                '<p>Points: ' + assignmentArray[assignmentIndex]['total'] + '</p>' +
+                '<p>Due: ' + assignmentArray[assignmentIndex]['duedate'] + '<p>' +
+                '<p>Description: ' + assignmentArray[assignmentIndex]['description'] + '</p>' +
+                '</div>';
+    }
+    else
+    {
+        info =
+                '<div class="inset">' +
+                '<p>Points: ' + assignmentArray[assignmentIndex]['total'] + '</p>' +
+                '<p>Due: ' + assignmentArray[assignmentIndex]['duedate'] + '<p>' +
+                '<p>Description: ' + assignmentArray[assignmentIndex]['description'] + '</p>' +
+                '<form id="data" data-ajax="false" method="POST" enctype="multipart/form-data">' +
+                '<input type="file" name="file" id="file" />' +
+                '<input type="hidden" name="file-course-id" id="file-course-id" value="" />' +
+                '<input type="hidden" name="file-title-id" id="file-title-id" value="' + assignmentArray[assignmentIndex]['title'] + '" />' +
+                '<input type="submit" id="submit-assignment-id" value="Submit" onclick="submitAssignment(' + assignmentArray[assignmentIndex]['assignmentID'] + ', ' + assignmentArray[assignmentIndex]['duedate'] + ')" />' +
+                //'<input type="submit" id="submit-assignment-id" value="Submit" />' +
+                '</form>' +
+                '</div>';
+    }
     $('#assignment-info-id').append(info);
 }
 
-function submitAssignment(assignmentID,duedate) {
+function submitAssignment(assignmentID, duedate) {
     // bind course id from js session variable
     document.getElementById("file-course-id").value = sessionStorage.getItem('courseID');
 
@@ -93,16 +105,16 @@ function submitAssignment(assignmentID,duedate) {
     //  alert("Please select a file to upload");
     // }
     // else {
-    var duedate=new date(duedate);
-    var currentdate=new date();
+    var duedate = new date(duedate);
+    var currentdate = new date();
     if (duedate < currentdate)
     {
-    $.ajax({
-        type: "POST",
-        url: "/Actions/submitAssignment.php",
-        data: {assignmentID: assignmentID},
-        async: false
-    });
+        $.ajax({
+            type: "POST",
+            url: "/Actions/submitAssignment.php",
+            data: {assignmentID: assignmentID},
+            async: false
+        });
     }
     else
     {
