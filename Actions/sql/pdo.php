@@ -930,4 +930,24 @@ function getEmail($username) {
     }
 }
 
+function updateAssignmentLock($classID, $assignmentID) {
+    global $con;
+    $sql = "UPDATE `assignment` SET `lock`=1 WHERE assignmentID='$assignmentID' and courseID='$classID'";
+    $q = $con->prepare($sql);
+    $q->execute();
+}
+
+function updateAssignmentTotal($data, $classID) {
+    global $con;
+    $length = count($data);
+    for ($i = 1; $i < $length; $i+=2) {
+        $assignmentID = $data[$i];
+        $toggle = $data[$i + 1];
+        $sql = "UPDATE `assignment` SET `lock`=$toggle WHERE assignmentID='$assignmentID' and courseID='$classID'";
+        $q = $con->prepare($sql);
+        $q->execute();
+    }
+}
+
+
 ?>
