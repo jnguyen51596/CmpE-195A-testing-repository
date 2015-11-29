@@ -37,21 +37,20 @@ function displayModule1()
         type: "POST",
         url: "/Actions/getModule.php",
         data: "classid=" + classid,
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == false)
             {
-                alert("No Module");
+                alert("No Modules have been created yet");
             }
             else
             {
                 var html = "";
-                for (var i = 0; i < data.length; i++)
-                {
-                    //var classid = data[i].classID;
-                    var moduleid = data[i].moduleID;
-                    var title = data[i].title;
-                    var lock = data[i].lock;
+                $.each(data, function(index, data) { 
+                    var moduleid = data.moduleID;
+                    var title = data.title;
+                    var lock = data.lock;
                     if (lock == '1')
                     {
 
@@ -60,7 +59,7 @@ function displayModule1()
                     {
                         html += "<a onclick='goToStudentModule(" + moduleid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
                     }
-                }
+                });
                 document.getElementById("demo").innerHTML = html;
 
             }
@@ -80,6 +79,7 @@ function displayModule2()
         type: "POST",
         url: "/Actions/getModule.php",
         data: "classid=" + classid,
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == false)
@@ -92,12 +92,10 @@ function displayModule2()
             else
             {
                 var html = "";
-                for (var i = 0; i < data.length; i++)
-                {
-                    //var classid = data[i].classID;
-                    var moduleid = data[i].moduleID;
-                    var title = data[i].title;
-                    var lock = data[i].lock;
+                $.each(data, function(index, data) { 
+                    var moduleid = data.moduleID;
+                    var title = data.title;
+                    var lock = data.lock;
                     if (lock == '1')
                     {
 
@@ -106,6 +104,11 @@ function displayModule2()
                     {
                         html += "<a onclick='goToInstructorModule(" + moduleid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
                     }
+                });
+                for (var i = 0; i < data.length; i++)
+                {
+                    //var classid = data[i].classID;
+                    
                 }
                 html += "<br><a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
                 document.getElementById("demo").innerHTML = html;
@@ -128,6 +131,7 @@ function moduleDescription()
         type: "POST",
         url: "/Actions/getModuleDescription.php",
         data: "moduleid=" + moduleid + "&classid=" + classid,
+        dataType: "json",
         cache: false,
         success: function (data) {
             if (data == false)
@@ -169,6 +173,7 @@ function modulePageButton()
             data: "description=" + description + "&moduleid=" + moduleid + "&classid=" + classid,
             cache: false,
             success: function (data) {
+                alert(data);
                 if (data == true) {
                     alert("Description added");
                     window.location.reload();
