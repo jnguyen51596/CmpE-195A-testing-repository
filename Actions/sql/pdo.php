@@ -179,7 +179,8 @@ function addQuizQuestion3($classID, $quiznumber, $question) {
 
 function searchClasses($searchTerm) {
     global $con;
-    $sql = "SELECT name, courseID FROM course WHERE name LIKE :searchTerm;";
+    //$sql = "SELECT name, courseID FROM course WHERE name LIKE :searchTerm;";
+    $sql = "SELECT prefix, suffix, name, courseID FROM course WHERE name LIKE :searchTerm OR prefix LIKE :searchTerm OR suffix LIKE :searchTerm;";
     $q = $con->prepare($sql);
     $q->execute(array(':searchTerm' => '%' . $searchTerm . '%'));
     $rows = $q->fetchAll();

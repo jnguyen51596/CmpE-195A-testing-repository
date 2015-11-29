@@ -7,7 +7,6 @@
 	$result = getUserID($_SESSION['username']);
 	$_SESSION['userID'] = $result[0][0];
 	$studentID = $_SESSION['userID'];
-	$result = getStudentCourses($studentID);
-	header('Content-Type: application/json');	
+	$result = getStudentCourses($studentID);	
 	echo json_encode($result);
 ?>

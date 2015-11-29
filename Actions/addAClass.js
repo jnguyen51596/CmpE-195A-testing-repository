@@ -19,7 +19,7 @@ function getClasses(query) {
 function formatData(data) {
 	var html = "<ul data-role='listview' data-inset='true'>";
 	$.each(data, function(index, data) {
-		html += "<li><a onclick='addClass(" + data.courseID + ")' href='#'>" + data.name + " : ID = " + data.courseID + "</a></li>";
+		html += "<li><a onclick='addClass(" + data.courseID + ")' href='#'>" + data.prefix + " " + data.suffix + " " + data.name + " : ID = " + data.courseID + "</a></li>";
 	});
 	html += "</ul>";
 	$("#searchResults").html(html).trigger("create");

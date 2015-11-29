@@ -36,7 +36,7 @@ function formatData(data) {
 
     $.each(data, function(index, data) {
         if (data != -1) {
-            html += "<option value='" + JSON.stringify(data) + "'>" + offset + data.prefix + " " + data.suffix + " " + data.name + "</option>";     
+            html += "<option value='" + JSON.stringify(data) + "'>" + offset + data.prefix + " " + data.suffix + " " + data.name + " : " + data.courseID + "</option>";     
         }
         //alert(data.prefix + " " + data.suffix + " " + data.name);
     });
