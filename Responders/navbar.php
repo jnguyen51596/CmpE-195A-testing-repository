@@ -2,7 +2,7 @@
 
 <div data-role="navbar" data-iconpos="left">
 	<ul>
-		<li><a data-icon="back" href="javascript:history.back()">Back</a></li>
+		<li><a data-icon="back" onclick="goBack()">Back</a></li>
 		<li><a data-icon="home" onclick="home()">Home</a></li>
 		<li><a data-icon="delete" onclick="logout()">Log out</a></li>
 	</ul>

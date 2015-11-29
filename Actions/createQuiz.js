@@ -15,17 +15,18 @@ function submitStartQuiz()
         $.ajax({
             type: "POST",
             url: "/Actions/executeQuizStart.php",
-            data: "classID=" + classID + "&quizNumber=" + quizNumber + "&title=" + title + "&duedate=" + duedate,
+            data: "classID=" + classID + "&quizNumber=" + quizNumber + "&title=" + title + "&duedate=" + (duedate + ":00"),
+            dataType: "json",
             cache: false,
             success: function (data) {
-                if (data.indexOf("true") > -1)
+                if (data == true)
                 {
-                    alert("Quiz Created");
+                    alert("Quiz created");
                     window.location = '/home/instructor-home/manage-quizzes';
                 }
                 else
                 {
-                    alert("Quiz Already Created");
+                    alert("That quiz number is already used, please use a different number");
                 }
             }
         });

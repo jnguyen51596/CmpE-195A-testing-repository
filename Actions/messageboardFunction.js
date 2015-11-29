@@ -71,23 +71,21 @@ function commentPage()
         dataType: "json",
         cache: false,
         success: function (data) {
-            if (data == false)
+            var html = "";
+            if (data != false)
             {
-                document.getElementById("demo").innerHTML = "<h1>" + question + "</h1>";
-                alert("No messages");
-            }
-            else
-            {
-                var html = "<div class='ui-field-contain'><h1>" + question + "</h1></div><br>";
-                for (var i = 0; i < data.length; i++)
-                {
-                    var comment = data[i].comment;
-                    var userID = data[i].userID;
+                var html = "";
+                $.each(data, function(index, data) {
+                
+                    var comment = data.comment;
+                    var userID = data.userID;
 
-                    html += "<div class='ui-field-contain'>" + comment + "<br>Commented By: " + userID + "</div><br>";
-                }
-                document.getElementById("demo").innerHTML = html;
+                    html = "<div class='ui-field-contain'>" + comment + "<br>Commented By: " + userID + "</div><br>" + html;
+                });
             }
+
+            html = "<div class='ui-field-contain'><h1>" + question + "</h1></div><br>" + html;
+            document.getElementById("demo").innerHTML = html;
         }
     });
 }

@@ -17,3 +17,14 @@ function logout() {
 function home() {
     window.location.href = "/home";
 }
+
+function goBack() {
+    var lastPage = location.pathname;
+    lastPage = lastPage.substring(0, lastPage.lastIndexOf('/'));
+    lastPage = lastPage.substring(0, lastPage.lastIndexOf('/'));
+    if (lastPage == "") {
+        logout();
+    } else {
+        window.location.href = lastPage;
+    }
+}

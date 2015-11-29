@@ -27,7 +27,8 @@ function messageBoardDisplay()
                     var questionid = data.questionID;
                     var username = data.userID;
                     var date = data.date;
-                    html += "<a class=\"ui-btn ui-btn-a ui-corner-all\" onclick='goToCommentPage(" + questionid + ", \"" + question + "\")'> Question:" + question +"<br>By:"+username+"<br>Date:"+date +"</a><br>";
+                    var title = data.title;
+                    html = "<a class=\"ui-btn ui-btn-a ui-corner-all\" onclick='goToCommentPage(" + questionid + ", \"" + question + "\")'>" + title +"<br>By:"+username+"<br>Date:"+date +"</a><br>" + html;
                 });
                 document.getElementById("threads").innerHTML = html;
 

@@ -18,7 +18,6 @@ function submitModuleAdd()
             success: function (data) {
                 if (data == true)
                 {
-                    alert("Module Created");
                     window.location = '/home/instructor-home/create-and-view-modules';
                 }
                 else
@@ -75,6 +74,7 @@ function goToStudentModule(moduleid) {
 function displayModule2()
 {
     var classid = sessionStorage.getItem('courseID');
+    alert("Pre-ajax");
     return $.ajax({
         type: "POST",
         url: "/Actions/getModule.php",
@@ -82,12 +82,10 @@ function displayModule2()
         dataType: "json",
         cache: false,
         success: function (data) {
+            var html = "";
             if (data == false)
             {
-                alert("Create Module First");
-                var html = "";
-                html += "<a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
-                document.getElementById("demo").innerHTML = html;
+                alert("There are no modules");
             }
             else
             {
@@ -105,15 +103,9 @@ function displayModule2()
                         html += "<a onclick='goToInstructorModule(" + moduleid + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Module " + moduleid + ": " + title + "</a><br>";
                     }
                 });
-                for (var i = 0; i < data.length; i++)
-                {
-                    //var classid = data[i].classID;
-                    
-                }
-                html += "<br><a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
-                document.getElementById("demo").innerHTML = html;
-
             }
+            html += "<a href='/home/instructor-home/create-and-view-modules/create-module'>Create Module</a>";
+            document.getElementById("demo").innerHTML = html;
         }
     });
 }

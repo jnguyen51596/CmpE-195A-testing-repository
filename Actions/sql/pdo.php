@@ -222,8 +222,8 @@ function dropStudent($courseID, $memberID) {
 
 function addAssignment($courseID, $authorID, $title, $total, $duedate, $description) {
     global $con;
-    $sql = "INSERT INTO assignment(courseID, authorID, title, total, duedate, description, lock)
-            VALUES($courseID, $authorID, '$title', $total, '$duedate', '$description', '0')";
+    $sql = "INSERT INTO assignment(courseID, authorID, title, total, duedate, description, `lock`)
+            VALUES($courseID, $authorID, '$title', $total, '$duedate', '$description', 0)";
     $q = $con->prepare($sql);
     $q->execute();
 }
