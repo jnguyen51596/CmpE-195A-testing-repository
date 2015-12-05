@@ -124,7 +124,7 @@ function moduleDescription()
             if (data == false)
             {
                 document.getElementById("demo").innerHTML = "<h1> Module: " + moduleid + "</h1>";
-                alert("No Description");
+                //alert("No Description");
             }
             else
             {
@@ -160,9 +160,7 @@ function modulePageButton()
             data: "description=" + description + "&moduleid=" + moduleid + "&classid=" + classid,
             cache: false,
             success: function (data) {
-                alert(data);
                 if (data == true) {
-                    alert("Description added");
                     window.location.reload();
                 }
                 else {

@@ -720,8 +720,9 @@ function getModuleDescription($moduleid, $classid) {
 
 function addModuleDescription($description, $moduleid1, $classid1) {
     global $con;
-    $sql = "INSERT into `moduledescription`(`order`, `moduleID`, `classID`, `description`) VALUES('','$moduleid1','$classid1','$description');";
+    $sql = "INSERT into `moduledescription`(`moduleID`, `classID`, `description`) VALUES('$moduleid1','$classid1', :description);";
     $q = $con->prepare($sql);
+    $q->bindParam(':description', $description, PDO::PARAM_INT);
     $q->execute();
     return 1;
 }
@@ -760,11 +761,10 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         $q->bindParam(':instructorID', $instructorID, PDO::PARAM_INT);
         $q->execute();
 
-        //copy over assignments to new class
-        
+        //copy over assignments to new class     
         //echo "<br>Copying assignments...";
-        $sql = "INSERT INTO assignment (courseID, authorID, title, total, duedate, description)
-                SELECT ".$newClassID.", authorID, title, total, duedate, description 
+        $sql = "INSERT INTO assignment (courseID, authorID, title, total, duedate, description, `lock`)
+                SELECT ".$newClassID.", authorID, title, total, duedate, description, 0 
                 FROM assignment
                 WHERE courseID = :courseID;";
         $q = $con->prepare($sql);
@@ -780,8 +780,8 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
 
         //copy moduledescriptions
         //echo "<br>Copying module descriptions...";
-        $sql = "INSERT INTO moduledescription (`order`, `moduleID`, `classID`, `description`)
-                SELECT `order`, `moduleID`, ".$newClassID.", `description` 
+        $sql = "INSERT INTO moduledescription (`moduleID`, `classID`, `description`)
+                SELECT `moduleID`, ".$newClassID.", `description` 
                 FROM moduledescription
                 WHERE classID = :courseID";
         $q = $con->prepare($sql);
@@ -830,7 +830,7 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
 
         //increment duedates
         //echo "<br>Incrementing duedates...";
-        $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = ".$newClassID." ORDER BY duedate LIMIT 1;"; 
+        $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = ".$courseID." ORDER BY duedate LIMIT 1;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
         $q->execute();
@@ -838,6 +838,9 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         date_default_timezone_set('America/Los_Angeles');
         $firstAssignmentStartDate = date_create($firstAssignmentStartDate);
         $currentFirstAssignmentDate = date_create($rows[0]['duedate']);
+        //echo "<br>$rows[0]['duedate'] = ".$rows[0]['duedate'];
+        //echo "<br>firstAssignmentStartDate = ".$firstAssignmentStartDate->format('Y-m-d H:i:s');
+        //echo "<br>currentFirstAssignmentDate = ".$currentFirstAssignmentDate->format('Y-m-d H:i:s');
 
         if ($firstAssignmentStartDate < $currentFirstAssignmentDate) {
             return "error";
@@ -845,6 +848,11 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         $diff = $currentFirstAssignmentDate->diff($firstAssignmentStartDate)->days;
         //echo "<br>Diff = ".$diff;
         $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY) WHERE courseID = :courseID;"; 
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
+        $q->execute();
+
+        $sql = "UPDATE totalquiz SET `date` = DATE_ADD(`date`, INTERVAL ".($diff+1)." DAY) WHERE classID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
         $q->execute();
