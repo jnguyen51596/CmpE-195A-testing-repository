@@ -52,7 +52,7 @@ function submitQuiz()
                 success: function (data) {
                     if (data == true)
                     {
-                        alert("Correct Submission");
+                     //   alert("Correct Submission");
                         window.location = '/home/instructor-home/manage-quizzes/quiz-end/';
                     }
                     else
@@ -90,7 +90,7 @@ function submitQuiz()
                 success: function (data) {
                     if (data == true)
                     {
-                        alert("Correct Submission");
+                      //  alert("Correct Submission");
                         window.location = '/home/instructor-home/manage-quizzes/quiz-end/';
                     }
                     else
