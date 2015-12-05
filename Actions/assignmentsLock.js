@@ -93,11 +93,11 @@ function submitLockAssignments()
         success: function (data) {
             if (data == true) {
                 alert("Lock submitted");
-                window.location = "sign-in.php";
+               // window.location = "sign-in.php";
             }
             else {
                 alert("Error with Lock");
-                window.location = "sign-in.php";
+              //  window.location = "sign-in.php";
             }
         }
     });
