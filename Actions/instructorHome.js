@@ -29,6 +29,10 @@ function manageQuizzes() {
 	window.location.href = "/home/instructor-home/manage-quizzes";
 }
 
+function makeAnnouncement() {
+	window.location.href = "/home/instructor-home/make-announcement";
+}
+
 function viewSubmissions() {
 	window.location.href = "/home/instructor-home/view-student-submissions";
 }

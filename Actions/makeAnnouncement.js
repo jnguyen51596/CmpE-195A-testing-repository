@@ -7,7 +7,12 @@ function postAnnouncement() {
         data: {courseID: courseID, body: body},
         dataType: "json",
 		success: function(data){
-               alert("Your announcement has been posted.");
+           alert("Your announcement has been posted.");
+           var lastPage = location.pathname;
+            lastPage = lastPage.substring(0, lastPage.lastIndexOf('/'));
+            lastPage = lastPage.substring(0, lastPage.lastIndexOf('/'));
+            window.location.href = lastPage;
+
         }
 	});
 }

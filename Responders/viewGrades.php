@@ -40,7 +40,7 @@ and open the template in the editor.
     <body>
 	<div data-role="page" data-theme="b">
         <div data-role="header" data-theme="b">
-            <h1>Mopen</h1>
+            <h1>Grades</h1>
         </div><!-- /header -->
         <?php
             require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
@@ -48,7 +48,7 @@ and open the template in the editor.
         <br>
         
         <div>
-            <label id="gradeStatus">Grades</label>
+            <!-- <label id="gradeStatus">Grades</label> -->
             <p id="trendStats"></p>
         </div>
         

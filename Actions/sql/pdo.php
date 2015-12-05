@@ -3,6 +3,7 @@
 try {
     $con = new PDO("mysql:host=localhost;dbname=openlms", "root", "root");
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 } catch (PDOException $ex) {
     echo "<p>Connection failed</p>";
 }
@@ -723,8 +724,9 @@ function isUserInstructor($userID, $courseID) {
     }
 }
 
-function copyCourse($instructorID, $courseID) {
+function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
     try {
+        //echo "Copying course...";
         global $con;
         
         $sql = "INSERT INTO course (`prefix`, `suffix`, `name`) 
@@ -736,6 +738,7 @@ function copyCourse($instructorID, $courseID) {
         //$id now == new class id
 
         //setting course instructor
+        //echo "<br>Setting course instructor...";
         $sql = "INSERT INTO courseinstructor (memberID, courseID) 
                 VALUES (:instructorID, ".$newClassID.")";
         $q = $con->prepare($sql);
@@ -743,24 +746,25 @@ function copyCourse($instructorID, $courseID) {
         $q->execute();
 
         //copy over assignments to new class
-        $sql = "INSERT INTO assignment (assignmentID, courseID, authorID, title, total, duedate, description)
-                SELECT assignmentID, ".$newClassID.", authorID, title, total, duedate, description 
+        
+        //echo "<br>Copying assignments...";
+        $sql = "INSERT INTO assignment (courseID, authorID, title, total, duedate, description)
+                SELECT ".$newClassID.", authorID, title, total, duedate, description 
                 FROM assignment
-                WHERE courseID = :courseID";
+                WHERE courseID = :courseID;";
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
         $q->execute();
-
+        
         //copy over modules
-        $sql = "INSERT INTO modulelist (`classID`, `moduleID`, `title`, `lock`)
-                SELECT ".$newClassID.", `moduleID`, `title`, `lock` 
-                FROM modulelist
-                WHERE classID = :courseID";
+        //echo "<br>Copying modules...";
+        $sql = "INSERT INTO modulelist (`classID`, `moduleID`, `title`, `lock`)SELECT ".$newClassID.", `moduleID`, `title`, `lock` FROM modulelist WHERE classID = :courseID";
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
         $q->execute();
 
         //copy moduledescriptions
+        //echo "<br>Copying module descriptions...";
         $sql = "INSERT INTO moduledescription (`order`, `moduleID`, `classID`, `description`)
                 SELECT `order`, `moduleID`, ".$newClassID.", `description` 
                 FROM moduledescription
@@ -770,6 +774,7 @@ function copyCourse($instructorID, $courseID) {
         $q->execute();
 
         //copy over multiple choice questions
+        //echo "<br>Copying MC questions...";
         $sql = "INSERT INTO multiplechoice (`classID`, `quiznumber`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3`)
                 SELECT ".$newClassID.", `quiznumber`, `question`, `answer`, `incorrect1`, `incorrect2`, `incorrect3` 
                 FROM multiplechoice
@@ -779,6 +784,7 @@ function copyCourse($instructorID, $courseID) {
         $q->execute();
 
         //copy over short answer questions
+        //echo "<br>Copying short answer questions...";
         $sql = "INSERT INTO shortanswer (`classID`, `quiznumber`, `question`)
                 SELECT ".$newClassID.", `quiznumber`, `question` 
                 FROM shortanswer
@@ -788,6 +794,7 @@ function copyCourse($instructorID, $courseID) {
         $q->execute();
 
         //copy over true/false questions
+        //echo "<br>Copying true/fasle questions...";
         $sql = "INSERT INTO truefalse (`classID`, `quiznumber`, `question`, `answer`)
                 SELECT ".$newClassID.", `quiznumber`, `question`, `answer`
                 FROM truefalse
@@ -797,6 +804,7 @@ function copyCourse($instructorID, $courseID) {
         $q->execute();
 
         //copy over quiz
+        //echo "<br>Copying quizzes...";
         $sql = "INSERT INTO totalquiz (`classID`, `quiznumber`, `title`, `lock`, `date`)
                 SELECT ".$newClassID.", `quiznumber`, `title`, `lock`, `date`
                 FROM totalquiz
@@ -804,39 +812,41 @@ function copyCourse($instructorID, $courseID) {
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
         $q->execute();
-        
-        //buildAndRunCopyQuery(1, 15, "totalquiz", array("quiznumber", "title", "lock", "date"), "classID");         
+
+        //increment duedates
+        //echo "<br>Incrementing duedates...";
+        $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = ".$newClassID." ORDER BY duedate LIMIT 1;"; 
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+        $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+        date_default_timezone_set('America/Los_Angeles');
+        $firstAssignmentStartDate = date_create($firstAssignmentStartDate);
+        $currentFirstAssignmentDate = date_create($rows[0]['duedate']);
+
+        if ($firstAssignmentStartDate < $currentFirstAssignmentDate) {
+            return "error";
+        }
+        $diff = $currentFirstAssignmentDate->diff($firstAssignmentStartDate)->days;
+        //echo "<br>Diff = ".$diff;
+        $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY) WHERE courseID = :courseID;"; 
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
+        $q->execute();
+
+        /*
+        $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = :courseID ORDER BY duedate LIMIT 1;"; 
+        $q = $con->prepare($sql);
+        $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
+        $q->execute();
+        $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    
+        $currentFirstAssignmentDate = date_create($rows[0]['duedate']);*/
+
         return "success!";
     } catch (PDOException $ex) {
         return "<p>Connection failed</p>";
     }
-    /*
-    if (count($row) == 1) {
-        $sql = "INSERT INTO course (prefix, suffix, name)
-                VALUES ('$row[prefix]', '$row[suffix]', '$row[name]')";
-    } else {
-        return "error";
-    }*/
-}
-
-//columnNames needs to omit courseID for this funciton to work
-function buildAndRunCopyQuery($oldCourseID, $newCourseID, $tableName, $columnNames, $courseIDFieldName) {
-    global $con;
-
-    $sql = "INSERT INTO ".$tableName." (`".$courseIDFieldName."`";
-    
-    $columnListFormattedWithoutCourseID = "";
-    foreach ($columnNames as $name) {
-        $columnListFormattedWithoutCourseID = $columnListFormattedWithoutCourseID.", `".$name."`";
-    }
-    $sql = $sql.$columnListFormattedWithoutCourseID.") ";
-    $sql = $sql."SELECT ".$newCourseID.$columnListFormattedWithoutCourseID;
-    $sql = $sql." FROM ".$tableName;
-    $sql = $sql." WHERE ".$courseIDFieldName." = :courseID";
-
-    $q = $con->prepare($sql);
-    $q->bindParam(':courseID', $oldCourseID, PDO::PARAM_INT);
-    $q->execute();
 }
 
 function addQuizGrade($studentid, $assignmentid, $points) {

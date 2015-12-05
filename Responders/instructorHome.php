@@ -44,8 +44,9 @@
             <button onclick='manageQuizzes()'>Manage Quizzes</button>
             <button onclick='setGrades()'>Set Grades</button>
             <button onclick='viewSubmissions()'>View Student Submissions</button>
+            <button onclick='makeAnnouncement()'>Make an Announcement</button>
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
-            <button onclick='module()'>Create and View Module</button>
+            <button onclick='module()'>Create and View Modules</button>
             <button onclick='newSection()'>Create a New Section</button>
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>

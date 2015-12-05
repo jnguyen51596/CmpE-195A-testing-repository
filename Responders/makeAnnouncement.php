@@ -30,6 +30,9 @@
 </head>
 <body>
 	<div data-role="page" data-theme="b">
+		<div data-role="header" data-theme="b" >
+                <h1>Make Announcement</h1>
+            </div><!-- /header -->
 		<?php
 			require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
 		?>

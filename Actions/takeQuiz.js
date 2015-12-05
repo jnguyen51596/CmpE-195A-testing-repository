@@ -163,7 +163,7 @@ function printOutQuiz3(data)
 
 function submitFinishQuiz()
 {
-    alert("You are now submitting");
+    //alert("You are now submitting");
     var totalquestion = sessionStorage.getItem('totalquestion');
     var answers = sessionStorage.getItem('answers');
     var answers2 = JSON.parse(answers)
@@ -179,13 +179,12 @@ function submitFinishQuiz()
         var temp = 0;
         if (question[0].id == text2)
         {
-            alert("hi");
         }
         else
         {
             for (var j = 0, length = 4; j < length; j++) {
                 if (question[j].checked) {
-                    alert(question[j].value);
+                    //alert(question[j].value);
                     temp = j;
                     break;
                 }
@@ -201,7 +200,7 @@ function submitFinishQuiz()
             }
         }
     }
-    alert(points);
+    alert("You got " + points + " correct answers");
     var classID = sessionStorage.getItem('courseID');
     var quizid = sessionStorage.getItem('quizid');
     $.ajax({
