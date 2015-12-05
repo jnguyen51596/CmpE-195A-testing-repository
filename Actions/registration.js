@@ -23,11 +23,11 @@ function checkinfo() {
                     success: function (data) {
                         if (data === "false") {
                             
-                            alert("its all good");
+                            
                             
                             if(pass1 !== pass2)
                             {
-                                alert("Your passwords are not matching. Fix that!");
+                                alert("Your passwords are not matching");
                             }else 
                             {
                                 
@@ -39,7 +39,7 @@ function checkinfo() {
                                     cache: false,
                                     success: function (data) {
                                         if (data == 1) {
-                                            alert("Successful Registration!!!");
+                                            alert("Successful Registration");
                                             window.location = '/home';
 
                                         }else 
@@ -52,7 +52,7 @@ function checkinfo() {
                             }
                         }else{
                             
-                            alert("nah son, that username is taken");
+                            alert("That username is taken");
                             
                         }
                     }

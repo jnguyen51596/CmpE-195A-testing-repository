@@ -46,15 +46,13 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 		<div data-role="panel" data-display="push" id="panel-id" data-theme="b">
 			<ul data-role="listview">
 				<li data-icon='false'><a onclick='viewProfile()'><i class='lIcon fa fa-user'></i>View Profile</a></li>
-				<li data-icon='false'><a onclick='editProfile()'>Edit Profile</a></li>
-                <li data-icon='false'><a onclick='viewNotifications()'>Notifications</a></li>
-			</ul>
+                			</ul>
 		</div>
 
 		
 		<div role="main" class="ui-content">
 				<?php
-					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
+					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar2.php");
 				?>
 				<br>
 				<label for="role" class="select">Select a Role:</label>
@@ -66,6 +64,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 				</select>
 		</div>
 		<div id="results" class="ui-content">
+                    
+		
 		</div>
 		<!--
 		<form style="display: hidden" action="courseHome.php" method="POST" id="courseInfo">
@@ -76,5 +76,11 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 		</form>-->
 	</div>
 
+    <div data-role="footer">
+  <p>asd;lajdlkasdlj;sadajshkdlasdasd</p>
+</div>
+
 </body>
+
+
 </html>

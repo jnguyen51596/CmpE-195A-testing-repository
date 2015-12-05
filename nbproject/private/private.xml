@@ -12,13 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/sql/pdo.php</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/deleteQuiz.js</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/editProfile.php</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/editProfile.js</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/profile.js</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Responders/profile.php</file>
-            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Responders/editProfile.php</file>
+            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Responders/userHome.php</file>
+            <file>file:/C:/xampp/htdocs/CmpE-195A-testing-repository/Actions/userhome.js</file>
         </group>
     </open-files>
 </project-private>

@@ -13,11 +13,11 @@ $(document).ready(function ()
             cache: false,
             success: function (data) {
                 if (data === "true") {
-                    alert("Valid");
+                    
                     window.location = '/home';
                 }
                 else {
-                    alert("Invalidkk");
+                    alert("Invalid");
                 }
             }
         });
