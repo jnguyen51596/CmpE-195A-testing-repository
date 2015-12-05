@@ -6,7 +6,7 @@ var assignmentArray;
 // grabs assignments and formats it in a list
 function initializeAssignments() {
     response = getRemote();
-    console.log(response);
+    // console.log(response);
 
     if (response != "false") {
         assignmentArray = JSON.parse(response);
@@ -20,7 +20,7 @@ function initializeAssignments() {
             }
             else
             {
-                if (duedate < currentdate)
+                if (duedate.getTime() > currentdate.getTime())
                 {
                     tag += '<ul id="assignment-list-id" data-role="listview" data-inset="true">';
                     tag += '<li value=' + assignmentArray[i]['assignmentID'] + '><a href="javascript:void(0);" onclick="expandAssignment(' + i + ');">' + assignmentArray[i]['title'] + '</a></li>';
