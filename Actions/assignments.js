@@ -70,7 +70,7 @@ function expandAssignment(assignmentIndex) {
     var info = "";
     if (assignmentArray[assignmentIndex]['description']== 'quiz')
     {
-        info =
+        info +=
                 '<div class="inset">' +
                 '<p>Points: ' + assignmentArray[assignmentIndex]['total'] + '</p>' +
                 '<p>Due: ' + assignmentArray[assignmentIndex]['duedate'] + '<p>' +
@@ -79,7 +79,7 @@ function expandAssignment(assignmentIndex) {
     }
     else
     {
-        info =
+        info +=
                 '<div class="inset">' +
                 '<p>Points: ' + assignmentArray[assignmentIndex]['total'] + '</p>' +
                 '<p>Due: ' + assignmentArray[assignmentIndex]['duedate'] + '<p>' +

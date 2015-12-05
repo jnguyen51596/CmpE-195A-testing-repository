@@ -41,7 +41,7 @@ CREATE TABLE `announcement` (
 
 LOCK TABLES `announcement` WRITE;
 /*!40000 ALTER TABLE `announcement` DISABLE KEYS */;
-INSERT INTO `announcement` VALUES (1,0,2,'1');
+
 /*!40000 ALTER TABLE `announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,6 +87,7 @@ CREATE TABLE `assignment` (
   `total` int(11) NOT NULL,
   `duedate` datetime DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `lock` tinyint(1) NOT NULL,
   PRIMARY KEY (`assignmentID`),
   KEY `assignment_course_idx` (`courseID`),
   KEY `assignment_member_idx` (`authorID`),
@@ -101,7 +102,7 @@ CREATE TABLE `assignment` (
 
 LOCK TABLES `assignment` WRITE;
 /*!40000 ALTER TABLE `assignment` DISABLE KEYS */;
-INSERT INTO `assignment` VALUES (1,3,2,'Homework 1',100,NULL,'Due 4/8/15'),(2,5,4,'HW 1',100,'2015-04-04 12:00:00','wipe dat ass clean, son!!!');
+
 /*!40000 ALTER TABLE `assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +128,7 @@ CREATE TABLE `assignmentstudentlist` (
 
 LOCK TABLES `assignmentstudentlist` WRITE;
 /*!40000 ALTER TABLE `assignmentstudentlist` DISABLE KEYS */;
-INSERT INTO `assignmentstudentlist` VALUES (1,1,'batman',0,0),(1,1,'batman2',0,0),(1,1,'batman4',1,0),(1,1,'batman7',1,0);
+
 /*!40000 ALTER TABLE `assignmentstudentlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +156,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (2,1,'batman','test question','dfadfas',20),(2,1,'batman','test question','dafsdfasfsa',21),(2,1,'batman','test question','dfasdf',22),(2,1,'batman','test question','dafsfasd',23),(2,1,'batman','test question','dfasdf',24),(2,1,'batman','test question','dfasdfas',25),(2,1,'batman','test question','dfasdfa',26),(2,1,'batman','test question','dfasdfa',27),(2,1,'batman','test question','dafasdf',28),(2,1,'batman','test question','dafdffdfd',29),(2,1,'batman','test question','dasdfa',30),(2,1,'batman','test question','dfasdfasf',31),(2,1,'batman','test question','dfasdfas',32),(2,1,'batman','test question','dasdasf',33),(2,1,'batman','test question','dafsdfsd',34),(2,1,'batman','test question','dafsdf',35),(2,1,'batman','test question','dfasdfa',36),(2,1,'batman','test question','dafsdfas',37),(2,1,'batman','test question','dasfasdfa',38),(2,1,'batman','test question','dasfsdfasdf',39),(2,1,'batman','test question','dafsdfds',40),(2,1,'batman','test question','dfasdfads',41),(2,1,'batman','test question','sadfasd',42),(2,1,'batman','test question','dfasdf',43),(2,1,'batman','test question','dfasdfasd',44),(2,1,'batman','test question','sdfsdfasdf',45),(2,1,'batman','test question','sdfasdf',46),(2,1,'batman','test question','dfadfda',47),(2,1,'batman','test question','dfsadfas',48),(3,1,'batman','hi','dsfasdf',49),(10,1,'batman','hi','adfasdfas',50),(10,1,'batman','hi','adsfasdfa',51),(10,1,'batman','hi','adsfasd',52),(2,1,'batman','test question','adsfasdf',53);
+
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +182,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'CMPE','195A','Senior Design Project I'),(2,'SE','172','Enterprise Software Platforms'),(3,'CS','166','Information Security'),(4,'KIN','24A','Beginning Bowling'),(5,'POOP','101','Poop');
+
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +211,7 @@ CREATE TABLE `courseinstructor` (
 
 LOCK TABLES `courseinstructor` WRITE;
 /*!40000 ALTER TABLE `courseinstructor` DISABLE KEYS */;
-INSERT INTO `courseinstructor` VALUES (4,5);
+
 /*!40000 ALTER TABLE `courseinstructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +240,7 @@ CREATE TABLE `coursemember` (
 
 LOCK TABLES `coursemember` WRITE;
 /*!40000 ALTER TABLE `coursemember` DISABLE KEYS */;
-INSERT INTO `coursemember` VALUES (1,1),(1,3),(1,4),(2,3),(3,1),(3,3);
+
 /*!40000 ALTER TABLE `coursemember` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +267,7 @@ CREATE TABLE `grade` (
 
 LOCK TABLES `grade` WRITE;
 /*!40000 ALTER TABLE `grade` DISABLE KEYS */;
-INSERT INTO `grade` VALUES (1,1,90,'nice!');
+
 /*!40000 ALTER TABLE `grade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +293,7 @@ CREATE TABLE `hwcomment` (
 
 LOCK TABLES `hwcomment` WRITE;
 /*!40000 ALTER TABLE `hwcomment` DISABLE KEYS */;
-INSERT INTO `hwcomment` VALUES (1,1,'batman',1,'hi'),(2,1,'batman',1,'yo'),(3,1,'batman',1,'asdfa'),(5,1,'batman',1,'sadfasdf'),(6,1,'batman',1,'sadfasdf'),(7,1,'batman',1,'asdfasdfa'),(8,1,'batman',1,'hehe'),(9,1,'batman',1,'lkjlk'),(10,1,'batman',1,'asdfa'),(11,1,'batman',1,'asdfasdffff'),(12,1,'batman',1,'asdfsffffffff'),(13,1,'batman',1,'sdkfjasldfkja;'),(14,1,'batman',1,'asdfasdf'),(15,1,'batman',1,'lkasjdlfkjslfkajsldfk'),(16,1,'batman',1,'asdfjasldkfjlaskdf'),(17,1,'batman',1,'asdfasd'),(18,1,'batman',1,'asdlfkjlllll'),(19,1,'batman',1,'hi');
+
 /*!40000 ALTER TABLE `hwcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +316,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES ('batman','1234');
+
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,7 +347,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (4,'quiqui','quiqui','quiqui',NULL,NULL),(7,'clifford','chan','cpc1992',NULL,NULL),(8,'d','d','d','e958cd6cfd7cab76d57fd5492a24dd151aae02bf72480222bb4e5014135eb872','gboruezh30a81qi'),(12,'j','j','cpc1993','352bae138835ae8101710393e1f459f57fa079113e42b2631e39c5ee012001e5','h8tiv2e7rb35c4u'),(13,'k','k','k','9896aca6078e068645ee274c25cb860dc1108853a0c36d8ea1fca8b406b346e8','6e7ta3zbm19gidn'),(14,'d','d','dicks','765fb028b2745ff40b69a414ac217f09725b3599a072776bf25366fc586643ae','zx4lnie8t316yug'),(15,'p','p','p','1a12334e57c0a8ba2be754e0ac56ca007ffbad410b079baa705de64f44e2fa31','6a04ps9rlgntyjb');
+
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,7 +375,7 @@ CREATE TABLE `messagethread` (
 
 LOCK TABLES `messagethread` WRITE;
 /*!40000 ALTER TABLE `messagethread` DISABLE KEYS */;
-INSERT INTO `messagethread` VALUES (0,'0000-00-00','','','',1),(1,'0000-00-00','batman','test question','test title',2),(1,'0000-00-00','batman','test question','test title',3),(1,'2015-10-10','batman','test2','test2',4),(1,'2015-10-19','batman','joijoijoi','hi',5);
+
 /*!40000 ALTER TABLE `messagethread` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,11 +387,12 @@ DROP TABLE IF EXISTS `moduledescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `moduledescription` (
-  `order` int(11) NOT NULL,
+  `order` int(11) NOT NULL AUTO_INCREMENT,
   `moduleID` int(11) NOT NULL,
   `classID` int(11) NOT NULL,
-  `description` varchar(999) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description` varchar(999) NOT NULL,
+  PRIMARY KEY (`order`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -450,7 +452,7 @@ CREATE TABLE `multiplechoice` (
 
 LOCK TABLES `multiplechoice` WRITE;
 /*!40000 ALTER TABLE `multiplechoice` DISABLE KEYS */;
-INSERT INTO `multiplechoice` VALUES (1,1,'What color is the sky','blue','orange','green','yello');
+
 /*!40000 ALTER TABLE `multiplechoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -524,7 +526,7 @@ CREATE TABLE `shortanswer` (
 
 LOCK TABLES `shortanswer` WRITE;
 /*!40000 ALTER TABLE `shortanswer` DISABLE KEYS */;
-INSERT INTO `shortanswer` VALUES (1,1,'why is the sky blue');
+
 /*!40000 ALTER TABLE `shortanswer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -551,7 +553,7 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-INSERT INTO `totalquiz` VALUES (1,1,'First Quiz',0,'2015-01-01 01:11:00'),(2,1,'Second Quiz',0,'2015-01-01 01:11:00');
+
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -598,7 +600,7 @@ CREATE TABLE `truefalse` (
 
 LOCK TABLES `truefalse` WRITE;
 /*!40000 ALTER TABLE `truefalse` DISABLE KEYS */;
-INSERT INTO `truefalse` VALUES (1,1,'Is the sky orange','false');
+
 /*!40000 ALTER TABLE `truefalse` ENABLE KEYS */;
 UNLOCK TABLES;
 
