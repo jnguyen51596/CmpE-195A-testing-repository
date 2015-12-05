@@ -44,3 +44,8 @@ function module() {
 function newSection() {
 	window.location.href = "/home/instructor-home/create-a-new-section";
 }
+
+function lockAssignment()
+{
+    window.location.href = "/home/instructor-home/lock-assignment";
+}

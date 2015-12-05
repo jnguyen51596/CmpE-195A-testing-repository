@@ -142,7 +142,8 @@ function getDBDate($classID, $quiznumber) {
         foreach ($rows as $value) {
             $avalue1 = $value['lock'];
             $avalue2 = $value['date'];
-            if ($avalue1 == 0) {    
+	    $avalue3 = $value['lockmanualoverride'];
+            if ($avalue1 == 0 && $avalue3 == null) {    
                 return $avalue2;
             } else {
                 return 0;
