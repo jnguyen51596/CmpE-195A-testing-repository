@@ -12,8 +12,8 @@ function initializeAssignments() {
         assignmentArray = JSON.parse(response);
         var tag = "";
         for (var i = 0; i < assignmentArray.length; i++) {
-            var duedate = new date(assignmentArray[i]['duedate']);
-            var currentdate = new date();
+            var duedate = new Date(assignmentArray[i]['duedate']);
+            var currentdate = new Date();
             if (assignmentArray[i]['lock'] == 1)
             {
 
