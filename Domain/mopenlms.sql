@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `openlms` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `openlms`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: localhost    Database: openlms
+-- Host: 127.0.0.1    Database: openlms
 -- ------------------------------------------------------
 -- Server version	5.6.26-log
 
@@ -41,7 +43,6 @@ CREATE TABLE `announcement` (
 
 LOCK TABLES `announcement` WRITE;
 /*!40000 ALTER TABLE `announcement` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +94,7 @@ CREATE TABLE `assignment` (
   KEY `assignment_member_idx` (`authorID`),
   CONSTRAINT `assignment_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `assignment_member` FOREIGN KEY (`authorID`) REFERENCES `member` (`memberID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +103,6 @@ CREATE TABLE `assignment` (
 
 LOCK TABLES `assignment` WRITE;
 /*!40000 ALTER TABLE `assignment` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,6 @@ CREATE TABLE `assignmentstudentlist` (
 
 LOCK TABLES `assignmentstudentlist` WRITE;
 /*!40000 ALTER TABLE `assignmentstudentlist` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `assignmentstudentlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +155,6 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +171,7 @@ CREATE TABLE `course` (
   `suffix` char(4) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +180,6 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +208,6 @@ CREATE TABLE `courseinstructor` (
 
 LOCK TABLES `courseinstructor` WRITE;
 /*!40000 ALTER TABLE `courseinstructor` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `courseinstructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +236,6 @@ CREATE TABLE `coursemember` (
 
 LOCK TABLES `coursemember` WRITE;
 /*!40000 ALTER TABLE `coursemember` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `coursemember` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,6 +251,7 @@ CREATE TABLE `grade` (
   `assignmentID` int(11) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `feedback` varchar(255) DEFAULT NULL,
+  `timestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`memberID`,`assignmentID`),
   CONSTRAINT `grades_member` FOREIGN KEY (`memberID`) REFERENCES `member` (`memberID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -267,7 +263,6 @@ CREATE TABLE `grade` (
 
 LOCK TABLES `grade` WRITE;
 /*!40000 ALTER TABLE `grade` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `grade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +288,6 @@ CREATE TABLE `hwcomment` (
 
 LOCK TABLES `hwcomment` WRITE;
 /*!40000 ALTER TABLE `hwcomment` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `hwcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +310,6 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,7 +331,7 @@ CREATE TABLE `member` (
   `salt` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`memberID`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +340,6 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +367,6 @@ CREATE TABLE `messagethread` (
 
 LOCK TABLES `messagethread` WRITE;
 /*!40000 ALTER TABLE `messagethread` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `messagethread` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,7 +383,7 @@ CREATE TABLE `moduledescription` (
   `classID` int(11) NOT NULL,
   `description` varchar(999) NOT NULL,
   PRIMARY KEY (`order`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,7 +443,6 @@ CREATE TABLE `multiplechoice` (
 
 LOCK TABLES `multiplechoice` WRITE;
 /*!40000 ALTER TABLE `multiplechoice` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `multiplechoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +516,6 @@ CREATE TABLE `shortanswer` (
 
 LOCK TABLES `shortanswer` WRITE;
 /*!40000 ALTER TABLE `shortanswer` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `shortanswer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -543,7 +532,7 @@ CREATE TABLE `totalquiz` (
   `title` varchar(20) NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `date` datetime NOT NULL,
-  `lockmanualoverride` TINYINT(1) DEFAULT NULL
+  `lockmanualoverride` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -553,7 +542,6 @@ CREATE TABLE `totalquiz` (
 
 LOCK TABLES `totalquiz` WRITE;
 /*!40000 ALTER TABLE `totalquiz` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `totalquiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -600,14 +588,8 @@ CREATE TABLE `truefalse` (
 
 LOCK TABLES `truefalse` WRITE;
 /*!40000 ALTER TABLE `truefalse` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `truefalse` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -618,4 +600,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-01 20:31:31
+-- Dump completed on 2015-12-05 13:41:14
