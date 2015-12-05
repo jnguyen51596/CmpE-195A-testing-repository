@@ -11,6 +11,8 @@ function getQuizQuestion1()
         type: "POST",
         url: "/Actions/getQuizQuestion1.php",
         data: "classid=" + classid + "&quiznumber=" + quiznumber,
+        dataType: "json",
+        cache: false,
         success: function (data) {
             if (data == false)
             {
@@ -30,6 +32,7 @@ function getQuizQuestion1()
         }
     });
 }
+
 function getQuizQuestion2(classid, quiznumber)
 {
 
@@ -37,35 +40,13 @@ function getQuizQuestion2(classid, quiznumber)
         type: "POST",
         url: "/Actions/getQuizQuestion2.php",
         data: "classid=" + classid + "&quiznumber=" + quiznumber,
+        dataType: "json",
+        cache: false,
         success: function (data) {
             if (data == false)
             {
                 counter += 1;
-                getQuizQuestion3(classid, quiznumber);
-            }
-            else
-            {
-                var temp = printOutQuiz2(data);
-                if (temp == true)
-                {
-                    getQuizQuestion3(classid, quiznumber);
-                }
-            }
-        }
-    });
-}
-function getQuizQuestion3(classid, quiznumber)
-{
-
-    return $.ajax({
-        type: "POST",
-        url: "/Actions/getQuizQuestion3.php",
-        data: "classid=" + classid + "&quiznumber=" + quiznumber,
-        success: function (data) {
-            if (data == false)
-            {
-                counter += 1;
-                if (counter == 3)
+                if (counter == 2)
                 {
                     alert("No Quiz");
                 }
@@ -73,7 +54,7 @@ function getQuizQuestion3(classid, quiznumber)
                 {
                     
                     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
-                    sessionStorage.setItem("answers", JSON.stringify(arrayOfAnswers));
+                    sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
                     sessionStorage.setItem('totalquestion', totalquestion);
                     $("#demo").append(html).enhanceWithin();
                 }
@@ -81,15 +62,72 @@ function getQuizQuestion3(classid, quiznumber)
             else
             {
                 sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
-                printOutQuiz3(data);
+                printOutQuiz2(data);
             }
         }
     });
 }
 
+//function getQuizQuestion2(classid, quiznumber)
+//{
+//
+//    return $.ajax({
+//        type: "POST",
+//        url: "/Actions/getQuizQuestion2.php",
+//        data: "classid=" + classid + "&quiznumber=" + quiznumber,
+//        success: function (data) {
+//            if (data == false)
+//            {
+//                counter += 1;
+//                getQuizQuestion3(classid, quiznumber);
+//            }
+//            else
+//            {
+//                var temp = printOutQuiz2(data);
+//                if (temp == true)
+//                {
+//                    getQuizQuestion3(classid, quiznumber);
+//                }
+//            }
+//        }
+//    });
+//}
+//function getQuizQuestion3(classid, quiznumber)
+//{
+//
+//    return $.ajax({
+//        type: "POST",
+//        url: "/Actions/getQuizQuestion3.php",
+//        data: "classid=" + classid + "&quiznumber=" + quiznumber,
+//        success: function (data) {
+//            if (data == false)
+//            {
+//                counter += 1;
+//                if (counter == 3)
+//                {
+//                    alert("No Quiz");
+//                }
+//                else
+//                {
+//                    
+//                    html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
+//                    sessionStorage.setItem("answers", JSON.stringify(arrayOfAnswers));
+//                    sessionStorage.setItem('totalquestion', totalquestion);
+//                    $("#demo").append(html).enhanceWithin();
+//                }
+//            }
+//            else
+//            {
+//                sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
+//                printOutQuiz3(data);
+//            }
+//        }
+//    });
+//}
+
 function printOutQuiz1(data)
 {
-    for (var i = 0; i < data.length; i++)
+    $.each(data, function(index, data)
     {
         var question = data[i].question;
         var choice1 = data[i].answer;
@@ -110,13 +148,13 @@ function printOutQuiz1(data)
         html += "<label for=\"radio-choice-4-" + totalquestion + "\">" + choice4 + "</label>";
         html += "</fieldset>";
         totalquestion += 1;
-    }
+    });
     return true;
 }
 
 function printOutQuiz2(data)
 {
-    for (var i = 0; i < data.length; i++)
+     $.each(data, function(index, data)
     {
         var question = data[i].question;
         var answer = data[i].answer;
@@ -130,28 +168,30 @@ function printOutQuiz2(data)
         html += "<label for=\"radio-choice-2-" + totalquestion + "\">False</label>";
         html += "</fieldset>";
         totalquestion += 1;
-    }
-    return true;
-
-}
-
-function printOutQuiz3(data)
-{
-    for (var i = 0; i < data.length; i++)
-    {
-        var question = data[i].question;
-        html += "<fieldset data-role=\"controlgroup\" >";
-        html += "<h1>Question " + totalquestion + "</h1>";
-        html += "<p>" + question + "</p>";
-        html += "<textarea  id=\"text-" + totalquestion + "\"  name=\"radio-choice-" +totalquestion+"\" cols=\"40\" rows=\"5\"></textarea>";
-        html += "</fieldset>";
-        totalquestion += 1;
-    }
-    
+    });
     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
     sessionStorage.setItem('totalquestion', totalquestion);
     $("#demo").append(html).enhanceWithin();
+
 }
+
+//function printOutQuiz3(data)
+//{
+//    for (var i = 0; i < data.length; i++)
+//    {
+//        var question = data[i].question;
+//        html += "<fieldset data-role=\"controlgroup\" >";
+//        html += "<h1>Question " + totalquestion + "</h1>";
+//        html += "<p>" + question + "</p>";
+//        html += "<textarea  id=\"text-" + totalquestion + "\"  name=\"radio-choice-" +totalquestion+"\" cols=\"40\" rows=\"5\"></textarea>";
+//        html += "</fieldset>";
+//        totalquestion += 1;
+//    }
+//    
+//    html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
+//    sessionStorage.setItem('totalquestion', totalquestion);
+//    $("#demo").append(html).enhanceWithin();
+//}
 
 //function submitFinishQuiz()
 //{
@@ -202,11 +242,11 @@ function submitFinishQuiz()
     }
     alert("You got " + points + " correct answers");
     var classID = sessionStorage.getItem('courseID');
-    var quizid = sessionStorage.getItem('quizid');
+    var quiznumber = sessionStorage.getItem('quiznumber');
     $.ajax({
             type: "POST",
             url: "/Actions/addQuizGrade.php",
-            data: "classid=" + classID + "&quizid="+ quizid+ "&points="+points,
+            data: "classid=" + classID + "&quizid="+ quiznumber+ "&points="+points,
             cache: false,
             success: function (data) {
                 if (data.indexOf("true") > -1)

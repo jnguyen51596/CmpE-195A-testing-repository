@@ -9,14 +9,17 @@ function addQuestion() {
 function deleteQuizQuestion1()
 {
     var classid = sessionStorage.getItem('courseID');
-    var quiznumber = sessionStorage.getItem('quiznumber');
+    var quiznumber =sessionStorage.getItem('quiznumber');
     return $.ajax({
         type: "POST",
         url: "/Actions/getQuizQuestion1.php",
         data: "classid=" + classid + "&quiznumber=" + quiznumber,
+        dataType: "json",
+        cache: false,
         success: function (data) {
             if (data == false)
             {
+                
                 counter = 0;
                 counter += 1;
                 deleteQuizQuestion2(classid, quiznumber);
@@ -24,6 +27,7 @@ function deleteQuizQuestion1()
             }
             else
             {
+                
                 var temp = deletePrintOutQuiz1(data);
                 if (temp == true)
                 {
@@ -41,36 +45,13 @@ function deleteQuizQuestion2(classid, quiznumber)
         type: "POST",
         url: "/Actions/getQuizQuestion2.php",
         data: "classid=" + classid + "&quiznumber=" + quiznumber,
-        success: function (data) {
+        dataType: "json",
+        cache: false,
+       success: function (data) {
             if (data == false)
             {
                 counter += 1;
-                deleteQuizQuestion3(classid, quiznumber);
-            }
-            else
-            {
-                var temp = deletePrintOutQuiz2(data);
-                if (temp == true)
-                {
-                    deleteQuizQuestion3(classid, quiznumber);
-                }
-            }
-        }
-    });
-}
-
-function deleteQuizQuestion3(classid, quiznumber)
-{
-
-    return $.ajax({
-        type: "POST",
-        url: "/Actions/getQuizQuestion3.php",
-        data: "classid=" + classid + "&quiznumber=" + quiznumber,
-        success: function (data) {
-            if (data == false)
-            {
-                counter += 1;
-                if (counter == 3)
+                if (counter == 2)
                 {
                     alert("No Questions");
                     $('#delete').remove();
@@ -78,11 +59,62 @@ function deleteQuizQuestion3(classid, quiznumber)
             }
             else
             {
-                deletePrintOutQuiz3(data);
+                deletePrintOutQuiz2(data);
             }
         }
     });
 }
+
+
+//function deleteQuizQuestion2(classid, quiznumber)
+//{
+//
+//    return $.ajax({
+//        type: "POST",
+//        url: "/Actions/getQuizQuestion2.php",
+//        data: "classid=" + classid + "&quiznumber=" + quiznumber,
+//        success: function (data) {
+//            if (data == false)
+//            {
+//                counter += 1;
+//                deleteQuizQuestion3(classid, quiznumber);
+//            }
+//            else
+//            {
+//                var temp = deletePrintOutQuiz2(data);
+//                if (temp == true)
+//                {
+//                    deleteQuizQuestion3(classid, quiznumber);
+//                }
+//            }
+//        }
+//    });
+//}
+
+//function deleteQuizQuestion3(classid, quiznumber)
+//{
+//
+//    return $.ajax({
+//        type: "POST",
+//        url: "/Actions/getQuizQuestion3.php",
+//        data: "classid=" + classid + "&quiznumber=" + quiznumber,
+//        success: function (data) {
+//            if (data == false)
+//            {
+//                counter += 1;
+//                if (counter == 3)
+//                {
+//                    alert("No Questions");
+//                    $('#delete').remove();
+//                }
+//            }
+//            else
+//            {
+//                deletePrintOutQuiz3(data);
+//            }
+//        }
+//    });
+//}
 
 function submitDelete()
 {
@@ -117,13 +149,13 @@ function submitDelete()
 
 function deletePrintOutQuiz1(data)
 {
-    for (var i = 0; i < data.length; i++)
-    {
-        var question = data[i].question;
-        var choice1 = data[i].answer;
-        var choice2 = data[i].incorrect1;
-        var choice3 = data[i].incorrect2;
-        var choice4 = data[i].incorrect3;
+     $.each(data, function(index, data) 
+    {      
+        var question = data.question;
+        var choice1 = data.answer;
+        var choice2 = data.incorrect1;
+        var choice3 = data.incorrect2;
+        var choice4 = data.incorrect3;
         // html += "<fieldset data-role=\"controlgroup\" >";
         html += "<input class='message' type='checkbox' name='checkboxmessage' id='" + totalquestion + "' value='multiplechoice&" + question + "'>";
         html += "<label for='" + totalquestion + "'><h1>Question " + totalquestion + ": " + question + "</h1></label>";
@@ -138,16 +170,17 @@ function deletePrintOutQuiz1(data)
         html += "<label for='radio-choice-4-" + totalquestion + "'>" + choice4 + "</label>";
         //html += "</fieldset>";
         totalquestion += 1;
-    }
+    });
     return true;
 }
 
 function deletePrintOutQuiz2(data)
 {
-    for (var i = 0; i < data.length; i++)
+    
+     $.each(data, function(index, data) 
     {
-        var question = data[i].question;
-        var answer = data[i].answer;
+        var question = data.question;
+        var answer = data.answer;
         
         //html += "<fieldset data-role=\"controlgroup\" >";
         html += "<input class=\"message\"  type=\"checkbox\" name=\"checkboxmessage\" id=\"" + totalquestion + "\" value=\"truefalse&" + question + "\">";
@@ -166,23 +199,23 @@ function deletePrintOutQuiz2(data)
         
         // html += "</fieldset>";
         totalquestion += 1;
-    }
-    return true;
+    });
+     $("#demo").append(html).enhanceWithin();
+
 
 }
-function deletePrintOutQuiz3(data)
-{
-    for (var i = 0; i < data.length; i++)
-    {
-        var question = data[i].question;
-        //html += "<fieldset data-role=\"controlgroup\" >";
-        html += "<input class=\"message\" type=\"checkbox\" name=\"checkboxmessage\" id=\"" + totalquestion + "\" value=\"shortanswer&" + question + "\">";
-        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + ": Short Answer</h1></label>";
-        html += "<p>" + question + "</p>";
-        html += "<textarea cols=\"40\" rows=\"5\" id=\"text\"></textarea>";
-        // html += "</fieldset>";
-        totalquestion += 1;
-    }
-    $("#demo").append(html).enhanceWithin();
-
-}
+//function deletePrintOutQuiz3(data)
+//{
+//    for (var i = 0; i < data.length; i++)
+//    {
+//        var question = data[i].question;
+//        //html += "<fieldset data-role=\"controlgroup\" >";
+//        html += "<input class=\"message\" type=\"checkbox\" name=\"checkboxmessage\" id=\"" + totalquestion + "\" value=\"shortanswer&" + question + "\">";
+//        html += "<label for=\"" + totalquestion + "\"><h1>Question " + totalquestion + ": Short Answer</h1></label>";
+//        html += "<p>" + question + "</p>";
+//        html += "<textarea cols=\"40\" rows=\"5\" id=\"text\"></textarea>";
+//        // html += "</fieldset>";
+//        totalquestion += 1;
+//    }
+//   
+//}

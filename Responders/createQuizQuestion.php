@@ -28,8 +28,7 @@
         <script src="/Actions/createQuizQuestion.js"></script>
 
         <style>
-            #box2{display:none} 
-            #box3{display:none}  
+            #box2{display:none}  
         </style>
 
     </head>
@@ -52,8 +51,6 @@
                             <label for="radio-choice-h-2a">Multiple Choice</label>
                             <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" onclick="showB()" value="trueFalse">
                             <label for="radio-choice-h-2b">True/False</label>
-                            <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" onclick="showC()" value="shortAnswer">
-                            <label for="radio-choice-h-2c">Short Answer</label>
                         </fieldset>
                         <br>
                     </div>
@@ -93,13 +90,6 @@
                             <input type="radio" name="trueFalseChoice-b" id="trueFalseChoice-2b" value="false">
                             <label for="trueFalseChoice-2b">False</label>
                         </fieldset>
-                    </div>
-                    <div id="box3">
-                        <fieldset data-role="fieldcontain">
-                            <label for="question-c">Type in Question:</label>
-                            <textarea cols="40" rows="8" name="question-c" id="question-c"></textarea>
-                        </fieldset>  
-                        <p style="color:red">Warning: you will have to grade the short answer questions</p>
                     </div>
                     <input  id="nextQuizCreation" type="button" value="Next" onclick="submitQuiz()">
                 </form>
