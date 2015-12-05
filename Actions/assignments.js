@@ -32,7 +32,7 @@ function initializeAssignments() {
                     var assignmendID = assignmentArray[i]['assignmentID'];
                     $.ajax({
                         type: "POST",
-                        url: "../Actions/autoLockAssignment.php",
+                        url: "/Actions/autoLockAssignment.php",
                         data: "classID=" + classID + "&assignmentID=" + assignmendID,
                         cache: false,
                         success: function (data) {

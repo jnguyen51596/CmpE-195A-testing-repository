@@ -11,7 +11,7 @@ function displayAssignmentList()
     var classid = '1';
     return $.ajax({
         type: "POST",
-        url: "../Actions/assignmentsList.php",
+        url: "/Actions/assignmentsList.php",
         data: "classid=" + classid,
         dataType: "json",
         cache: false,
@@ -87,7 +87,7 @@ function submitLockAssignments()
 
     $.ajax({
         type: "POST",
-        url: "../Actions/assignmentsLock.php",
+        url: "/Actions/assignmentsLock.php",
         data: {jsondata: arr},
         cache: false,
         success: function (data) {

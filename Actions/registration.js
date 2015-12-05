@@ -16,7 +16,7 @@ function checkinfo() {
                 { 
                     $.ajax({
                     type: "POST",
-                    url: "../Actions/registerCheck.php",
+                    url: "/Actions/registerCheck.php",
                     data: "username=" + username,
                     async: true,
                     cache: false,
@@ -33,7 +33,7 @@ function checkinfo() {
                                 
                                 $.ajax({
                                     type: "POST",
-                                    url: "../Actions/register.php",
+                                    url: "/Actions/register.php",
                                     data: "username=" + username + "&first=" + first + "&last=" + last + "&pass1=" + pass1 + "&pass2=" + pass2,
                                     async: true,
                                     cache: false,
@@ -85,7 +85,7 @@ function checkinfo() {
 //
 //                        $.ajax({
 //                            type: "POST",
-//                            url: "../Actions/register.php",
+//                            url: "/Actions/register.php",
 //                            data: "username=" + username + "&first=" + first + "&last=" + last + "&pass1=" + pass1 + "&pass2=" + pass2,
 //                            cache: false,
 //                            success: function (data) {
@@ -111,7 +111,7 @@ function checkinfo() {
 //                //stuck, for some reason it runs this ajax call last and wont change the check variable wtf
 //                $.ajax({
 //                    type: "POST",
-//                    url: "../Actions/registerCheck.php",
+//                    url: "/Actions/registerCheck.php",
 //                    data: "username=" + username,
 //                    cache: false,
 //                    success: function (data) {
