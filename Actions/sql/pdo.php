@@ -342,6 +342,8 @@ function getAllAnnouncementsByClass($courseID) {
     $rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;
+    } else {
+        return $rows;
     }
 }
 

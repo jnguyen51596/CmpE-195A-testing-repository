@@ -33,15 +33,16 @@
         
 		<div data-role="page" data-theme="b">
 
-            <div id="header">
-            </div>
-            </div>
+            <div data-role="header" data-theme="b">
+                <h1>Announcements</h1>
+            </div><!-- /header -->
+            
             <?php
                 require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
             <br>
 
-            <div role="main" id="main" data-theme="c" class="ui-content">
+            <div role="main" id="main" data-theme="b" class="ui-content">
             </div>       
 		</div>
     </body>

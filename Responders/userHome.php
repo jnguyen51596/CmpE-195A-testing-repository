@@ -52,7 +52,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php';
 		
 		<div role="main" class="ui-content">
 				<?php
-					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar2.php");
+					require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
 				?>
 				<br>
 				<label for="role" class="select">Select a Role:</label>

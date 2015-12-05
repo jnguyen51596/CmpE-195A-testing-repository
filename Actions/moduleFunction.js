@@ -74,7 +74,6 @@ function goToStudentModule(moduleid) {
 function displayModule2()
 {
     var classid = sessionStorage.getItem('courseID');
-    alert("Pre-ajax");
     return $.ajax({
         type: "POST",
         url: "/Actions/getModule.php",
@@ -83,11 +82,7 @@ function displayModule2()
         cache: false,
         success: function (data) {
             var html = "";
-            if (data == false)
-            {
-                alert("There are no modules");
-            }
-            else
+            if (data != false)
             {
                 var html = "";
                 $.each(data, function(index, data) { 

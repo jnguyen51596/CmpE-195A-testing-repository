@@ -37,11 +37,14 @@
 			require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
 		?>
 		<br>
-		<div role="main" class="ui-content">
+		<div class="ui-content" data-theme="b">
             <label for="body">Message</label>
             <textarea data-mini="true" cols="40" rows="8" name="body" id="body"></textarea>
 			<button onclick="postAnnouncement()">Post Announcement</button>
 		</div>
+		<h3>Previous Announcements</h3>
+		<div role="main" id="main" data-theme="b" class="ui-content">
+        </div> 
 	</div>
 </body>
 </htlm>

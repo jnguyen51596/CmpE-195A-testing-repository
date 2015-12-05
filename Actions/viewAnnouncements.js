@@ -1,8 +1,4 @@
 $( document ).ready(function() {
-	var html = '<div data-role="header" data-theme="b"><h1>';
-	html += sessionStorage.getItem('prefix') + " " + sessionStorage.getItem('suffix') + " " + sessionStorage.getItem('name');
-	html += " Announcements</div></h1>";
-    $('#header').html(html).trigger('create');
     loadAnnouncements();
 });
 
