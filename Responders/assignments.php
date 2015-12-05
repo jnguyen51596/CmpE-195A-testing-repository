@@ -37,7 +37,7 @@
                 $username = $_SESSION['username'];
                 $course = $_POST['file-course-id'];
 
-                if ($gridfs -> findOne(array('title' => 'hw4')) == true) {
+                if ($gridfs -> findOne(array('title' => $title, 'username' => $username, 'courseID' => $course)) == true) {
                     $m->selectDB('mopenlms') -> selectCollection('fs.files') -> remove(array('title' => $title, 'courseID' => $course, 'username' => $username));
                 }
 

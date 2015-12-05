@@ -19,7 +19,7 @@ function initializeAssignments() {
 		
 		'<th>Name</th>' +
 		'<th>Score</th>' +
-		'<th>Total</th>' +
+		'<th>Possible</th>' +
 		'<th>Feedback</th>' +
 		
 		'</tr></thead><tbody></tbody></table></div></div>';
@@ -28,10 +28,20 @@ function initializeAssignments() {
 	
 	// this loops iterates through each grade and appends them under appropriate assignment collapsible
 	for (var j = 0; j < gradesArray.length; j++) {
+		var score = gradesArray[j]['score'];
+		var feedback = gradesArray[j]['feedback'];
+		if (score == null || score.length == 0) {
+			score = "none";
+		}
+		if (feedback == null || feedback.length == 0) {
+			feedback = "none";
+		}
+
+
 		var gradeTag =' <tr> <th>' + gradesArray[j]['username'] +'</th>' + 
-			'<td id="score-' + j + '">' + gradesArray[j]['score'] + '</td>' +
+			'<td id="score-' + j + '">' + score + '</td>' +
 			'<td id="total-' + j + '">' + gradesArray[j]['total'] + '</td>' +
-			'<td id="feedback-' + j + '">' + gradesArray[j]['feedback'] + '</td>' +
+			'<td id="feedback-' + j + '">' + feedback + '</td>' +
 			'<td> <input id="score-entry-' + j + '" type="text" placeholder="Score"></input> </td>' +
 			'<td> <input id="feedback-entry-' + j + '" type="text" placeholder="Feedback"></input> </td>' +
 			'<td> <button onclick="setGrade(' + gradesArray[j]['memberID'] + ',' + gradesArray[j]['assignmentID'] + ',' + j +
@@ -55,11 +65,13 @@ function setGrade(memberID, assignmentID, inputIndex) {
 			url: "/Actions/setGrades.php",
 			async: false,
 			success: function(data) {
-				document.getElementById('score-' + inputIndex).textContent = score;
-				document.getElementById('feedback-' + inputIndex).textContent = feedback;
-				//updateClass("/Responders/setGrades.php");
-				//refreshClass();
-				//$('#table-2 > tbody:first').find('tr:first').before(data);
+				if (data == true) {
+					document.getElementById('score-' + inputIndex).textContent = score;
+					document.getElementById('feedback-' + inputIndex).textContent = feedback;
+					//updateClass("/Responders/setGrades.php");
+					//refreshClass();
+					//$('#table-2 > tbody:first').find('tr:first').before(data);
+				}
 			}
 		});
 		

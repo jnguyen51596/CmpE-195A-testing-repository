@@ -68,45 +68,21 @@
                 <input type="file" name="file" id="file" />
                 <input type="submit" id="createAssignment-submit" value="Submit" />
         </form>
-    
-    <script>
-        document.getElementById("createAssignment-submit").onclick = createAssignment;
-    </script>
-    
+
     <?php
-
-
-    // if (!empty($_FILES['file'])) {
-    //     $variable = "wtf";
-    // } else {
-    //     $variable = "files name is " . $_FILES['file']['name'];
-    // }
-
-    // if (isset($_FILES['file'])) {
-    // $variable = "files name is " . $_FILES['file']['name'];
-    // } else {
-    //     $variable = "du ma";
-    // }
-    // error_log(print_r($variable, TRUE)); 
-
-        if (isset($_FILES['file'])) {
-        // if ($_FILES['file']['name'] != "") {
-            
-                
-            try {
-                $m = new MongoClient();
+    if (isset($_FILES['file'])) {
+        try {
+            $m = new MongoClient();
             $gridfs = $m->selectDB('mopenlms')->getGridFS();
-            //$courseID = $_POST['course-select-id'];
-                $gridfs->storeUpload('file');
-                //$gridfs->storeUpload('file', array('courseID' => $courseID));
-                $m->close();
-            }
-                catch (Exception $e) {
-                    echo "<p>Warning: an error has occured. Your file was not uploaded!</p>";
-            }
-
-            
+            $courseID = $_SESSION['courseID'];
+            // $gridfs->storeUpload('file');
+            $gridfs->storeUpload('file', array('courseID' => $courseID));
+            $m->close();
         }
+        catch (Exception $e) {
+            echo "<p>Warning: No file was uploaded. Either no file was selected or there was an error.</p>";
+        }
+    }
     ?>
     </div>
 </div>

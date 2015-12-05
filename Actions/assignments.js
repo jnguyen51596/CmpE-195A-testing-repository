@@ -1,8 +1,6 @@
 var response;
 var assignmentArray;
 
-
-
 // grabs assignments and formats it in a list
 function initializeAssignments() {
     response = getRemote();
@@ -88,8 +86,7 @@ function expandAssignment(assignmentIndex) {
                 '<input type="file" name="file" id="file" />' +
                 '<input type="hidden" name="file-course-id" id="file-course-id" value="" />' +
                 '<input type="hidden" name="file-title-id" id="file-title-id" value="' + assignmentArray[assignmentIndex]['title'] + '" />' +
-                '<input type="submit" id="submit-assignment-id" value="Submit" onclick="submitAssignment(' + assignmentArray[assignmentIndex]['assignmentID'] + ', ' + assignmentArray[assignmentIndex]['duedate'] + ')" />' +
-                //'<input type="submit" id="submit-assignment-id" value="Submit" />' +
+                '<input type="submit" id="submit-assignment-id" value="Submit" onclick="submitAssignment(' + assignmentArray[assignmentIndex]['assignmentID'] + ',&quot;' + assignmentArray[assignmentIndex]['duedate'] + '&quot;)" />' +
                 '</form>' +
                 '</div>';
     }
@@ -105,9 +102,9 @@ function submitAssignment(assignmentID, duedate) {
     //  alert("Please select a file to upload");
     // }
     // else {
-    var duedate = new date(duedate);
-    var currentdate = new date();
-    if (duedate < currentdate)
+    var dueDate = new Date(duedate);
+    var currentdate = new Date();
+    if (dueDate.getTime() > currentdate.getTime())
     {
         $.ajax({
             type: "POST",

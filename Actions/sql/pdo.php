@@ -80,9 +80,10 @@ function getClasses($instructorID) {
 // add a new grade entry
 function addGrade($memberID, $assignmentID) {
 	global $con;
-	$sql = "INSERT INTO grade(memberID, assignmentID) values($memberID, $assignmentID)";
+	$sql = "INSERT INTO grade(memberID, assignmentID) values(:memberID, :assignmentID)";
 	$q = $con -> prepare($sql);
-	$q -> execute();
+	$q->execute(array(':memberID' => $memberID,
+                        ':assignmentID' => $assignmentID));
 }
 
 function getGrades($courseID) {
@@ -106,11 +107,22 @@ function getGrades($courseID) {
 function setGrades($memberID, $assignmentid, $score, $feedback) {
     global $con;
     $sql = "UPDATE grade 
-                SET grade.score ='$score', grade.feedback = '$feedback', grade.timestamp = CURRENT_TIMESTAMP
-                WHERE assignmentID = '$assignmentid'
-                AND memberID = $memberID";
+                SET grade.score = :score, grade.feedback = :feedback, grade.timestamp = CURRENT_TIMESTAMP
+                WHERE assignmentID = :assignmentID
+                AND memberID = :memberID";
     $q = $con->prepare($sql);
-    $q->execute();
+
+    try {
+        $q->execute(array(':score' => $score,
+                            ':feedback' => $feedback,
+                            ':assignmentID' => $assignmentid,
+                            ':memberID' => $memberID));
+        $q->execute();
+        return true;
+    }
+    catch (PDOException $e) {
+        return false;
+    }
 }
 
 function checkQuiz($classID, $quiznumber) {
