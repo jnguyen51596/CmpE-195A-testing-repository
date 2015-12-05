@@ -8,7 +8,7 @@ var arrayOfAssignmentId = new Array();
 function displayAssignmentList()
 {
     arrayOfAssignmentId = new Array();
-    var classid = '1';
+    var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
         url: "/Actions/assignmentsList.php",
@@ -68,7 +68,7 @@ function displayAssignmentList()
 function submitLockAssignments()
 {
     var arr = new Array();
-    var classid = '1';
+    var classid = sessionStorage.getItem('courseID');
     arr.push(classid);
     for (var values = 0; values < arrayOfAssignmentId.length; values++)
     {
