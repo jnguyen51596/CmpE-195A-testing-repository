@@ -64,9 +64,9 @@
             <label>Description:</label>
             <textarea name="textarea" id="desc-id" value placeholder="Description"></textarea>
         </div>
-        <form data-ajax="false" method="POST" enctype="multipart/form-data">
+        <form data-ajax="false" id="form" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file" id="file" />
-                <input type="submit" id="createAssignment-submit" value="Submit" />
+                <input type="button" id="createAssignment-submit" value="Submit" />
                 <input type="hidden" id="id" name="id" value="" />
         </form>
 
@@ -79,7 +79,7 @@
             // $gridfs->storeUpload('file');
             $gridfs->storeUpload('file', array('courseID' => $courseID));
             $m->close();
-            header("Location: ".$_SERVER['DOCUMENT_ROOT']."/home/instructor-home"); /* Redirect browser */
+            header("Location: /home/instructor-home"); /* Redirect browser */
             exit();
         }
         catch (Exception $e) {

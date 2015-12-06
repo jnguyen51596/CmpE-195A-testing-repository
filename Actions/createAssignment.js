@@ -22,6 +22,15 @@ function createAssignment() {
             url: "/Actions/createAssignment.php",
             data: {courseID: courseID, title: title, total: total, duedate: duedate, description: description},
             dataType: "json",
+            success: function (data) {
+                alert("Assignment created!");
+                $('#form').submit();
+                // var successTag = '<div class="message success">' +
+                // '<i class="fa fa-check"></i>' +
+                // '<p>Assignment created!</p>' +
+                // '</div>';
+                // $('#status-id').append(successTag);
+            },
             //error: function(xhr, ajaxOptions, thrownError) { alert("qerror: " + data + xhr.responseText + " " + ajaxOptions + " " + thrownError); }
             error: function (data) {
                 console.log(data);
