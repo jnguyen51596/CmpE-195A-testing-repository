@@ -133,7 +133,7 @@ function moduleDescription()
                 $.each(data, function(index, data) {
                     html += data.description + "<br>";
                     title = data.title;
-                }
+                });
 
                 html = "<h1> Module " + moduleid +": "+title+ "</h1><br>" + html;
                 
