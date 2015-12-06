@@ -844,12 +844,12 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         }
         $diff = $currentFirstAssignmentDate->diff($firstAssignmentStartDate)->days;
         //echo "<br>Diff = ".$diff;
-        $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY) WHERE courseID = :courseID;"; 
+        $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY) AND `lock` = 0 WHERE courseID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
         $q->execute();
 
-        $sql = "UPDATE totalquiz SET `date` = DATE_ADD(`date`, INTERVAL ".($diff+1)." DAY) WHERE classID = :courseID;"; 
+        $sql = "UPDATE totalquiz SET `date` = DATE_ADD(`date`, INTERVAL ".($diff+1)." DAY) AND `lock` = 0 WHERE classID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
         $q->execute();

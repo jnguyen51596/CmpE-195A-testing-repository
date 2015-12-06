@@ -128,15 +128,16 @@ function moduleDescription()
             }
             else
             {
-                var title=data[0].title;
-                var html = "<h1> Module " + moduleid +": "+title+ "</h1><br>";
-                for (var i = 0; i < data.length; i++)
-                {
-                    var description = data[i].description;
-                    
-
-                    html += description + "<br>";
+                var title="";
+                var html = "";
+                $.each(data, function(index, data) {
+                    html += data.description + "<br>";
+                    title = data.title;
                 }
+
+                html = "<h1> Module " + moduleid +": "+title+ "</h1><br>" + html;
+                
+
                 document.getElementById("demo").innerHTML = html;
             }
         }
