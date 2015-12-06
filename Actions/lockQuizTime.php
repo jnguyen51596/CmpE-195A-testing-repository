@@ -18,7 +18,6 @@ if ($temp == 0) {
 } else if ($temp == 1) {
     echo false;
 }
-}
 else {
     $databaseDate = new DateTime($temp);     
     $currentDate = new DateTime();
