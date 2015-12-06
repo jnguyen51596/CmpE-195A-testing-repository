@@ -17,7 +17,7 @@ function deleteQuizQuestion1()
         dataType: "json",
         cache: false,
         success: function (data) {
-            if (data == false)
+            if (data == "false")
             {
                 
                 counter = 0;
@@ -48,7 +48,7 @@ function deleteQuizQuestion2(classid, quiznumber)
         dataType: "json",
         cache: false,
        success: function (data) {
-            if (data == false)
+            if (data == "false")
             {
                 counter += 1;
                 if (counter == 2)
