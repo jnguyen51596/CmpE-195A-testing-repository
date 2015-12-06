@@ -90,7 +90,7 @@ function expandAssignment(assignmentIndex) {
                 '</form>' +
                 '</div>';
     }
-    $('#assignment-info-id').append(info);
+    $('#assignment-info-id').append(info).trigger('create');
 }
 
 function submitAssignment(assignmentID, duedate) {
