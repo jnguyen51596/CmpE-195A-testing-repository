@@ -22,7 +22,7 @@ function displayQuiz1()
                     var lock = data.lock;
                      var date=data.date;
                     if (lock != '1') {
-                        html += "<a onclick='takeQuiz(" + quiznumber + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quiznumber + ": " + title +"&nbsp;"+"Due Date: "+date+"</a>";
+                        html += "<a onclick='takeQuiz(" + quiznumber + ")' class=\"ui-btn ui-btn-a ui-corner-all\" data-ajax=\"false\"> Quiz " + quiznumber + ": " + title +"&nbsp;"+" Due Date: "+date+"</a>";
                         html += "<a align=\"right\" onclick=\"startTimer('"+date+"', document.querySelector('#test"+quiznumber+"'))\">Show Countdown</a>";
                         html +="<div  id=\"test"+quiznumber+"\"></div><br>";
                     }
