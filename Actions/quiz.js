@@ -99,7 +99,7 @@ function submitLockQuiz()
             else {
                 alert("Something went wrong...");
             }
-            window.location = "/home/instructor-home/manage-quizzes/lock-and-unlock-quizzes";
+            window.location = "/home/instructor-home/manage-quizzes";
         }
     });
 
