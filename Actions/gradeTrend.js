@@ -8,16 +8,13 @@ function getTrend() {
         type: "POST",
         data: {courseID: courseID},
         url: "/Actions/gradeTrend.php",
-        async: false,
-        success: function() { console.log('success'); },
-        error: function() { console.log('error'); }
+        async: false
     }).responseText;
 
 }
 
 function displayTrend() {
     var grades = getTrend();
-    console.log(grades);
     var gradesArray = JSON.parse(grades);
     
     gradesArray.sort(function(ts1, ts2) {
@@ -51,8 +48,8 @@ function displayTrend() {
     var twoWeekPointsTag = twoWeekScore + "/" + twoWeekTotal;
     var resultTag = '';
     
-    var percentage = parseInt(score) / parseInt(total) * 100
-    var twoWeekPercentage = parseInt(twoWeekScore) / parseInt(twoWeekTotal) * 100
+    var percentage = (parseInt(score) / parseInt(total) * 100).toFixed(2);
+    var twoWeekPercentage = (parseInt(twoWeekScore) / parseInt(twoWeekTotal) * 100).toFixed(2);
     
     // pointsTag += " " + (percentage).toFixed(2);
     // twoWeekPointsTag += " " + (twoWeekPercentage).toFixed(2);
@@ -83,7 +80,7 @@ function displayTrend() {
     
     statsTag += Math.abs(difference) + "%.";
 
-    if (!isNan(difference) || !isNan(twoWeekPercentage) {
+    if (!isNaN(difference) || !isNaN(twoWeekPercentage)) {
         $('#trendStats').append(statsTag);
     }
     

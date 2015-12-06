@@ -48,7 +48,7 @@ and open the template in the editor.
         <br>
         
         <div>
-            <!-- <label id="gradeStatus">Grades</label> -->
+            <label id="gradeStatus">Grades</label>
             <p id="trendStats"></p>
         </div>
         
