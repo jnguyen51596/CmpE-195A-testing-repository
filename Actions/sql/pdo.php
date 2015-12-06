@@ -83,16 +83,17 @@ function addGrade($memberID, $assignmentID) {
                         ':assignmentID' => $assignmentID));
 }
 
-function getGrades($courseID) {
+function getGrades($courseID, $userID) {
     global $con;
     $sql = "SELECT username, title, score, total, feedback, grade.assignmentID, grade.memberID
             FROM member, grade, assignment
-            WHERE assignment.assignmentID = grade.assignmentID 
-			and member.memberID = grade.memberID 
-			and assignment.courseID = :ID";
+            WHERE member.memberID = $".$userID.
+            " AND assignment.assignmentID = grade.assignmentID 
+			AND member.memberID = grade.memberID 
+			AND assignment.courseID = :courseID";
 
     $q = $con->prepare($sql);
-    $q->execute(array(':ID' => $courseID));
+    $q->execute(array(':courseID' => $courseID));
 	$rows = $q->fetchAll();
     if (count($rows) == 0) {
         return 0;

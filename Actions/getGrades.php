@@ -18,7 +18,7 @@
 	// }
 	
 	
-	$row = getGrades($_POST['courseID']);
+	$row = getGrades($_POST['courseID'], $_SESSION['userID']);
 	header('Content-Type: application/json');
 	echo json_encode($row);
 	// if ($row != 0) {
