@@ -18,6 +18,7 @@ function createAssignment() {
         data: {courseID: courseID, title: title, total: total, duedate: duedate, description: description}, 
 		success: function(data) {
 			alert("Assignment created!");
+			window.location.href = "/home/instructor-home";
 			// var successTag = '<div class="message success">' +
 			// '<i class="fa fa-check"></i>' +
 			// '<p>Assignment created!</p>' +
