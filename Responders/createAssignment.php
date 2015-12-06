@@ -68,6 +68,7 @@
                 <input type="file" name="file" id="file" />
                 <input type="button" id="createAssignment-submit" value="Submit" />
                 <input type="hidden" id="id" name="id" value="" />
+                <input type="hidden" id="title" name="title" value="" />
         </form>
 
     <?php
@@ -76,8 +77,9 @@
             $m = new MongoClient();
             $gridfs = $m->selectDB('mopenlms')->getGridFS();
             $courseID = $_POST['id'];
-            // $gridfs->storeUpload('file');
-            $gridfs->storeUpload('file', array('courseID' => $courseID));
+            $username = $_SESSION['username'];
+            $title = $_POST['title'];
+            $gridfs->storeUpload('file', array('title' => $title, 'courseID' => $courseID, 'username' => $username, 'type' => 'instructor'));
             $m->close();
             header("Location: /home/instructor-home"); /* Redirect browser */
             exit();

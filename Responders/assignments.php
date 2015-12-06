@@ -25,33 +25,6 @@
 </head>
 
 <body>
-    <?php
-        try {
-            //if (!empty($_FILES['file']) && isset($_POST['course-select-id'])) {
-            if (!empty($_FILES['file'])) {
-            //if ($_FILES['userfile']['size'] != 0) {
-                $m = new MongoClient();
-                $gridfs = $m->selectDB('mopenlms')->getGridFS();
-                    
-                $title = $_POST['file-title-id'];
-                $username = $_SESSION['username'];
-                $course = $_POST['file-course-id'];
-
-                if ($gridfs -> findOne(array('title' => $title, 'username' => $username, 'courseID' => $course)) == true) {
-                    $m->selectDB('mopenlms') -> selectCollection('fs.files') -> remove(array('title' => $title, 'courseID' => $course, 'username' => $username));
-                }
-
-                $gridfs->storeUpload('file', array('courseID' => $course, 
-                                                   'username' => $username,
-                                                   'title' => $title));
-                $m->close();
-            }
-        }
-        catch (MongoConnectionException $e) {
-            echo "error: can not connect to mongodb";
-        }
-    ?>
-
     <div data-role="page" data-theme="b">
         <div data-role="header" data-theme="b">
             <h1>Assignments</h1>
@@ -69,10 +42,61 @@
         
         <!-- assignment information gets populated here -->
         <div id="assignment-info-id">
-            
         </div>
-        
+
+        <div id="download-list">
+        </div>
     </div>
+
+            <?php
+
+
+    // if download is set in url, download the file
+        if (isset($_GET['download'])) {
+            try {
+                $m = new MongoClient();
+                $gridfs = $m -> selectDB('mopenlms') -> getGridFS();
+
+                $filename = $_GET['download'];
+                $file = $gridfs -> findOne(array('filename' => $filename));
+                ob_clean();
+                header('Content-Disposition: attachment; filename="'.$filename.'"');
+                echo $file->getBytes();
+
+                $m->close();
+            }
+            catch (Exception $e) {
+                echo "error";
+            }
+        }
+
+
+
+// file submission
+        try {
+            if (!empty($_FILES['file'])) {
+                $m = new MongoClient();
+                $gridfs = $m->selectDB('mopenlms')->getGridFS();
+
+                $title = $_POST['file-title-id'];
+                $username = $_SESSION['username'];
+                $course = $_POST['file-course-id'];
+
+                if ($gridfs -> findOne(array('title' => $title, 'username' => $username, 'courseID' => $course)) == true) {
+                    $m->selectDB('mopenlms') -> selectCollection('fs.files') -> remove(array('title' => $title, 'courseID' => $course, 'username' => $username));
+                }
+
+                $gridfs->storeUpload('file', array('courseID' => $course, 
+                   'username' => $username,
+                   'title' => $title,
+                   'type' => 'student'));
+                $m->close();
+            }
+        }
+        catch (MongoConnectionException $e) {
+            echo "error: can not connect to mongodb";
+        }
+        ?>
 
 </body>
 </html>

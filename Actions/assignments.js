@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        url: "/Actions/viewAssignmentUpload.php",
+        data: {courseID: sessionStorage.getItem("courseID")},
+        success: function(data) {
+            $('#download-list').append(data);
+            },
+        error: function() {console.log("fail"); }
+    });
+});
+
 var response;
 var assignmentArray;
 
