@@ -126,6 +126,23 @@ function getQuizQuestion2(classid, quiznumber)
 //    });
 //}
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
 function printOutQuiz1(data)
 {
     $.each(data, function(index, data)
@@ -134,19 +151,28 @@ function printOutQuiz1(data)
         var choice1 = data.answer;
         var choice2 = data.incorrect1;
         var choice3 = data.incorrect2;
-        var choice4 = data.incorrect3;
+        var choice4 = data.incorrect3;      
+        var tempArray=new Array();
+        tempArray.push(choice1);
+        tempArray.push(choice2);
+        tempArray.push(choice3);
+        tempArray.push(choice4);
+        
         arrayOfAnswers.push(choice1);
+        
+        shuffle(tempArray);
+           
         html += "<fieldset data-role=\"controlgroup\" >";
         html += "<h1>Question " + totalquestion + "</h1>";
         html += "<p>" + question + "</p>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-1-" + totalquestion + "\"  value=" + choice1 + " />";
-        html += "<label for=\"radio-choice-1-" + totalquestion + "\">" + choice1 + "</label>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-2-" + totalquestion + "\"   value=" + choice2 + " />";
-        html += "<label for=\"radio-choice-2-" + totalquestion + "\">" + choice2 + "</label>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-3-" + totalquestion + "\"  value=" + choice3 + " />";
-        html += "<label for=\"radio-choice-3-" + totalquestion + "\">" + choice3 + "</label>";
-        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-4-" + totalquestion + "\"  value=" + choice4 + " />";
-        html += "<label for=\"radio-choice-4-" + totalquestion + "\">" + choice4 + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-1-" + totalquestion + "\"  value=" + tempArray[0] + " />";
+        html += "<label for=\"radio-choice-1-" + totalquestion + "\">" + tempArray[0] + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-2-" + totalquestion + "\"   value=" + tempArray[1] + " />";
+        html += "<label for=\"radio-choice-2-" + totalquestion + "\">" + tempArray[1] + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-3-" + totalquestion + "\"  value=" + tempArray[2] + " />";
+        html += "<label for=\"radio-choice-3-" + totalquestion + "\">" + tempArray[2] + "</label>";
+        html += "<input type=\"radio\" name=\"radio-choice-" + totalquestion + "\" id=\"radio-choice-4-" + totalquestion + "\"  value=" + tempArray[3] + " />";
+        html += "<label for=\"radio-choice-4-" + totalquestion + "\">" + tempArray[3]+ "</label>";
         html += "</fieldset>";
         totalquestion += 1;
     });
