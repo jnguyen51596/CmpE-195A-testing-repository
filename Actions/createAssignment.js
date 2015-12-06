@@ -11,7 +11,7 @@ function createAssignment() {
 	// format datepicker here.
 	var description = document.getElementById("desc-id").value;
 	// var ampm = document.getElementById("ampm-id").value; // more sophisticated time options to be added...
- if (description=="" || title=="" || total =="" || duedate=="")
+ if (description=="" || title=="" || total =="" || duedate=="" || !isNaN(total))
     {
         alert("Please fill in all fields");
     }
@@ -25,6 +25,10 @@ function createAssignment() {
             success: function (data) {
                 alert("Assignment created!");
                 window.location.href = "/home/instructor-home";
+                document.getElementById("assignmentname-id").value = "";
+		        document.getElementById("points-id").value = "";
+		        document.getElementById("time-id").value = "";
+		        document.getElementById("desc-id").value = "";
                 // var successTag = '<div class="message success">' +
                 // '<i class="fa fa-check"></i>' +
                 // '<p>Assignment created!</p>' +
@@ -36,10 +40,6 @@ function createAssignment() {
                 console.log(data);
             }
         });
-        document.getElementById("assignmentname-id").value = "";
-        document.getElementById("points-id").value = "";
-        document.getElementById("time-id").value = "";
-        document.getElementById("desc-id").value = "";
     }
 }
 
