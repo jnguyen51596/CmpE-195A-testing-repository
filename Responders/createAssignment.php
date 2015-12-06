@@ -79,6 +79,8 @@
             // $gridfs->storeUpload('file');
             $gridfs->storeUpload('file', array('courseID' => $courseID));
             $m->close();
+            header("Location: ".$_SERVER['DOCUMENT_ROOT']."/home/instructor-home"); /* Redirect browser */
+            exit();
         }
         catch (Exception $e) {
             echo "<p>Warning: No file was uploaded. Either no file was selected or there was an error.</p>";
