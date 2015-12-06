@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	document.getElementById("createAssignment-submit").onclick = createAssignment;
+	document.getElementById("id").value = sessionStorage.getItem('courseID');
 });
 
 function createAssignment() {
