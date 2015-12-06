@@ -38,7 +38,7 @@
             ?>
             <br>
             <button onclick='createAssignment()'>Create a Assignment</button>
-	    <button onclick='lockAssignment()'>Lock Assignments</button>
+<!--        <button onclick='lockAssignment()'>Lock Assignments</button>-->
             <button onclick='dropAStudent()'>Drop a Student</button>
 <!--            <button onclick='makeAnnouncement()'>Make an Announcement</button>-->
             <button onclick='messageBoard()'>Discussions</button>
