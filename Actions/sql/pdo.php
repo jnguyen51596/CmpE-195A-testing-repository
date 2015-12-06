@@ -166,7 +166,7 @@ function getDBDate($classID, $quiznumber) {
 
 function updateLock($classID, $quiznumber) {
     global $con;
-    $sql = "UPDATE `totalquiz` SET `lock`=1 AND `lockmanualoverride`=0 WHERE quiznumber='$quiznumber' and classID='$classID' and (`lockmanualoverride`=0 OR `lockmanualoverride` IS NULL)";
+    $sql = "UPDATE `totalquiz` SET `lock`=1, `lockmanualoverride`=0 WHERE quiznumber='$quiznumber' and classID='$classID' and (`lockmanualoverride`=0 OR `lockmanualoverride` IS NULL)";
     $q = $con->prepare($sql);
     $q->execute();
 }
