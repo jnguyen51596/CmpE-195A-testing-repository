@@ -170,6 +170,7 @@ CREATE TABLE `course` (
   `prefix` char(4) NOT NULL,
   `suffix` char(4) NOT NULL,
   `name` varchar(45) NOT NULL,
+  `open` boolean NOT NULL,
   PRIMARY KEY (`courseID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
