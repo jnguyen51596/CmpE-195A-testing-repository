@@ -4,7 +4,7 @@
         $gridfs = $m -> selectDB('mopenlms') -> getGridFS();
         
         // display the files
-        $cursor = $gridfs -> find(array('courseID' => $_POST['courseID']));
+        $cursor = $gridfs -> find(array('courseID' => $_POST['courseID'], 'type' => 'student'));
         if ($cursor -> count() == 0) {
             echo "Nothing here";
         }

@@ -83,7 +83,9 @@ function displayTrend() {
     
     statsTag += Math.abs(difference) + "%.";
 
-    $('#trendStats').append(statsTag);
+    if (!isNan(difference) || !isNan(twoWeekPercentage) {
+        $('#trendStats').append(statsTag);
+    }
     
     // $('#total-points').append("your total points: " + pointsTag);
     // $('#two-week-points').append("your points over two weeks: " + twoWeekPointsTag);

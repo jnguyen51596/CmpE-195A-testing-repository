@@ -6,6 +6,7 @@ $(document).ready(function() {
 function createAssignment() {
 	var courseID = sessionStorage.getItem('courseID');
     var title = document.getElementById("assignmentname-id").value;
+    document.getElementById("title").value = title;
     var total = document.getElementById("points-id").value;
 	var duedate = document.getElementById("date-id").value + " " + document.getElementById("time-id").value;
 	// format datepicker here.
