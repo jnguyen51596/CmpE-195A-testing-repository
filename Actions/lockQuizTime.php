@@ -15,7 +15,11 @@ date_default_timezone_set('America/Los_Angeles');
 $temp = getDBDate($classID, $quiznumber);
 if ($temp == 0) {
     echo true;
-} else {
+} else if ($temp == 1) {
+    echo false;
+}
+}
+else {
     $databaseDate = new DateTime($temp);     
     $currentDate = new DateTime();
     date_format($currentDate, 'Y-m-d H:i:s');
