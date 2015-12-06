@@ -826,7 +826,7 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         $q->execute();
 
         //increment duedates
-        echo "<br>Incrementing duedates...";
+        //echo "<br>Incrementing duedates...";
         $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = ".$courseID." ORDER BY duedate LIMIT 1;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
@@ -843,7 +843,7 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
             return "error";
         }
         $diff = $currentFirstAssignmentDate->diff($firstAssignmentStartDate)->days;
-        echo "<br>Diff = ".$diff;
+        //echo "<br>Diff = ".$diff;
         $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY), `lock` = 0 WHERE courseID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
@@ -863,7 +863,7 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
     
         $currentFirstAssignmentDate = date_create($rows[0]['duedate']);*/
 
-        return "success!";
+        return "success";
     } catch (PDOException $ex) {
         return "<p>Connection failed</p>";
     }

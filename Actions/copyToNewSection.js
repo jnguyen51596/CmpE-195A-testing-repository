@@ -6,9 +6,13 @@ function createSection() {
         url: "/Actions/cloneClass.php",
 		dataType: "json",
 		data: {firstAssignmentDueDate: firstAssignmentDueDate, courseID: courseID},
-		success: function(){
+		success: function(data) {
+			if (data === "true") {
 				alert("Your new section has been created!");
                	window.location.href = "/home";
+            } else {
+            	alert("Something went wrong...");
             }
+        }
     });
 }
