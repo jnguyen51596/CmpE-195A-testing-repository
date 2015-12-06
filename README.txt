@@ -34,7 +34,7 @@ Installing MopenLMS Application for local machine
 
 6. Import the provided SQL dump file (../Domain/mopenlms.sql) into openlms.
 
-6. Run index.html (../index.html).
+6. Run index.php (../index.php).
 
 7. Register for an account.
 
