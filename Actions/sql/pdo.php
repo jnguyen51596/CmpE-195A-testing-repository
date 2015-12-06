@@ -87,7 +87,7 @@ function getGrades($courseID, $userID) {
     global $con;
     $sql = "SELECT username, title, score, total, feedback, grade.assignmentID, grade.memberID
             FROM member, grade, assignment
-            WHERE member.memberID = $".$userID.
+            WHERE member.memberID = ".$userID.
             " AND assignment.assignmentID = grade.assignmentID 
 			AND member.memberID = grade.memberID 
 			AND assignment.courseID = :courseID";
