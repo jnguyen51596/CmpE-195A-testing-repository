@@ -54,7 +54,7 @@ function getQuizQuestion2(classid, quiznumber)
                 {
                     
                     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
-                   sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
+                  // sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
                     sessionStorage.setItem('totalquestion', totalquestion);
                     $("#demo").append(html).enhanceWithin();
                 }
@@ -63,7 +63,7 @@ function getQuizQuestion2(classid, quiznumber)
             {
                
                 printOutQuiz2(data);
-                sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
+               // sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
             }
         }
     });
@@ -206,8 +206,7 @@ function submitFinishQuiz()
 {
     //alert("You are now submitting");
     var totalquestion = sessionStorage.getItem('totalquestion');
-    var answers = sessionStorage.getItem('answers');
-    var answers2 = JSON.parse(answers);
+    var answers2 = arrayOfAnswers;
     var points = 0;
     var count = 0;
     for (var i = 1; i < totalquestion; i++)
