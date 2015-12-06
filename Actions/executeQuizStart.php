@@ -17,8 +17,9 @@ $test = checkQuiz($classID, $quiznumber);
 $authorID= $_SESSION['userID'];
 if ($test == 1 && $classID !=0) {
     $quiztitle='quiz'.$quiznumber;
-    addQuiz($classID, $quiznumber, $title, $duedate);
-    addAssignment($classID, $authorID, $quiztitle, 100, $duedate, 'quiz'); 
+    $assignmentID = addAssignment($classID, $authorID, $quiztitle, 100, $duedate, 'quiz');
+    addQuiz($classID, $quiznumber, $title, $duedate, $assignmentID);
+     
     echo json_encode(true);
 } else {
     echo json_encode(false);

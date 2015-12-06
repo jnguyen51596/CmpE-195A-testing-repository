@@ -3,7 +3,7 @@ function displayQuiz1()
     var classid = sessionStorage.getItem('courseID');
     return $.ajax({
         type: "POST",
-        url: "/Actions/getQuiz.php",
+        url: "/Actions/getQuizzesToTake.php",
         data: "classid=" + classid,
         dataType: "json",
         cache: false,

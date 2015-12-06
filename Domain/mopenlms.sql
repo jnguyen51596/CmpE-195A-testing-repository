@@ -533,7 +533,8 @@ CREATE TABLE `totalquiz` (
   `title` varchar(20) NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `date` datetime NOT NULL,
-  `lockmanualoverride` tinyint(1) DEFAULT NULL
+  `lockmanualoverride` tinyint(1) DEFAULT NULL,
+  `assignmentID` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

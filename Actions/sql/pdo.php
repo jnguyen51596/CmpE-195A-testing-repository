@@ -136,9 +136,9 @@ function checkQuiz($classID, $quiznumber) {
     }
 }
 
-function addQuiz($classID, $quiznumber, $title, $date) {
+function addQuiz($classID, $quiznumber, $title, $date, $assignmentID) {
     global $con;
-    $sql = "INSERT INTO `totalquiz`(`classID`, `quiznumber`, `title`, `lock`,`date`) VALUES ('$classID','$quiznumber','$title','0','$date');";
+    $sql = "INSERT INTO `totalquiz`(`classID`, `quiznumber`, `title`, `lock`,`date`, `assignmentID`) VALUES ('$classID','$quiznumber','$title','0','$date', '$assignmentID');";
     $con->exec($sql);
 }
 
@@ -242,6 +242,8 @@ function addAssignment($courseID, $authorID, $title, $total, $duedate, $descript
             VALUES('$courseID', '$authorID', '$title', '$total', '$duedate', '$description', '0')";
     $q = $con->prepare($sql);
     $q->execute();
+    //returns the assignmentID
+    return $con->lastInsertId();
 }
 
 function courseGrab($name) {
@@ -465,6 +467,16 @@ function getMessage($classID) {
 function getQuiz($classID) {
     global $con;
     $sql = "SELECT * FROM totalquiz WHERE classID='$classID' ORDER BY quiznumber;";
+    $q = $con->prepare($sql);
+    $q->execute();
+    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+function getQuizzesToTake($classID, $userID) {
+    global $con;
+    //$sql = "SELECT totalquiz.classID AS classID, quiznumber, totalquiz.title, totalquiz.lock AS `lock`, totalquiz.date AS `date`, lockmanualoverride FROM totalquiz, grade, assignment INNER JOIN WHERE courseID = classID AND classID ='7' AND grade.assignmentID = assignment.assignmentID ORDER BY quiznumber;";
+    $sql = "SELECT * FROM totalquiz WHERE classID = '$classID' AND assignmentID NOT IN (SELECT assignmentID from grade where memberID = '$userID') ORDER BY quiznumber;";
     $q = $con->prepare($sql);
     $q->execute();
     $rows = $q->fetchAll(PDO::FETCH_ASSOC);
