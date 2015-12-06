@@ -44,5 +44,5 @@ function dropStudent() {
 
 function confirmDrop(data) {
 	getStudents();
-	alert("Student has been droped");
+	alert("Student has been dropped");
 }

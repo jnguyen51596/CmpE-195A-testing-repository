@@ -1,9 +1,16 @@
 <?php
     require ($_SERVER['DOCUMENT_ROOT'].'/Actions/authenticate.php');
 ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
-        <title>LMS</title>
+    
+        <title>Profile Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!--
@@ -13,7 +20,7 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-       -->
+        -->
 		<link rel="stylesheet" href="/css/font-awesome.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -24,27 +31,34 @@
 				
 		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
-        <script src="/Actions/createQuizEndPage.js"></script>
-        <script src="/Actions/notifications.js"></script>
+		
+  
+        <script src="/Actions/enrollment.js"></script>
 
     </head>
-
     <body>
-        <div data-role="page" data-theme="b">
-            <div data-role="header" data-theme="b" >
-                <h1>Quiz Creation</h1>
-            </div><!-- /header -->
+	<div data-role="page" data-theme="b">
+        <div data-role="header" data-theme="b">
+            <a href="#panel-id" data-ajax="true"><i class='fa fa-bars'></i></a>
+            <h1>Mopen</h1>
+        </div><!-- /header -->
+
+        <!-- panel contents -->
+       
+        <div role="main" class="ui-content">
             <?php
                 require ($_SERVER['DOCUMENT_ROOT']."/Responders/navbar.php");
             ?>
             <br>
-            <h2>Do you want to make more Quiz Questions?</h2>
-             <div role="main" id="demo">
-                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="createAnotherQuestion()">Yes</button>
-                 <button class="ui-btn ui-btn-a ui-corner-all" onclick="goBackToInstructorHome()">No</button>
-            </div><!-- /content -->
-        </div><!-- /page -->
+
+        
+
+            <label for="slider-flip-open-course">Open Enrollment:</label>
+		<select name="slider-flip-open-course" id="flip" data-role="flipswitch">
+		   <option value="off">No</option>
+		   <option value="on" selected>Yes</option>
+		</select>
+            <button id="save">Save</button>
+            
     </body>
 </html>
-

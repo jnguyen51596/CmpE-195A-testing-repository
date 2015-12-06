@@ -45,11 +45,7 @@
 		<input type="text" name="prefix" id="prefix" value="">
 		<label for="suffix">4 Letter Suffix:</label>
 		<input type="text" name="suffix" id="suffix" value="">
-		<label for="slider-flip-open-course">Open Enrollment:</label>
-		<select name="slider-flip-open-course" id="slider-flip-open-course" data-role="flipswitch">
-		   <option value="off">No</option>
-		   <option value="on" selected>Yes</option>
-		</select>
+
 		<button onclick="createClass()">Make the class!</button>
 	</div>
 	

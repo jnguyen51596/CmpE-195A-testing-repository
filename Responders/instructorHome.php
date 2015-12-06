@@ -49,6 +49,7 @@
 <!--            <button onclick='createQuiz()'>Create Quiz</button>-->
             <button onclick='module()'>Create and View Modules</button>
             <button onclick='newSection()'>Create a New Section</button>
+            <button onclick='e()'>Change Enrollment Status</button>
             <div role="main" id="main" data-theme="c" class="ui-content">
             </div>
            

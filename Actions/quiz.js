@@ -94,7 +94,7 @@ function submitLockQuiz()
         cache: false,
         success: function (data) {
             if (data == true) {
-                alert("Quiz(zes) locked");                
+                alert("Quiz preferences saved");                
             }
             else {
                 alert("Something went wrong...");

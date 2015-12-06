@@ -34,7 +34,7 @@ and open the template in the editor.
     <body>
 	<div data-role="page" data-theme="b">
         <div data-role="header" data-theme="b">
-            <h1>Mopen</h1>
+            <h1>Register</h1>
         </div><!-- /header -->
         <br>
         <label>Register here!</label>

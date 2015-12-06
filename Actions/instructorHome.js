@@ -45,6 +45,9 @@ function newSection() {
 	window.location.href = "/home/instructor-home/create-a-new-section";
 }
 
+function e() {
+	window.location.href = "/home/instructor-home/enrollment";
+}
 function lockAssignment()
 {
     window.location.href = "/home/instructor-home/lock-assignment";
