@@ -129,11 +129,11 @@ function printOutQuiz1(data)
 {
     $.each(data, function(index, data)
     {
-        var question = data[i].question;
-        var choice1 = data[i].answer;
-        var choice2 = data[i].incorrect1;
-        var choice3 = data[i].incorrect2;
-        var choice4 = data[i].incorrect3;
+        var question = data.question;
+        var choice1 = data.answer;
+        var choice2 = data.incorrect1;
+        var choice3 = data.incorrect2;
+        var choice4 = data.incorrect3;
         arrayOfAnswers.push(choice1);
         html += "<fieldset data-role=\"controlgroup\" >";
         html += "<h1>Question " + totalquestion + "</h1>";
@@ -156,8 +156,8 @@ function printOutQuiz2(data)
 {
      $.each(data, function(index, data)
     {
-        var question = data[i].question;
-        var answer = data[i].answer;
+        var question = data.question;
+        var answer = data.answer;
         arrayOfAnswers.push(answer);
         html += "<fieldset data-role=\"controlgroup\" >";
         html += "<h1>Question " + totalquestion + "</h1>";
