@@ -14,7 +14,7 @@ function displayQuiz1()
             }
             else
             {
-                alert("Some Quizes might be locked");
+                alert("Some quizzes might be locked");
                 var html = "";
                 $.each(data, function(index, data) {
                     var quiznumber = data.quiznumber;

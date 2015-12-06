@@ -746,8 +746,8 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         //echo "Copying course...";
         global $con;
         
-        $sql = "INSERT INTO course (`prefix`, `suffix`, `name`) 
-                SELECT `prefix`, `suffix`, `name` FROM course WHERE courseID = :courseID";
+        $sql = "INSERT INTO course (`prefix`, `suffix`, `name`, `open`) 
+                SELECT `prefix`, `suffix`, `name`, `open` FROM course WHERE courseID = :courseID";
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
         $q->execute();
