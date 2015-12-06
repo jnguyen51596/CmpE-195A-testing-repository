@@ -826,7 +826,7 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
         $q->execute();
 
         //increment duedates
-        //echo "<br>Incrementing duedates...";
+        echo "<br>Incrementing duedates...";
         $sql = "SELECT assignmentID, duedate FROM assignment WHERE courseID = ".$courseID." ORDER BY duedate LIMIT 1;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $courseID, PDO::PARAM_INT);
@@ -843,13 +843,13 @@ function copyCourse($instructorID, $courseID, $firstAssignmentStartDate) {
             return "error";
         }
         $diff = $currentFirstAssignmentDate->diff($firstAssignmentStartDate)->days;
-        //echo "<br>Diff = ".$diff;
-        $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY) AND `lock` = 0 WHERE courseID = :courseID;"; 
+        echo "<br>Diff = ".$diff;
+        $sql = "UPDATE assignment SET duedate = DATE_ADD(duedate, INTERVAL ".($diff+1)." DAY), `lock` = 0 WHERE courseID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
         $q->execute();
 
-        $sql = "UPDATE totalquiz SET `date` = DATE_ADD(`date`, INTERVAL ".($diff+1)." DAY) AND `lock` = 0 WHERE classID = :courseID;"; 
+        $sql = "UPDATE totalquiz SET `date` = DATE_ADD(`date`, INTERVAL ".($diff+1)." DAY), `lock` = 0 WHERE classID = :courseID;"; 
         $q = $con->prepare($sql);
         $q->bindParam(':courseID', $newClassID, PDO::PARAM_INT);
         $q->execute();
