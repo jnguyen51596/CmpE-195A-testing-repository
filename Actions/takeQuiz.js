@@ -237,7 +237,7 @@ function submitFinishQuiz()
             count++;
         }
     }
-    alert("You got " + points + " correct answers");
+    alert("You got " + points + " correct answers out of " + count "questions");
     var classID = sessionStorage.getItem('courseID');
     var quiznumber = sessionStorage.getItem('quiznumber');
     points = (points / count) * 100;
