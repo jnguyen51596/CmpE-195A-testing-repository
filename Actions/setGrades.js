@@ -7,7 +7,7 @@ function initializeAssignments() {
 	
 	gradesResponse = getRemote("getAllGrades");
 	gradesArray = JSON.parse(gradesResponse);
-	alert(JSON.Stringify(gradesResponse));
+	
 	var tag ='';
 	// this loop creates a collapsible for each assignment
 	for (var i = 0; i < assignmentArray.length; i++) {
