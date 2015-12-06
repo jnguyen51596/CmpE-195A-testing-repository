@@ -47,7 +47,7 @@ function initializeAssignments() {
                         cache: false,
                         success: function (data) {
                             if (data == true) {
-                                alert("Your kick");
+                                alert("Some Assignments Lock");
                             }
 
                         }
