@@ -11,7 +11,7 @@ function createAssignment() {
 	// format datepicker here.
 	var description = document.getElementById("desc-id").value;
 	// var ampm = document.getElementById("ampm-id").value; // more sophisticated time options to be added...
- if (description=="" || title=="" || total =="" || duedate=="" || !isNaN(total))
+ if (description=="" || title=="" || total =="" || duedate=="")
     {
         alert("Please fill in all fields");
     }
