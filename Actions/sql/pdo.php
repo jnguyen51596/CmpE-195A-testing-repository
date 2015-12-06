@@ -155,7 +155,10 @@ function getDBDate($classID, $quiznumber) {
 	        $avalue3 = $value['lockmanualoverride'];
             if ($avalue1 == 0 && $avalue3 == null) {    
                 return $avalue2;
-            } else {
+            }else if($avalue1 == 0 && $avalue3 == 1){ 
+            	return 1;
+            }
+            else {
                 return 0;
             }
         }
