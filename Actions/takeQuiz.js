@@ -217,6 +217,7 @@ function submitFinishQuiz()
         
         var question = document.getElementsByName(input2);
         var temp = 0;
+        var count = 0;
         if (question[0].id == text2)
         {
         }
@@ -232,17 +233,14 @@ function submitFinishQuiz()
             if (question[temp].value === answers2[i - 1])
             {
                 points++;
-
             }
-            else
-            {
-
-            }
+            count++;
         }
     }
     alert("You got " + points + " correct answers");
     var classID = sessionStorage.getItem('courseID');
     var quiznumber = sessionStorage.getItem('quiznumber');
+    points = (points / count) * 100;
     $.ajax({
             type: "POST",
             url: "/Actions/addQuizGrade.php",
