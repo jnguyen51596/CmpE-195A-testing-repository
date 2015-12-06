@@ -5,7 +5,7 @@ function initializeAssignments() {
 	response = getRemote("getAssignments");
 	assignmentArray = JSON.parse(response);
 	
-	gradesResponse = getRemote("getGrades");
+	gradesResponse = getRemote("getAllGrades");
 	gradesArray = JSON.parse(gradesResponse);
 	
 	var tag ='';

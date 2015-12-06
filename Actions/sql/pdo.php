@@ -102,6 +102,24 @@ function getGrades($courseID, $userID) {
     }
 }
 
+function getAllGrades($courseID) {
+    global $con;
+    $sql = "SELECT username, title, score, total, feedback, grade.assignmentID, grade.memberID
+            FROM member, grade, assignment
+            WHERE assignment.assignmentID = grade.assignmentID 
+            AND member.memberID = grade.memberID 
+            AND assignment.courseID = :courseID";
+
+    $q = $con->prepare($sql);
+    $q->execute(array(':courseID' => $courseID));
+    $rows = $q->fetchAll();
+    if (count($rows) == 0) {
+        return 0;
+    } else {
+        return $rows;
+    }
+}
+
 function setGrades($memberID, $assignmentid, $score, $feedback) {
     global $con;
     $sql = "UPDATE grade 
