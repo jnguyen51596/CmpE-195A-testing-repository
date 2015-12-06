@@ -54,14 +54,14 @@ function getQuizQuestion2(classid, quiznumber)
                 {
                     
                     html += " <button  id=\"goback\" onclick=\"submitFinishQuiz()\">Submit</button>";
-                    sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
+                   // sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
                     sessionStorage.setItem('totalquestion', totalquestion);
                     $("#demo").append(html).enhanceWithin();
                 }
             }
             else
             {
-                sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
+               // sessionStorage.setItem('answers', JSON.stringify(arrayOfAnswers));
                 printOutQuiz2(data);
             }
         }
@@ -205,9 +205,9 @@ function submitFinishQuiz()
 {
     //alert("You are now submitting");
     var totalquestion = sessionStorage.getItem('totalquestion');
-    var answers = sessionStorage.getItem('answers');
-    var answers2 = JSON.parse(answers)
+    var answers2 = arrayOfAnswers;
     var points = 0;
+    var count = 0;
     for (var i = 1; i < totalquestion; i++)
     {
         var input = "radio-choice-";
@@ -217,7 +217,7 @@ function submitFinishQuiz()
         
         var question = document.getElementsByName(input2);
         var temp = 0;
-        var count = 0;
+        
         if (question[0].id == text2)
         {
         }
