@@ -41,6 +41,12 @@ Demo
 
 Follow the YouTube link to view the demo:
 
+Fall 2015 CMPE 195B Group 2 - MopenLMS Student View Demo Part 1 
+https://www.youtube.com/watch?v=62CxIc35K_M
+
+
+Fall 2015 CMPE 195B Group 2 - MopenLMS Instructor View Demo Part 2 
+https://www.youtube.com/watch?v=0S0i0pbsNmw
 
 ===============================================================================
 
