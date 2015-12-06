@@ -15,5 +15,6 @@
 	$description = $_POST['description'];
 	
 	addAssignment($courseID, $authorID, $title, $total, $duedate, $description);
+	echo json_encode("success");
 	//header('Content-Type: application/json');
 ?>

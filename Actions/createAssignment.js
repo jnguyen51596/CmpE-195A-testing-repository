@@ -16,6 +16,7 @@ function createAssignment() {
 		type: "POST",
 		url: "/Actions/createAssignment.php",
         data: {courseID: courseID, title: title, total: total, duedate: duedate, description: description}, 
+        dataType: "json",
 		success: function(data) {
 			alert("Assignment created!");
 			window.location.href = "/home/instructor-home";
